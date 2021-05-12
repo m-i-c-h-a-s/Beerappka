@@ -5,6 +5,10 @@ name = "pypi"
 
 [packages]
 django = "3.2.2"
+python-dotenv = "*"
+psycopg2 = "*"
+djangorestframework = "*"
+drf-yasg = "*"
 
 [dev-packages]
 

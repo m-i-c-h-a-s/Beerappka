@@ -7,6 +7,7 @@ import { LandingPageComponent } from './landing-page/landing-page.component';
 import { LoginPageComponent } from './login-page/login-page.component';
 import { RegisterPageComponent } from './register-page/register-page.component';
 import { PageTopBarComponent } from './page-top-bar/page-top-bar.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,8 @@ import { PageTopBarComponent } from './page-top-bar/page-top-bar.component';
     LandingPageComponent,
     LoginPageComponent,
     RegisterPageComponent,
-    PageTopBarComponent
+    PageTopBarComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,

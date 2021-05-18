@@ -32,12 +32,15 @@
             ],
             "styles": [
               "node_modules/bootstrap/scss/bootstrap.scss",
+              "src/assets/startbootstrap-sb-admin-2/vendor/fontawesome-free/css/all.min.css",
+              "src/assets/startbootstrap-sb-admin-2/css/sb-admin-2.min.css",
               "src/styles.sass"
             ],
             "scripts": [
               "node_modules/jquery/dist/jquery.slim.js",
               "node_modules/popper.js/dist/umd/popper.js",
-              "node_modules/bootstrap/dist/js/bootstrap.js"
+              "node_modules/bootstrap/dist/js/bootstrap.js",
+              "src/assets/startbootstrap-sb-admin-2/vendor/chart.js/Chart.min.js"
             ]
           },
           "configurations": {

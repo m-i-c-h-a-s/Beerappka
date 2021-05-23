@@ -14,24 +14,22 @@
                         </div>
                         <form class="user">
                             <div class="form-group">
-                              <input type="text" class="form-control form-control-user"
-                                     placeholder="Nick użytkownika">
+                              <input type="text" class="form-control form-control-user" name="username"
+                                     placeholder="Nick użytkownika" [(ngModel)]="user.username">
                             </div>
                             <div class="form-group">
-                                <input type="email" class="form-control form-control-user"
-                                    placeholder="Adres email">
+                                <input type="email" class="form-control form-control-user" name="email"
+                                    placeholder="Adres email" [(ngModel)]="user.email">
                             </div>
                             <div class="form-group">
-                              <input type="password" class="form-control form-control-user"
-                                        placeholder="Hasło">
+                              <input type="password" class="form-control form-control-user" name="password1"
+                                        placeholder="Hasło" [(ngModel)]="user.password1">
                             </div>
                             <div class="form-group">
-                                <input type="password" class="form-control form-control-user"
-                                       placeholder="Powtórz hasło">
+                                <input type="password" class="form-control form-control-user" name="password2"
+                                       placeholder="Powtórz hasło" [(ngModel)]="user.password2">
                             </div>
-                            <a href="login.html" class="btn btn-primary btn-user btn-block">
-                                Rejestruj
-                            </a>
+                          <button class="btn btn-primary btn-user btn-block" (click)="register()">Rejestruj</button>
                         </form>
                         <hr class="mt-5 mb-5">
                         <div class="text-center">

@@ -19,20 +19,18 @@
                                 </div>
                                 <form class="user">
                                     <div class="form-group">
-                                        <input type="email" class="form-control form-control-user"
-                                             aria-describedby="emailHelp"
-                                            placeholder="Email">
+                                        <input type="text" class="form-control form-control-user" name="username"
+                                               placeholder="Username" [(ngModel)]="user.username">
                                     </div>
                                     <div class="form-group">
-                                        <input type="password" class="form-control form-control-user" placeholder="Hasło">
+                                        <input type="password" class="form-control form-control-user" name="password"
+                                               placeholder="Hasło" [(ngModel)]="user.password">
                                     </div>
-                                    <a href="index.html" class="btn btn-primary btn-user btn-block">
-                                        Zaloguj
-                                    </a>
+                                    <button class="btn btn-primary btn-user btn-block" (click)="login()">Zaloguj</button>
                                 </form>
                                 <hr class="mt-5 mb-5">
                                 <div class="text-center">
-                                    <a class="small" href="forgot-password.html">Zapomniałeś hasła?</a>
+                                    <a class="small" href="#">Zapomniałeś hasła?</a>
                                 </div>
                                 <div class="text-center">
                                     <a routerLink="/rejestracja" routerLinkActive="active"

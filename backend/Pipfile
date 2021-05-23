@@ -9,6 +9,8 @@ python-dotenv = "*"
 psycopg2 = "*"
 djangorestframework = "*"
 drf-yasg = "*"
+django-rest-auth = {extras = ["with_social"], version = "*"}
+django-cors-headers = "*"
 
 [dev-packages]
 

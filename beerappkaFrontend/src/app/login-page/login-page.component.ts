@@ -22,7 +22,7 @@ export class LoginPageComponent implements OnInit {
     this.userService.login(this.user).subscribe(
       data => {
         localStorage.setItem('auth_token', (data as any).key);
-        this.router.navigate(['dashboard']);
+        return this.router.navigate(['dashboard']);
       },
       err => {
         console.log(err);

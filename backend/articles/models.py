@@ -7,23 +7,22 @@ from django.db import models
 
 
 class Article(models.Model):
-    # tytuł
-    title = models.CharField(max_length=255)
+    title = models.CharField(max_length=255, verbose_name='Tytuł')
 
-    # treść
-    content = models.TextField()
+    content = models.TextField(verbose_name='Treść')
 
-    # autor
-    author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='articles')
+    author = models.ForeignKey(
+        User,
+        on_delete=models.CASCADE,
+        related_name='articles',
+        verbose_name='Autor'
+    )
 
-    # data dodania
-    creation_date = models.DateField(auto_now_add=True)
+    creation_date = models.DateField(auto_now_add=True, verbose_name='Data dodania')
 
-    # data ostatniej modyfikacji
-    last_modification_date = models.DateField(auto_now=True)
+    last_modification_date = models.DateField(auto_now=True, verbose_name='Data ostatniej modyfikacji')
 
-    # czy opublikowany
-    is_published = models.BooleanField(default=False)
+    is_published = models.BooleanField(default=False, verbose_name='Opublikowany')
 
     class Meta:
         verbose_name = 'Artykuł'

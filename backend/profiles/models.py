@@ -7,30 +7,26 @@ from django.db import models
 
 
 class Profile(models.Model):
-    # relacja 1:1 z modelem User
-    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile')
+    user = models.OneToOneField(
+        User,
+        on_delete=models.CASCADE,
+        related_name='profile',
+        verbose_name='Użytkownik'
+    )
 
-    # data urodzenia
-    birth_date = models.DateField(null=True, blank=True)
+    birth_date = models.DateField(null=True, blank=True, verbose_name='Data urodzenia')
 
-    # miejscowosc
-    town = models.CharField(max_length=45, null=True, blank=True)
+    town = models.CharField(max_length=45, null=True, blank=True, verbose_name='Miejscowość')
 
-    # strona internetowa
-    website = models.CharField(max_length=45, null=True, blank=True)
+    website = models.CharField(max_length=45, null=True, blank=True, verbose_name='Strona internetowa')
 
-    # profil na Instagramie
-    # URLField defaultowo max_length=200
-    instagram_link = models.URLField(null=True, blank=True)
+    instagram_link = models.URLField(null=True, blank=True, verbose_name='Profil na Instagramie')
 
-    # piwowar od
-    brewer_since = models.DateField(null=True, blank=True)
+    brewer_since = models.DateField(null=True, blank=True, verbose_name='Piwowar od')
 
-    # ulubiony styl piwny
-    favourite_beer_style = models.CharField(max_length=45, null=True, blank=True)
+    favourite_beer_style = models.CharField(max_length=45, null=True, blank=True, verbose_name='Ulubiony styl piwny')
 
-    # o mnie
-    about_me = models.TextField(max_length=255, null=True, blank=True)
+    about_me = models.TextField(max_length=255, null=True, blank=True, verbose_name='O mnie')
 
     class Meta:
         verbose_name = 'Profil Użytkownika'

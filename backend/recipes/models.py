@@ -7,17 +7,15 @@ from django.db import models
 
 
 class Style(models.Model):
-    # nazwa
-    name = models.CharField(max_length=45)
+    name = models.CharField(max_length=45, verbose_name='Nazwa')
 
-    # rodzaj fermentacji
-    fermentation_type = models.CharField(max_length=45)
+    fermentation_type = models.CharField(max_length=45, verbose_name='Rodzaj fermentacji')
 
     # min BLG ilość cukrów w brzeczce (skala Ballinga)
     min_blg = models.FloatField()
 
     # max BLG ilość cukrów w brzeczce (skala Ballinga)
-    max_BLG = models.FloatField()
+    max_blg = models.FloatField()
 
     # min IBU gorycz
     min_ibu = models.FloatField()
@@ -39,41 +37,29 @@ class Style(models.Model):
 
 
 class Recipe(models.Model):
-    # nazwa
-    name = models.CharField(max_length=45)
+    name = models.CharField(max_length=45, verbose_name='Nazwa')
 
-    # data utworzenia
-    creation_date = models.DateTimeField()
+    creation_date = models.DateTimeField(verbose_name='Data utworzenia')
 
-    # czas gotowania
-    boiling_time = models.PositiveSmallIntegerField()
+    boiling_time = models.PositiveSmallIntegerField(verbose_name='Czas gotowania')
 
-    # oczekiwana ilość piwa
-    expected_beer_amount = models.FloatField()
+    expected_beer_amount = models.FloatField(verbose_name='Oczekiwana ilość piwa')
 
-    # ilość gotowanej brzeczki
-    boiled_wort_amount = models.FloatField()
+    boiled_wort_amount = models.FloatField(verbose_name='Ilość gotowanej brzeczki')
 
-    # szybkość parowania
-    evaporation_rate = models.FloatField()
+    evaporation_rate = models.FloatField(verbose_name='Szybkość parowania')
 
-    # straty gotowania
-    boiling_losses = models.FloatField()
+    boiling_losses = models.FloatField(verbose_name='Straty gotowania')
 
-    # straty fermentacji
-    fermentation_losses = models.FloatField()
+    fermentation_losses = models.FloatField(verbose_name='Straty fermentacji')
 
-    # straty chmielenia na zimno
-    cold_hop_losses = models.FloatField()
+    cold_hop_losses = models.FloatField(verbose_name='Straty chmielenia na zimno')
 
-    # wydajność zacierania
-    mashing_performance = models.FloatField()
+    mashing_performance = models.FloatField(verbose_name='Wydajność zacierania')
 
-    # stosunek wody do ziarna
-    water_to_grain_ratio = models.FloatField()
+    water_to_grain_ratio = models.FloatField(verbose_name='Stosunek wody do ziarna')
 
-    # notatki
-    notes = models.TextField(null=True, blank=True)
+    notes = models.TextField(null=True, blank=True, verbose_name='Notatki')
 
     # BLG ilość cukrów w brzeczce (skala Ballinga)
     blg = models.FloatField()
@@ -84,11 +70,21 @@ class Recipe(models.Model):
     # EBC barwa piwa
     ebc = models.FloatField()
 
-    # użytkownik
-    user = models.ForeignKey(User, on_delete=models.SET_NULL, related_name='recipes', null=True)
+    user = models.ForeignKey(
+        User,
+        on_delete=models.SET_NULL,
+        related_name='recipes',
+        null=True,
+        verbose_name='Użytkownik'
+    )
 
-    # styl
-    style = models.ForeignKey(Style, on_delete=models.SET_NULL, related_name='recipes', null=True)
+    style = models.ForeignKey(
+        Style,
+        on_delete=models.SET_NULL,
+        related_name='recipes',
+        null=True,
+        verbose_name='Styl'
+    )
 
     class Meta:
         verbose_name = 'Receptura'

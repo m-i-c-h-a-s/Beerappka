@@ -7,22 +7,22 @@ from recipes.models import (
 )
 
 
-class RecipeHopsAdmin(admin.TabularInline):
+class RecipeHopsInline(admin.TabularInline):
     model = RecipeHops
     extra = 1
 
 
-class RecipeMaltAdmin(admin.TabularInline):
+class RecipeMaltInline(admin.TabularInline):
     model = RecipeMalt
     extra = 1
 
 
-class RecipeYeastAdmin(admin.TabularInline):
+class RecipeYeastInline(admin.TabularInline):
     model = RecipeYeast
     extra = 1
 
 
-class RecipeWaterAdmin(admin.TabularInline):
+class RecipeWaterInline(admin.TabularInline):
     model = RecipeWater
     extra = 1
 
@@ -33,8 +33,8 @@ class StyleAdmin(admin.ModelAdmin):
 
 class RecipeAdmin(admin.ModelAdmin):
     inlines = [
-        RecipeHopsAdmin, RecipeMaltAdmin,
-        RecipeYeastAdmin, RecipeWaterAdmin
+        RecipeHopsInline, RecipeMaltInline,
+        RecipeYeastInline, RecipeWaterInline
     ]
 
 

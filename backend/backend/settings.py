@@ -54,7 +54,8 @@ INSTALLED_APPS = [
 
     'profiles',
     'articles',
-    'recipes'
+    'recipes',
+    'batches'
 ]
 
 MIDDLEWARE = [

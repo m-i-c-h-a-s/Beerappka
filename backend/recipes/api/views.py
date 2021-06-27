@@ -8,4 +8,6 @@ from recipes.models import Recipe
 class RecipesViewSet(viewsets.ModelViewSet):
     queryset = Recipe.objects.all()
     serializer_class = RecipeSerializer
-    permission_classes = [IsRecipeOwnerOrReadOnlyPermission, ]
+    permission_classes = [
+        IsRecipeOwnerOrReadOnlyPermission,
+    ]

@@ -2,6 +2,6 @@ from django.apps import AppConfig
 
 
 class BatchesConfig(AppConfig):
-    default_auto_field = 'django.db.models.BigAutoField'
-    name = 'batches'
-    verbose_name = 'Warki'
+    default_auto_field = "django.db.models.BigAutoField"
+    name = "batches"
+    verbose_name = "Warki"

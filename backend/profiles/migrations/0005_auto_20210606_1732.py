@@ -9,48 +9,65 @@ class Migration(migrations.Migration):
 
     dependencies = [
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
-        ('profiles', '0004_alter_profile_options'),
+        ("profiles", "0004_alter_profile_options"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='profile',
-            name='about_me',
-            field=models.TextField(blank=True, max_length=255, null=True, verbose_name='O mnie'),
+            model_name="profile",
+            name="about_me",
+            field=models.TextField(
+                blank=True, max_length=255, null=True, verbose_name="O mnie"
+            ),
         ),
         migrations.AlterField(
-            model_name='profile',
-            name='birth_date',
-            field=models.DateField(blank=True, null=True, verbose_name='Data urodzenia'),
+            model_name="profile",
+            name="birth_date",
+            field=models.DateField(
+                blank=True, null=True, verbose_name="Data urodzenia"
+            ),
         ),
         migrations.AlterField(
-            model_name='profile',
-            name='brewer_since',
-            field=models.DateField(blank=True, null=True, verbose_name='Piwowar od'),
+            model_name="profile",
+            name="brewer_since",
+            field=models.DateField(blank=True, null=True, verbose_name="Piwowar od"),
         ),
         migrations.AlterField(
-            model_name='profile',
-            name='favourite_beer_style',
-            field=models.CharField(blank=True, max_length=45, null=True, verbose_name='Ulubiony styl piwny'),
+            model_name="profile",
+            name="favourite_beer_style",
+            field=models.CharField(
+                blank=True, max_length=45, null=True, verbose_name="Ulubiony styl piwny"
+            ),
         ),
         migrations.AlterField(
-            model_name='profile',
-            name='instagram_link',
-            field=models.URLField(blank=True, null=True, verbose_name='Profil na Instagramie'),
+            model_name="profile",
+            name="instagram_link",
+            field=models.URLField(
+                blank=True, null=True, verbose_name="Profil na Instagramie"
+            ),
         ),
         migrations.AlterField(
-            model_name='profile',
-            name='town',
-            field=models.CharField(blank=True, max_length=45, null=True, verbose_name='Miejscowość'),
+            model_name="profile",
+            name="town",
+            field=models.CharField(
+                blank=True, max_length=45, null=True, verbose_name="Miejscowość"
+            ),
         ),
         migrations.AlterField(
-            model_name='profile',
-            name='user',
-            field=models.OneToOneField(on_delete=django.db.models.deletion.CASCADE, related_name='profile', to=settings.AUTH_USER_MODEL, verbose_name='Użytkownik'),
+            model_name="profile",
+            name="user",
+            field=models.OneToOneField(
+                on_delete=django.db.models.deletion.CASCADE,
+                related_name="profile",
+                to=settings.AUTH_USER_MODEL,
+                verbose_name="Użytkownik",
+            ),
         ),
         migrations.AlterField(
-            model_name='profile',
-            name='website',
-            field=models.CharField(blank=True, max_length=45, null=True, verbose_name='Strona internetowa'),
+            model_name="profile",
+            name="website",
+            field=models.CharField(
+                blank=True, max_length=45, null=True, verbose_name="Strona internetowa"
+            ),
         ),
     ]

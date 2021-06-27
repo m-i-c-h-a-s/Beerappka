@@ -39,31 +39,6 @@ class Batch(models.Model):
 
 
 '''
-    Model reprezentujący Zacieranie
-'''
-
-
-class Mashing(models.Model):
-    time = models.IntegerField(verbose_name='Czas')
-
-    temperature = models.FloatField(verbose_name='Temperatura')
-
-    batch = models.ForeignKey(
-        Batch,
-        on_delete=models.CASCADE,
-        related_name='mashing',
-        verbose_name='Warka',
-    )
-
-    class Meta:
-        verbose_name = 'Zacieranie'
-        verbose_name_plural = 'Zacierania'
-
-    def __str__(self):
-        return f"{self.time} | {self.temperature} | {self.batch}"
-
-
-'''
     Model reprezentujący PomiarBLG
 '''
 

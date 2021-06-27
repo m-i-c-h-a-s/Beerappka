@@ -53,6 +53,8 @@ class Recipe(models.Model):
 
     creation_date = models.DateTimeField(verbose_name='Data utworzenia')
 
+    is_public = models.BooleanField(default=False, verbose_name='Czy publiczna?')
+
     boiling_time = models.PositiveSmallIntegerField(verbose_name='Czas gotowania')
 
     expected_beer_amount = models.FloatField(verbose_name='Oczekiwana ilość piwa')
@@ -104,6 +106,31 @@ class Recipe(models.Model):
 
     def __str__(self):
         return f"{self.name}"
+
+
+'''
+    Model reprezentujący Zacieranie
+'''
+
+
+class Mashing(models.Model):
+    time = models.IntegerField(verbose_name='Czas')
+
+    temperature = models.FloatField(verbose_name='Temperatura')
+
+    recipe = models.ForeignKey(
+        Recipe,
+        on_delete=models.CASCADE,
+        related_name='mashing',
+        verbose_name='Przepis',
+    )
+
+    class Meta:
+        verbose_name = 'Zacieranie'
+        verbose_name_plural = 'Zacierania'
+
+    def __str__(self):
+        return f"{self.time} | {self.temperature} | {self.batch}"
 
 
 ''' 
@@ -177,6 +204,22 @@ class Malt(models.Model):
 
 class Hops(models.Model):
     name = models.CharField(max_length=45, verbose_name='Nazwa')
+
+    BITTER = 'bi'
+    AROMATIC = 'ar'
+
+    HOPS_TYPES = [
+        (BITTER, 'Goryczkowy'),
+        (AROMATIC, 'Aromatyczny'),
+    ]
+
+    type = models.CharField(
+        max_length=2,
+        choices=HOPS_TYPES,
+        verbose_name='Typ',
+        null=True,
+        blank=True
+    )
 
     origin = models.CharField(max_length=45, verbose_name='Pochodzenie')
 
@@ -320,7 +363,7 @@ class RecipeHops(models.Model):
     WHIRLPOOL = 'wh'
     COLD = 'co'
 
-    HOPS_TYPES = [
+    HOPS_USAGE_TYPES = [
         (MASHING, 'Zacieranie'),
         (FRONT_WORT, 'Brzeczka przednia'),
         (BOILING, 'Gotowanie'),
@@ -329,10 +372,12 @@ class RecipeHops(models.Model):
         (COLD, 'Na zimno')
     ]
 
-    type = models.CharField(
+    used_for = models.CharField(
         max_length=2,
-        choices=HOPS_TYPES,
-        verbose_name='Typ'
+        choices=HOPS_USAGE_TYPES,
+        verbose_name='Użyty do',
+        null=True,
+        blank=True
     )
 
     class Meta:
@@ -363,6 +408,27 @@ class RecipeYeast(models.Model):
     )
 
     quantity = models.FloatField(verbose_name='Ilość')
+
+    # suche/płynne/gęstwa/fermentacja spontaniczna
+    DRY = 'dr'
+    LIQUID = 'li'
+    THICKETS = 'th'
+    SPONTANEOUS_FERMENTATION = 'sp'
+
+    YEAST_FORMS = [
+        (DRY, 'Suche'),
+        (LIQUID, 'Płynne'),
+        (THICKETS, 'Gęstwa'),
+        (SPONTANEOUS_FERMENTATION, 'Fermentacja spontaniczna')
+    ]
+
+    form = models.CharField(
+        max_length=2,
+        choices=YEAST_FORMS,
+        verbose_name='Postać',
+        null=True,
+        blank=True
+    )
 
     class Meta:
         verbose_name = 'Drożdże'

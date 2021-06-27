@@ -11,6 +11,7 @@ djangorestframework = "*"
 drf-yasg = "*"
 django-rest-auth = {extras = ["with_social"], version = "*"}
 django-cors-headers = "*"
+pillow = "*"
 
 [dev-packages]
 

@@ -12,8 +12,12 @@ drf-yasg = "*"
 django-rest-auth = {extras = ["with_social"], version = "*"}
 django-cors-headers = "*"
 pillow = "*"
+black = "*"
 
 [dev-packages]
 
 [requires]
 python_version = "3.7"
+
+[pipenv]
+allow_prereleases = true

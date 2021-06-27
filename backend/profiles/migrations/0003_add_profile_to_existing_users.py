@@ -8,7 +8,7 @@ from profiles.models import Profile
 def create_profiles(apps, schema_editor):
     users = User.objects.all()
     for u in users:
-        if not hasattr(u, 'profile'):
+        if not hasattr(u, "profile"):
             Profile.objects.create(user=u)
 
 
@@ -22,9 +22,7 @@ def delete_profiles(apps, schema_editor):
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('profiles', '0002_auto_20210606_1540'),
+        ("profiles", "0002_auto_20210606_1540"),
     ]
 
-    operations = [
-        migrations.RunPython(create_profiles, delete_profiles)
-    ]
+    operations = [migrations.RunPython(create_profiles, delete_profiles)]

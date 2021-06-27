@@ -8,4 +8,6 @@ from articles.models import Article
 class ArticlesViewSet(viewsets.ModelViewSet):
     queryset = Article.objects.all()
     serializer_class = ArticleSerializer
-    permission_classes = [IsArticleAuthorOrReadOnly, ]
+    permission_classes = [
+        IsArticleAuthorOrReadOnly,
+    ]

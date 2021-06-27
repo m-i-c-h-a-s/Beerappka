@@ -7,139 +7,341 @@ import django.db.models.deletion
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('recipes', '0003_auto_20210606_1732'),
+        ("recipes", "0003_auto_20210606_1732"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='Hops',
+            name="Hops",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(max_length=45, verbose_name='Nazwa')),
-                ('origin', models.CharField(max_length=45, verbose_name='Pochodzenie')),
-                ('alpha_acids', models.FloatField(verbose_name='Kwasy alfa')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("name", models.CharField(max_length=45, verbose_name="Nazwa")),
+                ("origin", models.CharField(max_length=45, verbose_name="Pochodzenie")),
+                ("alpha_acids", models.FloatField(verbose_name="Kwasy alfa")),
             ],
             options={
-                'verbose_name': 'Chmiel',
-                'verbose_name_plural': 'Chmiele',
+                "verbose_name": "Chmiel",
+                "verbose_name_plural": "Chmiele",
             },
         ),
         migrations.CreateModel(
-            name='Malt',
+            name="Malt",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(max_length=45, verbose_name='Nazwa')),
-                ('extractivity', models.FloatField(verbose_name='Ekstraktywność')),
-                ('type', models.CharField(choices=[('gr', 'Ziarno'), ('de', 'Ekstrakt Suchy'), ('le', 'Ekstrakt płynny'), ('su', 'Cukier')], max_length=2, verbose_name='Typ')),
-                ('color', models.FloatField(verbose_name='Barwa')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("name", models.CharField(max_length=45, verbose_name="Nazwa")),
+                ("extractivity", models.FloatField(verbose_name="Ekstraktywność")),
+                (
+                    "type",
+                    models.CharField(
+                        choices=[
+                            ("gr", "Ziarno"),
+                            ("de", "Ekstrakt Suchy"),
+                            ("le", "Ekstrakt płynny"),
+                            ("su", "Cukier"),
+                        ],
+                        max_length=2,
+                        verbose_name="Typ",
+                    ),
+                ),
+                ("color", models.FloatField(verbose_name="Barwa")),
             ],
             options={
-                'verbose_name': 'Słód',
-                'verbose_name_plural': 'Słody',
+                "verbose_name": "Słód",
+                "verbose_name_plural": "Słody",
             },
         ),
         migrations.CreateModel(
-            name='Manufacturer',
+            name="Manufacturer",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(max_length=45, verbose_name='Nazwa')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("name", models.CharField(max_length=45, verbose_name="Nazwa")),
             ],
             options={
-                'verbose_name': 'Producent',
-                'verbose_name_plural': 'Producenci',
+                "verbose_name": "Producent",
+                "verbose_name_plural": "Producenci",
             },
         ),
         migrations.AlterField(
-            model_name='style',
-            name='fermentation_type',
-            field=models.CharField(choices=[('uf', 'Górna fermentacja'), ('lf', 'Dolna fermentacja')], max_length=2, verbose_name='Rodzaj fermentacji'),
+            model_name="style",
+            name="fermentation_type",
+            field=models.CharField(
+                choices=[("uf", "Górna fermentacja"), ("lf", "Dolna fermentacja")],
+                max_length=2,
+                verbose_name="Rodzaj fermentacji",
+            ),
         ),
         migrations.CreateModel(
-            name='Yeast',
+            name="Yeast",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(max_length=45, verbose_name='Nazwa')),
-                ('type', models.CharField(choices=[('uf', 'Górnofermentacyjne'), ('lf', 'Dolnofermentacyjne')], max_length=2, verbose_name='Typ')),
-                ('manufacturer', models.ForeignKey(null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='yeast', to='recipes.manufacturer', verbose_name='Producent')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("name", models.CharField(max_length=45, verbose_name="Nazwa")),
+                (
+                    "type",
+                    models.CharField(
+                        choices=[
+                            ("uf", "Górnofermentacyjne"),
+                            ("lf", "Dolnofermentacyjne"),
+                        ],
+                        max_length=2,
+                        verbose_name="Typ",
+                    ),
+                ),
+                (
+                    "manufacturer",
+                    models.ForeignKey(
+                        null=True,
+                        on_delete=django.db.models.deletion.SET_NULL,
+                        related_name="yeast",
+                        to="recipes.manufacturer",
+                        verbose_name="Producent",
+                    ),
+                ),
             ],
             options={
-                'verbose_name': 'Drożdże',
-                'verbose_name_plural': 'Drożdże',
+                "verbose_name": "Drożdże",
+                "verbose_name_plural": "Drożdże",
             },
         ),
         migrations.CreateModel(
-            name='Water',
+            name="Water",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(max_length=45, verbose_name='Nazwa')),
-                ('manufacturer', models.ForeignKey(null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='water', to='recipes.manufacturer', verbose_name='Producent')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("name", models.CharField(max_length=45, verbose_name="Nazwa")),
+                (
+                    "manufacturer",
+                    models.ForeignKey(
+                        null=True,
+                        on_delete=django.db.models.deletion.SET_NULL,
+                        related_name="water",
+                        to="recipes.manufacturer",
+                        verbose_name="Producent",
+                    ),
+                ),
             ],
             options={
-                'verbose_name': 'Woda',
-                'verbose_name_plural': 'Wody',
+                "verbose_name": "Woda",
+                "verbose_name_plural": "Wody",
             },
         ),
         migrations.CreateModel(
-            name='RecipeYeast',
+            name="RecipeYeast",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('quantity', models.FloatField(verbose_name='Ilość')),
-                ('recipe', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='yeast', to='recipes.recipe', verbose_name='Receptura')),
-                ('yeast', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='recipes.yeast', verbose_name='Drożdże')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("quantity", models.FloatField(verbose_name="Ilość")),
+                (
+                    "recipe",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="yeast",
+                        to="recipes.recipe",
+                        verbose_name="Receptura",
+                    ),
+                ),
+                (
+                    "yeast",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to="recipes.yeast",
+                        verbose_name="Drożdże",
+                    ),
+                ),
             ],
             options={
-                'verbose_name': 'Drożdże',
-                'verbose_name_plural': 'Drożdże',
+                "verbose_name": "Drożdże",
+                "verbose_name_plural": "Drożdże",
             },
         ),
         migrations.CreateModel(
-            name='RecipeWater',
+            name="RecipeWater",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('quantity', models.FloatField(verbose_name='Ilość')),
-                ('recipe', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='water', to='recipes.recipe', verbose_name='Receptura')),
-                ('water', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='recipes.water', verbose_name='Woda')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("quantity", models.FloatField(verbose_name="Ilość")),
+                (
+                    "recipe",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="water",
+                        to="recipes.recipe",
+                        verbose_name="Receptura",
+                    ),
+                ),
+                (
+                    "water",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to="recipes.water",
+                        verbose_name="Woda",
+                    ),
+                ),
             ],
             options={
-                'verbose_name': 'Woda',
-                'verbose_name_plural': 'Woda',
+                "verbose_name": "Woda",
+                "verbose_name_plural": "Woda",
             },
         ),
         migrations.CreateModel(
-            name='RecipeMalt',
+            name="RecipeMalt",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('quantity', models.FloatField(verbose_name='Ilość')),
-                ('malt', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='recipes.malt', verbose_name='Słód')),
-                ('recipe', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='malts', to='recipes.recipe', verbose_name='Receptura')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("quantity", models.FloatField(verbose_name="Ilość")),
+                (
+                    "malt",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to="recipes.malt",
+                        verbose_name="Słód",
+                    ),
+                ),
+                (
+                    "recipe",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="malts",
+                        to="recipes.recipe",
+                        verbose_name="Receptura",
+                    ),
+                ),
             ],
             options={
-                'verbose_name': 'Słód',
-                'verbose_name_plural': 'Słody',
+                "verbose_name": "Słód",
+                "verbose_name_plural": "Słody",
             },
         ),
         migrations.CreateModel(
-            name='RecipeHops',
+            name="RecipeHops",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('quantity', models.FloatField(verbose_name='Ilość')),
-                ('type', models.CharField(choices=[('ma', 'Zacieranie'), ('fw', 'Brzeczka przednia'), ('bo', 'Gotowanie'), ('ar', 'Aromat'), ('wh', 'Whirlpool'), ('co', 'Na zimno')], max_length=2, verbose_name='Typ')),
-                ('hops', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='recipes.hops', verbose_name='Chmiel')),
-                ('recipe', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='hops', to='recipes.recipe', verbose_name='Receptura')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("quantity", models.FloatField(verbose_name="Ilość")),
+                (
+                    "type",
+                    models.CharField(
+                        choices=[
+                            ("ma", "Zacieranie"),
+                            ("fw", "Brzeczka przednia"),
+                            ("bo", "Gotowanie"),
+                            ("ar", "Aromat"),
+                            ("wh", "Whirlpool"),
+                            ("co", "Na zimno"),
+                        ],
+                        max_length=2,
+                        verbose_name="Typ",
+                    ),
+                ),
+                (
+                    "hops",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to="recipes.hops",
+                        verbose_name="Chmiel",
+                    ),
+                ),
+                (
+                    "recipe",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="hops",
+                        to="recipes.recipe",
+                        verbose_name="Receptura",
+                    ),
+                ),
             ],
             options={
-                'verbose_name': 'Chmiel',
-                'verbose_name_plural': 'Chmiele',
+                "verbose_name": "Chmiel",
+                "verbose_name_plural": "Chmiele",
             },
         ),
         migrations.AddField(
-            model_name='malt',
-            name='manufacturer',
-            field=models.ForeignKey(null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='malts', to='recipes.manufacturer', verbose_name='Producent'),
+            model_name="malt",
+            name="manufacturer",
+            field=models.ForeignKey(
+                null=True,
+                on_delete=django.db.models.deletion.SET_NULL,
+                related_name="malts",
+                to="recipes.manufacturer",
+                verbose_name="Producent",
+            ),
         ),
         migrations.AddField(
-            model_name='hops',
-            name='manufacturer',
-            field=models.ForeignKey(null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='hops', to='recipes.manufacturer', verbose_name='Producent'),
+            model_name="hops",
+            name="manufacturer",
+            field=models.ForeignKey(
+                null=True,
+                on_delete=django.db.models.deletion.SET_NULL,
+                related_name="hops",
+                to="recipes.manufacturer",
+                verbose_name="Producent",
+            ),
         ),
     ]

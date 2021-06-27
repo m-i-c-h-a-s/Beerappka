@@ -1,9 +1,18 @@
 from django.contrib import admin
 
 from recipes.models import (
-    Style, Recipe, Malt, Hops, Yeast,
-    Water, Manufacturer, RecipeHops,
-    RecipeMalt, RecipeYeast, RecipeWater, Mashing
+    Style,
+    Recipe,
+    Malt,
+    Hops,
+    Yeast,
+    Water,
+    Manufacturer,
+    RecipeHops,
+    RecipeMalt,
+    RecipeYeast,
+    RecipeWater,
+    Mashing,
 )
 
 
@@ -38,9 +47,11 @@ class MashingInline(admin.TabularInline):
 
 class RecipeAdmin(admin.ModelAdmin):
     inlines = [
-        RecipeHopsInline, RecipeMaltInline,
-        RecipeYeastInline, RecipeWaterInline,
-        MashingInline
+        RecipeHopsInline,
+        RecipeMaltInline,
+        RecipeYeastInline,
+        RecipeWaterInline,
+        MashingInline,
     ]
 
 

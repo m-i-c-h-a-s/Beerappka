@@ -6,23 +6,23 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('recipes', '0001_initial'),
+        ("recipes", "0001_initial"),
     ]
 
     operations = [
         migrations.RenameField(
-            model_name='style',
-            old_name='max_BLG',
-            new_name='max_blg',
+            model_name="style",
+            old_name="max_BLG",
+            new_name="max_blg",
         ),
         migrations.AlterField(
-            model_name='style',
-            name='fermentation_type',
-            field=models.CharField(max_length=45, verbose_name='Rodzaj fermentacji'),
+            model_name="style",
+            name="fermentation_type",
+            field=models.CharField(max_length=45, verbose_name="Rodzaj fermentacji"),
         ),
         migrations.AlterField(
-            model_name='style',
-            name='name',
-            field=models.CharField(max_length=45, verbose_name='Nazwa'),
+            model_name="style",
+            name="name",
+            field=models.CharField(max_length=45, verbose_name="Nazwa"),
         ),
     ]

@@ -9,9 +9,7 @@ class MeasurementBLGInline(admin.TabularInline):
 
 
 class BatchAdmin(admin.ModelAdmin):
-    inlines = [
-        MeasurementBLGInline
-    ]
+    inlines = [MeasurementBLGInline]
 
 
 admin.site.register(Batch, BatchAdmin)

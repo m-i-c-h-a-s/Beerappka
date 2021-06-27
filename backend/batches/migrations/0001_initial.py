@@ -10,52 +10,114 @@ class Migration(migrations.Migration):
     initial = True
 
     dependencies = [
-        ('recipes', '0004_auto_20210608_1618'),
+        ("recipes", "0004_auto_20210608_1618"),
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='Batch',
+            name="Batch",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(max_length=45, verbose_name='Nazwa')),
-                ('number', models.IntegerField(verbose_name='Numer')),
-                ('brewing_date', models.DateField(verbose_name='Data warzenia')),
-                ('recipe', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='batches', to='recipes.recipe', verbose_name='Przepis')),
-                ('user', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='batches', to=settings.AUTH_USER_MODEL, verbose_name='Użytkownik')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("name", models.CharField(max_length=45, verbose_name="Nazwa")),
+                ("number", models.IntegerField(verbose_name="Numer")),
+                ("brewing_date", models.DateField(verbose_name="Data warzenia")),
+                (
+                    "recipe",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="batches",
+                        to="recipes.recipe",
+                        verbose_name="Przepis",
+                    ),
+                ),
+                (
+                    "user",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="batches",
+                        to=settings.AUTH_USER_MODEL,
+                        verbose_name="Użytkownik",
+                    ),
+                ),
             ],
             options={
-                'verbose_name': 'Warka',
-                'verbose_name_plural': 'Warki',
+                "verbose_name": "Warka",
+                "verbose_name_plural": "Warki",
             },
         ),
         migrations.CreateModel(
-            name='MeasurementBLG',
+            name="MeasurementBLG",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('date', models.DateTimeField(verbose_name='Data')),
-                ('blg', models.FloatField(verbose_name='BLG')),
-                ('beer_temperature', models.FloatField(verbose_name='Temperatura piwa')),
-                ('ambient_temperature', models.FloatField(verbose_name='Temperatura otoczenia')),
-                ('batch', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='measurement_blg', to='batches.batch', verbose_name='Warka')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("date", models.DateTimeField(verbose_name="Data")),
+                ("blg", models.FloatField(verbose_name="BLG")),
+                (
+                    "beer_temperature",
+                    models.FloatField(verbose_name="Temperatura piwa"),
+                ),
+                (
+                    "ambient_temperature",
+                    models.FloatField(verbose_name="Temperatura otoczenia"),
+                ),
+                (
+                    "batch",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="measurement_blg",
+                        to="batches.batch",
+                        verbose_name="Warka",
+                    ),
+                ),
             ],
             options={
-                'verbose_name': 'Pomiar BLG',
-                'verbose_name_plural': 'Pomiary BLG',
+                "verbose_name": "Pomiar BLG",
+                "verbose_name_plural": "Pomiary BLG",
             },
         ),
         migrations.CreateModel(
-            name='Mashing',
+            name="Mashing",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('time', models.IntegerField(verbose_name='Czas')),
-                ('temperature', models.FloatField(verbose_name='Temperatura')),
-                ('batch', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='mashing', to='batches.batch', verbose_name='Warka')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("time", models.IntegerField(verbose_name="Czas")),
+                ("temperature", models.FloatField(verbose_name="Temperatura")),
+                (
+                    "batch",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="mashing",
+                        to="batches.batch",
+                        verbose_name="Warka",
+                    ),
+                ),
             ],
             options={
-                'verbose_name': 'Zacieranie',
-                'verbose_name_plural': 'Zacierania',
+                "verbose_name": "Zacieranie",
+                "verbose_name_plural": "Zacierania",
             },
         ),
     ]

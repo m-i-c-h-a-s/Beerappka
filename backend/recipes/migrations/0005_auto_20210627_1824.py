@@ -7,45 +7,91 @@ import django.db.models.deletion
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('recipes', '0004_auto_20210608_1618'),
+        ("recipes", "0004_auto_20210608_1618"),
     ]
 
     operations = [
         migrations.RemoveField(
-            model_name='recipehops',
-            name='type',
+            model_name="recipehops",
+            name="type",
         ),
         migrations.AddField(
-            model_name='hops',
-            name='type',
-            field=models.CharField(blank=True, choices=[('bi', 'Goryczkowy'), ('ar', 'Aromatyczny')], max_length=2, null=True, verbose_name='Typ'),
+            model_name="hops",
+            name="type",
+            field=models.CharField(
+                blank=True,
+                choices=[("bi", "Goryczkowy"), ("ar", "Aromatyczny")],
+                max_length=2,
+                null=True,
+                verbose_name="Typ",
+            ),
         ),
         migrations.AddField(
-            model_name='recipe',
-            name='is_public',
-            field=models.BooleanField(default=False, verbose_name='Czy publiczna?'),
+            model_name="recipe",
+            name="is_public",
+            field=models.BooleanField(default=False, verbose_name="Czy publiczna?"),
         ),
         migrations.AddField(
-            model_name='recipehops',
-            name='used_for',
-            field=models.CharField(blank=True, choices=[('ma', 'Zacieranie'), ('fw', 'Brzeczka przednia'), ('bo', 'Gotowanie'), ('ar', 'Aromat'), ('wh', 'Whirlpool'), ('co', 'Na zimno')], max_length=2, null=True, verbose_name='Użyty do'),
+            model_name="recipehops",
+            name="used_for",
+            field=models.CharField(
+                blank=True,
+                choices=[
+                    ("ma", "Zacieranie"),
+                    ("fw", "Brzeczka przednia"),
+                    ("bo", "Gotowanie"),
+                    ("ar", "Aromat"),
+                    ("wh", "Whirlpool"),
+                    ("co", "Na zimno"),
+                ],
+                max_length=2,
+                null=True,
+                verbose_name="Użyty do",
+            ),
         ),
         migrations.AddField(
-            model_name='recipeyeast',
-            name='form',
-            field=models.CharField(blank=True, choices=[('dr', 'Suche'), ('li', 'Płynne'), ('th', 'Gęstwa'), ('sp', 'Fermentacja spontaniczna')], max_length=2, null=True, verbose_name='Postać'),
+            model_name="recipeyeast",
+            name="form",
+            field=models.CharField(
+                blank=True,
+                choices=[
+                    ("dr", "Suche"),
+                    ("li", "Płynne"),
+                    ("th", "Gęstwa"),
+                    ("sp", "Fermentacja spontaniczna"),
+                ],
+                max_length=2,
+                null=True,
+                verbose_name="Postać",
+            ),
         ),
         migrations.CreateModel(
-            name='Mashing',
+            name="Mashing",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('time', models.IntegerField(verbose_name='Czas')),
-                ('temperature', models.FloatField(verbose_name='Temperatura')),
-                ('recipe', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='mashing', to='recipes.recipe', verbose_name='Przepis')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("time", models.IntegerField(verbose_name="Czas")),
+                ("temperature", models.FloatField(verbose_name="Temperatura")),
+                (
+                    "recipe",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="mashing",
+                        to="recipes.recipe",
+                        verbose_name="Przepis",
+                    ),
+                ),
             ],
             options={
-                'verbose_name': 'Zacieranie',
-                'verbose_name_plural': 'Zacierania',
+                "verbose_name": "Zacieranie",
+                "verbose_name_plural": "Zacierania",
             },
         ),
     ]

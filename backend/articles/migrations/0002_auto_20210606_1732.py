@@ -9,38 +9,45 @@ class Migration(migrations.Migration):
 
     dependencies = [
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
-        ('articles', '0001_initial'),
+        ("articles", "0001_initial"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='article',
-            name='author',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='articles', to=settings.AUTH_USER_MODEL, verbose_name='Autor'),
+            model_name="article",
+            name="author",
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.CASCADE,
+                related_name="articles",
+                to=settings.AUTH_USER_MODEL,
+                verbose_name="Autor",
+            ),
         ),
         migrations.AlterField(
-            model_name='article',
-            name='content',
-            field=models.TextField(verbose_name='Treść'),
+            model_name="article",
+            name="content",
+            field=models.TextField(verbose_name="Treść"),
         ),
         migrations.AlterField(
-            model_name='article',
-            name='creation_date',
-            field=models.DateField(auto_now_add=True, verbose_name='Data dodania'),
+            model_name="article",
+            name="creation_date",
+            field=models.DateField(auto_now_add=True, verbose_name="Data dodania"),
         ),
         migrations.AlterField(
-            model_name='article',
-            name='is_published',
-            field=models.BooleanField(default=False, verbose_name='Opublikowany'),
+            model_name="article",
+            name="is_published",
+            field=models.BooleanField(default=False, verbose_name="Opublikowany"),
         ),
         migrations.AlterField(
-            model_name='article',
-            name='last_modification_date',
-            field=models.DateField(auto_now=True, verbose_name='Data ostatniej modyfikacji'),
+            model_name="article",
+            name="last_modification_date",
+            field=models.DateField(
+                auto_now=True, verbose_name="Data ostatniej modyfikacji"
+            ),
         ),
         migrations.AlterField(
-            model_name='article',
-            name='title',
-            field=models.CharField(max_length=255, verbose_name='Tytuł'),
+            model_name="article",
+            name="title",
+            field=models.CharField(max_length=255, verbose_name="Tytuł"),
         ),
     ]

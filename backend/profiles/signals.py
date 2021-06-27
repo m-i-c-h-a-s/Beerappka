@@ -5,10 +5,10 @@ from django.dispatch import receiver
 from profiles.models import Profile
 
 
-'''
+"""
     create_user_profile - po utworzeniu Użytkownika, tworzony jest jego Profil
     save_user_profile - po zapisaniu Użytkownika, następuje także zapis jego profilu
-'''
+"""
 
 
 @receiver(post_save, sender=User)

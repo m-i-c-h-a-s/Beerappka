@@ -6,12 +6,15 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('profiles', '0003_add_profile_to_existing_users'),
+        ("profiles", "0003_add_profile_to_existing_users"),
     ]
 
     operations = [
         migrations.AlterModelOptions(
-            name='profile',
-            options={'verbose_name': 'Profil Użytkownika', 'verbose_name_plural': 'Profile Użytkownika'},
+            name="profile",
+            options={
+                "verbose_name": "Profil Użytkownika",
+                "verbose_name_plural": "Profile Użytkownika",
+            },
         ),
     ]

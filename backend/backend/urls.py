@@ -28,25 +28,38 @@ from recipes.api.urls import urlpatterns as recipes_urlpatterns
 schema_view = get_schema_view(
     openapi.Info(
         title="Beerappka API",
-        default_version='v1',
-        description="Aplikacja webowa do kolekcjonowania receptur piwnych"
+        default_version="v1",
+        description="Aplikacja webowa do kolekcjonowania receptur piwnych",
     ),
     public=True,
     permission_classes=(permissions.AllowAny,),
 )
 
-api_urls = [
-    url(r'^auth/', include('rest_auth.urls')),
-    url(r'^auth/registration/', include('rest_auth.registration.urls')),
-] + users_urlpatterns + articles_urlpatterns + recipes_urlpatterns
+api_urls = (
+    [
+        url(r"^auth/", include("rest_auth.urls")),
+        url(r"^auth/registration/", include("rest_auth.registration.urls")),
+    ]
+    + users_urlpatterns
+    + articles_urlpatterns
+    + recipes_urlpatterns
+)
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('api/v1/', include(api_urls)),
+    path("admin/", admin.site.urls),
+    path("api/v1/", include(api_urls)),
 ]
 
 if settings.DEBUG:
     urlpatterns += [
-        url(r'^api/v1/docs/$', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc'),
-        url(r'^api/v1/docs-swagger/$', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger'),
+        url(
+            r"^api/v1/docs/$",
+            schema_view.with_ui("redoc", cache_timeout=0),
+            name="schema-redoc",
+        ),
+        url(
+            r"^api/v1/docs-swagger/$",
+            schema_view.with_ui("swagger", cache_timeout=0),
+            name="schema-swagger",
+        ),
     ]

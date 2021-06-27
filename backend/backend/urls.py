@@ -22,6 +22,7 @@ from drf_yasg.views import get_schema_view
 from drf_yasg import openapi
 from profiles.api.urls import urlpatterns as users_urlpatterns
 from articles.api.urls import urlpatterns as articles_urlpatterns
+from recipes.api.urls import urlpatterns as recipes_urlpatterns
 
 
 schema_view = get_schema_view(
@@ -37,7 +38,7 @@ schema_view = get_schema_view(
 api_urls = [
     url(r'^auth/', include('rest_auth.urls')),
     url(r'^auth/registration/', include('rest_auth.registration.urls')),
-] + users_urlpatterns + articles_urlpatterns
+] + users_urlpatterns + articles_urlpatterns + recipes_urlpatterns
 
 urlpatterns = [
     path('admin/', admin.site.urls),

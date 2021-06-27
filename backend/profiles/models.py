@@ -28,6 +28,13 @@ class Profile(models.Model):
 
     about_me = models.TextField(max_length=255, null=True, blank=True, verbose_name='O mnie')
 
+    picture = models.ImageField(
+        null=True,
+        blank=True,
+        upload_to='profile_pictures',
+        verbose_name='Zdjęcie profilowe'
+    )
+
     class Meta:
         verbose_name = 'Profil Użytkownika'
         verbose_name_plural = 'Profile Użytkownika'

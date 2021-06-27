@@ -3,7 +3,7 @@ from django.contrib import admin
 from recipes.models import (
     Style, Recipe, Malt, Hops, Yeast,
     Water, Manufacturer, RecipeHops,
-    RecipeMalt, RecipeYeast, RecipeWater
+    RecipeMalt, RecipeYeast, RecipeWater, Mashing
 )
 
 
@@ -31,10 +31,16 @@ class StyleAdmin(admin.ModelAdmin):
     pass
 
 
+class MashingInline(admin.TabularInline):
+    model = Mashing
+    extra = 1
+
+
 class RecipeAdmin(admin.ModelAdmin):
     inlines = [
         RecipeHopsInline, RecipeMaltInline,
-        RecipeYeastInline, RecipeWaterInline
+        RecipeYeastInline, RecipeWaterInline,
+        MashingInline
     ]
 
 

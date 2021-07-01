@@ -1,5 +1,5 @@
 # beerappka
-Praca Inżynierska - Aplikacja internetowa do kolekcjonowania przepisów piwowarskich
+Praca Inżynierska - Aplikacja internetowa do tworzenia i gromadzenia receptur piwowarskich
 
 # Backend
 
@@ -39,3 +39,22 @@ __Wejscie w dokumentacje API w przegladarce__
 ``http://localhost:8000/api/v1/docs/``
 
 
+
+# Frontend
+
+``cd ./beerappkaFrontend``
+
+__Potrzebne narzedzia__:
+1. Node.js v14.15
+
+__Instalacja zaleznosci__
+
+``npm install``
+
+__Uruchomienie serwera na porcie 4200__
+
+``npm start``
+
+__Włączenie aplikacji w przeglądarce__
+
+``http://localhost:4200``

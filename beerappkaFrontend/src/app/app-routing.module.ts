@@ -5,12 +5,13 @@ import { LoginPageComponent } from './login-page/login-page.component';
 import { RegisterPageComponent } from './register-page/register-page.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { AlcoholLevelCalculatorComponent } from './alcohol-level-calculator/alcohol-level-calculator.component';
-import { AuthGuard } from './auth.guard';
+import { AuthGuard } from './guards/auth.guard';
+import {AlreadyLoggedInGuard} from './guards/already-logged-in-guard.service';
 
 const routes: Routes = [
-  { path: '', component: LandingPageComponent },
-  { path: 'logowanie', component: LoginPageComponent },
-  { path: 'rejestracja', component: RegisterPageComponent },
+  { path: '', component: LandingPageComponent, canActivate: [AlreadyLoggedInGuard] },
+  { path: 'logowanie', component: LoginPageComponent, canActivate: [AlreadyLoggedInGuard] },
+  { path: 'rejestracja', component: RegisterPageComponent, canActivate: [AlreadyLoggedInGuard] },
   { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard]},
   { path: 'kalkulatory/poziom-alkoholu', component: AlcoholLevelCalculatorComponent, canActivate: [AuthGuard] }
 ];

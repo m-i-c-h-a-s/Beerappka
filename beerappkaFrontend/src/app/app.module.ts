@@ -15,6 +15,8 @@ import { UserService } from './services/user.service';
 import { FormsModule } from '@angular/forms';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {AuthInterceptor} from "./auth/auth.interceptor";
+import { RecipeCreatorComponent } from './recipe-creator/recipe-creator.component';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +29,8 @@ import {AuthInterceptor} from "./auth/auth.interceptor";
     SidebarComponent,
     TopbarComponent,
     AlcoholLevelCalculatorComponent,
+    RecipeCreatorComponent,
+    FooterComponent,
   ],
   imports: [
     BrowserModule,

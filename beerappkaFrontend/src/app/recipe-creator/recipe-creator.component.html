@@ -1,0 +1,252 @@
+ <div class="container-fluid">
+
+    <div id="recipeHeader" class="row">
+        <div class="col-lg-12 mb-4">
+            <div class="card shadow mb-4 border-bottom-info">
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">Receptura</h6>
+                </div>
+                <div class="card-body">
+                    <form class="d-flex">
+                        <input
+                            type="text"
+                            class="form-control bg-light border-0 small"
+                            placeholder="Nazwa"
+                            [(ngModel)]="recipeName"
+                        />
+
+                        <select
+                            class="form-control bg-light border-0 small ml-4 col-lg-3"
+                            placeholder="Typ"
+                            required="required"
+                            [(ngModel)]="recipeType"
+                        >
+                            <option value selected="selected">Typ</option>
+                            <option value="malt">Zacieranie</option>
+                            <option value="extract">Ekstrakty</option>
+                            <option value="brewkit">Brewkit</option>
+                        </select>
+
+                        <select
+                            class="form-control bg-light border-0 small ml-4 col-lg-3"
+                            placeholder="Styl"
+                            required="required"
+                            [(ngModel)]="recipeStyle"
+                        >
+                            <option value selected="selected">Styl</option>
+                            <option value="indiaPaleAle">India Pale Ale</option>
+                            <option value="balticPorter">Baltic Porter</option>
+                            <option value="kriek">Kriek</option>
+                            <option value="whiteIPA">White IPA</option>
+                            <option value="pils">Pils</option>
+                        </select>
+
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="batchSize" class="row">
+        <div class="mb-4">
+            <div class="card shadow mb-4 border-bottom-info">
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">Rozmiar warki</h6>
+                </div>
+                <div class="card-body">
+                    <form>
+                        <div class="row">
+                            <div class="col">
+                                <div class="col mb-4">
+                                    <h6>Ilość gotowego piwa</h6>
+                                    <input type="text" class="form-control bg-light border-0 small" placeholder="L">
+                                </div>
+                                <div class="col mb-4">
+                                    <h6>Czas gotowania</h6>
+                                    <input type="text" class="form-control bg-light border-0 small" placeholder="min">
+                                </div>
+                                <div class="col mb-4">
+                                    <h6>Szybkość odparowywania</h6>
+                                    <input type="text" class="form-control bg-light border-0 small" placeholder="%/h">
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="col mb-4">
+                                    <h6>Straty z gotowania</h6>
+                                    <input type="text" class="form-control bg-light border-0 small" placeholder="%">
+                                </div>
+                                <div class="col mb-4">
+                                    <h6>Straty z fermentacji</h6>
+                                    <input type="text" class="form-control bg-light border-0 small" placeholder="%">
+                                </div>
+                                <div class="col mb-4">
+                                    <h6>Straty z chmielenia na zimno</h6>
+                                    <input type="text" class="form-control bg-light border-0 small" placeholder="%">
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="recipeFermentables" class="row">
+        <div class="col-lg-12 mb-4">
+            <div class="card shadow mb-4 border-bottom-info">
+                <div class="card-header py-3 d-flex">
+                    <h6 class="m-0 font-weight-bold text-primary">Surowce fermentujące
+                        <button class="btn btn-success btn-circle btn-sm">
+                            <i class="fas fa-plus"></i>
+                        </button>
+                    </h6>
+                </div>
+                <div class="card-body">
+                    <form class="d-flex">
+                        <div class="col mb-4">
+                            <h6>Nazwa</h6>
+                            <input type="text" class="form-control bg-light border-0 small" placeholder="Wyszukaj...">
+                        </div>
+                        <div class="col mb-4">
+                            <h6>Rodzaj</h6>
+                            <select class="form-control bg-light border-0 small"
+                                placeholder="Wybierz" required="required"
+                            >
+                                <option value selected="selected">Wybierz</option>
+                                <option value="malt">Słód</option>
+                                <option value="extract">Ekstrakt</option>
+                                <option value="sugar">Cukier</option>
+                                <option value="adjunct">Dodatek</option>
+                            </select>
+                        </div>
+                        <div class="col mb-4">
+                            <h6>Ilość</h6>
+                            <input type="text" class="form-control bg-light border-0 small" placeholder="kg">
+                        </div>
+                        <div class="col mb-4">
+                            <h6>Barwa</h6>
+                            <input type="text" class="form-control bg-light border-0 small" placeholder="EBC">
+                        </div>
+                        <div class="col mb-4">
+                            <h6>Ekstraktywność</h6>
+                            <input type="text" class="form-control bg-light border-0 small" placeholder="%">
+                        </div>
+                        <div class="col pt-4">
+                            <button class="btn btn-danger btn-circle btn-sm">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="recipeHops" class="row">
+        <div class="col-lg-12 mb-4">
+            <div class="card shadow mb-4 border-bottom-info">
+                <div class="card-header py-3 d-flex">
+                    <h6 class="m-0 font-weight-bold text-primary">Chmiele
+                        <button class="btn btn-success btn-circle btn-sm">
+                            <i class="fas fa-plus"></i>
+                        </button>
+                    </h6>
+                </div>
+                <div class="card-body">
+                    <form class="d-flex">
+                        <div class="col mb-4">
+                            <h6>Nazwa</h6>
+                            <input type="text" class="form-control bg-light border-0 small" placeholder="Wyszukaj...">
+                        </div>
+                        <div class="col mb-4">
+                            <h6>Użyto do</h6>
+                            <select class="form-control bg-light border-0 small"
+                                placeholder="Wybierz" required="required"
+                            >
+                                <option value selected="selected">Wybierz</option>
+                                <option value="bitterness">Goryczka</option>
+                                <option value="aroma">Aromat</option>
+                                <option value="whirpool">Smak</option>
+                                <option value="dryHop">Na zimno</option>
+                            </select>
+                        </div>
+                        <div class="col mb-4">
+                            <h6>Ilość</h6>
+                            <input type="text" class="form-control bg-light border-0 small" placeholder="g">
+                        </div>
+                        <div class="col mb-4">
+                            <h6>Czas</h6>
+                            <input type="text" class="form-control bg-light border-0 small" placeholder="min">
+                        </div>
+                        <div class="col mb-4">
+                            <h6>Alfa-kwasy</h6>
+                            <input type="text" class="form-control bg-light border-0 small" placeholder="%">
+                        </div>
+                        <div class="col pt-4">
+                            <button class="btn btn-danger btn-circle btn-sm">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="recipeYeast" class="row">
+        <div class="col-lg-12 mb-4">
+            <div class="card shadow mb-4 border-bottom-info">
+                <div class="card-header py-3 d-flex">
+                    <h6 class="m-0 font-weight-bold text-primary">Drożdże
+                        <button class="btn btn-success btn-circle btn-sm">
+                            <i class="fas fa-plus"></i>
+                        </button>
+                    </h6>
+                </div>
+                <div class="card-body">
+                    <form class="d-flex">
+                        <div class="col mb-4">
+                            <h6>Nazwa</h6>
+                            <input type="text" class="form-control bg-light border-0 small" placeholder="Wyszukaj...">
+                        </div>
+                        <div class="col mb-4">
+                            <h6>Rodzaj</h6>
+                            <select class="form-control bg-light border-0 small"
+                                placeholder="Wybierz" required="required"
+                            >
+                                <option value selected="selected">Wybierz</option>
+                                <option value="aleYeast">Ale</option>
+                                <option value="lagerYeast">Lager</option>
+                            </select>
+                        </div>
+                        <div class="col mb-4">
+                            <h6>Postać</h6>
+                            <select class="form-control bg-light border-0 small"
+                                placeholder="Wybierz" required="required"
+                            >
+                                <option value selected="selected">Wybierz</option>
+                                <option value="dryYeast">Suche</option>
+                                <option value="liquidYeast">Płynne</option>
+                                <option value="slurryYeast">Gęstwa</option>
+                            </select>
+                        </div>
+                        <div class="col mb-4">
+                            <h6>Ilość</h6>
+                            <input type="text" class="form-control bg-light border-0 small" placeholder="g">
+                        </div>
+                        <div class="col mb-4">
+                            <h6>Laboratorium</h6>
+                            <input type="text" class="form-control bg-light border-0 small">
+                        </div>
+                        <div class="col pt-4">
+                            <button class="btn btn-danger btn-circle btn-sm">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

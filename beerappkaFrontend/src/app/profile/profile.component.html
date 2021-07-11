@@ -1,0 +1,198 @@
+<!-- Page Wrapper -->
+<div id="wrapper">
+
+    <app-sidebar></app-sidebar>
+
+    <!-- Content Wrapper -->
+    <div id="content-wrapper" class="d-flex flex-column">
+
+        <!-- Main Content -->
+        <div id="content">
+
+            <app-topbar></app-topbar>
+
+            <!-- Begin Page Content -->
+            <div class="container-fluid">
+
+                <div class="row" *ngIf="currentUser && currentUser.profile">
+                    <div class="col-lg-6 mb-4">
+                        <div class="card shadow mb-4 border-bottom-info">
+                            <div class="card-header py-3">
+                                <h6 class="m-0 font-weight-bold text-primary">
+                                  Profil
+                                </h6>
+                            </div>
+                            <div class="card-body">
+                                <form class="d-flex flex-column">
+                                    <div class="mb-3">
+                                        <div class="profile-card card border-left-success shadow h-100 py-2">
+                                            <div class="card-body">
+                                                <div class="row no-gutters align-items-center">
+                                                    <div class="col mr-2">
+                                                        <div class="text-xs font-weight-bold text-success text-uppercase mb-1 text-center">
+                                                            Zdjęcie profilowe
+                                                        </div>
+                                                        <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                           <img src="{{ currentUser.profile.picture }}"
+                                                                alt="zdjęcie profilowe" class="mx-auto  profile-card__picture">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <div class="card border-left-success shadow h-100 py-2">
+                                            <div class="card-body">
+                                                <div class="row no-gutters align-items-center">
+                                                    <div class="col mr-2">
+                                                        <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                                            Login
+                                                        </div>
+                                                        <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                          {{ currentUser.username }}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <div class="card border-left-success shadow h-100 py-2">
+                                              <div class="card-body">
+                                                  <div class="row no-gutters align-items-center">
+                                                      <div class="col mr-2">
+                                                          <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                                              Email
+                                                          </div>
+                                                          <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                            {{ currentUser.email }}
+                                                          </div>
+                                                      </div>
+                                                  </div>
+                                              </div>
+                                          </div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <div class="card border-left-success shadow h-100 py-2">
+                                            <div class="card-body">
+                                                <div class="row no-gutters align-items-center">
+                                                    <div class="col mr-2">
+                                                        <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                                            Data dołączenia
+                                                        </div>
+                                                        <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                          {{ currentUser.date_joined }}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                          </div>
+                                    </div>
+                                    <div class="mb-3">
+                                          <div class="card border-left-success shadow h-100 py-2">
+                                              <div class="card-body">
+                                                  <div class="row no-gutters align-items-center">
+                                                      <div class="col mr-2">
+                                                          <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                                              Ostatnio aktywny
+                                                          </div>
+                                                          <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                            {{ currentUser.last_login }}
+                                                          </div>
+                                                      </div>
+                                                  </div>
+                                              </div>
+                                            </div>
+                                      </div>
+                                </form>
+                                <a class="btn btn-primary"
+                                     [routerLink]=""
+                                     role="button">
+                                    <span class="text">Edytuj</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 mb-4">
+                          <div class="card shadow mb-4 border-bottom-info">
+                              <div class="card-header py-3">
+                                  <h6 class="m-0 font-weight-bold text-primary">Profil</h6>
+                              </div>
+                              <div class="card-body">
+                                  <form class="d-flex flex-column">
+                                      <div class="mb-3">
+                                          <div class="card border-left-success shadow h-100 py-2">
+                                              <div class="card-body">
+                                                  <div class="row no-gutters align-items-center">
+                                                      <div class="col mr-2">
+                                                          <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                                              Instagram
+                                                          </div>
+                                                          <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                            {{ currentUser.profile.instagram_link }}
+                                                          </div>
+                                                      </div>
+                                                  </div>
+                                              </div>
+                                          </div>
+                                      </div>
+                                      <div class="mb-3">
+                                          <div class="card border-left-success shadow h-100 py-2">
+                                              <div class="card-body">
+                                                  <div class="row no-gutters align-items-center">
+                                                      <div class="col mr-2">
+                                                          <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                                            O mnie
+                                                          </div>
+                                                          <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                            {{ currentUser.profile.about_me }}
+                                                          </div>
+                                                      </div>
+                                                  </div>
+                                              </div>
+                                          </div>
+                                      </div>
+                                      <div class="mb-3">
+                                          <div class="card border-left-success shadow h-100 py-2">
+                                                <div class="card-body">
+                                                    <div class="row no-gutters align-items-center">
+                                                        <div class="col mr-2">
+                                                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                                                Ulubione style piwne
+                                                            </div>
+                                                            <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                                {{ currentUser.profile.favourite_beer_style }}
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                  </form>
+                              </div>
+                          </div>
+                      </div>
+                </div>
+
+              </div>
+            <!-- /.container-fluid -->
+
+        </div>
+        <!-- End of Main Content -->
+
+        <!-- Footer -->
+        <footer class="sticky-footer bg-white">
+            <div class="container my-auto">
+                <div class="copyright text-center my-auto">
+                    <span>Beerappka 2021 Michał Pojęta & Emil Pausz</span>
+                </div>
+            </div>
+        </footer>
+        <!-- End of Footer -->
+
+    </div>
+    <!-- End of Content Wrapper -->
+
+</div>
+<!-- End of Page Wrapper -->

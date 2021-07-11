@@ -21,7 +21,11 @@ export class LoginPageComponent implements OnInit {
   login(): void {
     this.userService.login(this.user).subscribe(
       data => {
+        const currentUser = {
+          username: this.user.username
+        };
         localStorage.setItem('auth_token', (data as any).key);
+        localStorage.setItem('current_user', JSON.stringify(currentUser));
         return this.router.navigate(['dashboard']);
       },
       err => {

@@ -17,11 +17,11 @@
 
                         <select
                             class="form-control bg-light border-0 small ml-4 col-lg-3"
-                            placeholder="Typ"
                             required="required"
+                            placeholder="Typ"
                             [(ngModel)]="recipeType"
                         >
-                            <option value selected="selected">Typ</option>
+                            <option selected disabled hidden>Typ</option>
                             <option value="malt">Zacieranie</option>
                             <option value="extract">Ekstrakty</option>
                             <option value="brewkit">Brewkit</option>
@@ -33,7 +33,7 @@
                             required="required"
                             [(ngModel)]="recipeStyle"
                         >
-                            <option value selected="selected">Styl</option>
+                            <option selected disabled hidden>Styl</option>
                             <option value="indiaPaleAle">India Pale Ale</option>
                             <option value="balticPorter">Baltic Porter</option>
                             <option value="kriek">Kriek</option>
@@ -60,29 +60,59 @@
                             <div class="col">
                                 <div class="col mb-4">
                                     <h6>Ilość gotowego piwa</h6>
-                                    <input type="text" class="form-control bg-light border-0 small" placeholder="L">
+                                    <input
+                                        type="text"
+                                        class="form-control bg-light border-0 small"
+                                        placeholder="L"
+                                        [(ngModel)]="amountOfBeerInLiters"
+                                    >
                                 </div>
                                 <div class="col mb-4">
                                     <h6>Czas gotowania</h6>
-                                    <input type="text" class="form-control bg-light border-0 small" placeholder="min">
+                                    <input
+                                        type="text"
+                                        class="form-control bg-light border-0 small"
+                                        placeholder="min"
+                                        [(ngModel)]="boilingTimeInMinutes"
+                                    >
                                 </div>
                                 <div class="col mb-4">
                                     <h6>Szybkość odparowywania</h6>
-                                    <input type="text" class="form-control bg-light border-0 small" placeholder="%/h">
+                                    <input
+                                        type="text"
+                                        class="form-control bg-light border-0 small"
+                                        placeholder="%/h"
+                                        [(ngModel)]="evaporationSpeedPercentPerHour"
+                                    >
                                 </div>
                             </div>
                             <div class="col">
                                 <div class="col mb-4">
                                     <h6>Straty z gotowania</h6>
-                                    <input type="text" class="form-control bg-light border-0 small" placeholder="%">
+                                    <input
+                                        type="text"
+                                        class="form-control bg-light border-0 small"
+                                        placeholder="%"
+                                        [(ngModel)]="boilingLossesPercent"
+                                    >
                                 </div>
                                 <div class="col mb-4">
                                     <h6>Straty z fermentacji</h6>
-                                    <input type="text" class="form-control bg-light border-0 small" placeholder="%">
+                                    <input
+                                        type="text"
+                                        class="form-control bg-light border-0 small"
+                                        placeholder="%"
+                                        [(ngModel)]="fermentationLossesPercent"
+                                    >
                                 </div>
                                 <div class="col mb-4">
                                     <h6>Straty z chmielenia na zimno</h6>
-                                    <input type="text" class="form-control bg-light border-0 small" placeholder="%">
+                                    <input
+                                        type="text"
+                                        class="form-control bg-light border-0 small"
+                                        placeholder="%"
+                                        [(ngModel)]="coldHoppingLossesPercent"
+                                    >
                                 </div>
                             </div>
                         </div>
@@ -106,12 +136,20 @@
                     <form class="d-flex">
                         <div class="col mb-4">
                             <h6>Nazwa</h6>
-                            <input type="text" class="form-control bg-light border-0 small" placeholder="Wyszukaj...">
+                            <input
+                                type="text"
+                                class="form-control bg-light border-0 small"
+                                placeholder="Wyszukaj..."
+                                [(ngModel)]="maltName"
+                            >
                         </div>
                         <div class="col mb-4">
                             <h6>Rodzaj</h6>
-                            <select class="form-control bg-light border-0 small"
-                                placeholder="Wybierz" required="required"
+                            <select
+                                class="form-control bg-light border-0 small"
+                                placeholder="Wybierz"
+                                required="required"
+                                [(ngModel)]="maltType"
                             >
                                 <option value selected="selected">Wybierz</option>
                                 <option value="malt">Słód</option>
@@ -122,15 +160,30 @@
                         </div>
                         <div class="col mb-4">
                             <h6>Ilość</h6>
-                            <input type="text" class="form-control bg-light border-0 small" placeholder="kg">
+                            <input
+                                type="text"
+                                class="form-control bg-light border-0 small"
+                                placeholder="kg"
+                                [(ngModel)]="maltAmountInKilograms"
+                            >
                         </div>
                         <div class="col mb-4">
                             <h6>Barwa</h6>
-                            <input type="text" class="form-control bg-light border-0 small" placeholder="EBC">
+                            <input
+                                type="text"
+                                class="form-control bg-light border-0 small"
+                                placeholder="EBC"
+                                [(ngModel)]="maltColourEBC"
+                            >
                         </div>
                         <div class="col mb-4">
                             <h6>Ekstraktywność</h6>
-                            <input type="text" class="form-control bg-light border-0 small" placeholder="%">
+                            <input
+                                type="text"
+                                class="form-control bg-light border-0 small"
+                                placeholder="%"
+                                [(ngModel)]="maltExtractivityPercent"
+                            >
                         </div>
                         <div class="col pt-4">
                             <button class="btn btn-danger btn-circle btn-sm">
@@ -157,12 +210,20 @@
                     <form class="d-flex">
                         <div class="col mb-4">
                             <h6>Nazwa</h6>
-                            <input type="text" class="form-control bg-light border-0 small" placeholder="Wyszukaj...">
+                            <input
+                                type="text"
+                                class="form-control bg-light border-0 small"
+                                placeholder="Wyszukaj..."
+                                [(ngModel)]="hopName"
+                            >
                         </div>
                         <div class="col mb-4">
                             <h6>Użyto do</h6>
-                            <select class="form-control bg-light border-0 small"
-                                placeholder="Wybierz" required="required"
+                            <select
+                                class="form-control bg-light border-0 small"
+                                placeholder="Wybierz"
+                                required="required"
+                                [(ngModel)]="hopUsedFor"
                             >
                                 <option value selected="selected">Wybierz</option>
                                 <option value="bitterness">Goryczka</option>
@@ -173,15 +234,30 @@
                         </div>
                         <div class="col mb-4">
                             <h6>Ilość</h6>
-                            <input type="text" class="form-control bg-light border-0 small" placeholder="g">
+                            <input
+                                type="text"
+                                class="form-control bg-light border-0 small"
+                                placeholder="g"
+                                [(ngModel)]="hopAmountInGrams"
+                            >
                         </div>
                         <div class="col mb-4">
                             <h6>Czas</h6>
-                            <input type="text" class="form-control bg-light border-0 small" placeholder="min">
+                            <input
+                                type="text"
+                                class="form-control bg-light border-0 small"
+                                placeholder="min"
+                                [(ngModel)]="hopBoilingTimeInMinutes"
+                            >
                         </div>
                         <div class="col mb-4">
                             <h6>Alfa-kwasy</h6>
-                            <input type="text" class="form-control bg-light border-0 small" placeholder="%">
+                            <input
+                                type="text"
+                                class="form-control bg-light border-0 small"
+                                placeholder="%"
+                                [(ngModel)]="hopAplhaAcidsPercent"
+                            >
                         </div>
                         <div class="col pt-4">
                             <button class="btn btn-danger btn-circle btn-sm">
@@ -207,12 +283,20 @@
                     <form class="d-flex">
                         <div class="col mb-4">
                             <h6>Nazwa</h6>
-                            <input type="text" class="form-control bg-light border-0 small" placeholder="Wyszukaj...">
+                            <input
+                                type="text"
+                                class="form-control bg-light border-0 small"
+                                placeholder="Wyszukaj..."
+                                [(ngModel)]="yeastName"
+                            >
                         </div>
                         <div class="col mb-4">
                             <h6>Rodzaj</h6>
-                            <select class="form-control bg-light border-0 small"
-                                placeholder="Wybierz" required="required"
+                            <select
+                                class="form-control bg-light border-0 small"
+                                placeholder="Wybierz"
+                                required="required"
+                                [(ngModel)]="yeastType"
                             >
                                 <option value selected="selected">Wybierz</option>
                                 <option value="aleYeast">Ale</option>
@@ -221,8 +305,11 @@
                         </div>
                         <div class="col mb-4">
                             <h6>Postać</h6>
-                            <select class="form-control bg-light border-0 small"
-                                placeholder="Wybierz" required="required"
+                            <select
+                                class="form-control bg-light border-0 small"
+                                placeholder="Wybierz"
+                                required="required"
+                                [(ngModel)]="yeastForm"
                             >
                                 <option value selected="selected">Wybierz</option>
                                 <option value="dryYeast">Suche</option>
@@ -232,11 +319,20 @@
                         </div>
                         <div class="col mb-4">
                             <h6>Ilość</h6>
-                            <input type="text" class="form-control bg-light border-0 small" placeholder="g">
+                            <input
+                                type="text"
+                                class="form-control bg-light border-0 small"
+                                placeholder="g"
+                                [(ngModel)]="yeastAmountInGrams"
+                            >
                         </div>
                         <div class="col mb-4">
                             <h6>Laboratorium</h6>
-                            <input type="text" class="form-control bg-light border-0 small">
+                            <input
+                                type="text"
+                                class="form-control bg-light border-0 small"
+                                [(ngModel)]="yeastLaboratory"
+                            >
                         </div>
                         <div class="col pt-4">
                             <button class="btn btn-danger btn-circle btn-sm">

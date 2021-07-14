@@ -11,13 +11,28 @@ export class RecipeCreatorComponent implements OnInit {
   recipeName = '';
   recipeType = '';
   recipeStyle = '';
-  amountOfBeer = 0;
-  boilingTime = 0;
-  evaporationSpeed = 0;
-  boilingLosses = 0;
-  fermentationLosses = 0;
-  coldHoppingLosses = 0;
+  amountOfBeerInLiters = 0;
+  boilingTimeInMinutes = 0;
+  evaporationSpeedPercentPerHour = 0;
+  boilingLossesPercent = 0;
+  fermentationLossesPercent = 0;
+  coldHoppingLossesPercent = 0;
 
+  maltName = '';
+  maltType = '';
+  maltAmountInKilograms = 0;
+  maltColourEBC = 0;
+  maltExtractivityPercent = 0;
+  hopName = '';
+  hopUsedFor = '';
+  hopAmountInGrams = 0;
+  hopBoilingTimeInMinutes = 0;
+  hopAplhaAcidsPercent = 0;
+  yeastName = '';
+  yeastType = '';
+  yeastForm = '';
+  yeastAmountInGrams = 0;
+  yeastLaboratory = '';
 
   constructor() { }
 
@@ -30,12 +45,12 @@ export class RecipeCreatorComponent implements OnInit {
       name: this.recipeName,
       type: this.recipeType,
       style: this.recipeStyle,
-      amountOfBeer: this.amountOfBeer,
-      boilingTime: this.boilingTime,
-      evaporationSpeed: this.evaporationSpeed,
-      boilingLosses: this.boilingLosses,
-      fermentationLosses: this.fermentationLosses,
-      coldHoppingLosses: this.coldHoppingLosses,
+      amountOfBeerInLiters: this.amountOfBeerInLiters,
+      boilingTimeInMinutes: this.boilingTimeInMinutes,
+      evaporationSpeedPercentPerHour: this.evaporationSpeedPercentPerHour,
+      boilingLossesPercent: this.boilingLossesPercent,
+      fermentationLossesPercent: this.fermentationLossesPercent,
+      coldHoppingLossesPercent: this.coldHoppingLossesPercent,
     };
 
 

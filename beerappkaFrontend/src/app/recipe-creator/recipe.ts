@@ -3,11 +3,11 @@ export interface Recipe {
     type: string;
     style: string;
 
-    amountOfBeer: number;
-    boilingTime: number;
-    evaporationSpeed: number;
-    boilingLosses: number;
-    fermentationLosses: number;
-    coldHoppingLosses: number;
+    amountOfBeerInLiters: number;
+    boilingTimeInMinutes: number;
+    evaporationSpeedPercentPerHour: number;
+    boilingLossesPercent: number;
+    fermentationLossesPercent: number;
+    coldHoppingLossesPercent: number;
 
 }

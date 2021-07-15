@@ -28,4 +28,8 @@ export class UserService extends BaseService {
     const username = JSON.parse(localStorage.getItem('current_user') as string).username;
     return this.http.get(this.getAPIUrl(`/users/${username}/`), this.httpOptions);
   }
+  public updateUser(userData: any): Observable<ArrayBuffer> {
+    const {username} = userData;
+    return this.http.put(this.getAPIUrl(`/users/${username}/`), JSON.stringify(userData), this.httpOptions);
+  }
 }

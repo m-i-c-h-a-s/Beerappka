@@ -13,8 +13,10 @@ import { TopbarComponent } from './topbar/topbar.component';
 import { AlcoholLevelCalculatorComponent } from './alcohol-level-calculator/alcohol-level-calculator.component';
 import { UserService } from './services/user.service';
 import { FormsModule } from '@angular/forms';
-import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
-import {AuthInterceptor} from "./auth/auth.interceptor";
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { AuthInterceptor } from './auth/auth.interceptor';
+import { ProfileComponent } from './profile/profile.component';
+import { UpdateProfileComponent } from './update-profile/update-profile.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +29,8 @@ import {AuthInterceptor} from "./auth/auth.interceptor";
     SidebarComponent,
     TopbarComponent,
     AlcoholLevelCalculatorComponent,
+    ProfileComponent,
+    UpdateProfileComponent,
   ],
   imports: [
     BrowserModule,

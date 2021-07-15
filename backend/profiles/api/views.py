@@ -8,7 +8,7 @@ from rest_framework.mixins import (
 from rest_framework.authtoken.admin import User
 
 from profiles.api.permissions import IsCurrentUserOrReadOnly
-from profiles.api.serializers import UserSerializer
+from profiles.api.serializers import UserSerializer, UpdateUserSerializer
 
 
 class UsersViewSet(
@@ -20,8 +20,19 @@ class UsersViewSet(
 ):
     queryset = User.objects.all()
     serializer_class = UserSerializer
+    serializers = {
+        'default': UserSerializer,
+        'update': UpdateUserSerializer,
+        'partial_update': UpdateUserSerializer
+    }
     permission_classes = [
         IsCurrentUserOrReadOnly,
     ]
     lookup_field = "username"
     lookup_url_kwarg = "username"
+
+    def get_serializer_class(self):
+        return self.serializers.get(
+            self.action,
+            self.serializers['default']
+        )

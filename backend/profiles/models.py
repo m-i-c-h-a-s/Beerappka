@@ -1,6 +1,8 @@
 from django.contrib.auth.models import User
 from django.db import models
 
+from recipes.models import Style
+
 """
     Model reprezentujący Profil Użytkownika
 """
@@ -24,14 +26,19 @@ class Profile(models.Model):
         max_length=45, null=True, blank=True, verbose_name="Strona internetowa"
     )
 
-    instagram_link = models.URLField(
-        null=True, blank=True, verbose_name="Profil na Instagramie"
+    instagram = models.CharField(
+        max_length=30,
+        null=True,
+        blank=True,
+        verbose_name="Profil na Instagramie"
     )
 
     brewer_since = models.DateField(null=True, blank=True, verbose_name="Piwowar od")
 
-    favourite_beer_style = models.CharField(
-        max_length=45, null=True, blank=True, verbose_name="Ulubiony styl piwny"
+    favourite_beer_style = models.ManyToManyField(
+        Style,
+        blank=True,
+        verbose_name="Ulubiony styl piwny"
     )
 
     about_me = models.TextField(

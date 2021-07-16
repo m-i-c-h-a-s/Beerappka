@@ -1,0 +1,286 @@
+<!-- Page Wrapper -->
+<div id="wrapper">
+
+    <app-sidebar></app-sidebar>
+
+    <!-- Content Wrapper -->
+    <div id="content-wrapper" class="d-flex flex-column">
+
+        <!-- Main Content -->
+        <div id="content">
+
+            <app-topbar></app-topbar>
+
+            <!-- Begin Page Content -->
+            <div class="container-fluid">
+
+                <div class="row" *ngIf="currentUser && currentUser.profile">
+                    <form (ngSubmit)="onSubmit()" class="d-flex flex-wrap">
+                        <div class="col-lg-6 mb-4">
+                            <div class="card shadow mb-4 border-bottom-info">
+                                <div class="card-header py-3">
+                                    <h6 class="m-0 font-weight-bold text-primary">Profil</h6>
+                                </div>
+                                <div class="card-body">
+                                    <div class="d-flex flex-column">
+                                        <div class="mb-3">
+                                            <div class="card-body profile-card">
+                                                <div class="row no-gutters align-items-center">
+                                                    <div class="col mr-2">
+                                                        <div class="text-xs font-weight-bold text-success text-uppercase mb-1 text-center">
+                                                            Zdjęcie profilowe
+                                                        </div>
+                                                        <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                           <img src="{{ currentUser.profile.picture }}"
+                                                                alt="zdjęcie profilowe" class="mx-auto  profile-card__picture">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="card border-left-success shadow h-100 py-2 mb-3">
+                                            <div class="card-body">
+                                                <div class="row no-gutters align-items-center">
+                                                    <div class="col mr-2">
+                                                        <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                                            <label for="login" class="form-label">Login</label>
+                                                        </div>
+                                                        <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                            <input  [(ngModel)]="currentUser.username"
+                                                                    name="username"
+                                                                    id="login"
+                                                                    type="text"
+                                                                    class="form-control bg-light border-0 small">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="card border-left-success shadow h-100 py-2 mb-3">
+                                            <div class="card-body">
+                                                <div class="row no-gutters align-items-center">
+                                                    <div class="col mr-2">
+                                                        <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                                            <label for="first_name" class="form-label">Imię</label>
+                                                        </div>
+                                                        <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                            <input  [(ngModel)]="currentUser.first_name"
+                                                                    name="first_name"
+                                                                    id="first_name"
+                                                                    type="text"
+                                                                    class="form-control bg-light border-0 small">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="card border-left-success shadow h-100 py-2 mb-3">
+                                            <div class="card-body">
+                                                <div class="row no-gutters align-items-center">
+                                                    <div class="col mr-2">
+                                                        <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                                            <label for="last_name" class="form-label">Nazwisko</label>
+                                                        </div>
+                                                        <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                            <input  [(ngModel)]="currentUser.last_name"
+                                                                    name="last_name"
+                                                                    id="last_name"
+                                                                    type="text"
+                                                                    class="form-control bg-light border-0 small">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="mb-3">
+                                            <div class="card border-left-success shadow h-100 py-2">
+                                                <div class="card-body">
+                                                    <div class="row no-gutters align-items-center">
+                                                        <div class="col mr-2">
+                                                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                                                <label for="email" class="form-label">Email</label>
+                                                            </div>
+                                                            <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                                <input  [(ngModel)]="currentUser.email"
+                                                                        name="email"
+                                                                        id="email"
+                                                                        type="email"
+                                                                        class="form-control bg-light border-0 small">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 mb-4">
+                            <div class="card shadow mb-4 border-bottom-info">
+                                <div class="card-header py-3">
+                                    <h6 class="m-0 font-weight-bold text-primary">Profil</h6>
+                                </div>
+                                <div class="card-body">
+                                    <div class="d-flex flex-column">
+                                        <div class="mb-3">
+                                            <div class="card border-left-success shadow h-100 py-2">
+                                                <div class="card-body">
+                                                    <div class="row no-gutters align-items-center">
+                                                        <div class="col mr-2">
+                                                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                                                <label for="instagram" class="form-label">Instagram</label>
+                                                            </div>
+                                                            <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                                <input  [(ngModel)]="currentUser.profile.instagram"
+                                                                        name="instagram"
+                                                                        id="instagram"
+                                                                        type="text"
+                                                                        class="form-control bg-light border-0 small">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="mb-3">
+                                            <div class="card border-left-success shadow h-100 py-2">
+                                                <div class="card-body">
+                                                    <div class="row no-gutters align-items-center">
+                                                        <div class="col mr-2">
+                                                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                                                <label for="website" class="form-label">Strona WWW</label>
+                                                            </div>
+                                                            <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                                <input  [(ngModel)]="currentUser.profile.website"
+                                                                        name="website"
+                                                                        id="website"
+                                                                        type="text"
+                                                                        class="form-control bg-light border-0 small">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="mb-3">
+                                            <div class="card border-left-success shadow h-100 py-2">
+                                                <div class="card-body">
+                                                    <div class="row no-gutters align-items-center">
+                                                        <div class="col mr-2">
+                                                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                                                <label for="brewer_since" class="form-label">Piwowar od</label>
+                                                            </div>
+                                                            <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                                <input  [(ngModel)]="currentUser.profile.brewer_since"
+                                                                        name="brewer_since"
+                                                                        id="brewer_since"
+                                                                        type="date"
+                                                                        class="form-control bg-light border-0 small">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="mb-3">
+                                            <div class="card border-left-success shadow h-100 py-2">
+                                                <div class="card-body">
+                                                    <div class="row no-gutters align-items-center">
+                                                        <div class="col mr-2">
+                                                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                                                <label for="birth_date" class="form-label">Data urodzenia</label>
+                                                            </div>
+                                                            <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                                <input  [(ngModel)]="currentUser.profile.birth_date"
+                                                                        name="birth_date"
+                                                                        id="birth_date"
+                                                                        type="date"
+                                                                        class="form-control bg-light border-0 small">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="mb-3">
+                                            <div class="card border-left-success shadow h-100 py-2">
+                                                <div class="card-body">
+                                                    <div class="row no-gutters align-items-center">
+                                                        <div class="col mr-2">
+                                                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                                                <label for="town" class="form-label">Miejscowość</label>
+                                                            </div>
+                                                            <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                                <input  [(ngModel)]="currentUser.profile.town"
+                                                                        name="town"
+                                                                        id="town"
+                                                                        type="text"
+                                                                        class="form-control bg-light border-0 small">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="mb-3">
+                                            <div class="card border-left-success shadow h-100 py-2">
+                                                <div class="card-body">
+                                                    <div class="row no-gutters align-items-center">
+                                                        <div class="col mr-2">
+                                                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                                                <label for="about_me" class="form-label">O mnie</label>
+                                                            </div>
+                                                            <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                                <textarea [(ngModel)]="currentUser.profile.about_me"
+                                                                          name="about_me"
+                                                                          id="about_me"
+                                                                          cols="30" rows="10"
+                                                                  class="form-control bg-light border-0 small"></textarea>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                      </div>
+                        <div class="card shadow mb-4 border-bottom-info col-lg-12">
+                            <div class="col-lg-12 mb-4 mt-4">
+                                <button class="btn btn-primary"
+                                     type="submit">
+                                    <span class="text">Zapisz</span>
+                                </button>
+                                <a class="btn btn-light ml-4"
+                                     routerLink="/profil"
+                                     role="button">
+                                    <span class="text">Anuluj</span>
+                                </a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+              </div>
+            <!-- /.container-fluid -->
+
+        </div>
+        <!-- End of Main Content -->
+
+        <!-- Footer -->
+        <footer class="sticky-footer bg-white">
+            <div class="container my-auto">
+                <div class="copyright text-center my-auto">
+                    <span>Beerappka 2021 Michał Pojęta & Emil Pausz</span>
+                </div>
+            </div>
+        </footer>
+        <!-- End of Footer -->
+
+    </div>
+    <!-- End of Content Wrapper -->
+
+</div>
+<!-- End of Page Wrapper -->

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { RecipeCreatorComponent } from '../recipe-creator/recipe-creator.component';
 
 @Component({
   selector: 'app-dashboard',

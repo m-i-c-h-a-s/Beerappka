@@ -13,8 +13,8 @@ import { TopbarComponent } from './topbar/topbar.component';
 import { AlcoholLevelCalculatorComponent } from './alcohol-level-calculator/alcohol-level-calculator.component';
 import { UserService } from './services/user.service';
 import { FormsModule } from '@angular/forms';
-import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
-import {AuthInterceptor} from "./auth/auth.interceptor";
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { AuthInterceptor } from "./auth/auth.interceptor";
 import { RecipeCreatorComponent } from './recipe-creator/recipe-creator.component';
 import { FooterComponent } from './footer/footer.component';
 
@@ -32,12 +32,14 @@ import { FooterComponent } from './footer/footer.component';
     RecipeCreatorComponent,
     FooterComponent,
   ],
+
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     HttpClientModule
   ],
+
   providers: [
     UserService,
     {
@@ -46,6 +48,7 @@ import { FooterComponent } from './footer/footer.component';
       multi: true
     }
   ],
+
   bootstrap: [AppComponent]
 })
 export class AppModule { }

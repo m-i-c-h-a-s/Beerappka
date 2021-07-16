@@ -13,6 +13,7 @@
                             class="form-control bg-light border-0 small"
                             placeholder="Nazwa"
                             [(ngModel)]="recipeName"
+                            [ngModelOptions]="{standalone: true}"
                         />
 
                         <select
@@ -20,6 +21,7 @@
                             required="required"
                             placeholder="Typ"
                             [(ngModel)]="recipeType"
+                            [ngModelOptions]="{standalone: true}"
                         >
                             <option selected disabled hidden>Typ</option>
                             <option value="malt">Zacieranie</option>
@@ -32,6 +34,7 @@
                             placeholder="Styl"
                             required="required"
                             [(ngModel)]="recipeStyle"
+                            [ngModelOptions]="{standalone: true}"
                         >
                             <option selected disabled hidden>Styl</option>
                             <option value="indiaPaleAle">India Pale Ale</option>
@@ -65,6 +68,7 @@
                                         class="form-control bg-light border-0 small"
                                         placeholder="L"
                                         [(ngModel)]="amountOfBeerInLiters"
+                                        [ngModelOptions]="{standalone: true}"
                                     >
                                 </div>
                                 <div class="col mb-4">
@@ -74,6 +78,7 @@
                                         class="form-control bg-light border-0 small"
                                         placeholder="min"
                                         [(ngModel)]="boilingTimeInMinutes"
+                                        [ngModelOptions]="{standalone: true}"
                                     >
                                 </div>
                                 <div class="col mb-4">
@@ -83,6 +88,7 @@
                                         class="form-control bg-light border-0 small"
                                         placeholder="%/h"
                                         [(ngModel)]="evaporationSpeedPercentPerHour"
+                                        [ngModelOptions]="{standalone: true}"
                                     >
                                 </div>
                             </div>
@@ -94,6 +100,7 @@
                                         class="form-control bg-light border-0 small"
                                         placeholder="%"
                                         [(ngModel)]="boilingLossesPercent"
+                                        [ngModelOptions]="{standalone: true}"
                                     >
                                 </div>
                                 <div class="col mb-4">
@@ -103,6 +110,7 @@
                                         class="form-control bg-light border-0 small"
                                         placeholder="%"
                                         [(ngModel)]="fermentationLossesPercent"
+                                        [ngModelOptions]="{standalone: true}"
                                     >
                                 </div>
                                 <div class="col mb-4">
@@ -112,6 +120,7 @@
                                         class="form-control bg-light border-0 small"
                                         placeholder="%"
                                         [(ngModel)]="coldHoppingLossesPercent"
+                                        [ngModelOptions]="{standalone: true}"
                                     >
                                 </div>
                             </div>
@@ -126,11 +135,7 @@
         <div class="col-lg-12 mb-4">
             <div class="card shadow mb-4 border-bottom-info">
                 <div class="card-header py-3 d-flex">
-                    <h6 class="m-0 font-weight-bold text-primary">Surowce fermentujące
-                        <button class="btn btn-success btn-circle btn-sm">
-                            <i class="fas fa-plus"></i>
-                        </button>
-                    </h6>
+                    <h6 class="m-0 font-weight-bold text-primary">Surowce fermentujące</h6>
                 </div>
                 <div class="card-body">
                     <form class="d-flex">
@@ -141,6 +146,7 @@
                                 class="form-control bg-light border-0 small"
                                 placeholder="Wyszukaj..."
                                 [(ngModel)]="maltName"
+                                [ngModelOptions]="{standalone: true}"
                             >
                         </div>
                         <div class="col mb-4">
@@ -150,12 +156,13 @@
                                 placeholder="Wybierz"
                                 required="required"
                                 [(ngModel)]="maltType"
+                                [ngModelOptions]="{standalone: true}"
                             >
-                                <option value selected="selected">Wybierz</option>
-                                <option value="malt">Słód</option>
-                                <option value="extract">Ekstrakt</option>
-                                <option value="sugar">Cukier</option>
-                                <option value="adjunct">Dodatek</option>
+                                <option selected disabled hidden>Wybierz</option>
+                                <option value="Słód">Słód</option>
+                                <option value="Ekstrakt">Ekstrakt</option>
+                                <option value="Cukier">Cukier</option>
+                                <option value="Dodatek">Dodatek</option>
                             </select>
                         </div>
                         <div class="col mb-4">
@@ -165,6 +172,7 @@
                                 class="form-control bg-light border-0 small"
                                 placeholder="kg"
                                 [(ngModel)]="maltAmountInKilograms"
+                                [ngModelOptions]="{standalone: true}"
                             >
                         </div>
                         <div class="col mb-4">
@@ -174,6 +182,7 @@
                                 class="form-control bg-light border-0 small"
                                 placeholder="EBC"
                                 [(ngModel)]="maltColourEBC"
+                                [ngModelOptions]="{standalone: true}"
                             >
                         </div>
                         <div class="col mb-4">
@@ -183,15 +192,48 @@
                                 class="form-control bg-light border-0 small"
                                 placeholder="%"
                                 [(ngModel)]="maltExtractivityPercent"
+                                [ngModelOptions]="{standalone: true}"
                             >
                         </div>
-                        <div class="col pt-4">
-                            <button class="btn btn-danger btn-circle btn-sm">
+                        <div class=" col d-flex justify-content-center">
+                            <button class="btn btn-success btn-circle btn-sm" (click)="addMalt();">
+                                <i class="fas fa-plus"></i>
+                            </button>
+                            <button class="btn btn-danger btn-circle btn-sm" (click)="deleteMalts();">
                                 <i class="fas fa-trash"></i>
                             </button>
                         </div>
                     </form>
                 </div>
+
+
+
+                <div class="card-body" *ngIf="malts.length > 0">
+                    <div class="table-responsive">
+                        <table class="table table-bordered" width="100%" cellspacing="0">
+                            <thead>
+                                <tr>
+                                    <th>Nazwa</th>
+                                    <th>Rodzaj</th>
+                                    <th>Ilość</th>
+                                    <th>Barwa</th>
+                                    <th>Ekstraktywność</th>
+                                </tr>
+                            </thead>
+
+                            <tbody *ngFor="let malt of malts;">
+                                <tr>
+                                    <td> {{ malt.name }} </td>
+                                    <td> {{ malt.type }} </td>
+                                    <td> {{ malt.amountInKilograms }} </td>
+                                    <td> {{ malt.colourEBC }} </td>
+                                    <td> {{ malt.extractivityPercent }} </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>
@@ -215,6 +257,7 @@
                                 class="form-control bg-light border-0 small"
                                 placeholder="Wyszukaj..."
                                 [(ngModel)]="hopName"
+                                [ngModelOptions]="{standalone: true}"
                             >
                         </div>
                         <div class="col mb-4">
@@ -224,12 +267,13 @@
                                 placeholder="Wybierz"
                                 required="required"
                                 [(ngModel)]="hopUsedFor"
+                                [ngModelOptions]="{standalone: true}"
                             >
-                                <option value selected="selected">Wybierz</option>
-                                <option value="bitterness">Goryczka</option>
-                                <option value="aroma">Aromat</option>
-                                <option value="whirpool">Smak</option>
-                                <option value="dryHop">Na zimno</option>
+                                <option selected disabled hidden>Wybierz</option>
+                                <option value="Goryczka">Goryczka</option>
+                                <option value="Aromat">Aromat</option>
+                                <option value="Smak">Smak</option>
+                                <option value="Na zimno">Na zimno</option>
                             </select>
                         </div>
                         <div class="col mb-4">
@@ -239,6 +283,7 @@
                                 class="form-control bg-light border-0 small"
                                 placeholder="g"
                                 [(ngModel)]="hopAmountInGrams"
+                                [ngModelOptions]="{standalone: true}"
                             >
                         </div>
                         <div class="col mb-4">
@@ -248,6 +293,7 @@
                                 class="form-control bg-light border-0 small"
                                 placeholder="min"
                                 [(ngModel)]="hopBoilingTimeInMinutes"
+                                [ngModelOptions]="{standalone: true}"
                             >
                         </div>
                         <div class="col mb-4">
@@ -257,6 +303,7 @@
                                 class="form-control bg-light border-0 small"
                                 placeholder="%"
                                 [(ngModel)]="hopAplhaAcidsPercent"
+                                [ngModelOptions]="{standalone: true}"
                             >
                         </div>
                         <div class="col pt-4">
@@ -288,6 +335,7 @@
                                 class="form-control bg-light border-0 small"
                                 placeholder="Wyszukaj..."
                                 [(ngModel)]="yeastName"
+                                [ngModelOptions]="{standalone: true}"
                             >
                         </div>
                         <div class="col mb-4">
@@ -297,8 +345,9 @@
                                 placeholder="Wybierz"
                                 required="required"
                                 [(ngModel)]="yeastType"
+                                [ngModelOptions]="{standalone: true}"
                             >
-                                <option value selected="selected">Wybierz</option>
+                                <option selected disabled hidden>Wybierz</option>
                                 <option value="aleYeast">Ale</option>
                                 <option value="lagerYeast">Lager</option>
                             </select>
@@ -310,8 +359,9 @@
                                 placeholder="Wybierz"
                                 required="required"
                                 [(ngModel)]="yeastForm"
+                                [ngModelOptions]="{standalone: true}"
                             >
-                                <option value selected="selected">Wybierz</option>
+                                <option selected disabled hidden>Wybierz</option>
                                 <option value="dryYeast">Suche</option>
                                 <option value="liquidYeast">Płynne</option>
                                 <option value="slurryYeast">Gęstwa</option>
@@ -324,6 +374,7 @@
                                 class="form-control bg-light border-0 small"
                                 placeholder="g"
                                 [(ngModel)]="yeastAmountInGrams"
+                                [ngModelOptions]="{standalone: true}"
                             >
                         </div>
                         <div class="col mb-4">
@@ -332,6 +383,7 @@
                                 type="text"
                                 class="form-control bg-light border-0 small"
                                 [(ngModel)]="yeastLaboratory"
+                                [ngModelOptions]="{standalone: true}"
                             >
                         </div>
                         <div class="col pt-4">

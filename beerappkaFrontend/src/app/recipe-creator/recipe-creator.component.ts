@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Recipe } from './recipe';
+import { Malt } from './malt';
+import { Hop } from './hop';
+import { Yeast } from './yeast';
 
 @Component({
   selector: 'app-recipe-creator',
@@ -8,31 +11,34 @@ import { Recipe } from './recipe';
 })
 
 export class RecipeCreatorComponent implements OnInit {
+
   recipeName = '';
   recipeType = '';
   recipeStyle = '';
-  amountOfBeerInLiters = 0;
-  boilingTimeInMinutes = 0;
-  evaporationSpeedPercentPerHour = 0;
-  boilingLossesPercent = 0;
-  fermentationLossesPercent = 0;
-  coldHoppingLossesPercent = 0;
+  amountOfBeerInLiters: number | undefined;
+  boilingTimeInMinutes: number | undefined;
+  evaporationSpeedPercentPerHour: number | undefined;
+  boilingLossesPercent: number | undefined;
+  fermentationLossesPercent: number | undefined;
+  coldHoppingLossesPercent: number | undefined;
 
   maltName = '';
   maltType = '';
-  maltAmountInKilograms = 0;
-  maltColourEBC = 0;
-  maltExtractivityPercent = 0;
+  maltAmountInKilograms: number | undefined;
+  maltColourEBC: number | undefined;
+  maltExtractivityPercent: number | undefined;
   hopName = '';
   hopUsedFor = '';
-  hopAmountInGrams = 0;
-  hopBoilingTimeInMinutes = 0;
-  hopAplhaAcidsPercent = 0;
+  hopAmountInGrams: number | undefined;
+  hopBoilingTimeInMinutes: number | undefined;
+  hopAplhaAcidsPercent: number | undefined;
   yeastName = '';
   yeastType = '';
   yeastForm = '';
-  yeastAmountInGrams = 0;
+  yeastAmountInGrams: number | undefined;
   yeastLaboratory = '';
+
+  malts: Malt[] = [];
 
   constructor() { }
 
@@ -53,6 +59,38 @@ export class RecipeCreatorComponent implements OnInit {
       coldHoppingLossesPercent: this.coldHoppingLossesPercent,
     };
 
+    this.recipeName = '';
+    this.recipeType = '';
+    this.recipeStyle = '';
+    this.amountOfBeerInLiters = undefined;
+    this.boilingTimeInMinutes = undefined;
+    this.evaporationSpeedPercentPerHour = undefined;
+    this.boilingLossesPercent = undefined;
+    this.fermentationLossesPercent = undefined;
+    this.coldHoppingLossesPercent = undefined;
 
   }
+
+  addMalt() {
+    const malt: Malt = {
+      name: this.maltName,
+      type: this.maltType,
+      amountInKilograms: this.maltAmountInKilograms,
+      colourEBC: this.maltColourEBC,
+      extractivityPercent: this.maltExtractivityPercent,
+    };
+
+    this.malts.push(malt);
+
+    this.maltName = '';
+    this.maltType = '';
+    this.maltAmountInKilograms = undefined;
+    this.maltColourEBC = undefined;
+    this.maltExtractivityPercent = undefined;
+  }
+
+  deleteMalts() {
+    this.malts = [];
+  }
+
 }

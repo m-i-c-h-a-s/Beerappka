@@ -62,3 +62,15 @@ class UpdateUserSerializer(serializers.ModelSerializer):
             setattr(instance, attr, value)
         instance.save()
         return instance
+
+
+class UpdateProfilePictureSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Profile
+        fields = ("picture",)
+
+    def save(self, *args, **kwargs):
+        if self.instance.picture:
+            self.instance.picture.delete()
+        return super().save(*args, **kwargs)

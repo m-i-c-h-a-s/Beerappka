@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { BaseService } from './base.service';
 
@@ -31,5 +31,8 @@ export class UserService extends BaseService {
   public updateUser(userData: any): Observable<ArrayBuffer> {
     const {username} = userData;
     return this.http.put(this.getAPIUrl(`/users/${username}/`), JSON.stringify(userData), this.httpOptions);
+  }
+  public updateProfilePicture(data: FormData): Observable<any> {
+    return this.http.post(this.getAPIUrl(`/users/update_profile_picture/`), data);
   }
 }

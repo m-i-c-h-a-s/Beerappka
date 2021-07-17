@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {UserService} from '../services/user.service';
-import {Router} from "@angular/router";
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-update-profile',
@@ -9,6 +9,7 @@ import {Router} from "@angular/router";
 })
 export class UpdateProfileComponent implements OnInit {
   public currentUser: any;
+  public file: File | undefined;
 
   constructor(private userService: UserService, private router: Router) { }
 
@@ -23,6 +24,22 @@ export class UpdateProfileComponent implements OnInit {
   onSubmit(): void {
     this.userService.updateUser(this.currentUser).subscribe(data => {
       return this.router.navigate(['profil']);
+    }, err => {
+      console.log(err);
+    });
+  }
+
+  onFileSelected(event: any): void {
+    this.file = event.target.files[0];
+  }
+
+  updateProfilePicture(): void {
+    if (!this.file) { return; }
+    const formData = new FormData();
+    formData.append('picture', this.file);
+    this.userService.updateProfilePicture(formData).subscribe(data => {
+      this.file = undefined;
+      this.currentUser.profile.picture = data.picture;
     }, err => {
       console.log(err);
     });

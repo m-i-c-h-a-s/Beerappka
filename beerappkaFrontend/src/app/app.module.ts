@@ -17,6 +17,8 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { AuthInterceptor } from "./auth/auth.interceptor";
 import { RecipeCreatorComponent } from './recipe-creator/recipe-creator.component';
 import { FooterComponent } from './footer/footer.component';
+import { ProfileComponent } from './profile/profile.component';
+import { UpdateProfileComponent } from './update-profile/update-profile.component';
 
 @NgModule({
   declarations: [
@@ -25,12 +27,14 @@ import { FooterComponent } from './footer/footer.component';
     LoginPageComponent,
     RegisterPageComponent,
     PageTopBarComponent,
-    DashboardComponent,
     SidebarComponent,
     TopbarComponent,
+    FooterComponent,
+    DashboardComponent,
     AlcoholLevelCalculatorComponent,
     RecipeCreatorComponent,
-    FooterComponent,
+    ProfileComponent,
+    UpdateProfileComponent,
   ],
 
   imports: [

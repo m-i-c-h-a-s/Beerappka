@@ -14,7 +14,9 @@ import { AlcoholLevelCalculatorComponent } from './alcohol-level-calculator/alco
 import { UserService } from './services/user.service';
 import { FormsModule } from '@angular/forms';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
-import { AuthInterceptor } from './auth/auth.interceptor';
+import { AuthInterceptor } from "./auth/auth.interceptor";
+import { RecipeCreatorComponent } from './recipe-creator/recipe-creator.component';
+import { FooterComponent } from './footer/footer.component';
 import { ProfileComponent } from './profile/profile.component';
 import { UpdateProfileComponent } from './update-profile/update-profile.component';
 
@@ -25,19 +27,23 @@ import { UpdateProfileComponent } from './update-profile/update-profile.componen
     LoginPageComponent,
     RegisterPageComponent,
     PageTopBarComponent,
-    DashboardComponent,
     SidebarComponent,
     TopbarComponent,
+    FooterComponent,
+    DashboardComponent,
     AlcoholLevelCalculatorComponent,
+    RecipeCreatorComponent,
     ProfileComponent,
     UpdateProfileComponent,
   ],
+
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     HttpClientModule
   ],
+
   providers: [
     UserService,
     {
@@ -46,6 +52,7 @@ import { UpdateProfileComponent } from './update-profile/update-profile.componen
       multi: true
     }
   ],
+
   bootstrap: [AppComponent]
 })
 export class AppModule { }

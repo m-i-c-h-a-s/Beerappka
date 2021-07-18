@@ -7,17 +7,17 @@
                     <h6 class="m-0 font-weight-bold text-primary">Receptura</h6>
                 </div>
                 <div class="card-body">
-                    <form class="d-flex">
+                    <form class="d-flex flex-row">
                         <input
                             type="text"
-                            class="form-control bg-light border-0 small"
+                            class="form-control bg-light border-0"
                             placeholder="Nazwa"
                             [(ngModel)]="recipeName"
                             [ngModelOptions]="{standalone: true}"
                         />
 
                         <select
-                            class="form-control bg-light border-0 small ml-4 col-lg-3"
+                            class="form-control bg-light border-0 ml-4"
                             required="required"
                             placeholder="Typ"
                             [(ngModel)]="recipeType"
@@ -30,7 +30,7 @@
                         </select>
 
                         <select
-                            class="form-control bg-light border-0 small ml-4 col-lg-3"
+                            class="form-control bg-light border-0 ml-4"
                             placeholder="Styl"
                             required="required"
                             [(ngModel)]="recipeStyle"
@@ -139,7 +139,7 @@
                 </div>
                 <div class="card-body">
                     <form class="d-flex">
-                        <div class="col mb-4">
+                        <div class="col">
                             <h6>Nazwa</h6>
                             <input
                                 type="text"
@@ -149,7 +149,7 @@
                                 [ngModelOptions]="{standalone: true}"
                             >
                         </div>
-                        <div class="col mb-4">
+                        <div class="col">
                             <h6>Rodzaj</h6>
                             <select
                                 class="form-control bg-light border-0 small"
@@ -165,7 +165,7 @@
                                 <option value="Dodatek">Dodatek</option>
                             </select>
                         </div>
-                        <div class="col mb-4">
+                        <div class="col">
                             <h6>Ilość</h6>
                             <input
                                 type="text"
@@ -175,7 +175,7 @@
                                 [ngModelOptions]="{standalone: true}"
                             >
                         </div>
-                        <div class="col mb-4">
+                        <div class="col">
                             <h6>Barwa</h6>
                             <input
                                 type="text"
@@ -185,7 +185,7 @@
                                 [ngModelOptions]="{standalone: true}"
                             >
                         </div>
-                        <div class="col mb-4">
+                        <div class="col">
                             <h6>Ekstraktywność</h6>
                             <input
                                 type="text"
@@ -195,11 +195,11 @@
                                 [ngModelOptions]="{standalone: true}"
                             >
                         </div>
-                        <div class=" col d-flex justify-content-center">
-                            <button class="btn btn-success btn-circle btn-sm" (click)="addMalt();">
+                        <div class="col d-flex" style="align-items: center;">
+                            <button class="btn btn-success btn-circle btn-sm m-1" (click)="addMalt();">
                                 <i class="fas fa-plus"></i>
                             </button>
-                            <button class="btn btn-danger btn-circle btn-sm" (click)="deleteMalts();">
+                            <button class="btn btn-danger btn-circle btn-sm m-1" (click)="deleteMalts();">
                                 <i class="fas fa-trash"></i>
                             </button>
                         </div>
@@ -242,15 +242,11 @@
         <div class="col-lg-12 mb-4">
             <div class="card shadow mb-4 border-bottom-info">
                 <div class="card-header py-3 d-flex">
-                    <h6 class="m-0 font-weight-bold text-primary">Chmiele
-                        <button class="btn btn-success btn-circle btn-sm">
-                            <i class="fas fa-plus"></i>
-                        </button>
-                    </h6>
+                    <h6 class="m-0 font-weight-bold text-primary">Chmiele</h6>
                 </div>
                 <div class="card-body">
                     <form class="d-flex">
-                        <div class="col mb-4">
+                        <div class="col">
                             <h6>Nazwa</h6>
                             <input
                                 type="text"
@@ -260,7 +256,7 @@
                                 [ngModelOptions]="{standalone: true}"
                             >
                         </div>
-                        <div class="col mb-4">
+                        <div class="col">
                             <h6>Użyto do</h6>
                             <select
                                 class="form-control bg-light border-0 small"
@@ -276,7 +272,7 @@
                                 <option value="Na zimno">Na zimno</option>
                             </select>
                         </div>
-                        <div class="col mb-4">
+                        <div class="col">
                             <h6>Ilość</h6>
                             <input
                                 type="text"
@@ -286,7 +282,7 @@
                                 [ngModelOptions]="{standalone: true}"
                             >
                         </div>
-                        <div class="col mb-4">
+                        <div class="col">
                             <h6>Czas</h6>
                             <input
                                 type="text"
@@ -296,7 +292,7 @@
                                 [ngModelOptions]="{standalone: true}"
                             >
                         </div>
-                        <div class="col mb-4">
+                        <div class="col">
                             <h6>Alfa-kwasy</h6>
                             <input
                                 type="text"
@@ -306,8 +302,11 @@
                                 [ngModelOptions]="{standalone: true}"
                             >
                         </div>
-                        <div class="col pt-4">
-                            <button class="btn btn-danger btn-circle btn-sm">
+                        <div class="col d-flex" style="align-items: center;">
+                            <button class="btn btn-success btn-circle btn-sm m-1">
+                                <i class="fas fa-plus"></i>
+                            </button>
+                            <button class="btn btn-danger btn-circle btn-sm m-1">
                                 <i class="fas fa-trash"></i>
                             </button>
                         </div>
@@ -320,15 +319,11 @@
         <div class="col-lg-12 mb-4">
             <div class="card shadow mb-4 border-bottom-info">
                 <div class="card-header py-3 d-flex">
-                    <h6 class="m-0 font-weight-bold text-primary">Drożdże
-                        <button class="btn btn-success btn-circle btn-sm">
-                            <i class="fas fa-plus"></i>
-                        </button>
-                    </h6>
+                    <h6 class="m-0 font-weight-bold text-primary">Drożdże</h6>
                 </div>
                 <div class="card-body">
                     <form class="d-flex">
-                        <div class="col mb-4">
+                        <div class="col">
                             <h6>Nazwa</h6>
                             <input
                                 type="text"
@@ -338,7 +333,7 @@
                                 [ngModelOptions]="{standalone: true}"
                             >
                         </div>
-                        <div class="col mb-4">
+                        <div class="col">
                             <h6>Rodzaj</h6>
                             <select
                                 class="form-control bg-light border-0 small"
@@ -352,7 +347,7 @@
                                 <option value="lagerYeast">Lager</option>
                             </select>
                         </div>
-                        <div class="col mb-4">
+                        <div class="col">
                             <h6>Postać</h6>
                             <select
                                 class="form-control bg-light border-0 small"
@@ -367,7 +362,7 @@
                                 <option value="slurryYeast">Gęstwa</option>
                             </select>
                         </div>
-                        <div class="col mb-4">
+                        <div class="col">
                             <h6>Ilość</h6>
                             <input
                                 type="text"
@@ -377,7 +372,7 @@
                                 [ngModelOptions]="{standalone: true}"
                             >
                         </div>
-                        <div class="col mb-4">
+                        <div class="col">
                             <h6>Laboratorium</h6>
                             <input
                                 type="text"
@@ -386,8 +381,11 @@
                                 [ngModelOptions]="{standalone: true}"
                             >
                         </div>
-                        <div class="col pt-4">
-                            <button class="btn btn-danger btn-circle btn-sm">
+                        <div class="col d-flex" style="align-items: center;">
+                            <button class="btn btn-success btn-circle btn-sm m-1">
+                                <i class="fas fa-plus"></i>
+                            </button>
+                            <button class="btn btn-danger btn-circle btn-sm m-1">
                                 <i class="fas fa-trash"></i>
                             </button>
                         </div>

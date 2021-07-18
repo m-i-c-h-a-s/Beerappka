@@ -259,7 +259,10 @@
                                                               Ulubione style piwne
                                                           </div>
                                                           <div class="h5 mb-0 font-weight-bold text-gray-800">
-                                                              {{ currentUser.profile.favourite_beer_style }}
+                                                              <span *ngFor="let favBeerStyle of currentUser.profile.favourite_beer_style"
+                                                                class="badge bg-primary ml-1 p-2">
+                                                                {{ favBeerStyle.name }}
+                                                              </span>
                                                           </div>
                                                       </div>
                                                   </div>

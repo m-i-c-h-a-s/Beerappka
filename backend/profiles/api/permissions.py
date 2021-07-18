@@ -1,7 +1,7 @@
 from rest_framework import permissions
 
 
-class IsCurrentUserOrReadOnly(permissions.BasePermission):
+class IsCurrentUserOrReadOnly(permissions.IsAuthenticated):
     def has_object_permission(self, request, view, obj):
         if request.method in permissions.SAFE_METHODS:
             return True

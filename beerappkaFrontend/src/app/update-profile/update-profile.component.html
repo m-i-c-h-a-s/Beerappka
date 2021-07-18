@@ -262,10 +262,42 @@
                                                 </div>
                                             </div>
                                         </div>
+                                        <div class="mb-3">
+                                            <div class="card border-left-success shadow h-100 py-2">
+                                                <div class="card-body">
+                                                    <div class="row no-gutters align-items-center">
+                                                        <div class="col mr-2">
+                                                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                                                <label for="favourite_beer_style" class="form-label">
+                                                                  Ulubione style piwne
+                                                                </label>
+                                                            </div>
+                                                            <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                                <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                                    <span *ngFor="let favBeerStyle of currentUser.profile.favourite_beer_style"
+                                                                      class="badge bg-primary ml-1 p-2">
+                                                                      {{ favBeerStyle.name }}
+                                                                    </span>
+                                                                </div>
+                                                                <select [(ngModel)]="favBeerStyles"
+                                                                        name="favourite_beer_style" id="favourite_beer_style"
+                                                                        class="form-control bg-light border-0 small"
+                                                                        multiple>
+                                                                    <option *ngFor="let beerStyle of beerStyles"
+                                                                            [ngValue]="beerStyle.id">
+                                                                      {{ beerStyle.name }}
+                                                                    </option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                      </div>
+                        </div>
                         <div class="card shadow mb-4 border-bottom-info col-lg-12">
                             <div class="col-lg-12 mb-4 mt-4">
                                 <button class="btn btn-primary"

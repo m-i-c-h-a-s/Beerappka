@@ -2,6 +2,7 @@ from rest_framework import serializers
 from rest_framework.authtoken.admin import User
 
 from profiles.models import Profile
+from recipes.api.serializers import StyleSerializer
 
 
 class UpdateProfileSerializer(serializers.ModelSerializer):
@@ -12,6 +13,8 @@ class UpdateProfileSerializer(serializers.ModelSerializer):
 
 
 class ProfileSerializer(serializers.ModelSerializer):
+    favourite_beer_style = StyleSerializer(many=True)
+
     class Meta:
         model = Profile
         fields = "__all__"

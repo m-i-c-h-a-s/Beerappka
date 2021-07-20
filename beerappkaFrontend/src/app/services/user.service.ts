@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { BaseService } from './base.service';
+import {ChangePassword} from "../profile/change-password/change-password";
 
 @Injectable({
   providedIn: 'root'
@@ -34,5 +35,8 @@ export class UserService extends BaseService {
   }
   public updateProfilePicture(data: FormData): Observable<any> {
     return this.http.post(this.getAPIUrl(`/users/update_profile_picture/`), data);
+  }
+  public changeUserPassword(data: ChangePassword): Observable<any> {
+    return this.http.post(this.getAPIUrl(`/auth/password/change/`), data);
   }
 }

@@ -164,6 +164,7 @@ REST_FRAMEWORK = {
     ),
 }
 
+OLD_PASSWORD_FIELD_ENABLED = True
 
 if DEBUG:
     CORS_ALLOWED_ORIGINS = ["http://localhost:4200"]

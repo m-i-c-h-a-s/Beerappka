@@ -9,6 +9,7 @@ import { AuthGuard } from './guards/auth.guard';
 import {AlreadyLoggedInGuard} from './guards/already-logged-in-guard.service';
 import {ProfileComponent} from './profile/profile.component';
 import {UpdateProfileComponent} from './update-profile/update-profile.component';
+import {ChangePasswordComponent} from './profile/change-password/change-password.component';
 
 const routes: Routes = [
   { path: '', component: LandingPageComponent, canActivate: [AlreadyLoggedInGuard] },
@@ -17,6 +18,7 @@ const routes: Routes = [
   { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard]},
   { path: 'profil', component: ProfileComponent, canActivate: [AuthGuard]},
   { path: 'edytuj-profil', component: UpdateProfileComponent, canActivate: [AuthGuard]},
+  { path: 'edytuj-profil/zmien-haslo', component: ChangePasswordComponent, canActivate: [AuthGuard]},
   { path: 'kalkulatory/poziom-alkoholu', component: AlcoholLevelCalculatorComponent, canActivate: [AuthGuard] }
 ];
 

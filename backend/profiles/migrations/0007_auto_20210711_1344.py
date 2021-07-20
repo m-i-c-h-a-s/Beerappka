@@ -6,27 +6,34 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('recipes', '0005_auto_20210627_1824'),
-        ('profiles', '0006_profile_picture'),
+        ("recipes", "0005_auto_20210627_1824"),
+        ("profiles", "0006_profile_picture"),
     ]
 
     operations = [
         migrations.RemoveField(
-            model_name='profile',
-            name='instagram_link',
+            model_name="profile",
+            name="instagram_link",
         ),
         migrations.AddField(
-            model_name='profile',
-            name='instagram',
-            field=models.CharField(blank=True, max_length=30, null=True, verbose_name='Profil na Instagramie'),
+            model_name="profile",
+            name="instagram",
+            field=models.CharField(
+                blank=True,
+                max_length=30,
+                null=True,
+                verbose_name="Profil na Instagramie",
+            ),
         ),
         migrations.RemoveField(
-            model_name='profile',
-            name='favourite_beer_style',
+            model_name="profile",
+            name="favourite_beer_style",
         ),
         migrations.AddField(
-            model_name='profile',
-            name='favourite_beer_style',
-            field=models.ManyToManyField(blank=True, to='recipes.Style', verbose_name='Ulubiony styl piwny'),
+            model_name="profile",
+            name="favourite_beer_style",
+            field=models.ManyToManyField(
+                blank=True, to="recipes.Style", verbose_name="Ulubiony styl piwny"
+            ),
         ),
     ]

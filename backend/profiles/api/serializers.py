@@ -53,10 +53,10 @@ class UpdateUserSerializer(serializers.ModelSerializer):
         read_only_fields = ["id", "last_login"]
 
     def update(self, instance, validated_data):
-        profile_data = validated_data.pop('profile', None)
+        profile_data = validated_data.pop("profile", None)
         if profile_data:
             profile = instance.profile
-            favourite_beer_style = profile_data.pop('favourite_beer_style', [])
+            favourite_beer_style = profile_data.pop("favourite_beer_style", [])
             profile.favourite_beer_style.set(favourite_beer_style)
             for attr, value in profile_data.items():
                 setattr(profile, attr, value)
@@ -68,7 +68,6 @@ class UpdateUserSerializer(serializers.ModelSerializer):
 
 
 class UpdateProfilePictureSerializer(serializers.ModelSerializer):
-
     class Meta:
         model = Profile
         fields = ("picture",)

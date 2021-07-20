@@ -27,18 +27,13 @@ class Profile(models.Model):
     )
 
     instagram = models.CharField(
-        max_length=30,
-        null=True,
-        blank=True,
-        verbose_name="Profil na Instagramie"
+        max_length=30, null=True, blank=True, verbose_name="Profil na Instagramie"
     )
 
     brewer_since = models.DateField(null=True, blank=True, verbose_name="Piwowar od")
 
     favourite_beer_style = models.ManyToManyField(
-        Style,
-        blank=True,
-        verbose_name="Ulubiony styl piwny"
+        Style, blank=True, verbose_name="Ulubiony styl piwny"
     )
 
     about_me = models.TextField(

@@ -13,6 +13,7 @@ django-rest-auth = {extras = ["with_social"], version = "*"}
 django-cors-headers = "*"
 pillow = "*"
 black = "*"
+sorl-thumbnail = "*"
 
 [dev-packages]
 

@@ -12,7 +12,18 @@ class UpdateProfileSerializer(serializers.ModelSerializer):
         read_only_fields = ("picture",)
 
 
-class ProfileSerializer(serializers.ModelSerializer):
+class PictureThumbnailMixinSerializer(serializers.ModelSerializer):
+    picture_thumb_150x150 = serializers.SerializerMethodField()
+
+    def get_picture_thumb_150x150(self, instance: Profile):
+        if instance.picture:
+            request = self.context.get("request")
+            url: str = request.build_absolute_uri(instance.picture_thumb_150x150)
+            return url
+        return ""
+
+
+class ProfileSerializer(PictureThumbnailMixinSerializer, serializers.ModelSerializer):
     favourite_beer_style = StyleSerializer(many=True)
 
     class Meta:
@@ -67,12 +78,15 @@ class UpdateUserSerializer(serializers.ModelSerializer):
         return instance
 
 
-class UpdateProfilePictureSerializer(serializers.ModelSerializer):
+class UpdateProfilePictureSerializer(
+    PictureThumbnailMixinSerializer, serializers.ModelSerializer
+):
     class Meta:
         model = Profile
-        fields = ("picture",)
+        fields = ("picture", "picture_thumb_150x150")
+        read_only_fields = ("picture_thumb_150x150",)
 
-    def save(self, *args, **kwargs):
+    def save(self, **kwargs):
         if self.instance.picture:
             self.instance.picture.delete()
-        return super().save(*args, **kwargs)
+        return super().save(**kwargs)

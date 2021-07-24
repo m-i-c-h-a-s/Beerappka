@@ -11,4 +11,5 @@ export interface Profile {
   about_me: string;
   picture: string;
   user: number;
+  picture_thumb_150x150: string;
 }

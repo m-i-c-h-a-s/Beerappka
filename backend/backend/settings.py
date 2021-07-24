@@ -54,6 +54,7 @@ INSTALLED_APPS = [
     "articles",
     "recipes",
     "batches",
+    "sorl.thumbnail",
 ]
 
 MIDDLEWARE = [

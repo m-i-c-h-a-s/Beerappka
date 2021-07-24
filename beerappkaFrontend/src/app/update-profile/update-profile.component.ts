@@ -59,7 +59,10 @@ export class UpdateProfileComponent implements OnInit {
     this.userService.updateProfilePicture(formData).subscribe(data => {
       this.file = undefined;
       if (this.currentUser) {
-        this.currentUser.profile.picture = data.picture;
+        this.currentUser.profile = {
+          ...this.currentUser.profile,
+          ...data
+        };
       }
     }, err => {
       console.log(err);

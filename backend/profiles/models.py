@@ -1,5 +1,6 @@
 from django.contrib.auth.models import User
 from django.db import models
+from sorl.thumbnail import get_thumbnail
 
 from recipes.models import Style
 
@@ -53,3 +54,7 @@ class Profile(models.Model):
 
     def __str__(self):
         return f"{self.user.username} {self.user.email}"
+
+    @property
+    def picture_thumb_150x150(self):
+        return get_thumbnail(self.picture, "150x150", crop="center", quality=99).url

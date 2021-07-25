@@ -1,5 +1,6 @@
 from django.contrib.auth.models import User
 from django.db import models
+from sorl.thumbnail import get_thumbnail
 
 from recipes.models import Style
 
@@ -27,18 +28,13 @@ class Profile(models.Model):
     )
 
     instagram = models.CharField(
-        max_length=30,
-        null=True,
-        blank=True,
-        verbose_name="Profil na Instagramie"
+        max_length=30, null=True, blank=True, verbose_name="Profil na Instagramie"
     )
 
     brewer_since = models.DateField(null=True, blank=True, verbose_name="Piwowar od")
 
     favourite_beer_style = models.ManyToManyField(
-        Style,
-        blank=True,
-        verbose_name="Ulubiony styl piwny"
+        Style, blank=True, verbose_name="Ulubiony styl piwny"
     )
 
     about_me = models.TextField(
@@ -58,3 +54,7 @@ class Profile(models.Model):
 
     def __str__(self):
         return f"{self.user.username} {self.user.email}"
+
+    @property
+    def picture_thumb_150x150(self):
+        return get_thumbnail(self.picture, "150x150", crop="center", quality=99).url

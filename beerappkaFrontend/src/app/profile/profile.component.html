@@ -33,7 +33,7 @@
                                                             Zdjęcie profilowe
                                                         </div>
                                                         <div class="h5 mb-0 font-weight-bold text-gray-800">
-                                                           <img src="{{ currentUser.profile.picture }}"
+                                                           <img src="{{ currentUser.profile.picture_thumb_150x150 }}"
                                                                 alt="zdjęcie profilowe" class="mx-auto  profile-card__picture">
                                                         </div>
                                                     </div>
@@ -281,12 +281,12 @@
                                 <span class="text">Edytuj</span>
                             </a>
                             <a class="btn btn-primary ml-4"
-                                 routerLink="/zmien-haslo"
+                                 routerLink="/edytuj-profil/zmien-haslo"
                                  role="button">
                                 <span class="text">Zmień hasło</span>
                             </a>
                             <a class="btn btn-danger ml-4"
-                                 routerLink="/usun-konto"
+                                 routerLink="/edytuj-profil/usun-konto"
                                  role="button">
                                 <span class="text">Usuń konto</span>
                             </a>

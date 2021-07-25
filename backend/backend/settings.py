@@ -54,6 +54,7 @@ INSTALLED_APPS = [
     "articles",
     "recipes",
     "batches",
+    "sorl.thumbnail",
 ]
 
 MIDDLEWARE = [
@@ -141,8 +142,8 @@ USE_TZ = True
 
 STATIC_URL = "/static/"
 
-MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = "/media/"
+MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
@@ -164,6 +165,7 @@ REST_FRAMEWORK = {
     ),
 }
 
+OLD_PASSWORD_FIELD_ENABLED = True
 
 if DEBUG:
     CORS_ALLOWED_ORIGINS = ["http://localhost:4200"]

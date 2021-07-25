@@ -19,6 +19,8 @@ import { RecipeCreatorComponent } from './recipe-creator/recipe-creator.componen
 import { FooterComponent } from './footer/footer.component';
 import { ProfileComponent } from './profile/profile.component';
 import { UpdateProfileComponent } from './update-profile/update-profile.component';
+import { ChangePasswordComponent } from './profile/change-password/change-password.component';
+import { DeleteAccountComponent } from './profile/delete-account/delete-account.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +37,8 @@ import { UpdateProfileComponent } from './update-profile/update-profile.componen
     RecipeCreatorComponent,
     ProfileComponent,
     UpdateProfileComponent,
+    ChangePasswordComponent,
+    DeleteAccountComponent,
   ],
 
   imports: [

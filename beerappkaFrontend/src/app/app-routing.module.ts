@@ -10,7 +10,9 @@ import {AlreadyLoggedInGuard} from './guards/already-logged-in-guard.service';
 import {ProfileComponent} from './profile/profile.component';
 import {UpdateProfileComponent} from './update-profile/update-profile.component';
 import {ChangePasswordComponent} from './profile/change-password/change-password.component';
-import {DeleteAccountComponent} from "./profile/delete-account/delete-account.component";
+import {DeleteAccountComponent} from './profile/delete-account/delete-account.component';
+import {BrewersListComponent} from './components/brewers-list/brewers-list.component';
+import {BrewerDetailsComponent} from './components/brewer-details/brewer-details.component';
 
 const routes: Routes = [
   { path: '', component: LandingPageComponent, canActivate: [AlreadyLoggedInGuard] },
@@ -21,7 +23,9 @@ const routes: Routes = [
   { path: 'edytuj-profil', component: UpdateProfileComponent, canActivate: [AuthGuard]},
   { path: 'edytuj-profil/zmien-haslo', component: ChangePasswordComponent, canActivate: [AuthGuard]},
   { path: 'edytuj-profil/usun-konto', component: DeleteAccountComponent, canActivate: [AuthGuard]},
-  { path: 'kalkulatory/poziom-alkoholu', component: AlcoholLevelCalculatorComponent, canActivate: [AuthGuard] }
+  { path: 'kalkulatory/poziom-alkoholu', component: AlcoholLevelCalculatorComponent, canActivate: [AuthGuard] },
+  { path: 'piwowarzy', component: BrewersListComponent, canActivate: [AuthGuard]},
+  { path: 'piwowarzy/:username', component: BrewerDetailsComponent, canActivate: [AuthGuard]},
 ];
 
 @NgModule({

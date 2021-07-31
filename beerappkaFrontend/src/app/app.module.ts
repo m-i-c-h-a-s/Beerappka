@@ -21,6 +21,8 @@ import { ProfileComponent } from './profile/profile.component';
 import { UpdateProfileComponent } from './update-profile/update-profile.component';
 import { ChangePasswordComponent } from './profile/change-password/change-password.component';
 import { DeleteAccountComponent } from './profile/delete-account/delete-account.component';
+import { BrewersListComponent } from './components/brewers-list/brewers-list.component';
+import { BrewerDetailsComponent } from './components/brewer-details/brewer-details.component';
 
 @NgModule({
   declarations: [
@@ -39,6 +41,8 @@ import { DeleteAccountComponent } from './profile/delete-account/delete-account.
     UpdateProfileComponent,
     ChangePasswordComponent,
     DeleteAccountComponent,
+    BrewersListComponent,
+    BrewerDetailsComponent,
   ],
 
   imports: [

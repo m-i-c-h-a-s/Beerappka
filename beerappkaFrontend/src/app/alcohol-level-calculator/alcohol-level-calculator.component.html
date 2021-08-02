@@ -32,14 +32,31 @@
                                     </div>
                                     <div class="mb-3">
                                       <label for="" class="form-label">Gęstość początkowa</label>
-                                      <input type="text" class="form-control bg-light border-0 small">
+                                      <input
+                                          type="text"
+                                          class="form-control bg-light border-0 small"
+                                          [(ngModel)]="originalGravity"
+                                          [ngModelOptions]="{standalone: true}"
+                                          (focusout)="calculateABV(); calculateAttenuation();"
+                                      >
                                     </div>
                                     <div class="mb-3">
                                       <label for="" class="form-label">Gęstość końcowa</label>
-                                      <input type="text" class="form-control bg-light border-0 small">
+                                      <input
+                                          type="text"
+                                          class="form-control bg-light border-0 small"
+                                          [(ngModel)]="finalGravity"
+                                          [ngModelOptions]="{standalone: true}"
+                                          (focusout)="calculateABV(); calculateAttenuation();"
+                                      >
                                     </div>
                                     <div>
-                                      ABV --- Odfermentowanie ---
+                                      <label>ABV:</label>
+                                      <i style="font-weight: bold;"> {{ this.alcoholByVolume }} </i>
+                                    </div>
+                                    <div>
+                                      <label>Odfermentowanie:</label>
+                                      <i style="font-weight: bold;"> {{ this.apparentAttenuation }} </i>
                                     </div>
                                 </form>
                             </div>

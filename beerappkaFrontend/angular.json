@@ -33,7 +33,7 @@
             "styles": [
               "node_modules/bootstrap/scss/bootstrap.scss",
               "src/assets/startbootstrap-sb-admin-2/vendor/fontawesome-free/css/all.min.css",
-              "src/assets/startbootstrap-sb-admin-2/css/sb-admin-2.min.css",
+              "src/assets/startbootstrap-sb-admin-2/css/sb-admin-2.css",
               "src/styles.sass"
             ],
             "scripts": [

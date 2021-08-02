@@ -1,49 +1,54 @@
  <div class="container-fluid">
 
     <div id="recipeHeader" class="row">
-        <div class="col-lg-12 mb-4">
+        <div class=" mb-4">
             <div class="card shadow mb-4 border-bottom-info">
                 <div class="card-header py-3">
                     <h6 class="m-0 font-weight-bold text-primary">Receptura</h6>
                 </div>
                 <div class="card-body">
-                    <form class="d-flex flex-row">
-                        <input
-                            type="text"
-                            class="form-control bg-light border-0"
-                            placeholder="Nazwa"
-                            [(ngModel)]="recipeName"
-                            [ngModelOptions]="{standalone: true}"
-                        />
+                    <form class="d-flex">
+                        <div class="col">
+                            <input
+                                type="text"
+                                class="form-control bg-light border-0"
+                                placeholder="Nazwa"
+                                [(ngModel)]="recipeName"
+                                [ngModelOptions]="{standalone: true}"
+                            />
+                        </div>
 
-                        <select
-                            class="form-control bg-light border-0 ml-4"
-                            required="required"
-                            placeholder="Typ"
-                            [(ngModel)]="recipeType"
-                            [ngModelOptions]="{standalone: true}"
-                        >
-                            <option selected disabled hidden>Typ</option>
-                            <option value="malt">Zacieranie</option>
-                            <option value="extract">Ekstrakty</option>
-                            <option value="brewkit">Brewkit</option>
-                        </select>
+                        <div class="col">
+                            <select
+                                class="form-control bg-light border-0"
+                                required="required"
+                                placeholder="Typ"
+                                [(ngModel)]="recipeType"
+                                [ngModelOptions]="{standalone: true}"
+                            >
+                                <option selected disabled hidden>Typ</option>
+                                <option value="malt">Zacieranie</option>
+                                <option value="extract">Ekstrakty</option>
+                                <option value="brewkit">Brewkit</option>
+                            </select>
+                        </div>
 
-                        <select
-                            class="form-control bg-light border-0 ml-4"
-                            placeholder="Styl"
-                            required="required"
-                            [(ngModel)]="recipeStyle"
-                            [ngModelOptions]="{standalone: true}"
-                        >
-                            <option selected disabled hidden>Styl</option>
-                            <option value="indiaPaleAle">India Pale Ale</option>
-                            <option value="balticPorter">Baltic Porter</option>
-                            <option value="kriek">Kriek</option>
-                            <option value="whiteIPA">White IPA</option>
-                            <option value="pils">Pils</option>
-                        </select>
-
+                        <div class="col">
+                            <select
+                                class="form-control bg-light border-0"
+                                placeholder="Styl"
+                                required="required"
+                                [(ngModel)]="recipeStyle"
+                                [ngModelOptions]="{standalone: true}"
+                            >
+                                <option selected disabled hidden>Styl</option>
+                                <option value="indiaPaleAle">India Pale Ale</option>
+                                <option value="balticPorter">Baltic Porter</option>
+                                <option value="kriek">Kriek</option>
+                                <option value="whiteIPA">White IPA</option>
+                                <option value="pils">Pils</option>
+                            </select>
+                        </div>
                     </form>
 
                 </div>

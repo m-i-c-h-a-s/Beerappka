@@ -3,5 +3,5 @@ export interface Hop {
     usedFor: string;
     amountInGrams: number | undefined;
     boilingTimeInMinutes: number | undefined;
-    aplhaAcidsPercent: number | undefined;
+    alphaAcidsPercent: number | undefined;
 }

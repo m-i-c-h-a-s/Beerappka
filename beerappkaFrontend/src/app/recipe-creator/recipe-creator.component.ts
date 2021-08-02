@@ -31,7 +31,7 @@ export class RecipeCreatorComponent implements OnInit {
   hopUsedFor = '';
   hopAmountInGrams: number | undefined;
   hopBoilingTimeInMinutes: number | undefined;
-  hopAplhaAcidsPercent: number | undefined;
+  hopAlphaAcidsPercent: number | undefined;
   yeastName = '';
   yeastType = '';
   yeastForm = '';
@@ -39,6 +39,8 @@ export class RecipeCreatorComponent implements OnInit {
   yeastLaboratory = '';
 
   malts: Malt[] = [];
+  hops: Hop[] = [];
+  yeasts: Yeast[] = [];
 
   constructor() { }
 
@@ -89,8 +91,52 @@ export class RecipeCreatorComponent implements OnInit {
     this.maltExtractivityPercent = undefined;
   }
 
+  addHop() {
+    const hop: Hop = {
+      name: this.hopName,
+      usedFor: this.hopUsedFor,
+      amountInGrams: this.hopAmountInGrams,
+      boilingTimeInMinutes: this.hopBoilingTimeInMinutes,
+      alphaAcidsPercent: this.hopAlphaAcidsPercent,
+    };
+
+    this.hops.push(hop);
+
+    this.hopName = '';
+    this.hopUsedFor = '';
+    this.hopAmountInGrams = undefined;
+    this.boilingTimeInMinutes = undefined;
+    this.hopAlphaAcidsPercent = undefined;
+  }
+
+  addYeast() {
+    const yeast: Yeast = {
+      name: this.yeastName,
+      type: this.yeastType,
+      form: this.yeastForm,
+      amountInGrams: this.yeastAmountInGrams,
+      laboratory: this.yeastLaboratory,
+    };
+
+    this.yeasts.push(yeast);
+
+    this.yeastName = '';
+    this.yeastType = '';
+    this.yeastForm = '';
+    this.yeastAmountInGrams = undefined;
+    this.yeastLaboratory = '';
+  }
+
   deleteMalts() {
     this.malts = [];
+  }
+
+  deleteHops() {
+    this.hops = [];
+  }
+
+  deleteYeasts() {
+    this.yeasts = [];
   }
 
 }

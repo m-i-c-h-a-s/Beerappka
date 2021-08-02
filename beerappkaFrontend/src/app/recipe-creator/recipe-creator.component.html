@@ -288,7 +288,7 @@
                             >
                         </div>
                         <div class="col">
-                            <h6>Czas</h6>
+                            <h6>Czas gotowania</h6>
                             <input
                                 type="text"
                                 class="form-control bg-light border-0 small"
@@ -303,20 +303,48 @@
                                 type="text"
                                 class="form-control bg-light border-0 small"
                                 placeholder="%"
-                                [(ngModel)]="hopAplhaAcidsPercent"
+                                [(ngModel)]="hopAlphaAcidsPercent"
                                 [ngModelOptions]="{standalone: true}"
                             >
                         </div>
                         <div class="col d-flex" style="align-items: center;">
-                            <button class="btn btn-success btn-circle btn-sm m-1">
+                            <button class="btn btn-success btn-circle btn-sm m-1" (click)="addHop();">
                                 <i class="fas fa-plus"></i>
                             </button>
-                            <button class="btn btn-danger btn-circle btn-sm m-1">
+                            <button class="btn btn-danger btn-circle btn-sm m-1" (click)="deleteHops();">
                                 <i class="fas fa-trash"></i>
                             </button>
                         </div>
                     </form>
                 </div>
+
+                <div class="card-body" *ngIf="hops.length > 0">
+                    <div class="table-responsive">
+                        <table class="table table-bordered" width="100%" cellspacing="0">
+                            <thead>
+                                <tr>
+                                    <th>Nazwa</th>
+                                    <th>Użyto do</th>
+                                    <th>Ilość</th>
+                                    <th>Czas gotowania</th>
+                                    <th>Alfa-kwasy</th>
+                                </tr>
+                            </thead>
+
+                            <tbody *ngFor="let hop of hops;">
+                                <tr>
+                                    <td> {{ hop.name }} </td>
+                                    <td> {{ hop.usedFor }} </td>
+                                    <td> {{ hop.amountInGrams }} </td>
+                                    <td> {{ hop.boilingTimeInMinutes }} </td>
+                                    <td> {{ hop.alphaAcidsPercent }} </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+
             </div>
         </div>
     </div>
@@ -387,15 +415,42 @@
                             >
                         </div>
                         <div class="col d-flex" style="align-items: center;">
-                            <button class="btn btn-success btn-circle btn-sm m-1">
+                            <button class="btn btn-success btn-circle btn-sm m-1" (click)="addYeast();">
                                 <i class="fas fa-plus"></i>
                             </button>
-                            <button class="btn btn-danger btn-circle btn-sm m-1">
+                            <button class="btn btn-danger btn-circle btn-sm m-1" (click)="deleteYeasts();">
                                 <i class="fas fa-trash"></i>
                             </button>
                         </div>
                     </form>
                 </div>
+
+                <div class="card-body" *ngIf="yeasts.length > 0">
+                    <div class="table-responsive">
+                        <table class="table table-bordered" width="100%" cellspacing="0">
+                            <thead>
+                                <tr>
+                                    <th>Nazwa</th>
+                                    <th>Rodzaj</th>
+                                    <th>Postać</th>
+                                    <th>Ilość</th>
+                                    <th>Laboratorium</th>
+                                </tr>
+                            </thead>
+
+                            <tbody *ngFor="let yeast of yeasts;">
+                                <tr>
+                                    <td> {{ yeast.name }} </td>
+                                    <td> {{ yeast.type }} </td>
+                                    <td> {{ yeast.form }} </td>
+                                    <td> {{ yeast.amountInGrams }} </td>
+                                    <td> {{ yeast.laboratory }} </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>

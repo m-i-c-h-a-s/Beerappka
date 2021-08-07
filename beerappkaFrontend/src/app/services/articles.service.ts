@@ -14,4 +14,8 @@ export class ArticlesService extends BaseService{
   public getAllArticles(): Observable<ArrayBuffer> {
     return this.http.get(this.getAPIUrl(`/articles/`), this.httpOptions);
   }
+
+  public getArticle(id: number): Observable<ArrayBuffer> {
+    return this.http.get(this.getAPIUrl(`/articles/${id}`), this.httpOptions);
+  }
 }

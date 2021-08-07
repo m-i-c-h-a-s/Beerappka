@@ -14,11 +14,19 @@ class UpdateProfileSerializer(serializers.ModelSerializer):
 
 class PictureThumbnailMixinSerializer(serializers.ModelSerializer):
     picture_thumb_150x150 = serializers.SerializerMethodField()
+    picture_thumb_50x50 = serializers.SerializerMethodField()
 
     def get_picture_thumb_150x150(self, instance: Profile):
         if instance.picture:
             request = self.context.get("request")
             url: str = request.build_absolute_uri(instance.picture_thumb_150x150)
+            return url
+        return ""
+
+    def get_picture_thumb_50x50(self, instance: Profile):
+        if instance.picture:
+            request = self.context.get("request")
+            url: str = request.build_absolute_uri(instance.picture_thumb_50x50)
             return url
         return ""
 

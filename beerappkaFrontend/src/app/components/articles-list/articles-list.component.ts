@@ -13,6 +13,7 @@ export class ArticlesListComponent implements OnInit {
   constructor(private articlesService: ArticlesService) { }
 
   ngOnInit(): void {
+    const id =
     this.articlesService.getAllArticles().subscribe(data => {
       this.articles = data as any;
     }, err => {

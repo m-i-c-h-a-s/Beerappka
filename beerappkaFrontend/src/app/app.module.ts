@@ -24,6 +24,7 @@ import { DeleteAccountComponent } from './profile/delete-account/delete-account.
 import { BrewersListComponent } from './components/brewers-list/brewers-list.component';
 import { BrewerDetailsComponent } from './components/brewer-details/brewer-details.component';
 import { ArticlesListComponent } from './components/articles-list/articles-list.component';
+import { ArticleDetailsComponent } from './components/article-details/article-details.component';
 
 @NgModule({
   declarations: [
@@ -45,6 +46,7 @@ import { ArticlesListComponent } from './components/articles-list/articles-list.
     BrewersListComponent,
     BrewerDetailsComponent,
     ArticlesListComponent,
+    ArticleDetailsComponent,
   ],
 
   imports: [

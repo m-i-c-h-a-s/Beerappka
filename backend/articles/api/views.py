@@ -6,7 +6,7 @@ from articles.models import Article
 
 
 class ArticlesViewSet(viewsets.ModelViewSet):
-    queryset = Article.objects.all()
+    queryset = Article.objects.get_public()
     serializer_class = ArticleSerializer
     permission_classes = [
         IsArticleAuthorOrReadOnly,

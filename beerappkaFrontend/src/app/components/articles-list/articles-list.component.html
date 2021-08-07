@@ -1,0 +1,56 @@
+<!-- Page Wrapper -->
+<div id="wrapper">
+
+    <app-sidebar></app-sidebar>
+
+    <!-- Content Wrapper -->
+    <div id="content-wrapper" class="d-flex flex-column">
+
+        <!-- Main Content -->
+        <div id="content">
+
+            <app-topbar></app-topbar>
+
+            <!-- Begin Page Content -->
+            <div class="container-fluid">
+
+                <div class="row" *ngIf="articles">
+                    <div class="col-lg-6 col-xs-12 mb-4" *ngFor="let article of articles">
+                        <div class="mb-3">
+                            <div class="card border-left-success shadow h-100 py-2">
+                                <div class="card-body">
+                                    <a routerLink="/artykuly/{{ article.id }}" class="text-decoration-none">
+                                        <div class="row no-gutters align-items-center">
+                                            <div class="col-lg-9 col-xs-12">
+                                                <div class="col mb-3">
+                                                    <div class="text-xs font-weight-bold text-black-50 text-uppercase mb-1">
+                                                      Dodany <span class="text-success">{{ article.creation_date }}</span>
+                                                      przez <span class="text-success">{{ article.author.username }}</span>
+                                                    </div>
+
+                                                    <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                      {{ article.title }}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <!-- /.container-fluid -->
+
+        </div>
+        <!-- End of Main Content -->
+
+        <app-footer></app-footer>
+
+    </div>
+    <!-- End of Content Wrapper -->
+
+</div>
+<!-- End of Page Wrapper -->

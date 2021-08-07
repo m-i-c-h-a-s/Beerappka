@@ -13,6 +13,7 @@ import {ChangePasswordComponent} from './profile/change-password/change-password
 import {DeleteAccountComponent} from './profile/delete-account/delete-account.component';
 import {BrewersListComponent} from './components/brewers-list/brewers-list.component';
 import {BrewerDetailsComponent} from './components/brewer-details/brewer-details.component';
+import {ArticlesListComponent} from './components/articles-list/articles-list.component';
 
 const routes: Routes = [
   { path: '', component: LandingPageComponent, canActivate: [AlreadyLoggedInGuard] },
@@ -26,6 +27,7 @@ const routes: Routes = [
   { path: 'kalkulatory/poziom-alkoholu', component: AlcoholLevelCalculatorComponent, canActivate: [AuthGuard] },
   { path: 'piwowarzy', component: BrewersListComponent, canActivate: [AuthGuard]},
   { path: 'piwowarzy/:username', component: BrewerDetailsComponent, canActivate: [AuthGuard]},
+  { path: 'artykuly', component: ArticlesListComponent, canActivate: [AuthGuard]},
 ];
 
 @NgModule({

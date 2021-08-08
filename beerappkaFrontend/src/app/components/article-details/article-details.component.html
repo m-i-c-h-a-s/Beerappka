@@ -28,7 +28,8 @@
                                                          class="small-profile-picture mb-3"
                                                          *ngIf="article.author.profile.picture_thumb_50x50; else profile_picture_placeholder">
                                                         <ng-template #profile_picture_placeholder>
-                                                            <i class="fa fa-user fa-1x"></i>
+                                                            <img class="small-profile-picture mb-3"
+                                                                 src="/assets/startbootstrap-sb-admin-2/img/undraw_profile.svg">
                                                         </ng-template>
                                                 </div>
                                                 <div class="text-xs font-weight-bold text-black-50 text-uppercase mb-1">

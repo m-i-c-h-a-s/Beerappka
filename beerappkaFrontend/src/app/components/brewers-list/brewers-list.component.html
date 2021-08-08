@@ -24,9 +24,11 @@
                                             <div class="col-lg-3 col-xs-12">
                                                 <img src="{{ user.profile.picture_thumb_150x150 }}"
                                                      alt="zdjęcie profilowe"
+                                                     class="profile-picture"
                                                      *ngIf="user.profile.picture_thumb_150x150; else profile_picture_placeholder">
                                                 <ng-template #profile_picture_placeholder>
-                                                    <i class="fa fa-user fa-6x"></i>
+                                                    <img class="profile-picture"
+                                                         src="/assets/startbootstrap-sb-admin-2/img/undraw_profile.svg">
                                                 </ng-template>
                                             </div>
                                             <div class="col-lg-9 col-xs-12">

@@ -34,10 +34,11 @@
                                                         </div>
                                                         <div class="h5 mb-0 font-weight-bold text-gray-800">
                                                             <img src="{{ userData.profile.picture_thumb_150x150 }}"
-                                                                alt="zdjęcie profilowe" class="mx-auto  profile-card__picture"
+                                                                alt="zdjęcie profilowe" class="mx-auto profile-card__picture"
                                                                 *ngIf="userData.profile.picture_thumb_150x150; else profile_picture_placeholder">
                                                             <ng-template #profile_picture_placeholder>
-                                                                <i class="fa fa-user fa-6x"></i>
+                                                                <img class="mx-auto profile-card__picture"
+                                                                     src="/assets/startbootstrap-sb-admin-2/img/undraw_profile.svg">
                                                             </ng-template>
                                                         </div>
                                                     </div>

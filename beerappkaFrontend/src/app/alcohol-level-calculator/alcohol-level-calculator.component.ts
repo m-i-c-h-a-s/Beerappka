@@ -15,6 +15,14 @@ export class AlcoholLevelCalculatorComponent implements OnInit {
   public abvValue: number | undefined;
   public attenuationValue: number | undefined;
 
+  constructor() {
+    this.alcoholByVolume = '---';
+    this.apparentAttenuation = '---';
+  }
+
+  ngOnInit(): void {
+  }
+
   calculateABV() {
     if ( this.originalGravity != undefined && this.finalGravity != undefined
       && this.originalGravity != null && this.finalGravity != null
@@ -34,12 +42,7 @@ export class AlcoholLevelCalculatorComponent implements OnInit {
     } else this.apparentAttenuation = '---';
   }
 
-  constructor() {
-    this.alcoholByVolume = '---';
-    this.apparentAttenuation = '---';
-  }
+  calculateAbvInOgScale() {
 
-  ngOnInit(): void {
   }
-
 }

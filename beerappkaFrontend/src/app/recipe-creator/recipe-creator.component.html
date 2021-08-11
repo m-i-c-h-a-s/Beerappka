@@ -67,70 +67,94 @@
                         <div class="row">
                             <div class="col">
                                 <div class="col mb-4">
-                                    <h6>Ilość gotowego piwa</h6>
+                                    <label>Oczekiwana ilość gotowego piwa</label>
                                     <input
                                         type="text"
                                         class="form-control bg-light border-0 small"
                                         placeholder="L"
                                         [(ngModel)]="amountOfBeerInLiters"
                                         [ngModelOptions]="{standalone: true}"
+                                        (focusout)="calculateParameters();"
                                     >
                                 </div>
                                 <div class="col mb-4">
-                                    <h6>Czas gotowania</h6>
+                                    <label>Czas gotowania</label>
                                     <input
                                         type="text"
                                         class="form-control bg-light border-0 small"
                                         placeholder="min"
                                         [(ngModel)]="boilingTimeInMinutes"
                                         [ngModelOptions]="{standalone: true}"
+                                        (focusout)="calculateParameters();"
                                     >
                                 </div>
                                 <div class="col mb-4">
-                                    <h6>Szybkość odparowywania</h6>
+                                    <label>Szybkość odparowywania</label>
                                     <input
                                         type="text"
                                         class="form-control bg-light border-0 small"
                                         placeholder="%/h"
                                         [(ngModel)]="evaporationSpeedPercentPerHour"
                                         [ngModelOptions]="{standalone: true}"
+                                        (focusout)="calculateParameters();"
                                     >
                                 </div>
                             </div>
                             <div class="col">
                                 <div class="col mb-4">
-                                    <h6>Straty z gotowania</h6>
+                                    <label>Straty z gotowania</label>
                                     <input
                                         type="text"
                                         class="form-control bg-light border-0 small"
                                         placeholder="%"
                                         [(ngModel)]="boilingLossesPercent"
                                         [ngModelOptions]="{standalone: true}"
+                                        (focusout)="calculateParameters();"
                                     >
                                 </div>
                                 <div class="col mb-4">
-                                    <h6>Straty z fermentacji</h6>
+                                    <label>Straty z fermentacji</label>
                                     <input
                                         type="text"
                                         class="form-control bg-light border-0 small"
                                         placeholder="%"
                                         [(ngModel)]="fermentationLossesPercent"
                                         [ngModelOptions]="{standalone: true}"
+                                        (focusout)="calculateParameters();"
                                     >
                                 </div>
                                 <div class="col mb-4">
-                                    <h6>Straty z chmielenia na zimno</h6>
+                                    <label>Straty z chmielenia na zimno</label>
                                     <input
                                         type="text"
                                         class="form-control bg-light border-0 small"
                                         placeholder="%"
-                                        [(ngModel)]="coldHoppingLossesPercent"
+                                        [(ngModel)]="dryHoppingLossesPercent"
                                         [ngModelOptions]="{standalone: true}"
+                                        (focusout)="calculateParameters();"
                                     >
                                 </div>
                             </div>
                         </div>
                     </form>
+                </div>
+                <div class="card-body">
+                    <div class="col mb-4">
+                        <i style="font-weight: bold;">Ilość gotowanej brzeczki: </i>
+                        <i> {{ (amountOfBoilingWortInLiters | number: '1.0-2')  + " L" }} </i>
+                    </div>
+                    <div class="col mb-4">
+                        <i style="font-weight: bold;">Gęstość przed gotowaniem: </i>
+                        <i> {{ (blgBeforeBoiling | number: '1.0-2') + " BLG" }} </i>
+                    </div>
+                    <div class="col mb-4">
+                        <i style="font-weight: bold;">Ilość brzeczki nastawnej: </i>
+                        <i> {{ (amountOfSweetWortInLiters | number: '1.0-2') + " L" }} </i>
+                    </div>
+                    <div class="col mb-4">
+                        <i style="font-weight: bold;">Ilość piwa przed chmieleniem na zimno: </i>
+                        <i> {{ (amountOfBeerBeforeDryHoppingInLiters | number: '1.0-2') + " L" }} </i>
+                    </div>
                 </div>
             </div>
         </div>

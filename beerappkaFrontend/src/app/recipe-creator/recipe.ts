@@ -3,11 +3,16 @@ export interface Recipe {
     type: string | undefined;
     style: string | undefined;
 
-    amountOfBeerInLiters: number | undefined;
-    boilingTimeInMinutes: number | undefined;
-    evaporationSpeedPercentPerHour: number | undefined;
-    boilingLossesPercent: number | undefined;
-    fermentationLossesPercent: number | undefined;
-    coldHoppingLossesPercent: number | undefined;
+    amountOfBeerInLiters: number | null;
+    boilingTimeInMinutes: number | null;
+    evaporationSpeedPercentPerHour: number | null;
+    boilingLossesPercent: number | null;
+    fermentationLossesPercent: number | null;
+    dryHoppingLossesPercent: number | null;
+
+    amountOfBoilingWortInLiters: number | null;
+    blgBeforeBoiling: number | null;
+    amountOfSweetWortInLiters: number | null;
+    amountOfBeerBeforeDryHoppingInLiters: number | null;
 
 }

@@ -1,157 +1,148 @@
- <div class="container-fluid">
-
+<div class="container-fluid">
     <div id="recipeHeader" class="row">
-        <div class=" mb-4">
+        <div class="col-lg-12 mb-4">
             <div class="card shadow mb-4 border-bottom-info">
                 <div class="card-header py-3">
                     <h6 class="m-0 font-weight-bold text-primary">Receptura</h6>
                 </div>
-                <div class="card-body">
-                    <form class="d-flex">
-                        <div class="col">
-                            <input
-                                type="text"
-                                class="form-control bg-light border-0"
-                                placeholder="Nazwa"
-                                [(ngModel)]="recipeName"
-                                [ngModelOptions]="{standalone: true}"
-                            />
-                        </div>
-
-                        <div class="col">
-                            <select
-                                class="form-control bg-light border-0"
-                                required="required"
-                                placeholder="Typ"
-                                [(ngModel)]="recipeType"
-                                [ngModelOptions]="{standalone: true}"
-                            >
-                                <option selected disabled hidden>Typ</option>
-                                <option value="malt">Zacieranie</option>
-                                <option value="extract">Ekstrakty</option>
-                                <option value="brewkit">Brewkit</option>
-                            </select>
-                        </div>
-
-                        <div class="col">
-                            <select
-                                class="form-control bg-light border-0"
-                                placeholder="Styl"
-                                required="required"
-                                [(ngModel)]="recipeStyle"
-                                [ngModelOptions]="{standalone: true}"
-                            >
-                                <option selected disabled hidden>Styl</option>
-                                <option value="indiaPaleAle">India Pale Ale</option>
-                                <option value="balticPorter">Baltic Porter</option>
-                                <option value="kriek">Kriek</option>
-                                <option value="whiteIPA">White IPA</option>
-                                <option value="pils">Pils</option>
-                            </select>
-                        </div>
-                    </form>
-
+                <div class="card-body row">
+                    <div class="col-md mb-3">
+                        <input
+                            type="text"
+                            class="form-control bg-light border-0"
+                            placeholder="Nazwa"
+                            [(ngModel)]="recipeName"
+                            [ngModelOptions]="{standalone: true}"
+                        />
+                    </div>
+                    <div class="col-md mb-3">
+                        <select
+                            class="form-control bg-light border-0"
+                            required="required"
+                            placeholder="Typ"
+                            [(ngModel)]="recipeType"
+                            [ngModelOptions]="{standalone: true}"
+                        >
+                            <option selected disabled hidden>Typ</option>
+                            <option value="malt">Zacieranie</option>
+                            <option value="extract">Ekstrakty</option>
+                            <option value="brewkit">Brewkit</option>
+                        </select>
+                    </div>
+                    <div class="col-md mb-3">
+                        <select
+                            class="form-control bg-light border-0"
+                            placeholder="Styl"
+                            required="required"
+                            [(ngModel)]="recipeStyle"
+                            [ngModelOptions]="{standalone: true}"
+                        >
+                            <option selected disabled hidden>Styl</option>
+                            <option value="indiaPaleAle">India Pale Ale</option>
+                            <option value="balticPorter">Baltic Porter</option>
+                            <option value="kriek">Kriek</option>
+                            <option value="whiteIPA">White IPA</option>
+                            <option value="pils">Pils</option>
+                        </select>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 
     <div id="batchSize" class="row">
-        <div class="mb-4">
+        <div class="col-lg-12 mb-4">
             <div class="card shadow mb-4 border-bottom-info">
                 <div class="card-header py-3">
                     <h6 class="m-0 font-weight-bold text-primary">Rozmiar warki</h6>
                 </div>
-                <div class="card-body">
-                    <form>
-                        <div class="row">
-                            <div class="col">
-                                <div class="col mb-4">
-                                    <label>Oczekiwana ilość gotowego piwa</label>
-                                    <input
-                                        type="text"
-                                        class="form-control bg-light border-0 small"
-                                        placeholder="L"
-                                        [(ngModel)]="amountOfBeerInLiters"
-                                        [ngModelOptions]="{standalone: true}"
-                                        (focusout)="calculateParameters();"
-                                    >
-                                </div>
-                                <div class="col mb-4">
-                                    <label>Czas gotowania</label>
-                                    <input
-                                        type="text"
-                                        class="form-control bg-light border-0 small"
-                                        placeholder="min"
-                                        [(ngModel)]="boilingTimeInMinutes"
-                                        [ngModelOptions]="{standalone: true}"
-                                        (focusout)="calculateParameters();"
-                                    >
-                                </div>
-                                <div class="col mb-4">
-                                    <label>Szybkość odparowywania</label>
-                                    <input
-                                        type="text"
-                                        class="form-control bg-light border-0 small"
-                                        placeholder="%/h"
-                                        [(ngModel)]="evaporationSpeedPercentPerHour"
-                                        [ngModelOptions]="{standalone: true}"
-                                        (focusout)="calculateParameters();"
-                                    >
-                                </div>
-                            </div>
-                            <div class="col">
-                                <div class="col mb-4">
-                                    <label>Straty z gotowania</label>
-                                    <input
-                                        type="text"
-                                        class="form-control bg-light border-0 small"
-                                        placeholder="%"
-                                        [(ngModel)]="boilingLossesPercent"
-                                        [ngModelOptions]="{standalone: true}"
-                                        (focusout)="calculateParameters();"
-                                    >
-                                </div>
-                                <div class="col mb-4">
-                                    <label>Straty z fermentacji</label>
-                                    <input
-                                        type="text"
-                                        class="form-control bg-light border-0 small"
-                                        placeholder="%"
-                                        [(ngModel)]="fermentationLossesPercent"
-                                        [ngModelOptions]="{standalone: true}"
-                                        (focusout)="calculateParameters();"
-                                    >
-                                </div>
-                                <div class="col mb-4">
-                                    <label>Straty z chmielenia na zimno</label>
-                                    <input
-                                        type="text"
-                                        class="form-control bg-light border-0 small"
-                                        placeholder="%"
-                                        [(ngModel)]="dryHoppingLossesPercent"
-                                        [ngModelOptions]="{standalone: true}"
-                                        (focusout)="calculateParameters();"
-                                    >
-                                </div>
-                            </div>
+                <div class="card-body row">
+                    <div class="col-lg">
+                        <div class="col-md mb-3">
+                            <label>Oczekiwana ilość gotowego piwa</label>
+                            <input
+                                type="text"
+                                class="form-control bg-light border-0 small"
+                                placeholder="L"
+                                [(ngModel)]="amountOfBeerInLiters"
+                                [ngModelOptions]="{standalone: true}"
+                                (focusout)="calculateParameters();"
+                            >
                         </div>
-                    </form>
+                        <div class="col-md mb-3">
+                            <label>Czas gotowania</label>
+                            <input
+                                type="text"
+                                class="form-control bg-light border-0 small"
+                                placeholder="min"
+                                [(ngModel)]="boilingTimeInMinutes"
+                                [ngModelOptions]="{standalone: true}"
+                                (focusout)="calculateParameters();"
+                            >
+                        </div>
+                        <div class="col-md mb-3">
+                            <label>Szybkość odparowywania</label>
+                            <input
+                                type="text"
+                                class="form-control bg-light border-0 small"
+                                placeholder="%/h"
+                                [(ngModel)]="evaporationSpeedPercentPerHour"
+                                [ngModelOptions]="{standalone: true}"
+                                (focusout)="calculateParameters();"
+                            >
+                        </div>
+                    </div>
+                    <div class="col-lg">
+                        <div class="col-md mb-3">
+                            <label>Straty z gotowania</label>
+                            <input
+                                type="text"
+                                class="form-control bg-light border-0 small"
+                                placeholder="%"
+                                [(ngModel)]="boilingLossesPercent"
+                                [ngModelOptions]="{standalone: true}"
+                                (focusout)="calculateParameters();"
+                            >
+                        </div>
+                        <div class="col-md mb-3">
+                            <label>Straty z fermentacji</label>
+                            <input
+                                type="text"
+                                class="form-control bg-light border-0 small"
+                                placeholder="%"
+                                [(ngModel)]="fermentationLossesPercent"
+                                [ngModelOptions]="{standalone: true}"
+                                (focusout)="calculateParameters();"
+                            >
+                        </div>
+                        <div class="col-md mb-3">
+                            <label>Straty z chmielenia na zimno</label>
+                            <input
+                                type="text"
+                                class="form-control bg-light border-0 small"
+                                placeholder="%"
+                                [(ngModel)]="dryHoppingLossesPercent"
+                                [ngModelOptions]="{standalone: true}"
+                                (focusout)="calculateParameters();"
+                            >
+                        </div>
+                    </div>
+
                 </div>
                 <div class="card-body">
-                    <div class="col mb-4">
+                    <div class="col mb-1">
                         <i style="font-weight: bold;">Ilość gotowanej brzeczki: </i>
                         <i> {{ (amountOfBoilingWortInLiters | number: '1.0-2')  + " L" }} </i>
                     </div>
-                    <div class="col mb-4">
+                    <div class="col mb-1">
                         <i style="font-weight: bold;">Gęstość przed gotowaniem: </i>
                         <i> {{ (blgBeforeBoiling | number: '1.0-2') + " BLG" }} </i>
                     </div>
-                    <div class="col mb-4">
+                    <div class="col mb-1">
                         <i style="font-weight: bold;">Ilość brzeczki nastawnej: </i>
                         <i> {{ (amountOfSweetWortInLiters | number: '1.0-2') + " L" }} </i>
                     </div>
-                    <div class="col mb-4">
+                    <div class="col mb-1">
                         <i style="font-weight: bold;">Ilość piwa przed chmieleniem na zimno: </i>
                         <i> {{ (amountOfBeerBeforeDryHoppingInLiters | number: '1.0-2') + " L" }} </i>
                     </div>
@@ -163,80 +154,75 @@
     <div id="recipeFermentables" class="row">
         <div class="col-lg-12 mb-4">
             <div class="card shadow mb-4 border-bottom-info">
-                <div class="card-header py-3 d-flex">
+                <div class="card-header py-3">
                     <h6 class="m-0 font-weight-bold text-primary">Surowce fermentujące</h6>
                 </div>
-                <div class="card-body">
-                    <form class="d-flex">
-                        <div class="col">
-                            <h6>Nazwa</h6>
-                            <input
-                                type="text"
-                                class="form-control bg-light border-0 small"
-                                placeholder="Wyszukaj..."
-                                [(ngModel)]="maltName"
-                                [ngModelOptions]="{standalone: true}"
-                            >
-                        </div>
-                        <div class="col">
-                            <h6>Rodzaj</h6>
-                            <select
-                                class="form-control bg-light border-0 small"
-                                placeholder="Wybierz"
-                                required="required"
-                                [(ngModel)]="maltType"
-                                [ngModelOptions]="{standalone: true}"
-                            >
-                                <option selected disabled hidden>Wybierz</option>
-                                <option value="Słód">Słód</option>
-                                <option value="Ekstrakt">Ekstrakt</option>
-                                <option value="Cukier">Cukier</option>
-                                <option value="Dodatek">Dodatek</option>
-                            </select>
-                        </div>
-                        <div class="col">
-                            <h6>Ilość</h6>
-                            <input
-                                type="text"
-                                class="form-control bg-light border-0 small"
-                                placeholder="kg"
-                                [(ngModel)]="maltAmountInKilograms"
-                                [ngModelOptions]="{standalone: true}"
-                            >
-                        </div>
-                        <div class="col">
-                            <h6>Barwa</h6>
-                            <input
-                                type="text"
-                                class="form-control bg-light border-0 small"
-                                placeholder="EBC"
-                                [(ngModel)]="maltColourEBC"
-                                [ngModelOptions]="{standalone: true}"
-                            >
-                        </div>
-                        <div class="col">
-                            <h6>Ekstraktywność</h6>
-                            <input
-                                type="text"
-                                class="form-control bg-light border-0 small"
-                                placeholder="%"
-                                [(ngModel)]="maltExtractivityPercent"
-                                [ngModelOptions]="{standalone: true}"
-                            >
-                        </div>
-                        <div class="col d-flex" style="align-items: center;">
-                            <button class="btn btn-success btn-circle btn-sm m-1" (click)="addMalt();">
-                                <i class="fas fa-plus"></i>
-                            </button>
-                            <button class="btn btn-danger btn-circle btn-sm m-1" (click)="deleteMalts();">
-                                <i class="fas fa-trash"></i>
-                            </button>
-                        </div>
-                    </form>
+                <div class="card-body row">
+                    <div class="col-md mb-3">
+                        <label>Nazwa</label>
+                        <input
+                            type="text"
+                            class="form-control bg-light border-0 small"
+                            placeholder="Wyszukaj..."
+                            [(ngModel)]="maltName"
+                            [ngModelOptions]="{standalone: true}"
+                        >
+                    </div>
+                    <div class="col-md mb-3">
+                        <label>Rodzaj</label>
+                        <select
+                            class="form-control bg-light border-0 small"
+                            placeholder="Wybierz"
+                            required="required"
+                            [(ngModel)]="maltType"
+                            [ngModelOptions]="{standalone: true}"
+                        >
+                            <option selected disabled hidden>Wybierz</option>
+                            <option value="Słód">Słód</option>
+                            <option value="Ekstrakt">Ekstrakt</option>
+                            <option value="Cukier">Cukier</option>
+                            <option value="Dodatek">Dodatek</option>
+                        </select>
+                    </div>
+                    <div class="col-md mb-3">
+                        <label>Ilość</label>
+                        <input
+                            type="text"
+                            class="form-control bg-light border-0 small"
+                            placeholder="kg"
+                            [(ngModel)]="maltAmountInKilograms"
+                            [ngModelOptions]="{standalone: true}"
+                        >
+                    </div>
+                    <div class="col-md mb-3">
+                        <label>Barwa</label>
+                        <input
+                            type="text"
+                            class="form-control bg-light border-0 small"
+                            placeholder="EBC"
+                            [(ngModel)]="maltColourEBC"
+                            [ngModelOptions]="{standalone: true}"
+                        >
+                    </div>
+                    <div class="col-md mb-3">
+                        <label>Ekstraktywność</label>
+                        <input
+                            type="text"
+                            class="form-control bg-light border-0 small"
+                            placeholder="%"
+                            [(ngModel)]="maltExtractivityPercent"
+                            [ngModelOptions]="{standalone: true}"
+                        >
+                    </div>
+                    <div class="col-xl-12 mb-1 text-center">
+                        <button class="btn btn-success btn-circle btn-sm m-1" (click)="addMalt();">
+                            <i class="fas fa-plus"></i>
+                        </button>
+                        <button class="btn btn-danger btn-circle btn-sm m-1" (click)="deleteMalts();">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </div>
                 </div>
-
-
-
                 <div class="card-body" *ngIf="malts.length > 0">
                     <div class="table-responsive">
                         <table class="table table-bordered" width="100%" cellspacing="0">
@@ -262,7 +248,6 @@
                         </table>
                     </div>
                 </div>
-
             </div>
         </div>
     </div>
@@ -270,78 +255,75 @@
     <div id="recipeHops" class="row">
         <div class="col-lg-12 mb-4">
             <div class="card shadow mb-4 border-bottom-info">
-                <div class="card-header py-3 d-flex">
+                <div class="card-header py-3">
                     <h6 class="m-0 font-weight-bold text-primary">Chmiele</h6>
                 </div>
-                <div class="card-body">
-                    <form class="d-flex">
-                        <div class="col">
-                            <h6>Nazwa</h6>
-                            <input
-                                type="text"
-                                class="form-control bg-light border-0 small"
-                                placeholder="Wyszukaj..."
-                                [(ngModel)]="hopName"
-                                [ngModelOptions]="{standalone: true}"
-                            >
-                        </div>
-                        <div class="col">
-                            <h6>Użyto do</h6>
-                            <select
-                                class="form-control bg-light border-0 small"
-                                placeholder="Wybierz"
-                                required="required"
-                                [(ngModel)]="hopUsedFor"
-                                [ngModelOptions]="{standalone: true}"
-                            >
-                                <option selected disabled hidden>Wybierz</option>
-                                <option value="Goryczka">Goryczka</option>
-                                <option value="Aromat">Aromat</option>
-                                <option value="Smak">Smak</option>
-                                <option value="Na zimno">Na zimno</option>
-                            </select>
-                        </div>
-                        <div class="col">
-                            <h6>Ilość</h6>
-                            <input
-                                type="text"
-                                class="form-control bg-light border-0 small"
-                                placeholder="g"
-                                [(ngModel)]="hopAmountInGrams"
-                                [ngModelOptions]="{standalone: true}"
-                            >
-                        </div>
-                        <div class="col">
-                            <h6>Czas gotowania</h6>
-                            <input
-                                type="text"
-                                class="form-control bg-light border-0 small"
-                                placeholder="min"
-                                [(ngModel)]="hopBoilingTimeInMinutes"
-                                [ngModelOptions]="{standalone: true}"
-                            >
-                        </div>
-                        <div class="col">
-                            <h6>Alfa-kwasy</h6>
-                            <input
-                                type="text"
-                                class="form-control bg-light border-0 small"
-                                placeholder="%"
-                                [(ngModel)]="hopAlphaAcidsPercent"
-                                [ngModelOptions]="{standalone: true}"
-                            >
-                        </div>
-                        <div class="col d-flex" style="align-items: center;">
-                            <button class="btn btn-success btn-circle btn-sm m-1" (click)="addHop();">
-                                <i class="fas fa-plus"></i>
-                            </button>
-                            <button class="btn btn-danger btn-circle btn-sm m-1" (click)="deleteHops();">
-                                <i class="fas fa-trash"></i>
-                            </button>
-                        </div>
-                    </form>
+                <div class="card-body row">
+                    <div class="col-md mb-3">
+                        <label>Nazwa</label>
+                        <input
+                            type="text"
+                            class="form-control bg-light border-0 small"
+                            placeholder="Wyszukaj..."
+                            [(ngModel)]="hopName"
+                            [ngModelOptions]="{standalone: true}"
+                        >
+                    </div>
+                    <div class="col-md mb-3">
+                        <label>Użyto do</label>
+                        <select
+                            class="form-control bg-light border-0 small"
+                            placeholder="Wybierz"
+                            required="required"
+                            [(ngModel)]="hopUsedFor"
+                            [ngModelOptions]="{standalone: true}"
+                        >
+                            <option selected disabled hidden>Wybierz</option>
+                            <option value="Goryczka">Goryczka</option>
+                            <option value="Aromat">Aromat</option>
+                            <option value="Smak">Smak</option>
+                            <option value="Na zimno">Na zimno</option>
+                        </select>
+                    </div>
+                    <div class="col-md mb-3">
+                        <label>Ilość</label>
+                        <input
+                            type="text"
+                            class="form-control bg-light border-0 small"
+                            placeholder="g"
+                            [(ngModel)]="hopAmountInGrams"
+                            [ngModelOptions]="{standalone: true}"
+                        >
+                    </div>
+                    <div class="col-md mb-3">
+                        <label>Czas gotowania</label>
+                        <input
+                            type="text"
+                            class="form-control bg-light border-0 small"
+                            placeholder="min"
+                            [(ngModel)]="hopBoilingTimeInMinutes"
+                            [ngModelOptions]="{standalone: true}"
+                        >
+                    </div>
+                    <div class="col-md mb-3">
+                        <label>Alfa-kwasy</label>
+                        <input
+                            type="text"
+                            class="form-control bg-light border-0 small"
+                            placeholder="%"
+                            [(ngModel)]="hopAlphaAcidsPercent"
+                            [ngModelOptions]="{standalone: true}"
+                        >
+                    </div>
+                    <div class="col-xl-12 mb-1 text-center">
+                        <button class="btn btn-success btn-circle btn-sm m-1" (click)="addHop();">
+                            <i class="fas fa-plus"></i>
+                        </button>
+                        <button class="btn btn-danger btn-circle btn-sm m-1" (click)="deleteHops();">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </div>
                 </div>
-
                 <div class="card-body" *ngIf="hops.length > 0">
                     <div class="table-responsive">
                         <table class="table table-bordered" width="100%" cellspacing="0">
@@ -367,88 +349,84 @@
                         </table>
                     </div>
                 </div>
-
-
             </div>
         </div>
     </div>
+
     <div id="recipeYeast" class="row">
         <div class="col-lg-12 mb-4">
             <div class="card shadow mb-4 border-bottom-info">
-                <div class="card-header py-3 d-flex">
+                <div class="card-header py-3">
                     <h6 class="m-0 font-weight-bold text-primary">Drożdże</h6>
                 </div>
-                <div class="card-body">
-                    <form class="d-flex">
-                        <div class="col">
-                            <h6>Nazwa</h6>
-                            <input
-                                type="text"
-                                class="form-control bg-light border-0 small"
-                                placeholder="Wyszukaj..."
-                                [(ngModel)]="yeastName"
-                                [ngModelOptions]="{standalone: true}"
-                            >
-                        </div>
-                        <div class="col">
-                            <h6>Rodzaj</h6>
-                            <select
-                                class="form-control bg-light border-0 small"
-                                placeholder="Wybierz"
-                                required="required"
-                                [(ngModel)]="yeastType"
-                                [ngModelOptions]="{standalone: true}"
-                            >
-                                <option selected disabled hidden>Wybierz</option>
-                                <option value="aleYeast">Ale</option>
-                                <option value="lagerYeast">Lager</option>
-                            </select>
-                        </div>
-                        <div class="col">
-                            <h6>Postać</h6>
-                            <select
-                                class="form-control bg-light border-0 small"
-                                placeholder="Wybierz"
-                                required="required"
-                                [(ngModel)]="yeastForm"
-                                [ngModelOptions]="{standalone: true}"
-                            >
-                                <option selected disabled hidden>Wybierz</option>
-                                <option value="dryYeast">Suche</option>
-                                <option value="liquidYeast">Płynne</option>
-                                <option value="slurryYeast">Gęstwa</option>
-                            </select>
-                        </div>
-                        <div class="col">
-                            <h6>Ilość</h6>
-                            <input
-                                type="text"
-                                class="form-control bg-light border-0 small"
-                                placeholder="g"
-                                [(ngModel)]="yeastAmountInGrams"
-                                [ngModelOptions]="{standalone: true}"
-                            >
-                        </div>
-                        <div class="col">
-                            <h6>Laboratorium</h6>
-                            <input
-                                type="text"
-                                class="form-control bg-light border-0 small"
-                                [(ngModel)]="yeastLaboratory"
-                                [ngModelOptions]="{standalone: true}"
-                            >
-                        </div>
-                        <div class="col d-flex" style="align-items: center;">
-                            <button class="btn btn-success btn-circle btn-sm m-1" (click)="addYeast();">
-                                <i class="fas fa-plus"></i>
-                            </button>
-                            <button class="btn btn-danger btn-circle btn-sm m-1" (click)="deleteYeasts();">
-                                <i class="fas fa-trash"></i>
-                            </button>
-                        </div>
-                    </form>
+                <div class="card-body row">
+                    <div class="col-md mb-3">
+                        <label>Nazwa</label>
+                        <input
+                            type="text"
+                            class="form-control bg-light border-0 small"
+                            placeholder="Wyszukaj..."
+                            [(ngModel)]="yeastName"
+                            [ngModelOptions]="{standalone: true}"
+                        >
+                    </div>
+                    <div class="col-md mb-3">
+                        <label>Rodzaj</label>
+                        <select
+                            class="form-control bg-light border-0 small"
+                            placeholder="Wybierz"
+                            required="required"
+                            [(ngModel)]="yeastType"
+                            [ngModelOptions]="{standalone: true}"
+                        >
+                            <option selected disabled hidden>Wybierz</option>
+                            <option value="aleYeast">Ale</option>
+                            <option value="lagerYeast">Lager</option>
+                        </select>
+                    </div>
+                    <div class="col-md mb-3">
+                        <label>Postać</label>
+                        <select
+                            class="form-control bg-light border-0 small"
+                            placeholder="Wybierz"
+                            required="required"
+                            [(ngModel)]="yeastForm"
+                            [ngModelOptions]="{standalone: true}"
+                        >
+                            <option selected disabled hidden>Wybierz</option>
+                            <option value="dryYeast">Suche</option>
+                            <option value="liquidYeast">Płynne</option>
+                            <option value="slurryYeast">Gęstwa</option>
+                        </select>
+                    </div>
+                    <div class="col-md mb-3">
+                        <label>Ilość</label>
+                        <input
+                            type="text"
+                            class="form-control bg-light border-0 small"
+                            placeholder="g"
+                            [(ngModel)]="yeastAmountInGrams"
+                            [ngModelOptions]="{standalone: true}"
+                        >
+                    </div>
+                    <div class="col-md mb-3">
+                        <label>Laboratorium</label>
+                        <input
+                            type="text"
+                            class="form-control bg-light border-0 small"
+                            [(ngModel)]="yeastLaboratory"
+                            [ngModelOptions]="{standalone: true}"
+                        >
+                    </div>
+                    <div class="col-xl-12 mb-1 text-center">
+                        <button class="btn btn-success btn-circle btn-sm m-1" (click)="addYeast();">
+                            <i class="fas fa-plus"></i>
+                        </button>
+                        <button class="btn btn-danger btn-circle btn-sm m-1" (click)="deleteYeasts();">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </div>
                 </div>
-
                 <div class="card-body" *ngIf="yeasts.length > 0">
                     <div class="table-responsive">
                         <table class="table table-bordered" width="100%" cellspacing="0">
@@ -474,9 +452,7 @@
                         </table>
                     </div>
                 </div>
-
             </div>
         </div>
     </div>
-
 </div>

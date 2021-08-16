@@ -8,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AlcoholLevelCalculatorComponent implements OnInit {
 
-  public originalGravity: number | undefined;
+  public originalGravity: number | null;
   public finalGravity: number | undefined;
   public alcoholByVolume: number | string | undefined;
   public apparentAttenuation: number | string | undefined;
@@ -18,6 +18,8 @@ export class AlcoholLevelCalculatorComponent implements OnInit {
   constructor() {
     this.alcoholByVolume = '---';
     this.apparentAttenuation = '---';
+
+    this.originalGravity = null;
   }
 
   ngOnInit(): void {
@@ -31,6 +33,10 @@ export class AlcoholLevelCalculatorComponent implements OnInit {
         this.alcoholByVolume = this.abvValue.toFixed(2) + " %";
     } else this.alcoholByVolume = '---';
 
+    if (this.originalGravity != null) {
+      console.log(this.convertOgToBlg(this.originalGravity));
+      console.log(this.convertBlgToOg(this.originalGravity));
+    }
   }
 
   calculateAttenuation() {
@@ -42,7 +48,11 @@ export class AlcoholLevelCalculatorComponent implements OnInit {
     } else this.apparentAttenuation = '---';
   }
 
-  calculateAbvInOgScale() {
+  convertOgToBlg(gravityInOg: number) {
+    return 260 * (gravityInOg - 1) / gravityInOg;
+  }
 
+  convertBlgToOg(gravityInBlg: number) {
+    return (-260 / (gravityInBlg - 260));
   }
 }

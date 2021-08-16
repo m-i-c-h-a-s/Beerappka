@@ -10,3 +10,10 @@ class ArticleSerializer(serializers.ModelSerializer):
     class Meta:
         model = Article
         fields = "__all__"
+
+
+class ArticleCreateSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Article
+        fields = ('title', 'content', 'is_published')

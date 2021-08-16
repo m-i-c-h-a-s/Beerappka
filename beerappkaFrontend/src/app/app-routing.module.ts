@@ -15,6 +15,7 @@ import {BrewersListComponent} from './components/brewers-list/brewers-list.compo
 import {BrewerDetailsComponent} from './components/brewer-details/brewer-details.component';
 import {ArticlesListComponent} from './components/articles-list/articles-list.component';
 import {ArticleDetailsComponent} from './components/article-details/article-details.component';
+import {ArticleCreateComponent} from "./components/article-create/article-create.component";
 
 const routes: Routes = [
   { path: '', component: LandingPageComponent, canActivate: [AlreadyLoggedInGuard] },
@@ -29,6 +30,7 @@ const routes: Routes = [
   { path: 'piwowarzy', component: BrewersListComponent, canActivate: [AuthGuard]},
   { path: 'piwowarzy/:username', component: BrewerDetailsComponent, canActivate: [AuthGuard]},
   { path: 'artykuly', component: ArticlesListComponent, canActivate: [AuthGuard]},
+  { path: 'dodaj-artykul', component: ArticleCreateComponent, canActivate: [AuthGuard]},
   { path: 'artykuly/:id', component: ArticleDetailsComponent, canActivate: [AuthGuard]},
 ];
 

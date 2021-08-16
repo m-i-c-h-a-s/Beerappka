@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {UserService} from '../services/user.service';
 import { Router } from '@angular/router';
-import {UserData} from "./user-data";
+import {UserData} from './user-data';
+import {LoginPageErrors} from './login-page-errors';
 
 @Component({
   selector: 'app-login-page',
@@ -10,6 +11,7 @@ import {UserData} from "./user-data";
 })
 export class LoginPageComponent implements OnInit {
   public user: any;
+  public err: LoginPageErrors | undefined;
 
   constructor(private userService: UserService, private router: Router) { }
 
@@ -20,6 +22,7 @@ export class LoginPageComponent implements OnInit {
     };
   }
   login(): void {
+    this.err = undefined;
     this.userService.login(this.user).subscribe(
       data => {
         localStorage.setItem('auth_token', (data as any).key);
@@ -38,6 +41,7 @@ export class LoginPageComponent implements OnInit {
       },
       err => {
         console.log(err);
+        this.err = err.error;
       }
     );
   }

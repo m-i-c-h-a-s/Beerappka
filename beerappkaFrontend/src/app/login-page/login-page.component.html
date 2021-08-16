@@ -22,9 +22,27 @@
                                         <input type="text" class="form-control form-control-user" name="username"
                                                placeholder="Username" [(ngModel)]="user.username">
                                     </div>
+                                    <div *ngIf="err && err.username" class="m-3 text-xs">
+                                      <div *ngFor="let e of err.username"
+                                          class="text-danger">
+                                          {{ e }}
+                                      </div>
+                                    </div>
                                     <div class="form-group">
                                         <input type="password" class="form-control form-control-user" name="password"
                                                placeholder="Hasło" [(ngModel)]="user.password">
+                                    </div>
+                                    <div *ngIf="err && err.password" class="m-3 text-xs">
+                                      <div *ngFor="let e of err.password"
+                                          class="text-danger">
+                                          {{ e }}
+                                      </div>
+                                    </div>
+                                    <div *ngIf="err && err.non_field_errors" class="m-3 text-xs">
+                                      <div *ngFor="let e of err.non_field_errors"
+                                          class="text-danger">
+                                          {{ e }}
+                                      </div>
                                     </div>
                                     <button class="btn btn-primary btn-user btn-block" (click)="login()">Zaloguj</button>
                                 </form>

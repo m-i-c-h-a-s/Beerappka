@@ -11,16 +11,24 @@ import { Yeast } from './yeast';
 })
 
 export class RecipeCreatorComponent implements OnInit {
-
   recipeName = '';
   recipeType = '';
   recipeStyle = '';
-  amountOfBeerInLiters: number | undefined;
-  boilingTimeInMinutes: number | undefined;
-  evaporationSpeedPercentPerHour: number | undefined;
-  boilingLossesPercent: number | undefined;
-  fermentationLossesPercent: number | undefined;
-  coldHoppingLossesPercent: number | undefined;
+
+  amountOfBeerInLiters: number | null;
+  boilingTimeInMinutes: number | null;;
+  evaporationSpeedPercentPerHour: number | null;;
+  boilingLossesPercent: number | null;;
+  fermentationLossesPercent: number | null;;
+  dryHoppingLossesPercent: number | null;;
+
+  // wort - brzeczka
+  // sweet wort - brzeczka nastawna
+  amountOfBoilingWortInLiters: number | null;
+  blgBeforeBoiling: number;
+  amountOfSweetWortInLiters: number;
+  amountOfBeerBeforeDryHoppingInLiters: number;
+
 
   maltName = '';
   maltType = '';
@@ -31,7 +39,7 @@ export class RecipeCreatorComponent implements OnInit {
   hopUsedFor = '';
   hopAmountInGrams: number | undefined;
   hopBoilingTimeInMinutes: number | undefined;
-  hopAplhaAcidsPercent: number | undefined;
+  hopAlphaAcidsPercent: number | undefined;
   yeastName = '';
   yeastType = '';
   yeastForm = '';
@@ -39,8 +47,23 @@ export class RecipeCreatorComponent implements OnInit {
   yeastLaboratory = '';
 
   malts: Malt[] = [];
+  hops: Hop[] = [];
+  yeasts: Yeast[] = [];
 
-  constructor() { }
+  constructor() {
+    this.amountOfBeerInLiters = null;
+    this.boilingTimeInMinutes = null;
+    this.evaporationSpeedPercentPerHour = null;
+    this.boilingLossesPercent = null;
+    this.fermentationLossesPercent = null;
+    this.dryHoppingLossesPercent = null;
+
+    this.amountOfBoilingWortInLiters = 0;
+    this.blgBeforeBoiling = 0;
+    this.amountOfSweetWortInLiters = 0;
+    this.amountOfBeerBeforeDryHoppingInLiters = 0;
+
+  }
 
   ngOnInit(): void {
   }
@@ -56,18 +79,23 @@ export class RecipeCreatorComponent implements OnInit {
       evaporationSpeedPercentPerHour: this.evaporationSpeedPercentPerHour,
       boilingLossesPercent: this.boilingLossesPercent,
       fermentationLossesPercent: this.fermentationLossesPercent,
-      coldHoppingLossesPercent: this.coldHoppingLossesPercent,
+      dryHoppingLossesPercent: this.dryHoppingLossesPercent,
+
+      amountOfBoilingWortInLiters: this.amountOfBoilingWortInLiters,
+      blgBeforeBoiling: this.blgBeforeBoiling,
+      amountOfSweetWortInLiters: this.amountOfSweetWortInLiters,
+      amountOfBeerBeforeDryHoppingInLiters: this.amountOfBeerBeforeDryHoppingInLiters,
     };
 
     this.recipeName = '';
     this.recipeType = '';
     this.recipeStyle = '';
-    this.amountOfBeerInLiters = undefined;
-    this.boilingTimeInMinutes = undefined;
-    this.evaporationSpeedPercentPerHour = undefined;
-    this.boilingLossesPercent = undefined;
-    this.fermentationLossesPercent = undefined;
-    this.coldHoppingLossesPercent = undefined;
+    this.amountOfBeerInLiters = 0;
+    this.boilingTimeInMinutes = 0;
+    this.evaporationSpeedPercentPerHour = 0;
+    this.boilingLossesPercent = 0;
+    this.fermentationLossesPercent = 0;
+    this.dryHoppingLossesPercent = 0;
 
   }
 
@@ -89,8 +117,89 @@ export class RecipeCreatorComponent implements OnInit {
     this.maltExtractivityPercent = undefined;
   }
 
+  addHop() {
+    const hop: Hop = {
+      name: this.hopName,
+      usedFor: this.hopUsedFor,
+      amountInGrams: this.hopAmountInGrams,
+      boilingTimeInMinutes: this.hopBoilingTimeInMinutes,
+      alphaAcidsPercent: this.hopAlphaAcidsPercent,
+    };
+
+    this.hops.push(hop);
+
+    this.hopName = '';
+    this.hopUsedFor = '';
+    this.hopAmountInGrams = undefined;
+    this.hopBoilingTimeInMinutes = undefined;
+    this.hopAlphaAcidsPercent = undefined;
+  }
+
+  addYeast() {
+    const yeast: Yeast = {
+      name: this.yeastName,
+      type: this.yeastType,
+      form: this.yeastForm,
+      amountInGrams: this.yeastAmountInGrams,
+      laboratory: this.yeastLaboratory,
+    };
+
+    this.yeasts.push(yeast);
+
+    this.yeastName = '';
+    this.yeastType = '';
+    this.yeastForm = '';
+    this.yeastAmountInGrams = undefined;
+    this.yeastLaboratory = '';
+  }
+
   deleteMalts() {
     this.malts = [];
   }
 
+  deleteHops() {
+    this.hops = [];
+  }
+
+  deleteYeasts() {
+    this.yeasts = [];
+  }
+
+
+  calculateParameters() {
+    this.calculateAmountOfBoilingWort();
+    this.calculateAmountOfSweetWort();
+    this.calculateAmountOfBeerBeforeDryHopping();
+  }
+
+  calculateAmountOfBoilingWort() {
+    if (this.amountOfBeerInLiters != null)
+      this.amountOfBoilingWortInLiters = +this.amountOfBeerInLiters;
+    if (this.amountOfBoilingWortInLiters != null && this.boilingTimeInMinutes != null && this.evaporationSpeedPercentPerHour != null)
+      this.amountOfBoilingWortInLiters += +this.amountOfBoilingWortInLiters * (this.boilingTimeInMinutes / 60) * (this.evaporationSpeedPercentPerHour / 100);
+    if (this.amountOfBoilingWortInLiters != null && this.boilingLossesPercent != null)
+      this.amountOfBoilingWortInLiters += +this.amountOfBoilingWortInLiters * (this.boilingLossesPercent / 100);
+    if (this.amountOfBeerInLiters != null && this.amountOfBoilingWortInLiters != null && this.fermentationLossesPercent != null)
+      this.amountOfBoilingWortInLiters += +this.amountOfBeerInLiters * (this.fermentationLossesPercent / 100);
+    if (this.amountOfBeerInLiters != null && this.amountOfBoilingWortInLiters != null && this.dryHoppingLossesPercent != null)
+      this.amountOfBoilingWortInLiters += +this.amountOfBeerInLiters * (this.dryHoppingLossesPercent / 100);
+  }
+
+  calculateAmountOfSweetWort() {
+    if (this.amountOfBeerInLiters != null)
+      this.amountOfSweetWortInLiters = +this.amountOfBeerInLiters
+    if (this.amountOfBeerInLiters != null && this.fermentationLossesPercent != null)
+      this.amountOfSweetWortInLiters += +this.amountOfBeerInLiters * (this.fermentationLossesPercent / 100);
+    if (this.amountOfBeerInLiters != null && this.dryHoppingLossesPercent != null)
+      this.amountOfSweetWortInLiters += +this.amountOfBeerInLiters * (this.dryHoppingLossesPercent / 100);
+  }
+
+  calculateAmountOfBeerBeforeDryHopping() {
+    if (this.amountOfBeerInLiters != null)
+      this.amountOfBeerBeforeDryHoppingInLiters = +this.amountOfBeerInLiters;
+    if (this.amountOfBeerInLiters != null && this.dryHoppingLossesPercent != null)
+      this.amountOfBeerBeforeDryHoppingInLiters += +this.amountOfBeerInLiters * (this.dryHoppingLossesPercent / 100);
+  }
 }
+
+

@@ -1,7 +1,7 @@
 from rest_framework import viewsets
 
 from articles.api.permissions import IsArticleAuthorOrReadOnly
-from articles.api.serializers import ArticleSerializer, ArticleCreateSerializer
+from articles.api.serializers import ArticleSerializer, ArticleCreateUpdateSerializer
 from articles.models import Article
 
 
@@ -14,7 +14,8 @@ class ArticlesViewSet(viewsets.ModelViewSet):
 
     serializers = {
         'default': ArticleSerializer,
-        'create': ArticleCreateSerializer
+        'create': ArticleCreateUpdateSerializer,
+        'update': ArticleCreateUpdateSerializer
     }
 
     def get_serializer_class(self):

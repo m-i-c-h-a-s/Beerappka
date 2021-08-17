@@ -26,6 +26,7 @@ import { BrewerDetailsComponent } from './components/brewer-details/brewer-detai
 import { ArticlesListComponent } from './components/articles-list/articles-list.component';
 import { ArticleDetailsComponent } from './components/article-details/article-details.component';
 import { ArticleCreateComponent } from './components/article-create/article-create.component';
+import { ArticleUpdateComponent } from './components/article-update/article-update.component';
 
 @NgModule({
   declarations: [
@@ -49,6 +50,7 @@ import { ArticleCreateComponent } from './components/article-create/article-crea
     ArticlesListComponent,
     ArticleDetailsComponent,
     ArticleCreateComponent,
+    ArticleUpdateComponent,
   ],
 
   imports: [

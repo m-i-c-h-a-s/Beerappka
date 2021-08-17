@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {ArticleForCreate} from './ArticleForCreate';
+import {ArticleForCreateUpdate} from './ArticleForCreateUpdate';
 import {ArticlesService} from '../../services/articles.service';
-import {ArticleCreateErrors} from './ArticleCreateErrors';
+import {ArticleCreateUpdateErrors} from './ArticleCreateUpdateErrors';
 import {Router} from '@angular/router';
 
 @Component({
@@ -10,8 +10,8 @@ import {Router} from '@angular/router';
   styleUrls: ['./article-create.component.sass']
 })
 export class ArticleCreateComponent implements OnInit {
-  public article: ArticleForCreate;
-  public err: ArticleCreateErrors | undefined;
+  public article: ArticleForCreateUpdate;
+  public err: ArticleCreateUpdateErrors | undefined;
 
   constructor(
     private articleService: ArticlesService,

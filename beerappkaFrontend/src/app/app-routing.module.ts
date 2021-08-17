@@ -16,6 +16,7 @@ import {BrewerDetailsComponent} from './components/brewer-details/brewer-details
 import {ArticlesListComponent} from './components/articles-list/articles-list.component';
 import {ArticleDetailsComponent} from './components/article-details/article-details.component';
 import {ArticleCreateComponent} from "./components/article-create/article-create.component";
+import {ArticleUpdateComponent} from './components/article-update/article-update.component';
 
 const routes: Routes = [
   { path: '', component: LandingPageComponent, canActivate: [AlreadyLoggedInGuard] },
@@ -32,6 +33,7 @@ const routes: Routes = [
   { path: 'artykuly', component: ArticlesListComponent, canActivate: [AuthGuard]},
   { path: 'dodaj-artykul', component: ArticleCreateComponent, canActivate: [AuthGuard]},
   { path: 'artykuly/:id', component: ArticleDetailsComponent, canActivate: [AuthGuard]},
+  { path: 'edytuj-artykul/:id', component: ArticleUpdateComponent, canActivate: [AuthGuard]},
 ];
 
 @NgModule({

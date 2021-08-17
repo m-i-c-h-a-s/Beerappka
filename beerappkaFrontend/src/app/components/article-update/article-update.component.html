@@ -1,0 +1,148 @@
+<!-- Page Wrapper -->
+<div id="wrapper">
+
+    <app-sidebar></app-sidebar>
+
+    <!-- Content Wrapper -->
+    <div id="content-wrapper" class="d-flex flex-column">
+
+        <!-- Main Content -->
+        <div id="content">
+
+            <app-topbar></app-topbar>
+
+            <!-- Begin Page Content -->
+            <div class="container">
+
+                <div class="row" *ngIf="article">
+                    <div class="card shadow mb-4 border-bottom-info col-lg-12">
+                        <div class="col-lg-12 mb-4 mt-4">
+                            Edycja artykułu
+                        </div>
+                    </div>
+                    <form (ngSubmit)="updateArticle()" class="d-flex flex-wrap">
+                        <div class="col-lg-12 mb-4">
+                            <div class="mb-3">
+                                <div class="card border-left-success shadow h-100 py-2">
+                                    <div class="card-body">
+                                        <div class="row no-gutters align-items-center">
+                                            <div class="col-xs-12">
+                                                <div class="col">
+                                                    <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                                        <label for="title" class="form-label">Tytuł</label>
+                                                    </div>
+                                                    <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                        <input  [(ngModel)]="article.title"
+                                                                name="title"
+                                                                id="title"
+                                                                type="text"
+                                                                class="form-control bg-light border-0 small">
+                                                    </div>
+                                                    <div *ngIf="err && err.title" class="m-3 text-xs">
+                                                        <div *ngFor="let e of err.title"
+                                                            class="text-danger">
+                                                            {{ e }}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-12 mb-4">
+                            <div class="mb-3">
+                                <div class="card border-left-success shadow h-100 py-2">
+                                    <div class="card-body">
+                                        <div class="row no-gutters align-items-center">
+                                            <div class="col-xs-12">
+                                                <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                                      <label for="article_content" class="form-label">Treść</label>
+                                                </div>
+                                                <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                    <textarea [(ngModel)]="article.content"
+                                                              name="article_content"
+                                                              id="article_content"
+                                                              cols="30" rows="10"
+                                                      class="form-control bg-light border-0 small"></textarea>
+                                                </div>
+                                                <div *ngIf="err && err.content" class="m-3 text-xs">
+                                                    <div *ngFor="let e of err.content"
+                                                        class="text-danger">
+                                                        {{ e }}
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-12 mb-4">
+                            <div class="mb-3">
+                                <div class="card border-left-success shadow h-100 py-2">
+                                    <div class="card-body">
+                                        <div class="row no-gutters align-items-center">
+                                            <div class="col-xs-12">
+                                                <div class="col row">
+                                                    <div class="text-xs font-weight-bold text-success text-uppercase col-2">
+                                                      <label for="is_published" class="form-label">Czy opublikowany?</label>
+                                                    </div>
+                                                    <div class="h5 mb-0 font-weight-bold text-gray-800 col-10">
+                                                        <input  [(ngModel)]="article.is_published"
+                                                                name="is_published"
+                                                                id="is_published"
+                                                                type="checkbox">
+                                                    </div>
+                                                    <div *ngIf="err && err.is_published" class="m-3 text-xs">
+                                                        <div *ngFor="let e of err.is_published"
+                                                            class="text-danger">
+                                                            {{ e }}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-12 mb-4">
+                            <div *ngIf="err && err.non_field_errors" class="m-3 text-xs">
+                                <div *ngFor="let e of err.non_field_errors"
+                                    class="text-danger">
+                                    {{ e }}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card shadow mb-4 border-bottom-info col-lg-12">
+                        <div class="col-lg-12 mb-4 mt-4">
+                            <button class="btn btn-primary"
+                                 type="submit">
+                                <span class="text">Zapisz</span>
+                            </button>
+                            <a class="btn btn-light ml-4"
+                                 routerLink="/artykuly"
+                                 role="button">
+                                <span class="text">Anuluj</span>
+                            </a>
+                        </div>
+                    </div>
+                    </form>
+                </div>
+
+            </div>
+            <!-- /.container-fluid -->
+
+        </div>
+        <!-- End of Main Content -->
+
+        <app-footer></app-footer>
+
+    </div>
+    <!-- End of Content Wrapper -->
+
+</div>
+<!-- End of Page Wrapper -->

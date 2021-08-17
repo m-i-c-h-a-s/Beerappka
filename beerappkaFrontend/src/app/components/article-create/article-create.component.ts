@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {ArticleForCreateUpdate} from './ArticleForCreateUpdate';
+import {ArticleForCreateUpdate} from './article-for-create-update';
 import {ArticlesService} from '../../services/articles.service';
-import {ArticleCreateUpdateErrors} from './ArticleCreateUpdateErrors';
+import {ArticleCreateUpdateErrors} from './article-create-update-errors';
 import {Router} from '@angular/router';
 
 @Component({

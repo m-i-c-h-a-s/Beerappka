@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import {Observable} from 'rxjs';
 import {HttpClient} from '@angular/common/http';
 import {BaseService} from './base.service';
-import {ArticleForCreateUpdate} from '../components/article-create/ArticleForCreateUpdate';
+import {ArticleForCreateUpdate} from '../components/article-create/article-for-create-update';
 
 @Injectable({
   providedIn: 'root'

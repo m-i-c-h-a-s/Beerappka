@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {ArticlesService} from '../../services/articles.service';
 import {Article} from '../articles-list/article';
 import {ActivatedRoute, Router} from '@angular/router';
-import {ArticleCreateUpdateErrors} from '../article-create/ArticleCreateUpdateErrors';
-import {ArticleForCreateUpdate} from '../article-create/ArticleForCreateUpdate';
+import {ArticleCreateUpdateErrors} from '../article-create/article-create-update-errors';
+import {ArticleForCreateUpdate} from '../article-create/article-for-create-update';
 import {Permissions} from '../../permissions/permissions';
 
 @Component({

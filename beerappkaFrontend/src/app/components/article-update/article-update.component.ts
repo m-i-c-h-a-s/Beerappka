@@ -53,7 +53,7 @@ export class ArticleUpdateComponent implements OnInit {
         this.router.navigate([`/artykuly/${articleId}`]);
       }, err => {
         console.log(err);
-        this.err = err;
+        this.err = err.error;
       });
     }
   }

@@ -23,4 +23,8 @@ export class ArticlesService extends BaseService{
   public createArticle(newArticle: ArticleForCreate): Observable<ArrayBuffer> {
     return this.http.post(this.getAPIUrl(`/articles/`), newArticle, this.httpOptions);
   }
+
+  public deleteArticle(articleId: number): Observable<ArrayBuffer> {
+    return this.http.delete(this.getAPIUrl(`/articles/${articleId}/`), this.httpOptions);
+  }
 }

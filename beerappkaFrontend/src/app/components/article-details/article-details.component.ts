@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {ArticlesService} from '../../services/articles.service';
 import {Article} from '../articles-list/article';
 import {ActivatedRoute, Router} from '@angular/router';
+import {Permissions} from '../../permissions/permissions';
 
 @Component({
   selector: 'app-article-details',
@@ -13,7 +14,8 @@ export class ArticleDetailsComponent implements OnInit {
 
   constructor(private articleService: ArticlesService,
               private route: ActivatedRoute,
-              private router: Router) { }
+              private router: Router,
+              public  permissions: Permissions) { }
 
   ngOnInit(): void {
     this.route.params.subscribe(params => {
@@ -27,7 +29,14 @@ export class ArticleDetailsComponent implements OnInit {
         }
       });
     });
+  }
 
+  public deleteArticle(articleId: number): void {
+    this.articleService.deleteArticle(articleId).subscribe(data => {
+      this.router.navigate(['/artykuly']);
+    }, err => {
+      console.log(err);
+    })
   }
 
 }

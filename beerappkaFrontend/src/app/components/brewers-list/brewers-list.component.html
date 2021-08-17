@@ -15,21 +15,23 @@
             <div class="container-fluid">
 
                 <div class="row" *ngIf="allUsers">
-                    <div class="col-lg-6 col-xs-12 mb-4" *ngFor="let user of allUsers">
+                    <div class="col-xs-12 col-lg-6 mb-4" *ngFor="let user of allUsers">
                         <div class="mb-3">
                             <div class="card border-left-success shadow h-100 py-2">
                                 <div class="card-body">
-                                    <a routerLink="/piwowarzy/{{ user.username }}">
+                                    <a routerLink="/piwowarzy/{{ user.username }}" class="text-decoration-none">
                                         <div class="row no-gutters align-items-center">
-                                            <div class="col-lg-3 col-xs-12">
+                                            <div class="col-lg-1 col-xs-12">
                                                 <img src="{{ user.profile.picture_thumb_150x150 }}"
                                                      alt="zdjęcie profilowe"
-                                                     *ngIf="user.profile.picture_thumb_150x150; else profile_picture_placeholder">
+                                                     class="profile-picture"
+                                                     *ngIf="user.profile.picture_thumb_50x50; else profile_picture_placeholder">
                                                 <ng-template #profile_picture_placeholder>
-                                                    <i class="fa fa-user fa-6x"></i>
+                                                    <img class="profile-picture"
+                                                         src="/assets/startbootstrap-sb-admin-2/img/undraw_profile.svg">
                                                 </ng-template>
                                             </div>
-                                            <div class="col-lg-9 col-xs-12">
+                                            <div class="col-lg-11 col-xs-12">
                                                 <div class="col mb-3">
                                                     <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
                                                         Login
@@ -44,7 +46,7 @@
                                                         Piwowar od
                                                     </div>
                                                     <div class="h5 mb-0 font-weight-bold text-gray-800">
-                                                      {{ user.profile.brewer_since }}
+                                                      {{ user.profile.brewer_since || '---' }}
                                                     </div>
                                                 </div>
                                             </div>

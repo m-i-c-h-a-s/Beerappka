@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {UserService} from '../services/user.service';
 import { Router } from '@angular/router';
+import {UserData} from './user-data';
+import {LoginPageErrors} from './login-page-errors';
 
 @Component({
   selector: 'app-login-page',
@@ -9,6 +11,7 @@ import { Router } from '@angular/router';
 })
 export class LoginPageComponent implements OnInit {
   public user: any;
+  public err: LoginPageErrors | undefined;
 
   constructor(private userService: UserService, private router: Router) { }
 
@@ -19,17 +22,26 @@ export class LoginPageComponent implements OnInit {
     };
   }
   login(): void {
+    this.err = undefined;
     this.userService.login(this.user).subscribe(
       data => {
-        const currentUser = {
-          username: this.user.username
-        };
         localStorage.setItem('auth_token', (data as any).key);
-        localStorage.setItem('current_user', JSON.stringify(currentUser));
-        return this.router.navigate(['dashboard']);
+        this.userService.getUserData(this.user.username).subscribe(userData => {
+          const currentUser: UserData = {
+            id: (userData as any).id,
+            username: this.user.username,
+            picture_thumb_50x50: (userData as any).profile.picture_thumb_50x50,
+            profile_id: (userData as any).profile.id
+          };
+          localStorage.setItem('current_user', JSON.stringify(currentUser));
+          this.router.navigate(['dashboard']);
+        }, err => {
+          console.log(err);
+        });
       },
       err => {
         console.log(err);
+        this.err = err.error;
       }
     );
   }

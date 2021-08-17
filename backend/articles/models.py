@@ -1,6 +1,8 @@
 from django.contrib.auth.models import User
 from django.db import models
 
+from articles.managers import ArticlesManager
+
 """
     Model reprezentujący Artykuł
 """
@@ -22,6 +24,8 @@ class Article(models.Model):
     )
 
     is_published = models.BooleanField(default=False, verbose_name="Opublikowany")
+
+    objects = ArticlesManager()
 
     class Meta:
         verbose_name = "Artykuł"

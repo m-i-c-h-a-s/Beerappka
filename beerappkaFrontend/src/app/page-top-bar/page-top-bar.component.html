@@ -6,13 +6,22 @@
 
     <ul class="navbar-nav ml-auto">
 
-        <li class="nav-item dropdown no-arrow">
+        <li class="nav-item dropdown no-arrow"
+            *ngIf="isLoggedIn">
+            <a routerLink="/dashboard" routerLinkActive="active"
+              class="nav-link" role="button">
+                <span class="mr-2 d-none d-lg-inline small">Dashboard</span>
+            </a>
+        </li>
+        <li class="nav-item dropdown no-arrow"
+            *ngIf="!isLoggedIn">
             <a routerLink="/logowanie" routerLinkActive="active"
               class="nav-link" role="button">
                 <span class="mr-2 d-none d-lg-inline small">Logowanie</span>
             </a>
         </li>
-        <li class="nav-item dropdown no-arrow">
+        <li class="nav-item dropdown no-arrow"
+            *ngIf="!isLoggedIn">
             <a routerLink="/rejestracja" routerLinkActive="active"
               class="nav-link" role="button">
                 <span class="mr-2 d-none d-lg-inline small">Rejestracja</span>

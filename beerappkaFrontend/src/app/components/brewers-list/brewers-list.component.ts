@@ -17,7 +17,7 @@ export class BrewersListComponent implements OnInit {
 
   ngOnInit(): void {
     this.userService.getAllUsers().subscribe(data => {
-      this.allUsers = data as any;
+      this.allUsers = (data as any).results;
     }, err => {
       console.log(err);
     });

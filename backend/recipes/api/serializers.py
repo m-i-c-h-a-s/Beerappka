@@ -31,7 +31,7 @@ class YeastSerializer(serializers.ModelSerializer):
         fields = "__all__"
 
 
-class RecipeHopsForCreateSerializer(serializers.ModelSerializer):
+class RecipeHopsSerializer(serializers.ModelSerializer):
     hops = HopsSerializer()
 
     class Meta:
@@ -39,7 +39,7 @@ class RecipeHopsForCreateSerializer(serializers.ModelSerializer):
         exclude = ('recipe',)
 
 
-class RecipeMaltForCreateSerializer(serializers.ModelSerializer):
+class RecipeMaltSerializer(serializers.ModelSerializer):
     malt = MaltSerializer()
 
     class Meta:
@@ -47,7 +47,7 @@ class RecipeMaltForCreateSerializer(serializers.ModelSerializer):
         exclude = ('recipe',)
 
 
-class RecipeYeastForCreateSerializer(serializers.ModelSerializer):
+class RecipeYeastSerializer(serializers.ModelSerializer):
     yeast = YeastSerializer()
 
     class Meta:
@@ -56,15 +56,20 @@ class RecipeYeastForCreateSerializer(serializers.ModelSerializer):
 
 
 class RecipeSerializer(serializers.ModelSerializer):
+    style = StyleSerializer()
+    malts = RecipeMaltSerializer(many=True)
+    hops = RecipeHopsSerializer(many=True)
+    yeast = RecipeYeastSerializer(many=True)
+
     class Meta:
         model = Recipe
         fields = "__all__"
 
 
-class RecipeCreateSerializer(serializers.ModelSerializer):
-    malts = RecipeMaltForCreateSerializer(many=True)
-    hops = RecipeHopsForCreateSerializer(many=True)
-    yeast = RecipeYeastForCreateSerializer(many=True)
+class RecipeCreateUpdateSerializer(serializers.ModelSerializer):
+    malts = RecipeMaltSerializer(many=True)
+    hops = RecipeHopsSerializer(many=True)
+    yeast = RecipeYeastSerializer(many=True)
 
     class Meta:
         model = Recipe
@@ -89,3 +94,27 @@ class RecipeCreateSerializer(serializers.ModelSerializer):
             yeast, _ = Yeast.objects.get_or_create(**y_data)
             RecipeYeast.objects.create(recipe=recipe, yeast=yeast, **recipe_yeast_data)
         return recipe
+
+    def update(self, instance, validated_data):
+        malts_data = validated_data.pop('malts')
+        hops_data = validated_data.pop('hops')
+        yeast_data = validated_data.pop('yeast')
+
+        RecipeMalt.objects.filter(recipe=instance).delete()
+        for recipe_malt_data in malts_data:
+            malt_data = recipe_malt_data.pop('malt')
+            malt, created = Malt.objects.get_or_create(**malt_data)
+            RecipeMalt.objects.create(recipe=instance, malt=malt, **recipe_malt_data)
+
+        RecipeHops.objects.filter(recipe=instance).delete()
+        for recipe_hops_data in hops_data:
+            h_data = recipe_hops_data.pop('hops')
+            hops, _ = Hops.objects.get_or_create(**h_data)
+            RecipeHops.objects.create(recipe=instance, hops=hops, **recipe_hops_data)
+
+        RecipeYeast.objects.filter(recipe=instance).delete()
+        for recipe_yeast_data in yeast_data:
+            y_data = recipe_yeast_data.pop('yeast')
+            yeast, _ = Yeast.objects.get_or_create(**y_data)
+            RecipeYeast.objects.create(recipe=instance, yeast=yeast, **recipe_yeast_data)
+        return instance

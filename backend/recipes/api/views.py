@@ -1,7 +1,7 @@
 from rest_framework import viewsets
 
 from recipes.api.permissions import IsRecipeOwnerOrReadOnlyPermission
-from recipes.api.serializers import RecipeSerializer, RecipeCreateSerializer, StyleSerializer
+from recipes.api.serializers import RecipeSerializer, RecipeCreateUpdateSerializer, StyleSerializer
 from recipes.models import Recipe, Style
 
 
@@ -10,7 +10,8 @@ class RecipesViewSet(viewsets.ModelViewSet):
     serializer_class = RecipeSerializer
     serializers = {
         'default': RecipeSerializer,
-        'create': RecipeCreateSerializer
+        'create': RecipeCreateUpdateSerializer,
+        'update': RecipeCreateUpdateSerializer
     }
     permission_classes = [
         IsRecipeOwnerOrReadOnlyPermission,

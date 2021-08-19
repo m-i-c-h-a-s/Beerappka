@@ -49,6 +49,18 @@ class Style(models.Model):
 class Recipe(models.Model):
     name = models.CharField(max_length=45, verbose_name="Nazwa")
 
+    MASHING = "m"
+    EXTRACTS = "e"
+    BREWKIT = "b"
+
+    RECIPE_TYPES = [
+        (MASHING, "Zacieranie"),
+        (EXTRACTS, "Ekstrakty"),
+        (BREWKIT, "Brewkit"),
+    ]
+
+    type = models.CharField(max_length=1, choices=RECIPE_TYPES, verbose_name="Typ", null=True)
+
     creation_date = models.DateTimeField(verbose_name="Data utworzenia")
 
     is_public = models.BooleanField(default=False, verbose_name="Czy publiczna?")

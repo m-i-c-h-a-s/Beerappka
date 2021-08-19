@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {UserService} from '../services/user.service';
+import {Router} from '@angular/router';
 import {User} from './user';
 
 @Component({
@@ -10,7 +11,7 @@ import {User} from './user';
 export class ProfileComponent implements OnInit {
   public currentUser: User | undefined;
 
-  constructor(private userService: UserService) { }
+  constructor(private userService: UserService, private router: Router) { }
 
   ngOnInit(): void {
     this.userService.getCurrentUserData().subscribe(data => {

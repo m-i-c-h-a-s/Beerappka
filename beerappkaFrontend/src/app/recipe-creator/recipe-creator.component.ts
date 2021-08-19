@@ -153,6 +153,18 @@ export class RecipeCreatorComponent implements OnInit {
     this.yeastLaboratory = '';
   }
 
+  deleteMalt(malt: Malt) {
+    this.malts = this.malts.filter(e => e !== malt);
+  }
+
+  deleteHop(hop: Hop) {
+    this.hops = this.hops.filter(e => e !== hop);
+  }
+
+  deleteYeast(yeast: Yeast) {
+    this.yeasts = this.yeasts.filter(e => e !== yeast);
+  }
+
   deleteMalts() {
     this.malts = [];
   }

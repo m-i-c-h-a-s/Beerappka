@@ -218,7 +218,7 @@
                         <button class="btn btn-success btn-circle btn-sm m-1" (click)="addMalt();">
                             <i class="fas fa-plus"></i>
                         </button>
-                        <button class="btn btn-danger btn-circle btn-sm m-1" (click)="deleteMalts();">
+                        <button class="btn btn-danger btn-circle btn-sm m-1" (click)="deleteMalts();" title="Usuń wszystkie">
                             <i class="fas fa-trash"></i>
                         </button>
                     </div>
@@ -233,6 +233,7 @@
                                     <th>Ilość</th>
                                     <th>Barwa</th>
                                     <th>Ekstraktywność</th>
+                                    <th></th>
                                 </tr>
                             </thead>
 
@@ -243,6 +244,11 @@
                                     <td> {{ malt.amountInKilograms }} </td>
                                     <td> {{ malt.colourEBC }} </td>
                                     <td> {{ malt.extractivityPercent }} </td>
+                                    <td>
+                                        <button class="btn btn-danger btn-circle btn-sm m-1" (click)="deleteMalt(malt);">
+                                        <i class="fas fa-trash"></i>
+                                        </button>
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
@@ -319,7 +325,7 @@
                         <button class="btn btn-success btn-circle btn-sm m-1" (click)="addHop();">
                             <i class="fas fa-plus"></i>
                         </button>
-                        <button class="btn btn-danger btn-circle btn-sm m-1" (click)="deleteHops();">
+                        <button class="btn btn-danger btn-circle btn-sm m-1" (click)="deleteHops();" title="Usuń wszystkie">
                             <i class="fas fa-trash"></i>
                         </button>
                     </div>
@@ -334,6 +340,7 @@
                                     <th>Ilość</th>
                                     <th>Czas gotowania</th>
                                     <th>Alfa-kwasy</th>
+                                    <th></th>
                                 </tr>
                             </thead>
 
@@ -344,6 +351,11 @@
                                     <td> {{ hop.amountInGrams }} </td>
                                     <td> {{ hop.boilingTimeInMinutes }} </td>
                                     <td> {{ hop.alphaAcidsPercent }} </td>
+                                    <td>
+                                        <button class="btn btn-danger btn-circle btn-sm m-1" (click)="deleteHop(hop);">
+                                        <i class="fas fa-trash"></i>
+                                        </button>
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
@@ -422,7 +434,7 @@
                         <button class="btn btn-success btn-circle btn-sm m-1" (click)="addYeast();">
                             <i class="fas fa-plus"></i>
                         </button>
-                        <button class="btn btn-danger btn-circle btn-sm m-1" (click)="deleteYeasts();">
+                        <button class="btn btn-danger btn-circle btn-sm m-1" (click)="deleteYeasts();" title="Usuń wszystkie">
                             <i class="fas fa-trash"></i>
                         </button>
                     </div>
@@ -437,6 +449,7 @@
                                     <th>Postać</th>
                                     <th>Ilość</th>
                                     <th>Laboratorium</th>
+                                    <th></th>
                                 </tr>
                             </thead>
 
@@ -447,9 +460,31 @@
                                     <td> {{ yeast.form }} </td>
                                     <td> {{ yeast.amountInGrams }} </td>
                                     <td> {{ yeast.laboratory }} </td>
+                                    <td>
+                                        <button class="btn btn-danger btn-circle btn-sm m-1" (click)="deleteYeast(yeast);">
+                                        <i class="fas fa-trash"></i>
+                                        </button>
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="recipeNotes" class="row">
+        <div class="col-lg-12 mb-4">
+            <div class="card shadow mb-4 border-bottom-info">
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">Notatki</h6>
+                </div>
+                <div class="card-body row">
+                    <div class="col">
+                        <textarea
+                            class="form-control bg-light border-0">
+                        </textarea>
                     </div>
                 </div>
             </div>

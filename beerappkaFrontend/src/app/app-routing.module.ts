@@ -5,6 +5,7 @@ import { LoginPageComponent } from './login-page/login-page.component';
 import { RegisterPageComponent } from './register-page/register-page.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { AlcoholLevelCalculatorComponent } from './alcohol-level-calculator/alcohol-level-calculator.component';
+import { GravityCalculatorComponent } from './components/gravity-calculator/gravity-calculator.component';
 import { AuthGuard } from './guards/auth.guard';
 import {AlreadyLoggedInGuard} from './guards/already-logged-in-guard.service';
 import {ProfileComponent} from './profile/profile.component';
@@ -28,6 +29,7 @@ const routes: Routes = [
   { path: 'edytuj-profil/zmien-haslo', component: ChangePasswordComponent, canActivate: [AuthGuard]},
   { path: 'edytuj-profil/usun-konto', component: DeleteAccountComponent, canActivate: [AuthGuard]},
   { path: 'kalkulatory/poziom-alkoholu', component: AlcoholLevelCalculatorComponent, canActivate: [AuthGuard] },
+  { path: 'kalkulatory/przeliczanie-gestosci', component: GravityCalculatorComponent, canActivate: [AuthGuard] },
   { path: 'piwowarzy', component: BrewersListComponent, canActivate: [AuthGuard]},
   { path: 'piwowarzy/:username', component: BrewerDetailsComponent, canActivate: [AuthGuard]},
   { path: 'artykuly', component: ArticlesListComponent, canActivate: [AuthGuard]},

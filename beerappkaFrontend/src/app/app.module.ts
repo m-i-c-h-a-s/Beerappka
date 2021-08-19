@@ -27,6 +27,7 @@ import { ArticlesListComponent } from './components/articles-list/articles-list.
 import { ArticleDetailsComponent } from './components/article-details/article-details.component';
 import { ArticleCreateComponent } from './components/article-create/article-create.component';
 import { ArticleUpdateComponent } from './components/article-update/article-update.component';
+import { GravityCalculatorComponent } from './components/gravity-calculator/gravity-calculator.component';
 
 @NgModule({
   declarations: [
@@ -51,6 +52,7 @@ import { ArticleUpdateComponent } from './components/article-update/article-upda
     ArticleDetailsComponent,
     ArticleCreateComponent,
     ArticleUpdateComponent,
+    GravityCalculatorComponent,
   ],
 
   imports: [

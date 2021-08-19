@@ -34,8 +34,8 @@ export class AlcoholLevelCalculatorComponent implements OnInit {
     } else this.alcoholByVolume = '---';
 
     if (this.originalGravity != null) {
-      console.log(this.convertOgToBlg(this.originalGravity));
-      console.log(this.convertBlgToOg(this.originalGravity));
+      console.log(this.convertSgToBlg(this.originalGravity));
+      console.log(this.convertBlgToSg(this.originalGravity));
     }
   }
 
@@ -48,11 +48,11 @@ export class AlcoholLevelCalculatorComponent implements OnInit {
     } else this.apparentAttenuation = '---';
   }
 
-  convertOgToBlg(gravityInOg: number) {
-    return 260 * (gravityInOg - 1) / gravityInOg;
+  convertSgToBlg(gravityInSg: number) {
+    return 260 * (gravityInSg - 1) / gravityInSg;
   }
 
-  convertBlgToOg(gravityInBlg: number) {
+  convertBlgToSg(gravityInBlg: number) {
     return (-260 / (gravityInBlg - 260));
   }
 }

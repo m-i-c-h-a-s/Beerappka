@@ -37,7 +37,7 @@ export class UserService extends BaseService {
   }
   public updateUser(userData: any): Observable<ArrayBuffer> {
     const {username} = userData;
-    return this.http.put(this.getAPIUrl(`/users/${username}/`), JSON.stringify(userData), this.httpOptions);
+    return this.http.put(this.getAPIUrl(`/users/${username}/`), userData, this.httpOptions);
   }
   public updateProfilePicture(data: FormData): Observable<any> {
     return this.http.post(this.getAPIUrl(`/users/update_profile_picture/`), data);

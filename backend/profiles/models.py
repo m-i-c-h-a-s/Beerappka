@@ -58,3 +58,7 @@ class Profile(models.Model):
     @property
     def picture_thumb_150x150(self):
         return get_thumbnail(self.picture, "150x150", crop="center", quality=99).url
+
+    @property
+    def picture_thumb_50x50(self):
+        return get_thumbnail(self.picture, "50x50", crop="center", quality=99).url

@@ -23,6 +23,10 @@ import { ChangePasswordComponent } from './profile/change-password/change-passwo
 import { DeleteAccountComponent } from './profile/delete-account/delete-account.component';
 import { BrewersListComponent } from './components/brewers-list/brewers-list.component';
 import { BrewerDetailsComponent } from './components/brewer-details/brewer-details.component';
+import { ArticlesListComponent } from './components/articles-list/articles-list.component';
+import { ArticleDetailsComponent } from './components/article-details/article-details.component';
+import { ArticleCreateComponent } from './components/article-create/article-create.component';
+import { ArticleUpdateComponent } from './components/article-update/article-update.component';
 
 @NgModule({
   declarations: [
@@ -43,6 +47,10 @@ import { BrewerDetailsComponent } from './components/brewer-details/brewer-detai
     DeleteAccountComponent,
     BrewersListComponent,
     BrewerDetailsComponent,
+    ArticlesListComponent,
+    ArticleDetailsComponent,
+    ArticleCreateComponent,
+    ArticleUpdateComponent,
   ],
 
   imports: [

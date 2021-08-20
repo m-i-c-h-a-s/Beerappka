@@ -11,7 +11,8 @@ class RecipesViewSet(viewsets.ModelViewSet):
     serializers = {
         'default': RecipeSerializer,
         'create': RecipeCreateUpdateSerializer,
-        'update': RecipeCreateUpdateSerializer
+        'update': RecipeCreateUpdateSerializer,
+        'partial_update': RecipeCreateUpdateSerializer
     }
     permission_classes = [
         IsRecipeOwnerOrReadOnlyPermission,

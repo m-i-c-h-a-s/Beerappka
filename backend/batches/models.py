@@ -12,7 +12,7 @@ class Batch(models.Model):
     name = models.CharField(max_length=45, verbose_name="Nazwa")
 
     # określa, która to jest warka w życiu danego piwowara
-    number = models.IntegerField(verbose_name="Numer")
+    number = models.PositiveIntegerField(verbose_name="Numer")
 
     brewing_date = models.DateField(verbose_name="Data warzenia")
 

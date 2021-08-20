@@ -60,71 +60,101 @@
                     <div class="col-lg">
                         <div class="col-md mb-3">
                             <label>Oczekiwana ilość gotowego piwa</label>
-                            <input
-                                type="text"
-                                class="form-control bg-light border-0 small"
-                                placeholder="L"
-                                [(ngModel)]="amountOfBeerInLiters"
-                                [ngModelOptions]="{standalone: true}"
-                                (focusout)="calculateParameters();"
-                            >
+                            <div class="input-group">
+                                <input
+                                    type="number"
+                                    min=0
+                                    class="form-control bg-light border-0 small"
+                                    [(ngModel)]="amountOfBeerInLiters"
+                                    [ngModelOptions]="{standalone: true}"
+                                    (focusout)="calculateParameters();"
+                                >
+                                <div class="input-group-append">
+                                    <span class="input-group-text border-0 bg-light">L</span>
+                                </div>
+                            </div>
                         </div>
                         <div class="col-md mb-3">
                             <label>Czas gotowania</label>
-                            <input
-                                type="text"
-                                class="form-control bg-light border-0 small"
-                                placeholder="min"
-                                [(ngModel)]="boilingTimeInMinutes"
-                                [ngModelOptions]="{standalone: true}"
-                                (focusout)="calculateParameters();"
-                            >
+                            <div class="input-group">
+                                <input
+                                    type="number"
+                                    min=0
+                                    class="form-control bg-light border-0 small"
+                                    [(ngModel)]="boilingTimeInMinutes"
+                                    [ngModelOptions]="{standalone: true}"
+                                    (focusout)="calculateParameters();"
+                                >
+                                <div class="input-group-append">
+                                    <span class="input-group-text border-0 bg-light">min</span>
+                                </div>
+                            </div>
                         </div>
                         <div class="col-md mb-3">
                             <label>Szybkość odparowywania</label>
-                            <input
-                                type="text"
-                                class="form-control bg-light border-0 small"
-                                placeholder="%/h"
-                                [(ngModel)]="evaporationSpeedPercentPerHour"
-                                [ngModelOptions]="{standalone: true}"
-                                (focusout)="calculateParameters();"
-                            >
+                            <div class="input-group">
+                                <input
+                                    type="number"
+                                    min=0
+                                    class="form-control bg-light border-0 small"
+                                    [(ngModel)]="evaporationSpeedPercentPerHour"
+                                    [ngModelOptions]="{standalone: true}"
+                                    (focusout)="calculateParameters();"
+                                >
+                                <div class="input-group-append">
+                                    <span class="input-group-text border-0 bg-light">%/h</span>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div class="col-lg">
                         <div class="col-md mb-3">
                             <label>Straty z gotowania</label>
-                            <input
-                                type="text"
-                                class="form-control bg-light border-0 small"
-                                placeholder="%"
-                                [(ngModel)]="boilingLossesPercent"
-                                [ngModelOptions]="{standalone: true}"
-                                (focusout)="calculateParameters();"
-                            >
+                            <div class="input-group">
+                                <input
+                                    type="number"
+                                    min=0
+                                    class="form-control bg-light border-0 small"
+                                    [(ngModel)]="boilingLossesPercent"
+                                    [ngModelOptions]="{standalone: true}"
+                                    (focusout)="calculateParameters();"
+                                >
+                                <div class="input-group-append">
+                                    <span class="input-group-text border-0 bg-light">%</span>
+                                </div>
+                            </div>
                         </div>
                         <div class="col-md mb-3">
                             <label>Straty z fermentacji</label>
-                            <input
-                                type="text"
-                                class="form-control bg-light border-0 small"
-                                placeholder="%"
-                                [(ngModel)]="fermentationLossesPercent"
-                                [ngModelOptions]="{standalone: true}"
-                                (focusout)="calculateParameters();"
-                            >
+                            <div class="input-group">
+                                <input
+                                    type="number"
+                                    min=0
+                                    class="form-control bg-light border-0 small"
+                                    [(ngModel)]="fermentationLossesPercent"
+                                    [ngModelOptions]="{standalone: true}"
+                                    (focusout)="calculateParameters();"
+                                >
+                                <div class="input-group-append">
+                                    <span class="input-group-text border-0 bg-light">%</span>
+                                </div>
+                            </div>
                         </div>
                         <div class="col-md mb-3">
                             <label>Straty z chmielenia na zimno</label>
-                            <input
-                                type="text"
-                                class="form-control bg-light border-0 small"
-                                placeholder="%"
-                                [(ngModel)]="dryHoppingLossesPercent"
-                                [ngModelOptions]="{standalone: true}"
-                                (focusout)="calculateParameters();"
-                            >
+                            <div class="input-group">
+                                <input
+                                    type="number"
+                                    min=0
+                                    class="form-control bg-light border-0 small"
+                                    [(ngModel)]="dryHoppingLossesPercent"
+                                    [ngModelOptions]="{standalone: true}"
+                                    (focusout)="calculateParameters();"
+                                >
+                                <div class="input-group-append">
+                                    <span class="input-group-text border-0 bg-light">%</span>
+                                </div>
+                            </div>
                         </div>
                     </div>
 
@@ -186,33 +216,45 @@
                     </div>
                     <div class="col-md mb-3">
                         <label>Ilość</label>
-                        <input
-                            type="text"
-                            class="form-control bg-light border-0 small"
-                            placeholder="kg"
-                            [(ngModel)]="maltAmountInKilograms"
-                            [ngModelOptions]="{standalone: true}"
-                        >
+                        <div class="input-group">
+                            <input
+                                type="text"
+                                class="form-control bg-light border-0 small"
+                                [(ngModel)]="maltAmountInKilograms"
+                                [ngModelOptions]="{standalone: true}"
+                            >
+                            <div class="input-group-append">
+                                <span class="input-group-text border-0 bg-light">kg</span>
+                            </div>
+                        </div>
                     </div>
                     <div class="col-md mb-3">
                         <label>Barwa</label>
-                        <input
-                            type="text"
-                            class="form-control bg-light border-0 small"
-                            placeholder="EBC"
-                            [(ngModel)]="maltColourEBC"
-                            [ngModelOptions]="{standalone: true}"
-                        >
+                        <div class="input-group">
+                            <input
+                                type="text"
+                                class="form-control bg-light border-0 small"
+                                [(ngModel)]="maltColourEBC"
+                                [ngModelOptions]="{standalone: true}"
+                            >
+                            <div class="input-group-append">
+                                <span class="input-group-text border-0 bg-light">EBC</span>
+                            </div>
+                        </div>
                     </div>
                     <div class="col-md mb-3">
                         <label>Ekstraktywność</label>
-                        <input
-                            type="text"
-                            class="form-control bg-light border-0 small"
-                            placeholder="%"
-                            [(ngModel)]="maltExtractivityPercent"
-                            [ngModelOptions]="{standalone: true}"
-                        >
+                        <div class="input-group">
+                            <input
+                                type="text"
+                                class="form-control bg-light border-0 small"
+                                [(ngModel)]="maltExtractivityPercent"
+                                [ngModelOptions]="{standalone: true}"
+                            >
+                            <div class="input-group-append">
+                                <span class="input-group-text border-0 bg-light">%</span>
+                            </div>
+                        </div>
                     </div>
                     <div class="col-xl-12 mb-1 text-center">
                         <button class="btn btn-success btn-circle btn-sm m-1" (click)="addMalt();">
@@ -293,33 +335,45 @@
                     </div>
                     <div class="col-md mb-3">
                         <label>Ilość</label>
-                        <input
-                            type="text"
-                            class="form-control bg-light border-0 small"
-                            placeholder="g"
-                            [(ngModel)]="hopAmountInGrams"
-                            [ngModelOptions]="{standalone: true}"
-                        >
+                        <div class="input-group">
+                            <input
+                                type="text"
+                                class="form-control bg-light border-0 small"
+                                [(ngModel)]="hopAmountInGrams"
+                                [ngModelOptions]="{standalone: true}"
+                            >
+                            <div class="input-group-append">
+                                <span class="input-group-text border-0 bg-light">g</span>
+                            </div>
+                        </div>
                     </div>
                     <div class="col-md mb-3">
                         <label>Czas gotowania</label>
-                        <input
-                            type="text"
-                            class="form-control bg-light border-0 small"
-                            placeholder="min"
-                            [(ngModel)]="hopBoilingTimeInMinutes"
-                            [ngModelOptions]="{standalone: true}"
-                        >
+                        <div class="input-group">
+                            <input
+                                type="text"
+                                class="form-control bg-light border-0 small"
+                                [(ngModel)]="hopBoilingTimeInMinutes"
+                                [ngModelOptions]="{standalone: true}"
+                            >
+                            <div class="input-group-append">
+                                <span class="input-group-text border-0 bg-light">min</span>
+                            </div>
+                        </div>
                     </div>
                     <div class="col-md mb-3">
                         <label>Alfa-kwasy</label>
-                        <input
-                            type="text"
-                            class="form-control bg-light border-0 small"
-                            placeholder="%"
-                            [(ngModel)]="hopAlphaAcidsPercent"
-                            [ngModelOptions]="{standalone: true}"
-                        >
+                        <div class="input-group">
+                            <input
+                                type="text"
+                                class="form-control bg-light border-0 small"
+                                [(ngModel)]="hopAlphaAcidsPercent"
+                                [ngModelOptions]="{standalone: true}"
+                            >
+                            <div class="input-group-append">
+                                <span class="input-group-text border-0 bg-light">%</span>
+                            </div>
+                        </div>
                     </div>
                     <div class="col-xl-12 mb-1 text-center">
                         <button class="btn btn-success btn-circle btn-sm m-1" (click)="addHop();">
@@ -413,13 +467,18 @@
                     </div>
                     <div class="col-md mb-3">
                         <label>Ilość</label>
-                        <input
-                            type="text"
-                            class="form-control bg-light border-0 small"
-                            placeholder="g"
-                            [(ngModel)]="yeastAmountInGrams"
-                            [ngModelOptions]="{standalone: true}"
-                        >
+                        <div class="input-group">
+                            <input
+                                type="text"
+                                class="form-control bg-light border-0 small"
+                                [(ngModel)]="yeastAmountInGrams"
+                                [ngModelOptions]="{standalone: true}"
+                            >
+                            <div class="input-group-append">
+                                <span class="input-group-text border-0 bg-light">g</span>
+                            </div>
+                        </div>
+
                     </div>
                     <div class="col-md mb-3">
                         <label>Laboratorium</label>
@@ -482,9 +541,7 @@
                 </div>
                 <div class="card-body row">
                     <div class="col">
-                        <textarea
-                            class="form-control bg-light border-0">
-                        </textarea>
+                        <textarea class="form-control bg-light border-0"></textarea>
                     </div>
                 </div>
             </div>

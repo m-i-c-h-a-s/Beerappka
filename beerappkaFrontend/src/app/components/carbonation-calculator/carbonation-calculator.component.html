@@ -17,76 +17,65 @@
                     <div class="col-lg-4 mb-4">
                         <div class="card shadow mb-4 border-bottom-info">
                             <div class="card-header py-3">
-                                <h6 class="m-0 font-weight-bold text-primary">Specific Gravity - BLG</h6>
+                                <h6 class="m-0 font-weight-bold text-primary">Poziom nagazowania</h6>
                             </div>
                             <div class="card-body">
                                 <form class="d-flex flex-column">
                                     <div class="mb-3">
-                                        <label class="form-label">Gęstość w skali SG:</label>
+                                        <label class="form-label">Ilość piwa</label>
                                         <div class="input-group">
                                             <input
-                                                type="text"
                                                 class="form-control bg-light border-0 small"
-                                                [(ngModel)]="gravityInSg"
-                                                [ngModelOptions]="{standalone: true}"
-                                                (focusout)="convertSgToBlg();"
+                                                type="number"
+                                                min=0
                                             >
                                             <div class="input-group-append">
-                                                <span class="input-group-text border-0 bg-light">SG</span>
+                                                <span class="input-group-text border-0 bg-light">L</span>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="mb-3">
-                                        <label class="form-label">Gęstość w skali BLG:</label>
+                                        <label class="form-label">Poziom CO2</label>
                                         <div class="input-group">
                                             <input
+                                                class="form-control bg-light border-0 small"
+                                                type="number"
+                                                min=0
+                                            >
+                                        </div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label">Temperatura piwa</label>
+                                        <div class="input-group">
+                                            <input
+                                                class="form-control bg-light border-0 small"
+                                                type="number"
+                                                min=0
+                                            >
+                                            <div class="input-group-append">
+                                                <span class="input-group-text border-0 bg-light">°C</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label">Rodzaj cukru</label>
+                                        <select class="form-control bg-light border-0 small">
+                                            <option selected disabled hidden>Wybierz</option>
+                                            <option>Cukier biały</option>
+                                            <option>Cukier brązowy</option>
+                                            <option>Glukoza</option>
+                                        </select>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label">Ilość cukru do refermentacji</label>
+                                        <div class="input-group">
+                                            <input
+                                                class="form-control border-0 small"
+                                                type="number"
                                                 disabled
-                                                type="text"
-                                                class="form-control bg-light border-0 small"
-                                                value="{{ gravityCalculatedToBlg | number: '1.1-1' }}"
                                             >
                                             <div class="input-group-append">
-                                                <span class="input-group-text border-0 bg-light">BLG</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 mb-4">
-                        <div class="card shadow mb-4 border-bottom-info">
-                            <div class="card-header py-3">
-                                <h6 class="m-0 font-weight-bold text-primary">BLG - Specific Gravity</h6>
-                            </div>
-                            <div class="card-body">
-                                <form class="d-flex flex-column">
-                                    <div class="mb-3">
-                                        <label class="form-label">Gęstość w skali BLG:</label>
-                                        <div class="input-group">
-                                            <input
-                                                type="text"
-                                                class="form-control bg-light border-0 small"
-                                                [(ngModel)]="gravityInBlg"
-                                                [ngModelOptions]="{standalone: true}"
-                                                (focusout)="convertBlgToSg();"
-                                            >
-                                            <div class="input-group-append">
-                                                <span class="input-group-text border-0 bg-light">BLG</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label class="form-label">Gęstość w skali SG:</label>
-                                        <div class="input-group">
-                                            <input
-                                                disabled
-                                                type="text"
-                                                class="form-control bg-light border-0 small"
-                                                value="{{ gravityCalculatedToSg | number: '1.1-3' }}"
-                                            >
-                                            <div class="input-group-append">
-                                                <span class="input-group-text border-0 bg-light">SG</span>
+                                                <span class="input-group-text border-0">g</span>
                                             </div>
                                         </div>
                                     </div>

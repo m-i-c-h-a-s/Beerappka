@@ -28,6 +28,7 @@ import { ArticleDetailsComponent } from './components/article-details/article-de
 import { ArticleCreateComponent } from './components/article-create/article-create.component';
 import { ArticleUpdateComponent } from './components/article-update/article-update.component';
 import { GravityCalculatorComponent } from './components/gravity-calculator/gravity-calculator.component';
+import { CarbonationCalculatorComponent } from './components/carbonation-calculator/carbonation-calculator.component';
 
 @NgModule({
   declarations: [
@@ -53,6 +54,7 @@ import { GravityCalculatorComponent } from './components/gravity-calculator/grav
     ArticleCreateComponent,
     ArticleUpdateComponent,
     GravityCalculatorComponent,
+    CarbonationCalculatorComponent,
   ],
 
   imports: [

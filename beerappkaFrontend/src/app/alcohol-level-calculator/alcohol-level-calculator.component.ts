@@ -33,10 +33,6 @@ export class AlcoholLevelCalculatorComponent implements OnInit {
         this.alcoholByVolume = this.abvValue.toFixed(2) + " %";
     } else this.alcoholByVolume = '---';
 
-    if (this.originalGravity != null) {
-      console.log(this.convertSgToBlg(this.originalGravity));
-      console.log(this.convertBlgToSg(this.originalGravity));
-    }
   }
 
   calculateAttenuation() {

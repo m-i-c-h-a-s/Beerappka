@@ -48,7 +48,8 @@ export class CarbonationCalculatorComponent implements OnInit {
     this.calculateResidualCarbonationLevel();
     this.calculatePrimingCarbonationLevel();
 
-    if (this.primingCarbonationLevel != null && this.amountOfBeerInLiters != null) {
+    if (this.primingCarbonationLevel != null && this.amountOfBeerInLiters != null && this.targetCarbonationLevel != null &&
+        this.beerTemperature != null && this.sugarType != null) {
       switch(this.sugarType) {
         case "whiteSugar":
           this.amountOfSugarToRefermentation = (this.primingCarbonationLevel * this.amountOfBeerInLiters) / 0.455;

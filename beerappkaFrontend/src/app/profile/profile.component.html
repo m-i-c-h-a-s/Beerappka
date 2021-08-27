@@ -114,7 +114,7 @@
                                                             Data dołączenia
                                                         </div>
                                                         <div class="h5 mb-0 font-weight-bold text-gray-800">
-                                                          {{ currentUser.date_joined }}
+                                                          {{ currentUser.date_joined | date: 'd MMMM YYYY' }}
                                                         </div>
                                                     </div>
                                                 </div>
@@ -130,7 +130,7 @@
                                                               Ostatnio aktywny
                                                           </div>
                                                           <div class="h5 mb-0 font-weight-bold text-gray-800">
-                                                            {{ currentUser.last_login }}
+                                                            {{ currentUser.last_login | date: 'd MMMM YYYY H:mm' }}
                                                           </div>
                                                       </div>
                                                   </div>

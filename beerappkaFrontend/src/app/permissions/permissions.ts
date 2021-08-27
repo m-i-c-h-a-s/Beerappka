@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {UserData} from '../login-page/user-data';
+import {UserData} from '../components/login-page/user-data';
 import {Article} from '../components/articles-list/article';
 
 @Injectable({

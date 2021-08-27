@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { BaseService } from './base.service';
-import {ChangePassword} from '../profile/change-password/change-password';
+import {ChangePassword} from '../components/profile/change-password/change-password';
 
 @Injectable({
   providedIn: 'root'

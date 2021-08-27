@@ -1,9 +1,9 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {UserService} from '../services/user.service';
+import {UserService} from 'src/app/services/user.service';
 import {Router} from '@angular/router';
 import {User} from '../profile/user';
 import {UserForUpdate} from './user-for-update';
-import {BeerStylesService} from '../services/beer-styles.service';
+import {BeerStylesService} from '../../services/beer-styles.service';
 import {FavouriteBeerStyle} from '../profile/FavouriteBeerStyle';
 
 

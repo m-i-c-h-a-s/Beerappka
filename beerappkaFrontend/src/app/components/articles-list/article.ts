@@ -1,4 +1,4 @@
-import {User} from '../../profile/user';
+import {User} from '../profile/user';
 
 export interface Article {
   id: number;

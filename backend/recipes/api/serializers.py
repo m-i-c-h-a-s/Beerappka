@@ -1,12 +1,19 @@
 from django.db import transaction
 from rest_framework import serializers
 
-from recipes.models import Recipe, Style, Malt, Hops, Yeast, RecipeMalt, RecipeHops, RecipeYeast
+from recipes.models import Recipe, Style, Malt, Hops, Yeast, RecipeMalt, RecipeHops, RecipeYeast, Manufacturer
 
 
 class StyleSerializer(serializers.ModelSerializer):
     class Meta:
         model = Style
+        fields = "__all__"
+
+
+class ManufacturerSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Manufacturer
         fields = "__all__"
 
 

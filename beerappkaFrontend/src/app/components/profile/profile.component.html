@@ -14,7 +14,7 @@
             <!-- Begin Page Content -->
             <div class="container-fluid">
 
-                <div class="row" *ngIf="userData && userData.profile">
+                <div class="row" *ngIf="currentUser && currentUser.profile">
                     <div class="col-lg-6 mb-4">
                         <div class="card shadow mb-4 border-bottom-info">
                             <div class="card-header py-3">
@@ -33,13 +33,8 @@
                                                             Zdjęcie profilowe
                                                         </div>
                                                         <div class="h5 mb-0 font-weight-bold text-gray-800">
-                                                            <img src="{{ userData.profile.picture_thumb_150x150 }}"
-                                                                alt="zdjęcie profilowe" class="mx-auto profile-card__picture"
-                                                                *ngIf="userData.profile.picture_thumb_150x150; else profile_picture_placeholder">
-                                                            <ng-template #profile_picture_placeholder>
-                                                                <img class="mx-auto profile-card__picture"
-                                                                     src="/assets/startbootstrap-sb-admin-2/img/undraw_profile.svg">
-                                                            </ng-template>
+                                                           <img src="{{ currentUser.profile.picture_thumb_150x150 }}"
+                                                                alt="zdjęcie profilowe" class="mx-auto  profile-card__picture">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -55,7 +50,7 @@
                                                             Login
                                                         </div>
                                                         <div class="h5 mb-0 font-weight-bold text-gray-800">
-                                                          {{ userData.username }}
+                                                          {{ currentUser.username }}
                                                         </div>
                                                     </div>
                                                 </div>
@@ -71,7 +66,7 @@
                                                             Imię
                                                         </div>
                                                         <div class="h5 mb-0 font-weight-bold text-gray-800">
-                                                          {{ userData.first_name }}
+                                                          {{ currentUser.first_name }}
                                                         </div>
                                                     </div>
                                                 </div>
@@ -87,7 +82,7 @@
                                                             Nazwisko
                                                         </div>
                                                         <div class="h5 mb-0 font-weight-bold text-gray-800">
-                                                          {{ userData.last_name }}
+                                                          {{ currentUser.last_name }}
                                                         </div>
                                                     </div>
                                                 </div>
@@ -103,7 +98,7 @@
                                                               Email
                                                           </div>
                                                           <div class="h5 mb-0 font-weight-bold text-gray-800">
-                                                            {{ userData.email }}
+                                                            {{ currentUser.email }}
                                                           </div>
                                                       </div>
                                                   </div>
@@ -119,7 +114,7 @@
                                                             Data dołączenia
                                                         </div>
                                                         <div class="h5 mb-0 font-weight-bold text-gray-800">
-                                                          {{ userData.date_joined | date: 'd MMMM YYYY' }}
+                                                          {{ currentUser.date_joined | date: 'd MMMM YYYY' }}
                                                         </div>
                                                     </div>
                                                 </div>
@@ -135,7 +130,7 @@
                                                               Ostatnio aktywny
                                                           </div>
                                                           <div class="h5 mb-0 font-weight-bold text-gray-800">
-                                                            {{ userData.last_login | date: 'd MMMM YYYY H:mm' }}
+                                                            {{ currentUser.last_login | date: 'd MMMM YYYY H:mm' }}
                                                           </div>
                                                       </div>
                                                   </div>
@@ -162,9 +157,9 @@
                                                             Instagram
                                                         </div>
                                                         <div class="h5 mb-0 font-weight-bold text-gray-800">
-                                                          <a href="https://www.instagram.com/{{ userData.profile.instagram }}/"
+                                                          <a href="https://www.instagram.com/{{ currentUser.profile.instagram }}/"
                                                              target="_blank">
-                                                            @{{ userData.profile.instagram }}
+                                                            @{{ currentUser.profile.instagram }}
                                                           </a>
                                                         </div>
                                                     </div>
@@ -181,9 +176,9 @@
                                                             Strona WWW
                                                         </div>
                                                         <div class="h5 mb-0 font-weight-bold text-gray-800">
-                                                          <a href="//{{ userData.profile.website }}"
+                                                          <a href="//{{ currentUser.profile.website }}"
                                                              target="_blank">
-                                                            {{ userData.profile.website }}
+                                                            {{ currentUser.profile.website }}
                                                           </a>
                                                         </div>
                                                     </div>
@@ -200,7 +195,7 @@
                                                             Piwowar od
                                                         </div>
                                                         <div class="h5 mb-0 font-weight-bold text-gray-800">
-                                                          {{ userData.profile.brewer_since }}
+                                                          {{ currentUser.profile.brewer_since }}
                                                         </div>
                                                     </div>
                                                 </div>
@@ -216,7 +211,7 @@
                                                             Data urodzenia
                                                         </div>
                                                         <div class="h5 mb-0 font-weight-bold text-gray-800">
-                                                          {{ userData.profile.birth_date }}
+                                                          {{ currentUser.profile.birth_date }}
                                                         </div>
                                                     </div>
                                                 </div>
@@ -232,7 +227,7 @@
                                                             Miejscowość
                                                         </div>
                                                         <div class="h5 mb-0 font-weight-bold text-gray-800">
-                                                          {{ userData.profile.town }}
+                                                          {{ currentUser.profile.town }}
                                                         </div>
                                                     </div>
                                                 </div>
@@ -248,7 +243,7 @@
                                                           O mnie
                                                         </div>
                                                         <div class="h5 mb-0 font-weight-bold text-gray-800">
-                                                          {{ userData.profile.about_me }}
+                                                          {{ currentUser.profile.about_me }}
                                                         </div>
                                                     </div>
                                                 </div>
@@ -264,7 +259,7 @@
                                                               Ulubione style piwne
                                                           </div>
                                                           <div class="h5 mb-0 font-weight-bold text-gray-800">
-                                                              <span *ngFor="let favBeerStyle of userData.profile.favourite_beer_style"
+                                                              <span *ngFor="let favBeerStyle of currentUser.profile.favourite_beer_style"
                                                                 class="badge bg-primary ml-1 p-2">
                                                                 {{ favBeerStyle.name }}
                                                               </span>
@@ -275,6 +270,27 @@
                                           </div>
                                       </div>
                                 </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 mb-4">
+                        <div class="card shadow border-bottom-info">
+                            <div class="col-lg-12 ml-2 mb-4 mt-4">
+                                <a class="btn btn-primary"
+                                    routerLink="/edytuj-profil"
+                                    role="button">
+                                    <span class="text">Edytuj</span>
+                                </a>
+                                <a class="btn btn-primary ml-4"
+                                    routerLink="/edytuj-profil/zmien-haslo"
+                                    role="button">
+                                    <span class="text">Zmień hasło</span>
+                                </a>
+                                <a class="btn btn-danger ml-4"
+                                    routerLink="/edytuj-profil/usun-konto"
+                                    role="button">
+                                    <span class="text">Usuń konto</span>
+                                </a>
                             </div>
                         </div>
                     </div>

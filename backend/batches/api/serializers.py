@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from batches.models import Batch
+from batches.models import Batch, MeasurementBLG
 from profiles.api.serializers import UserSerializer
 from recipes.api.serializers import RecipeSerializer
 
@@ -26,4 +26,16 @@ class BatchUpdateSerializer(serializers.ModelSerializer):
     class Meta:
         model = Batch
         exclude = ("user", "recipe")
+
+
+class MeasurementBLGSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = MeasurementBLG
+        fields = '__all__'
+
+    def validate_batch(self, batch):
+        if batch.user == self.context.get('request').user:
+            return batch
+        raise serializers.ValidationError('Warka musi należeć do zalogowanego usera.')
 

@@ -6,11 +6,103 @@
     <!-- Content Wrapper -->
     <div id="content-wrapper" class="d-flex flex-column">
 
+        <app-topbar></app-topbar>
+
         <!-- Main Content -->
         <div id="content">
-            <app-topbar></app-topbar>
-            <app-recipe-creator></app-recipe-creator>
+            <!-- <app-recipe-creator></app-recipe-creator>-->
+            <div class="container-fluid">
+                <div class="row" *ngIf="currentUser && currentUser.profile">
+                    <div class="col-lg-6 mb-4">
+                        <div class="card shadow mb-4 border-bottom-info">
+                            <div class="card-header py-3">
+                                <h6 class="m-0 font-weight-bold text-primary">Profil</h6>
+                            </div>
+                            <div class="card-body">
+                                <div class="text-center mb-3">
+                                    <img class="img-profile rounded-circle mb-3"
+                                        src="{{ currentUser.profile.picture_thumb_50x50 }}"
+                                        *ngIf="currentUser.profile.picture_thumb_50x50; else profile_picture_placeholder"
+                                    >
+                                    <ng-template #profile_picture_placeholder>
+                                        <img class="img-profile rounded-circle"
+                                        src="/assets/startbootstrap-sb-admin-2/img/undraw_profile.svg">
+                                    </ng-template>
 
+                                    <h5>Witaj {{ currentUser.first_name }}!</h5>
+
+                                    <h5 class="pt-3 font-weight-bold">Dziś jest {{ date | date: 'd MMMM YYYY' }}</h5>
+                                </div>
+                                <div>
+
+                                    <h5>
+                                        <i class="fas fa-chevron-right"></i>
+                                        Liczba stworzonych receptur:
+                                    </h5>
+                                    <h5>
+                                        <i class="fas fa-chevron-right"></i>
+                                        Liczba uwarzonych warek:
+                                    </h5>
+                                    <h5>
+                                        <i class="fas fa-chevron-right"></i>
+                                        Ostatnio stworzona receptura:
+                                    </h5>
+                                    <h5>
+                                        <i class="fas fa-chevron-right"></i>
+                                        Ostatnio uwarzone piwo:
+                                    </h5>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6 mb-4">
+                        <div class="card shadow mb-4 border-bottom-info">
+                            <div class="card-header py-3">
+                                <h6 class="m-0 font-weight-bold text-primary">Aktualne warki</h6>
+                            </div>
+                            <div class="card-body">
+                                <h5>Obecnie Twoja kadzie są puste. Uwarz coś!</h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row" *ngIf="currentUser">
+                    <div class="col-lg-3 mb-4">
+                        <div class="card shadow mb-4 border-bottom-info">
+                            <div class="card-header py-3">
+                                <h6 class="m-0 font-weight-bold text-primary">Dodaj recepturę</h6>
+                            </div>
+                            <div class="card-body">
+                                <button class="btn btn-info"
+                                     type="submit"
+                                     routerLink="/dodaj-recepture"
+                                     routerLinkActive="active"
+                                >
+                                    <span class="text">Stwórz recepturę</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 mb-4">
+                        <div class="card shadow mb-4 border-bottom-info">
+                            <div class="card-header py-3">
+                                <h6 class="m-0 font-weight-bold text-primary">Stwórz warkę</h6>
+                            </div>
+                            <div class="card-body">
+                                <button class="btn btn-danger"
+                                     type="submit"
+                                     routerLink="/dashboard"
+                                     routerLinkActive="active"
+                                >
+                                    <span class="text">Stwórz warkę</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
         <!-- End of Main Content -->
 

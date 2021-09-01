@@ -19,6 +19,7 @@ import {ArticlesListComponent} from './components/articles-list/articles-list.co
 import {ArticleDetailsComponent} from './components/article-details/article-details.component';
 import {ArticleCreateComponent} from "./components/article-create/article-create.component";
 import {ArticleUpdateComponent} from './components/article-update/article-update.component';
+import { RecipeCreatorComponent } from './components/recipe-creator/recipe-creator.component';
 
 const routes: Routes = [
   { path: '', component: LandingPageComponent, canActivate: [AlreadyLoggedInGuard] },
@@ -38,6 +39,7 @@ const routes: Routes = [
   { path: 'dodaj-artykul', component: ArticleCreateComponent, canActivate: [AuthGuard]},
   { path: 'artykuly/:id', component: ArticleDetailsComponent, canActivate: [AuthGuard]},
   { path: 'edytuj-artykul/:id', component: ArticleUpdateComponent, canActivate: [AuthGuard]},
+  { path: 'dodaj-recepture', component: RecipeCreatorComponent, canActivate: [AuthGuard]},
 ];
 
 @NgModule({

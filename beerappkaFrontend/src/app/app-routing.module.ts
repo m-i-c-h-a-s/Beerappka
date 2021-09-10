@@ -17,13 +17,17 @@ import {BrewersListComponent} from './components/brewers-list/brewers-list.compo
 import {BrewerDetailsComponent} from './components/brewer-details/brewer-details.component';
 import {ArticlesListComponent} from './components/articles-list/articles-list.component';
 import {ArticleDetailsComponent} from './components/article-details/article-details.component';
-import {ArticleCreateComponent} from "./components/article-create/article-create.component";
+import {ArticleCreateComponent} from './components/article-create/article-create.component';
 import {ArticleUpdateComponent} from './components/article-update/article-update.component';
+import {PasswordResetComponent} from './components/password-reset/password-reset.component';
+import {PasswordResetFinishComponent} from "./components/password-reset-finish/password-reset-finish.component";
 
 const routes: Routes = [
   { path: '', component: LandingPageComponent, canActivate: [AlreadyLoggedInGuard] },
   { path: 'logowanie', component: LoginPageComponent, canActivate: [AlreadyLoggedInGuard] },
   { path: 'rejestracja', component: RegisterPageComponent, canActivate: [AlreadyLoggedInGuard] },
+  { path: 'resetuj-haslo', component: PasswordResetComponent, canActivate: [AlreadyLoggedInGuard] },
+  { path: 'resetuj-haslo-potwierdz/:uid/:token', component: PasswordResetFinishComponent, canActivate: [AlreadyLoggedInGuard] },
   { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard]},
   { path: 'profil', component: ProfileComponent, canActivate: [AuthGuard]},
   { path: 'edytuj-profil', component: UpdateProfileComponent, canActivate: [AuthGuard]},

@@ -80,7 +80,7 @@ TEMPLATES = [
                 "django.template.context_processors.debug",
                 "django.template.context_processors.request",
                 "django.contrib.auth.context_processors.auth",
-                "django.contrib.messages.context_processors.messages",
+                "django.contrib.messages.context_processors.messages"
             ],
         },
     },
@@ -152,9 +152,6 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 SITE_ID = 1
 
-# To jest tymczasowe
-EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
-
 
 REST_FRAMEWORK = {
     "DEFAULT_PERMISSION_CLASSES": ("rest_framework.permissions.IsAuthenticated",),
@@ -167,7 +164,16 @@ REST_FRAMEWORK = {
     "PAGE_SIZE": 10
 }
 
+REST_AUTH_SERIALIZERS = {
+    'PASSWORD_RESET_SERIALIZER': "profiles.api.serializers.CustomPasswordResetSerializer"
+}
+
 OLD_PASSWORD_FIELD_ENABLED = True
 
 if DEBUG:
     CORS_ALLOWED_ORIGINS = ["http://localhost:4200"]
+    FRONTEND_URL = "http://localhost:4200"
+    EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+
+
+FRONTEND_RESET_PASSWORD_CONFIRM_URL = "/resetuj-haslo-potwierdz/"

@@ -1,8 +1,9 @@
 from rest_framework import viewsets
 
 from recipes.api.permissions import IsRecipeOwnerOrReadOnlyPermission
-from recipes.api.serializers import RecipeSerializer, RecipeCreateUpdateSerializer, StyleSerializer, MaltSerializer, \
+from recipes.api.serializers import RecipeSerializer, RecipeCreateUpdateSerializer, MaltSerializer, \
     HopsSerializer, YeastSerializer, ManufacturerSerializer
+from recipes.api.serializers_common import StyleSerializer
 from recipes.models import Recipe, Style, Malt, Hops, Yeast, Manufacturer
 
 
@@ -53,4 +54,3 @@ class YeastViewSet(viewsets.ReadOnlyModelViewSet):
 class ManufacturersViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = Manufacturer.objects.all()
     serializer_class = ManufacturerSerializer
-

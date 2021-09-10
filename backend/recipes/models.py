@@ -36,6 +36,7 @@ class Style(models.Model):
     class Meta:
         verbose_name = "Styl Piwa"
         verbose_name_plural = "Style piwa"
+        ordering = ["-id"]
 
     def __str__(self):
         return f"{self.name}"
@@ -113,6 +114,7 @@ class Recipe(models.Model):
     class Meta:
         verbose_name = "Receptura"
         verbose_name_plural = "Receptury"
+        ordering = ["-id"]
 
     def __str__(self):
         return f"{self.name}"
@@ -138,9 +140,10 @@ class Mashing(models.Model):
     class Meta:
         verbose_name = "Zacieranie"
         verbose_name_plural = "Zacierania"
+        ordering = ["-id"]
 
     def __str__(self):
-        return f"{self.time} | {self.temperature} | {self.batch}"
+        return f"{self.time} | {self.temperature} | {self.recipe}"
 
 
 """ 
@@ -156,6 +159,7 @@ class Manufacturer(models.Model):
     class Meta:
         verbose_name = "Producent"
         verbose_name_plural = "Producenci"
+        ordering = ["-id"]
 
     def __str__(self):
         return f"{self.name}"
@@ -198,6 +202,7 @@ class Malt(models.Model):
     class Meta:
         verbose_name = "Słód"
         verbose_name_plural = "Słody"
+        ordering = ["-id"]
 
     def __str__(self):
         return f"{self.name}"
@@ -238,6 +243,7 @@ class Hops(models.Model):
     class Meta:
         verbose_name = "Chmiel"
         verbose_name_plural = "Chmiele"
+        ordering = ["-id"]
 
     def __str__(self):
         return f"{self.name}"
@@ -272,6 +278,7 @@ class Yeast(models.Model):
     class Meta:
         verbose_name = "Drożdże"
         verbose_name_plural = "Drożdże"
+        ordering = ["-id"]
 
     def __str__(self):
         return f"{self.name}"
@@ -298,6 +305,7 @@ class Water(models.Model):
     class Meta:
         verbose_name = "Woda"
         verbose_name_plural = "Wody"
+        ordering = ["-id"]
 
     def __str__(self):
         return f"{self.name}"
@@ -320,6 +328,7 @@ class RecipeMalt(models.Model):
     class Meta:
         verbose_name = "Słód"
         verbose_name_plural = "Słody"
+        ordering = ["-id"]
 
     def __str__(self):
         return f"{self.recipe} | {self.malt}"
@@ -367,6 +376,7 @@ class RecipeHops(models.Model):
     class Meta:
         verbose_name = "Chmiel"
         verbose_name_plural = "Chmiele"
+        ordering = ["-id"]
 
     def __str__(self):
         return f"{self.recipe} | {self.hops}"
@@ -406,6 +416,7 @@ class RecipeYeast(models.Model):
     class Meta:
         verbose_name = "Drożdże"
         verbose_name_plural = "Drożdże"
+        ordering = ["-id"]
 
     def __str__(self):
         return f"{self.recipe} | {self.yeast}"
@@ -428,6 +439,7 @@ class RecipeWater(models.Model):
     class Meta:
         verbose_name = "Woda"
         verbose_name_plural = "Woda"
+        ordering = ["-id"]
 
     def __str__(self):
         return f"{self.recipe} | {self.water}"

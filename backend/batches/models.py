@@ -30,6 +30,7 @@ class Batch(models.Model):
     class Meta:
         verbose_name = "Warka"
         verbose_name_plural = "Warki"
+        ordering = ["-id"]
 
     def __str__(self):
         return f"{self.name}"
@@ -59,6 +60,7 @@ class MeasurementBLG(models.Model):
     class Meta:
         verbose_name = "Pomiar BLG"
         verbose_name_plural = "Pomiary BLG"
+        ordering = ["-id"]
 
     def __str__(self):
         return f"{self.date} | {self.batch}"

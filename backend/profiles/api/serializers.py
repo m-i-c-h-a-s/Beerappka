@@ -7,7 +7,7 @@ from rest_framework.authtoken.admin import User
 from rest_auth.serializers import PasswordResetSerializer
 
 from profiles.models import Profile
-from recipes.api.serializers import StyleSerializer
+from recipes.api.serializers_common import StyleSerializer
 
 
 class CustomPasswordResetSerializer(PasswordResetSerializer):

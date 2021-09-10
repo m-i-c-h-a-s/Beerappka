@@ -1,13 +1,9 @@
 from django.db import transaction
 from rest_framework import serializers
 
-from recipes.models import Recipe, Style, Malt, Hops, Yeast, RecipeMalt, RecipeHops, RecipeYeast, Manufacturer
-
-
-class StyleSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Style
-        fields = "__all__"
+from profiles.api.serializers import UserSerializer
+from recipes.models import Recipe, Malt, Hops, Yeast, RecipeMalt, RecipeHops, RecipeYeast, Manufacturer
+from .serializers_common import StyleSerializer
 
 
 class ManufacturerSerializer(serializers.ModelSerializer):
@@ -67,7 +63,8 @@ class RecipeSerializer(serializers.ModelSerializer):
     malts = RecipeMaltSerializer(many=True)
     hops = RecipeHopsSerializer(many=True)
     yeast = RecipeYeastSerializer(many=True)
-    
+    user = UserSerializer()
+
     class Meta:
         model = Recipe
         fields = "__all__"

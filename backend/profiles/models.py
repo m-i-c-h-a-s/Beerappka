@@ -51,6 +51,7 @@ class Profile(models.Model):
     class Meta:
         verbose_name = "Profil Użytkownika"
         verbose_name_plural = "Profile Użytkownika"
+        ordering = ["-id"]
 
     def __str__(self):
         return f"{self.user.username} {self.user.email}"

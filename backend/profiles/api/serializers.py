@@ -1,8 +1,26 @@
+from abc import ABC
+from django.conf import settings
+
 from rest_framework import serializers
 from rest_framework.authtoken.admin import User
 
+from rest_auth.serializers import PasswordResetSerializer
+
 from profiles.models import Profile
 from recipes.api.serializers import StyleSerializer
+
+
+class CustomPasswordResetSerializer(PasswordResetSerializer):
+    def get_email_options(self):
+        email_options = super().get_email_options()
+        extra_email_context = {
+            'FRONTEND_URL': settings.FRONTEND_URL,
+            'FRONTEND_RESET_PASSWORD_CONFIRM_URL': settings.FRONTEND_RESET_PASSWORD_CONFIRM_URL
+        }
+        return {
+            **email_options,
+            'extra_email_context': extra_email_context
+        }
 
 
 class UpdateProfileSerializer(serializers.ModelSerializer):

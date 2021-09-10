@@ -33,6 +33,8 @@ import { ArticleCreateComponent } from './components/article-create/article-crea
 import { ArticleUpdateComponent } from './components/article-update/article-update.component';
 import { GravityCalculatorComponent } from './components/gravity-calculator/gravity-calculator.component';
 import { CarbonationCalculatorComponent } from './components/carbonation-calculator/carbonation-calculator.component';
+import { PasswordResetComponent } from './components/password-reset/password-reset.component';
+import { PasswordResetFinishComponent } from './components/password-reset-finish/password-reset-finish.component';
 
 registerLocaleData(localePl);
 
@@ -61,6 +63,8 @@ registerLocaleData(localePl);
     ArticleUpdateComponent,
     GravityCalculatorComponent,
     CarbonationCalculatorComponent,
+    PasswordResetComponent,
+    PasswordResetFinishComponent,
   ],
 
   imports: [

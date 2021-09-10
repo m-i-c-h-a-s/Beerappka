@@ -67,7 +67,7 @@ class RecipeSerializer(serializers.ModelSerializer):
     malts = RecipeMaltSerializer(many=True)
     hops = RecipeHopsSerializer(many=True)
     yeast = RecipeYeastSerializer(many=True)
-
+    
     class Meta:
         model = Recipe
         fields = "__all__"

@@ -3,6 +3,7 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { BaseService } from './base.service';
 import {ChangePassword} from '../components/profile/change-password/change-password';
+import {PasswordResetFinish} from "../components/password-reset-finish/password-reset-finish";
 
 @Injectable({
   providedIn: 'root'
@@ -20,6 +21,12 @@ export class UserService extends BaseService {
   }
   public register(user: any): Observable<ArrayBuffer> {
     return this.http.post(this.getAPIUrl('/auth/registration/'), JSON.stringify(user), this.httpOptions);
+  }
+  public passwordReset(email: string): Observable<ArrayBuffer> {
+    return this.http.post(this.getAPIUrl('/auth/password/reset/'), { email }, this.httpOptions);
+  }
+  public passwordResetFinish(data: PasswordResetFinish): Observable<ArrayBuffer> {
+    return this.http.post(this.getAPIUrl('/auth/password/reset/confirm/'), data, this.httpOptions);
   }
   public isLoggedIn(): boolean {
     const token = localStorage.getItem('auth_token');

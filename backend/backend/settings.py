@@ -172,8 +172,8 @@ OLD_PASSWORD_FIELD_ENABLED = True
 
 if DEBUG:
     CORS_ALLOWED_ORIGINS = ["http://localhost:4200"]
-    FRONTEND_URL = "http://localhost:4200"
     EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 
 
-FRONTEND_RESET_PASSWORD_CONFIRM_URL = "/resetuj-haslo-potwierdz/"
+FRONTEND_URL = config.get("FRONTEND_URL", "http://localhost:4200")
+FRONTEND_RESET_PASSWORD_CONFIRM_URL = config.get("FRONTEND_RESET_PASSWORD_CONFIRM_URL", "/resetuj-haslo-potwierdz/")

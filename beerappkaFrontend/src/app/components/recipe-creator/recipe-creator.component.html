@@ -24,7 +24,7 @@
                                         type="text"
                                         class="form-control bg-light border-0"
                                         placeholder="Nazwa"
-                                        [(ngModel)]="recipeName"
+                                        [(ngModel)]="recipe.name"
                                         [ngModelOptions]="{standalone: true}"
                                     />
                                 </div>
@@ -33,10 +33,10 @@
                                         class="form-control bg-light border-0"
                                         required="required"
                                         placeholder="Typ"
-                                        [(ngModel)]="recipeType"
+                                        [(ngModel)]="recipe.type"
                                         [ngModelOptions]="{standalone: true}"
                                     >
-                                        <option selected disabled hidden>Typ</option>
+                                        <option value="" selected disabled hidden>Typ</option>
                                         <option value="malt">Zacieranie</option>
                                         <option value="extract">Ekstrakty</option>
                                         <option value="brewkit">Brewkit</option>
@@ -47,15 +47,11 @@
                                         class="form-control bg-light border-0"
                                         placeholder="Styl"
                                         required="required"
-                                        [(ngModel)]="recipeStyle"
+                                        [(ngModel)]="recipe.style"
                                         [ngModelOptions]="{standalone: true}"
                                     >
-                                        <option selected disabled hidden>Styl</option>
-                                        <option value="indiaPaleAle">India Pale Ale</option>
-                                        <option value="balticPorter">Baltic Porter</option>
-                                        <option value="kriek">Kriek</option>
-                                        <option value="whiteIPA">White IPA</option>
-                                        <option value="pils">Pils</option>
+                                        <option value="" selected disabled hidden>Styl</option>
+                                        <option *ngFor="let beerStyle of beerStyles;" value="{{ beerStyle }}"> {{ beerStyle.name }} </option>
                                     </select>
                                 </div>
                             </div>
@@ -78,7 +74,7 @@
                                                 type="number"
                                                 min=0
                                                 class="form-control bg-light border-0 small"
-                                                [(ngModel)]="amountOfBeerInLiters"
+                                                [(ngModel)]="recipe.expected_beer_amount"
                                                 [ngModelOptions]="{standalone: true}"
                                                 (focusout)="calculateParameters();"
                                             >
@@ -94,7 +90,7 @@
                                                 type="number"
                                                 min=0
                                                 class="form-control bg-light border-0 small"
-                                                [(ngModel)]="boilingTimeInMinutes"
+                                                [(ngModel)]="recipe.boiling_time"
                                                 [ngModelOptions]="{standalone: true}"
                                                 (focusout)="calculateParameters();"
                                             >
@@ -110,7 +106,7 @@
                                                 type="number"
                                                 min=0
                                                 class="form-control bg-light border-0 small"
-                                                [(ngModel)]="evaporationSpeedPercentPerHour"
+                                                [(ngModel)]="recipe.evaporation_rate"
                                                 [ngModelOptions]="{standalone: true}"
                                                 (focusout)="calculateParameters();"
                                             >
@@ -128,7 +124,7 @@
                                                 type="number"
                                                 min=0
                                                 class="form-control bg-light border-0 small"
-                                                [(ngModel)]="boilingLossesPercent"
+                                                [(ngModel)]="recipe.boiling_losses"
                                                 [ngModelOptions]="{standalone: true}"
                                                 (focusout)="calculateParameters();"
                                             >
@@ -144,7 +140,7 @@
                                                 type="number"
                                                 min=0
                                                 class="form-control bg-light border-0 small"
-                                                [(ngModel)]="fermentationLossesPercent"
+                                                [(ngModel)]="recipe.fermentation_losses"
                                                 [ngModelOptions]="{standalone: true}"
                                                 (focusout)="calculateParameters();"
                                             >
@@ -160,7 +156,7 @@
                                                 type="number"
                                                 min=0
                                                 class="form-control bg-light border-0 small"
-                                                [(ngModel)]="dryHoppingLossesPercent"
+                                                [(ngModel)]="recipe.cold_hop_losses"
                                                 [ngModelOptions]="{standalone: true}"
                                                 (focusout)="calculateParameters();"
                                             >
@@ -175,7 +171,7 @@
                             <div class="card-body">
                                 <div class="col mb-1">
                                     <i style="font-weight: bold;">Ilość gotowanej brzeczki: </i>
-                                    <i> {{ (amountOfBoilingWortInLiters | number: '1.0-2')  + " L" }} </i>
+                                    <i> {{ (recipe.boiled_wort_amount | number: '1.0-2')  + " L" }} </i>
                                 </div>
                                 <div class="col mb-1">
                                     <i style="font-weight: bold;">Gęstość przed gotowaniem: </i>
@@ -220,7 +216,7 @@
                                         [(ngModel)]="maltType"
                                         [ngModelOptions]="{standalone: true}"
                                     >
-                                        <option selected disabled hidden>Wybierz</option>
+                                        <option value="" selected disabled hidden>Wybierz</option>
                                         <option value="Słód">Słód</option>
                                         <option value="Ekstrakt">Ekstrakt</option>
                                         <option value="Cukier">Cukier</option>
@@ -339,7 +335,7 @@
                                         [(ngModel)]="hopUsedFor"
                                         [ngModelOptions]="{standalone: true}"
                                     >
-                                        <option selected disabled hidden>Wybierz</option>
+                                        <option value="" selected disabled hidden>Wybierz</option>
                                         <option value="Goryczka">Goryczka</option>
                                         <option value="Aromat">Aromat</option>
                                         <option value="Smak">Smak</option>
@@ -458,7 +454,7 @@
                                         [(ngModel)]="yeastType"
                                         [ngModelOptions]="{standalone: true}"
                                     >
-                                        <option selected disabled hidden>Wybierz</option>
+                                        <option value="" selected disabled hidden>Wybierz</option>
                                         <option value="aleYeast">Ale</option>
                                         <option value="lagerYeast">Lager</option>
                                     </select>
@@ -472,7 +468,7 @@
                                         [(ngModel)]="yeastForm"
                                         [ngModelOptions]="{standalone: true}"
                                     >
-                                        <option selected disabled hidden>Wybierz</option>
+                                        <option value="" selected disabled hidden>Wybierz</option>
                                         <option value="dryYeast">Suche</option>
                                         <option value="liquidYeast">Płynne</option>
                                         <option value="slurryYeast">Gęstwa</option>
@@ -554,12 +550,26 @@
                             </div>
                             <div class="card-body row">
                                 <div class="col">
-                                    <textarea class="form-control bg-light border-0"></textarea>
+                                    <textarea
+                                        class="form-control bg-light border-0"
+                                        [(ngModel)]="recipe.notes"
+                                    ></textarea>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
+
+                <div class="col-lg-12 mb-4 text-center">
+                    <button
+                        class="btn btn-primary"
+                        type="submit"
+                        (click)="createRecipe();"
+                    >
+                        <span class="text">Zapisz recepturę</span>
+                    </button>
+                </div>
+
             </div>
         </div>
         <!-- End of Main Content -->
@@ -573,5 +583,3 @@
 
 </div>
 <!-- End of Page Wrapper -->
-
-

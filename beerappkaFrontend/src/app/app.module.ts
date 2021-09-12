@@ -33,6 +33,7 @@ import { ArticleCreateComponent } from './components/article-create/article-crea
 import { ArticleUpdateComponent } from './components/article-update/article-update.component';
 import { GravityCalculatorComponent } from './components/gravity-calculator/gravity-calculator.component';
 import { CarbonationCalculatorComponent } from './components/carbonation-calculator/carbonation-calculator.component';
+import { PublicRecipesListComponent } from './components/public-recipes-list/public-recipes-list.component';
 
 registerLocaleData(localePl);
 
@@ -61,6 +62,7 @@ registerLocaleData(localePl);
     ArticleUpdateComponent,
     GravityCalculatorComponent,
     CarbonationCalculatorComponent,
+    PublicRecipesListComponent,
   ],
 
   imports: [

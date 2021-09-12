@@ -20,6 +20,7 @@ import {ArticleDetailsComponent} from './components/article-details/article-deta
 import {ArticleCreateComponent} from "./components/article-create/article-create.component";
 import {ArticleUpdateComponent} from './components/article-update/article-update.component';
 import { RecipeCreatorComponent } from './components/recipe-creator/recipe-creator.component';
+import { PublicRecipesListComponent } from './components/public-recipes-list/public-recipes-list.component';
 
 const routes: Routes = [
   { path: '', component: LandingPageComponent, canActivate: [AlreadyLoggedInGuard] },
@@ -40,6 +41,7 @@ const routes: Routes = [
   { path: 'artykuly/:id', component: ArticleDetailsComponent, canActivate: [AuthGuard]},
   { path: 'edytuj-artykul/:id', component: ArticleUpdateComponent, canActivate: [AuthGuard]},
   { path: 'dodaj-recepture', component: RecipeCreatorComponent, canActivate: [AuthGuard]},
+  { path: 'receptury-publiczne', component: PublicRecipesListComponent, canActivate: [AuthGuard]},
 ];
 
 @NgModule({

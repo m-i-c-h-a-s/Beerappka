@@ -22,7 +22,7 @@ export class CarbonationCalculatorComponent implements OnInit {
     this.amountOfBeerInLiters = null;
     this.targetCarbonationLevel = null;
     this.beerTemperature = null;
-    this.sugarType = null;
+    this.sugarType = '';
     this.amountOfSugarToRefermentation = null;
 
     this.residualCarbonationLevel = null;
@@ -77,7 +77,7 @@ export class CarbonationCalculatorComponent implements OnInit {
     {
       name: 'Belgian Tripel',
       minCarbonation: 2.4,
-      maxCarbonation: 3,
+      maxCarbonation: 3.0,
     },
     {
       name: 'Dry Stout',

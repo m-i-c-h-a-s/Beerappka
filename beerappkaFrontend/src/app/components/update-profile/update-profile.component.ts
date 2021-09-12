@@ -33,7 +33,7 @@ export class UpdateProfileComponent implements OnInit {
       console.log(err);
     });
     this.beerStylesService.getAllBeerStyles().subscribe(data => {
-      this.beerStyles = data as any;
+      this.beerStyles = (data as any).results;
     }, err => {
       console.log(err);
     });

@@ -71,11 +71,12 @@
                                         <label class="form-label">Rodzaj cukru</label>
                                         <select
                                             class="form-control bg-light border-0 small"
+                                            placeholder="Wybierz"
                                             [(ngModel)]="sugarType"
                                             [ngModelOptions]="{standalone: true}"
                                             (focusout)="calculateAmoutOfSugarToRefermenation();"
                                         >
-                                            <option selected disabled hidden>Wybierz</option>
+                                            <option value="" selected disabled hidden>Wybierz</option>
                                             <option value="whiteSugar">Cukier biały</option>
                                             <option value="brownSugar">Cukier brązowy</option>
                                             <option value="glucose">Glukoza</option>
@@ -88,7 +89,7 @@
                                                 class="form-control border-0 small"
                                                 type="number"
                                                 disabled
-                                                value="{{ amountOfSugarToRefermentation | number: '1.1-1' }}"
+                                                value="{{ amountOfSugarToRefermentation | number: '1.0-0' }}"
                                             >
                                             <div class="input-group-append">
                                                 <span class="input-group-text border-0">g</span>
@@ -118,8 +119,8 @@
                                         <tbody *ngFor="let info of beerStylesCarbonationInfo;">
                                             <tr>
                                                 <td> {{ info.name }} </td>
-                                                <td> {{ info.minCarbonation }} </td>
-                                                <td> {{ info.maxCarbonation }} </td>
+                                                <td> {{ info.minCarbonation | number: '1.1' }} </td>
+                                                <td> {{ info.maxCarbonation | number: '1.1' }} </td>
                                             </tr>
                                         </tbody>
                                     </table>

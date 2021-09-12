@@ -1,0 +1,80 @@
+<!-- Page Wrapper -->
+<div id="wrapper">
+
+    <app-sidebar></app-sidebar>
+
+    <!-- Content Wrapper -->
+    <div id="content-wrapper" class="d-flex flex-column">
+
+        <!-- Main Content -->
+        <div id="content">
+
+            <app-topbar></app-topbar>
+
+            <!-- Begin Page Content -->
+            <div class="container-fluid">
+                <div class="row" *ngIf="recipes">
+                    <div class="col-lg-4 col-xs-12 mb-4" *ngFor="let recipe of recipes">
+                        <div class="mb-3">
+                            <div class="card border-left-success shadow h-100 py-2">
+                                <div class="card-body">
+                                    <a routerLink="/receptury-publiczne" class="text-decoration-none">
+                                        <div class="row no-gutters align-items-center">
+                                            <div class="col-lg-9 col-xs-12">
+                                                <div class="col mb-1">
+                                                    <div class="h4 mb-3 font-weight-bold text-gray-800">
+                                                        {{ recipe.name }}
+                                                    </div>
+                                                    <div class="h6 mb-1 font-weight-bold text-gray-800">
+                                                        Styl:
+                                                        <span class="text-info">{{ recipe.style.name }}</span>
+                                                    </div>
+                                                    <div class="h6 mb-1 font-weight-bold text-gray-800">
+                                                        Typ:
+                                                        <span class="text-info"></span>
+                                                    </div>
+                                                    <div class="h6 mb-1 font-weight-bold text-gray-800">
+                                                        Rozmiar:
+                                                        <span class="text-info"> L</span>
+                                                    </div>
+                                                    <div class="h6 mb-1 font-weight-bold text-gray-800">
+                                                        BLG:
+                                                        <span class="text-info"></span>
+                                                    </div>
+                                                    <div class="h6 mb-1 font-weight-bold text-gray-800">
+                                                        ABV:
+                                                        <span class="text-info"></span>
+                                                    </div>
+                                                    <div class="h6 mb-1 font-weight-bold text-gray-800">
+                                                        EBC:
+                                                        <span class="text-info"></span>
+                                                    </div>
+                                                    <div class="text-xs font-weight-bold text-black-50 text-uppercase mt-3">
+                                                        Data utworzenia: <span class="text-success">{{ recipe.creation_date | date: 'YYYY-MM-dd' }}</span>
+                                                    </div>
+                                                    <div class="text-xs font-weight-bold text-black-50 text-uppercase mb-1">
+                                                        Autor: <span class="text-success">{{ recipe.user.username }}</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <!-- /.container-fluid -->
+
+        </div>
+        <!-- End of Main Content -->
+
+        <app-footer></app-footer>
+
+    </div>
+    <!-- End of Content Wrapper -->
+
+</div>
+<!-- End of Page Wrapper -->

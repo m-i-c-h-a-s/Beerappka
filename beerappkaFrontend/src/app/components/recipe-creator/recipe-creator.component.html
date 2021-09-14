@@ -37,9 +37,9 @@
                                         [ngModelOptions]="{standalone: true}"
                                     >
                                         <option value="" selected disabled hidden>Typ</option>
-                                        <option value="malt">Zacieranie</option>
-                                        <option value="extract">Ekstrakty</option>
-                                        <option value="brewkit">Brewkit</option>
+                                        <option value="m">Zacieranie</option>
+                                        <option value="e">Ekstrakty</option>
+                                        <option value="b">Brewkit</option>
                                     </select>
                                 </div>
                                 <div class="col-md mb-3">
@@ -293,8 +293,8 @@
                                                 <td> {{ malt.name }} </td>
                                                 <td> {{ malt.type }} </td>
                                                 <td> {{ malt.amountInKilograms }} </td>
-                                                <td> {{ malt.colourEBC }} </td>
-                                                <td> {{ malt.extractivityPercent }} </td>
+                                                <td> {{ malt.color }} </td>
+                                                <td> {{ malt.extractivity }} </td>
                                                 <td>
                                                     <button class="btn btn-danger btn-circle btn-sm m-1" (click)="deleteMalt(malt);">
                                                     <i class="fas fa-trash"></i>

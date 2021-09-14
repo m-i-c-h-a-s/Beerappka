@@ -34,6 +34,9 @@ import { ArticleUpdateComponent } from './components/article-update/article-upda
 import { GravityCalculatorComponent } from './components/gravity-calculator/gravity-calculator.component';
 import { CarbonationCalculatorComponent } from './components/carbonation-calculator/carbonation-calculator.component';
 import { PublicRecipesListComponent } from './components/public-recipes-list/public-recipes-list.component';
+import { PasswordResetComponent } from './components/password-reset/password-reset.component';
+import { PasswordResetFinishComponent } from './components/password-reset-finish/password-reset-finish.component';
+import { RecipeDetailsComponent } from './components/recipe-details/recipe-details.component';
 
 registerLocaleData(localePl);
 
@@ -63,6 +66,9 @@ registerLocaleData(localePl);
     GravityCalculatorComponent,
     CarbonationCalculatorComponent,
     PublicRecipesListComponent,
+    PasswordResetComponent,
+    PasswordResetFinishComponent,
+    RecipeDetailsComponent,
   ],
 
   imports: [

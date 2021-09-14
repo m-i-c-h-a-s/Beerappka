@@ -3,6 +3,7 @@ import {Observable} from 'rxjs';
 import {HttpClient} from '@angular/common/http';
 import {BaseService} from './base.service';
 import { Recipe } from '../components/recipe-creator/recipe';
+import { RecipeForCreateUpdate } from '../components/recipe-creator/recipe-for-create-update';
 
 @Injectable({
   providedIn: 'root'
@@ -21,11 +22,11 @@ export class RecipesService extends BaseService {
     return this.http.get(this.getAPIUrl(`/recipes/${id}`), this.httpOptions);
   }
 
-  public createRecipe(newRecipe: Recipe): Observable<ArrayBuffer> {
+  public createRecipe(newRecipe: RecipeForCreateUpdate): Observable<ArrayBuffer> {
     return this.http.post(this.getAPIUrl(`/recipes/`), newRecipe, this.httpOptions);
   }
 
-  public updateRecipe(id: number, recipe: Recipe): Observable<ArrayBuffer> {
+  public updateRecipe(id: number, recipe: RecipeForCreateUpdate): Observable<ArrayBuffer> {
     return this.http.put(this.getAPIUrl(`/recipes/${id}/`), recipe, this.httpOptions);
   }
 

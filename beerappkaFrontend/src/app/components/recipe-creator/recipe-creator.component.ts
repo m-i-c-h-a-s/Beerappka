@@ -100,7 +100,11 @@ export class RecipeCreatorComponent implements OnInit {
 
 
   createRecipe() {
-
+    this.recipesService.createRecipe(this.recipe).subscribe(data => {
+      this.router.navigate(['/dashboard']);
+    }, err => {
+      console.log(err);
+    });
   }
 
 
@@ -109,8 +113,9 @@ export class RecipeCreatorComponent implements OnInit {
       name: this.maltName,
       type: this.maltType,
       amountInKilograms: this.maltAmountInKilograms,
-      colourEBC: this.maltColourEBC,
-      extractivityPercent: this.maltExtractivityPercent,
+      color: this.maltColourEBC,
+      extractivity: this.maltExtractivityPercent,
+      manufacturer: null
     };
 
     this.malts.push(malt);

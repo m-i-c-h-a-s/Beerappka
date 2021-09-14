@@ -26,7 +26,7 @@
                 </div>
 
                 <div class="row" *ngIf="articles">
-                    <div class="col-lg-6 col-xs-12 mb-4" *ngFor="let article of articles">
+                    <div class="col-lg-6 col-xs-12 mb-4" *ngFor="let article of articles | paginate: { itemsPerPage: 8, currentPage: page, totalItems: totalLength }">
                         <div class="mb-3">
                             <div class="card border-bottom-success shadow h-100 py-2">
                                 <div class="card-body">
@@ -50,6 +50,18 @@
                             </div>
                         </div>
                     </div>
+                </div>
+
+                <div class="row text-center mb-4"
+                     *ngIf="totalLength > 8"
+                >
+                    <pagination-controls
+                        class="text-center"
+                        (pageChange)="page = $event"
+                        previousLabel="Poprzednia"
+                        nextLabel="Następna"
+                        maxSize:1
+                    ></pagination-controls>
                 </div>
 
             </div>

@@ -10,11 +10,15 @@ import {Article} from './article';
 export class ArticlesListComponent implements OnInit {
   public articles: Array<Article> = [];
 
+  totalLength: any;
+  page: number = 1;
+
   constructor(private articlesService: ArticlesService) { }
 
   ngOnInit(): void {
     this.articlesService.getAllArticles().subscribe(data => {
       this.articles = (data as any).results;
+      this.totalLength = (data as any).results.length;
     }, err => {
       console.log(err);
     });

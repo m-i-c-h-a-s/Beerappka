@@ -15,7 +15,7 @@
             <div class="container-fluid">
 
                 <div class="row" *ngIf="allUsers">
-                    <div class="col-xs-12 col-lg-6 mb-4" *ngFor="let user of allUsers">
+                    <div class="col-xs-12 col-lg-6 mb-4" *ngFor="let user of allUsers | paginate: { itemsPerPage: 8, currentPage: page, totalItems: totalLength }">
                         <div class="mb-3">
                             <div class="card border-left-success shadow h-100 py-2">
                                 <div class="card-body">
@@ -56,6 +56,18 @@
                             </div>
                         </div>
                     </div>
+                </div>
+
+                <div class="row text-center mb-4"
+                     *ngIf="totalLength > 8"
+                >
+                    <pagination-controls
+                        class="text-center"
+                        (pageChange)="page = $event"
+                        previousLabel="Poprzednia"
+                        nextLabel="Następna"
+                        maxSize:1
+                    ></pagination-controls>
                 </div>
 
             </div>

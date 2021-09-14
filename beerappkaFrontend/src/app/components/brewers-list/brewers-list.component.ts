@@ -10,6 +10,10 @@ import {User} from '../profile/user';
 })
 export class BrewersListComponent implements OnInit {
   public allUsers: Array<User> = [];
+
+  totalLength: any;
+  page: number = 1;
+
   constructor(
     private userService: UserService,
     private router: Router
@@ -18,6 +22,7 @@ export class BrewersListComponent implements OnInit {
   ngOnInit(): void {
     this.userService.getAllUsers().subscribe(data => {
       this.allUsers = (data as any).results;
+      this.totalLength = (data as any).results.length;
     }, err => {
       console.log(err);
     });

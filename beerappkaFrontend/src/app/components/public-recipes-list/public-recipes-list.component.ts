@@ -10,11 +10,15 @@ import { Recipe } from '../recipe-creator/recipe';
 export class PublicRecipesListComponent implements OnInit {
   public recipes: Array<Recipe> = [];
 
+  totalLength: any;
+  page: number = 1;
+
   constructor(private recipesService: RecipesService) {}
 
   ngOnInit(): void {
     this.recipesService.getAllRecipes().subscribe(data => {
       this.recipes = (data as any).results;
+      this.totalLength = (data as any).results.length;
     }, err => {
       console.log(err);
     });

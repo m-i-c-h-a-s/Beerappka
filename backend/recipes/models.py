@@ -62,7 +62,7 @@ class Recipe(models.Model):
 
     type = models.CharField(max_length=1, choices=RECIPE_TYPES, verbose_name="Typ", null=True)
 
-    creation_date = models.DateTimeField(verbose_name="Data utworzenia")
+    creation_date = models.DateTimeField(verbose_name="Data utworzenia", auto_now_add=True)
 
     is_public = models.BooleanField(default=False, verbose_name="Czy publiczna?")
 

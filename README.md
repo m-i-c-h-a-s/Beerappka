@@ -58,3 +58,45 @@ __Uruchomienie serwera na porcie 4200__
 __Włączenie aplikacji w przeglądarce__
 
 ``http://localhost:4200``
+
+# Konteneryzacja aplikacji przy uzyciu Dockera
+
+__Uruchamianie aplikacji__
+
+Z glownego folderu projektu:
+
+
+``docker-compose up -d`` // uruchamia obrazy
+
+lub
+
+``docker-compose up -d --build`` // przebudowywuje obrazy
+
+
+__Zatrzymywanie aplikacji__
+
+``docker-compose down`` // zattrzymuje aplikacje
+
+__Wyswietlanie logow__
+
+``docker-compose logs`` // wszystkie logi
+
+``docker-compose logs NAZWA_USLUGI`` // wyswietla logi poszczegolnej uslugi aplikacji
+
+
+__Srodowisko DEV__
+
+W pliku .env ustawic odpowiednie zmienne
+
+```
+DB_NAME=beerappka
+DB_USER=beerappka_user
+DB_PASSWORD=zaq1@WSX
+DB_HOST=beerappka_db
+DB_PORT=5432
+```
+
+__TODO__
+- konteneryzacja frontendu
+- dodanie nginx
+- rozdzielic konfiguracje dockera dla srodowiska dev i testing

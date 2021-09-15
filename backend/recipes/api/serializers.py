@@ -78,6 +78,7 @@ class RecipeCreateUpdateSerializer(serializers.ModelSerializer):
     class Meta:
         model = Recipe
         exclude = ("user",)
+        read_only_fields = ("creation_date",)
 
     @transaction.atomic
     def create(self, validated_data):

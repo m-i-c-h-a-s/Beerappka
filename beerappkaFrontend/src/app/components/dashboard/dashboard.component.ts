@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { RecipeCreatorComponent } from '../recipe-creator/recipe-creator.component';
+import {UserService} from '../../services/user.service';
+import {Router} from '@angular/router';
+import {User} from '../profile/user';
 
 @Component({
   selector: 'app-dashboard',
@@ -8,9 +11,17 @@ import { RecipeCreatorComponent } from '../recipe-creator/recipe-creator.compone
 })
 
 export class DashboardComponent implements OnInit {
+  public currentUser: User | undefined;
 
-  constructor() {}
+  date = new Date();
 
-  ngOnInit(): void {}
+  constructor(private userService: UserService, private router: Router) {}
 
+  ngOnInit(): void {
+    this.userService.getCurrentUserData().subscribe(data => {
+      this.currentUser = data as any;
+    }, err => {
+      console.log(err);
+    });
+  }
 }

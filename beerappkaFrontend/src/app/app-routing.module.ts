@@ -19,6 +19,9 @@ import {ArticlesListComponent} from './components/articles-list/articles-list.co
 import {ArticleDetailsComponent} from './components/article-details/article-details.component';
 import {ArticleCreateComponent} from './components/article-create/article-create.component';
 import {ArticleUpdateComponent} from './components/article-update/article-update.component';
+import { RecipeCreatorComponent } from './components/recipe-creator/recipe-creator.component';
+import { PublicRecipesListComponent } from './components/public-recipes-list/public-recipes-list.component';
+import { RecipeDetailsComponent } from './components/recipe-details/recipe-details.component';
 import {PasswordResetComponent} from './components/password-reset/password-reset.component';
 import {PasswordResetFinishComponent} from "./components/password-reset-finish/password-reset-finish.component";
 
@@ -42,6 +45,9 @@ const routes: Routes = [
   { path: 'dodaj-artykul', component: ArticleCreateComponent, canActivate: [AuthGuard]},
   { path: 'artykuly/:id', component: ArticleDetailsComponent, canActivate: [AuthGuard]},
   { path: 'edytuj-artykul/:id', component: ArticleUpdateComponent, canActivate: [AuthGuard]},
+  { path: 'dodaj-recepture', component: RecipeCreatorComponent, canActivate: [AuthGuard]},
+  { path: 'receptury-publiczne', component: PublicRecipesListComponent, canActivate: [AuthGuard]},
+  { path: 'receptury/:id', component: RecipeDetailsComponent, canActivate: [AuthGuard]},
 ];
 
 @NgModule({

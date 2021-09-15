@@ -12,7 +12,7 @@ export class ProfileComponent implements OnInit {
   public currentUser: User | undefined;
 
   constructor(private userService: UserService, private router: Router) { }
-
+  
   ngOnInit(): void {
     this.userService.getCurrentUserData().subscribe(data => {
       this.currentUser = data as any;

@@ -5,6 +5,8 @@ import { LOCALE_ID } from '@angular/core';
 import { registerLocaleData } from '@angular/common';
 import localePl from '@angular/common/locales/pl';
 
+import {NgxPaginationModule} from 'ngx-pagination';
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LandingPageComponent } from './components/landing-page/landing-page.component';
@@ -33,8 +35,10 @@ import { ArticleCreateComponent } from './components/article-create/article-crea
 import { ArticleUpdateComponent } from './components/article-update/article-update.component';
 import { GravityCalculatorComponent } from './components/gravity-calculator/gravity-calculator.component';
 import { CarbonationCalculatorComponent } from './components/carbonation-calculator/carbonation-calculator.component';
+import { PublicRecipesListComponent } from './components/public-recipes-list/public-recipes-list.component';
 import { PasswordResetComponent } from './components/password-reset/password-reset.component';
 import { PasswordResetFinishComponent } from './components/password-reset-finish/password-reset-finish.component';
+import { RecipeDetailsComponent } from './components/recipe-details/recipe-details.component';
 
 registerLocaleData(localePl);
 
@@ -63,15 +67,18 @@ registerLocaleData(localePl);
     ArticleUpdateComponent,
     GravityCalculatorComponent,
     CarbonationCalculatorComponent,
+    PublicRecipesListComponent,
     PasswordResetComponent,
     PasswordResetFinishComponent,
+    RecipeDetailsComponent,
   ],
 
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    NgxPaginationModule
   ],
 
   providers: [

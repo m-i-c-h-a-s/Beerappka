@@ -1,11 +1,8 @@
-import { User } from "../profile/user";
 import { BeerStyle } from "./beerStyle";
 
-export interface Recipe {
-    id: number;
+export interface RecipeForCreateUpdate {
     name: string;
     type: string;
-    creation_date: string;
     is_public: boolean;
     boiling_time: number;
     expected_beer_amount: number;
@@ -20,6 +17,5 @@ export interface Recipe {
     blg: number;
     abv: number;
     ebc: number;
-    user: User;
     style: BeerStyle;
 }

@@ -50,8 +50,8 @@
                                         [(ngModel)]="recipe.style"
                                         [ngModelOptions]="{standalone: true}"
                                     >
-                                        <option value="" selected disabled hidden>Styl</option>
-                                        <option *ngFor="let beerStyle of beerStyles;" value="{{ beerStyle }}"> {{ beerStyle.name }} </option>
+                                        <option value=0 selected disabled hidden>Styl</option>
+                                        <option *ngFor="let beerStyle of beerStyles;" value="{{ beerStyle.id }}"> {{ beerStyle.name }} </option>
                                     </select>
                                 </div>
                             </div>
@@ -199,13 +199,24 @@
                             <div class="card-body row">
                                 <div class="col-md mb-3">
                                     <label>Nazwa</label>
-                                    <input
+                                    <!-- <input
                                         type="text"
                                         class="form-control bg-light border-0 small"
                                         placeholder="Wyszukaj..."
                                         [(ngModel)]="maltName"
                                         [ngModelOptions]="{standalone: true}"
+                                    > -->
+                                    <select
+                                        class="form-control bg-light border-0 small"
+                                        placeholder="Wyszukaj..."
+                                        required="required"
+                                        [(ngModel)]="malt"
+                                        value="malt.name"
+                                        [ngModelOptions]="{standalone: true}"
                                     >
+                                        <option value="" selected disabled hidden>Styl</option>
+                                        <option *ngFor="let malt of malts;" value="{{ malt }}"> {{ malt.name }} </option>
+                                    </select>
                                 </div>
                                 <div class="col-md mb-3">
                                     <label>Rodzaj</label>
@@ -213,7 +224,7 @@
                                         class="form-control bg-light border-0 small"
                                         placeholder="Wybierz"
                                         required="required"
-                                        [(ngModel)]="maltType"
+                                        [(ngModel)]="malt.type"
                                         [ngModelOptions]="{standalone: true}"
                                     >
                                         <option value="" selected disabled hidden>Wybierz</option>
@@ -243,7 +254,7 @@
                                         <input
                                             type="text"
                                             class="form-control bg-light border-0 small"
-                                            [(ngModel)]="maltColourEBC"
+                                            [(ngModel)]="malt.color"
                                             [ngModelOptions]="{standalone: true}"
                                         >
                                         <div class="input-group-append">
@@ -257,7 +268,7 @@
                                         <input
                                             type="text"
                                             class="form-control bg-light border-0 small"
-                                            [(ngModel)]="maltExtractivityPercent"
+                                            [(ngModel)]="malt.extractivity"
                                             [ngModelOptions]="{standalone: true}"
                                         >
                                         <div class="input-group-append">
@@ -266,15 +277,15 @@
                                     </div>
                                 </div>
                                 <div class="col-xl-12 mb-1 text-center">
-                                    <button class="btn btn-success btn-circle btn-sm m-1" (click)="addMalt();">
+                                    <button class="btn btn-success btn-circle btn-sm m-1" >
                                         <i class="fas fa-plus"></i>
                                     </button>
-                                    <button class="btn btn-danger btn-circle btn-sm m-1" (click)="deleteMalts();" title="Usuń wszystkie">
+                                    <button class="btn btn-danger btn-circle btn-sm m-1"  title="Usuń wszystkie">
                                         <i class="fas fa-trash"></i>
                                     </button>
                                 </div>
                             </div>
-                            <div class="card-body" *ngIf="malts.length > 0">
+                            <div class="card-body" *ngIf="">
                                 <div class="table-responsive">
                                     <table class="table table-bordered" width="100%" cellspacing="0">
                                         <thead>
@@ -288,15 +299,15 @@
                                             </tr>
                                         </thead>
 
-                                        <tbody *ngFor="let malt of malts;">
+                                        <tbody *ngFor="let malt of recipeMalts;">
                                             <tr>
-                                                <td> {{ malt.name }} </td>
-                                                <td> {{ malt.type }} </td>
-                                                <td> {{ malt.amountInKilograms }} </td>
-                                                <td> {{ malt.color }} </td>
-                                                <td> {{ malt.extractivity }} </td>
+                                                <td>  </td>
+                                                <td>  </td>
+                                                <td>  </td>
+                                                <td>  </td>
+                                                <td>  </td>
                                                 <td>
-                                                    <button class="btn btn-danger btn-circle btn-sm m-1" (click)="deleteMalt(malt);">
+                                                    <button class="btn btn-danger btn-circle btn-sm m-1" >
                                                     <i class="fas fa-trash"></i>
                                                     </button>
                                                 </td>
@@ -385,15 +396,15 @@
                                     </div>
                                 </div>
                                 <div class="col-xl-12 mb-1 text-center">
-                                    <button class="btn btn-success btn-circle btn-sm m-1" (click)="addHop();">
+                                    <button class="btn btn-success btn-circle btn-sm m-1" >
                                         <i class="fas fa-plus"></i>
                                     </button>
-                                    <button class="btn btn-danger btn-circle btn-sm m-1" (click)="deleteHops();" title="Usuń wszystkie">
+                                    <button class="btn btn-danger btn-circle btn-sm m-1"  title="Usuń wszystkie">
                                         <i class="fas fa-trash"></i>
                                     </button>
                                 </div>
                             </div>
-                            <div class="card-body" *ngIf="hops.length > 0">
+                            <div class="card-body" *ngIf="">
                                 <div class="table-responsive">
                                     <table class="table table-bordered" width="100%" cellspacing="0">
                                         <thead>
@@ -407,15 +418,15 @@
                                             </tr>
                                         </thead>
 
-                                        <tbody *ngFor="let hop of hops;">
+                                        <tbody *ngFor="let hop of recipeHops;">
                                             <tr>
-                                                <td> {{ hop.name }} </td>
-                                                <td> {{ hop.usedFor }} </td>
-                                                <td> {{ hop.amountInGrams }} </td>
-                                                <td> {{ hop.boilingTimeInMinutes }} </td>
-                                                <td> {{ hop.alphaAcidsPercent }} </td>
+                                                <td>  </td>
+                                                <td>  </td>
+                                                <td>  </td>
+                                                <td>  </td>
+                                                <td>  </td>
                                                 <td>
-                                                    <button class="btn btn-danger btn-circle btn-sm m-1" (click)="deleteHop(hop);">
+                                                    <button class="btn btn-danger btn-circle btn-sm m-1" >
                                                     <i class="fas fa-trash"></i>
                                                     </button>
                                                 </td>
@@ -499,15 +510,15 @@
                                     >
                                 </div>
                                 <div class="col-xl-12 mb-1 text-center">
-                                    <button class="btn btn-success btn-circle btn-sm m-1" (click)="addYeast();">
+                                    <button class="btn btn-success btn-circle btn-sm m-1" >
                                         <i class="fas fa-plus"></i>
                                     </button>
-                                    <button class="btn btn-danger btn-circle btn-sm m-1" (click)="deleteYeasts();" title="Usuń wszystkie">
+                                    <button class="btn btn-danger btn-circle btn-sm m-1" title="Usuń wszystkie">
                                         <i class="fas fa-trash"></i>
                                     </button>
                                 </div>
                             </div>
-                            <div class="card-body" *ngIf="yeasts.length > 0">
+                            <div class="card-body" *ngIf="">
                                 <div class="table-responsive">
                                     <table class="table table-bordered" width="100%" cellspacing="0">
                                         <thead>
@@ -521,15 +532,15 @@
                                             </tr>
                                         </thead>
 
-                                        <tbody *ngFor="let yeast of yeasts;">
+                                        <tbody *ngFor="let yeast of recipeYeasts;">
                                             <tr>
-                                                <td> {{ yeast.name }} </td>
-                                                <td> {{ yeast.type }} </td>
-                                                <td> {{ yeast.form }} </td>
-                                                <td> {{ yeast.amountInGrams }} </td>
-                                                <td> {{ yeast.laboratory }} </td>
+                                                <td>  </td>
+                                                <td>  </td>
+                                                <td>  </td>
+                                                <td>  </td>
+                                                <td>  </td>
                                                 <td>
-                                                    <button class="btn btn-danger btn-circle btn-sm m-1" (click)="deleteYeast(yeast);">
+                                                    <button class="btn btn-danger btn-circle btn-sm m-1" >
                                                     <i class="fas fa-trash"></i>
                                                     </button>
                                                 </td>

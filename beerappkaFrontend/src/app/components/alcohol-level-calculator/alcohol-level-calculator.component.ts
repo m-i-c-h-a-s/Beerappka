@@ -1,4 +1,3 @@
-  import { NumberFormatStyle } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -6,8 +5,9 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './alcohol-level-calculator.component.html',
   styleUrls: ['./alcohol-level-calculator.component.sass']
 })
-export class AlcoholLevelCalculatorComponent implements OnInit {
 
+export class AlcoholLevelCalculatorComponent implements OnInit {
+  public gravityUnit: string;
   public originalGravity: number | null;
   public finalGravity: number | undefined;
   public alcoholByVolume: number | string | undefined;
@@ -16,16 +16,48 @@ export class AlcoholLevelCalculatorComponent implements OnInit {
   public attenuationValue: number | undefined;
 
   constructor() {
+    this.gravityUnit = 'sg';
+
     this.alcoholByVolume = '---';
     this.apparentAttenuation = '---';
 
     this.originalGravity = null;
   }
 
-  ngOnInit(): void {
+  ngOnInit(): void {}
+
+
+  selectChangeHandler (event: any) {
+    this.clearValues();
   }
 
-  calculateABV() {
+  calculateParameters() {
+    switch (this.gravityUnit) {
+      case 'sg':
+        this.calculateABVforSG();
+        this.calculateAttenuationForSG();
+        break;
+
+      case 'blg':
+        this.calculateABVforBLG();
+        this.calculateAttenuationForBLG();
+        break;
+
+      default:
+        break;
+    }
+  }
+
+  calculateABVforSG() {
+    if ( this.originalGravity != undefined && this.finalGravity != undefined
+      && this.originalGravity != null && this.finalGravity != null
+      && this.originalGravity != 0 && this.finalGravity != 0 ) {
+        this.abvValue = (this.originalGravity - this.finalGravity) * 131.25;
+        this.alcoholByVolume = this.abvValue.toFixed(2) + " %";
+    } else this.alcoholByVolume = '---';
+  }
+
+  calculateABVforBLG() {
     if ( this.originalGravity != undefined && this.finalGravity != undefined
       && this.originalGravity != null && this.finalGravity != null
       && this.originalGravity != 0 && this.finalGravity != 0 ) {
@@ -35,11 +67,20 @@ export class AlcoholLevelCalculatorComponent implements OnInit {
 
   }
 
-  calculateAttenuation() {
+  calculateAttenuationForBLG() {
     if ( this.originalGravity != undefined && this.finalGravity != undefined
       && this.originalGravity != null && this.finalGravity != null
       && this.originalGravity != 0 && this.finalGravity != 0 ) {
         this.attenuationValue = ((this.originalGravity - this.finalGravity) / this.originalGravity) * 100;
+        this.apparentAttenuation = this.attenuationValue.toFixed(2) + " %";
+    } else this.apparentAttenuation = '---';
+  }
+
+  calculateAttenuationForSG() {
+    if ( this.originalGravity != undefined && this.finalGravity != undefined
+      && this.originalGravity != null && this.finalGravity != null
+      && this.originalGravity != 0 && this.finalGravity != 0 ) {
+        this.attenuationValue = (((this.originalGravity - 1) - (this.finalGravity - 1)) / (this.originalGravity - 1)) * 100;
         this.apparentAttenuation = this.attenuationValue.toFixed(2) + " %";
     } else this.apparentAttenuation = '---';
   }
@@ -50,5 +91,14 @@ export class AlcoholLevelCalculatorComponent implements OnInit {
 
   convertBlgToSg(gravityInBlg: number) {
     return (-260 / (gravityInBlg - 260));
+  }
+
+  clearValues() {
+    this.abvValue = undefined;
+    this.attenuationValue = undefined;
+    this.alcoholByVolume = '---';
+    this.apparentAttenuation = '---';
+    this.originalGravity = null;
+    this.finalGravity = undefined;
   }
 }

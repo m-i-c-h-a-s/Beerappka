@@ -1,7 +1,8 @@
+import { Manufacturer } from "./manufacturer";
+
 export interface Yeast {
+    id: number;
     name: string;
     type: string;
-    form: string;
-    amountInGrams: number | undefined;
-    laboratory: string;
+    manufacturer: Manufacturer;
 }

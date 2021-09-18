@@ -24,9 +24,15 @@
                                 <form class="d-flex flex-column">
                                     <div class="mb-3">
                                       <label for="" class="form-label">Jednostka gęstości</label>
-                                      <select class="form-control bg-light border-0 small" required="required">
-                                        <option value selected="selected">BLG</option>
-                                        <option value="malt">OG</option>
+                                      <select
+                                          class="form-control bg-light border-0 small"
+                                          required="required"
+                                          [(ngModel)]="gravityUnit"
+                                          [ngModelOptions]="{standalone: true}"
+                                          (change)="selectChangeHandler($event)"
+                                      >
+                                        <option value="sg" selected="selected">SG</option>
+                                        <option value="blg">BLG</option>
                                       </select>
 
                                     </div>
@@ -38,7 +44,7 @@
                                           class="form-control bg-light border-0 small"
                                           [(ngModel)]="originalGravity"
                                           [ngModelOptions]="{standalone: true}"
-                                          (focusout)="calculateABV(); calculateAttenuation();"
+                                          (focusout)="calculateParameters();"
                                       >
                                     </div>
                                     <div class="mb-3">
@@ -49,7 +55,7 @@
                                           class="form-control bg-light border-0 small"
                                           [(ngModel)]="finalGravity"
                                           [ngModelOptions]="{standalone: true}"
-                                          (focusout)="calculateABV(); calculateAttenuation();"
+                                          (focusout)="calculateParameters();"
                                       >
                                     </div>
                                     <div>

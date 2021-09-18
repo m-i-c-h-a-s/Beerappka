@@ -1,5 +1,8 @@
 import { User } from "../profile/user";
 import { BeerStyle } from "./beerStyle";
+import { RecipeHop } from "./recipeHop";
+import { RecipeMalt } from "./recipeMalt";
+import { RecipeYeast } from "./recipeYeast";
 
 export interface Recipe {
     id: number;
@@ -22,4 +25,7 @@ export interface Recipe {
     ebc: number;
     user: User;
     style: BeerStyle;
+    malts: Array<RecipeMalt>;
+    hops: Array<RecipeHop>;
+    yeast: Array<RecipeYeast>;
 }

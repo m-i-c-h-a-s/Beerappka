@@ -1,7 +1,8 @@
 export interface Hop {
+    id: number;
     name: string;
-    usedFor: string;
-    amountInGrams: number | undefined;
-    boilingTimeInMinutes: number | undefined;
-    alphaAcidsPercent: number | undefined;
+    type: string;
+    origin: string;
+    alpha_acids: number;
+    manufacturer: number;
 }

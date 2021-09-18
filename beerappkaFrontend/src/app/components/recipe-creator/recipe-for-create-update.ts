@@ -1,4 +1,7 @@
 import { BeerStyle } from "./beerStyle";
+import { RecipeHop } from "./recipeHop";
+import { RecipeMalt } from "./recipeMalt";
+import { RecipeYeast } from "./recipeYeast";
 
 export interface RecipeForCreateUpdate {
     name: string;
@@ -17,5 +20,8 @@ export interface RecipeForCreateUpdate {
     blg: number;
     abv: number;
     ebc: number;
-    style: BeerStyle;
+    style: number | undefined;
+    malts: Array<RecipeMalt>;
+    hops: Array<RecipeHop>;
+    yeast: Array<RecipeYeast>;
 }

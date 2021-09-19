@@ -1,0 +1,4 @@
+node_modules
+.editor_config
+.gitignore
+Dockerfile

@@ -1,0 +1,39 @@
+version: '3.8'
+
+services:
+  beerappka_backend:
+    build:
+      context: ./backend
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - ./backend/:/home/backend/
+    ports:
+      - 8000:8000
+    env_file:
+      - ./backend/.env
+    depends_on:
+      - beerappka_db
+  beerappka_db:
+    image: postgres:13-alpine
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    environment:
+      - POSTGRES_USER=beerappka_user
+      - POSTGRES_PASSWORD=zaq1@WSX
+      - POSTGRES_DB=beerappka
+  beerappka_frontend:
+    build:
+      context: ./beerappkaFrontend
+    command: ng serve --host 0.0.0.0 --port 4200 --poll
+    volumes:
+      - ./beerappkaFrontend/:/home/frontend/
+    ports:
+      - 4200:4200
+      - 49153:49153
+    depends_on:
+      - beerappka_backend
+    environment: 
+      - CHOKIDAR_USEPOLLING=true
+
+volumes:
+  postgres_data:

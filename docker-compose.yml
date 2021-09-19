@@ -21,7 +21,19 @@ services:
       - POSTGRES_USER=beerappka_user
       - POSTGRES_PASSWORD=zaq1@WSX
       - POSTGRES_DB=beerappka
-
+  beerappka_frontend:
+    build:
+      context: ./beerappkaFrontend
+    command: ng serve --host 0.0.0.0 --port 4200 --poll
+    volumes:
+      - ./beerappkaFrontend/:/home/frontend/
+    ports:
+      - 4200:4200
+      - 49153:49153
+    depends_on:
+      - beerappka_backend
+    environment: 
+      - CHOKIDAR_USEPOLLING=true
 
 volumes:
   postgres_data:

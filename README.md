@@ -83,6 +83,9 @@ __Wyswietlanie logow__
 
 ``docker-compose logs NAZWA_USLUGI`` // wyswietla logi poszczegolnej uslugi aplikacji
 
+__Wykonywanie komend w kontenerze__
+
+``docker-compose exec NAZWA_USLUGI KOMENDA``
 
 __Srodowisko DEV__
 
@@ -97,6 +100,6 @@ DB_PORT=5432
 ```
 
 __TODO__
-- konteneryzacja frontendu
+- przyspieszyc livereload frontendu
 - dodanie nginx
 - rozdzielic konfiguracje dockera dla srodowiska dev i testing

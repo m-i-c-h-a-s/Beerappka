@@ -61,6 +61,15 @@ __Włączenie aplikacji w przeglądarce__
 
 # Konteneryzacja aplikacji przy uzyciu Dockera
 
+__INFO__
+
+Na Windowsie najlepiej korzystać Windows Subsystem for Linux (WSL).
+(Na czystym Windowsie bardzo wolno działa wykrywanie zmian - livereload)
+
+1. Uruchomić dystrybucję Ubuntu na WSL
+2. Pobrać projekt z repozytorium git (jeśli go nie mamy)
+3. W folderze projektu odpalić ``code .``
+
 __Uruchamianie aplikacji__
 
 Z glownego folderu projektu:
@@ -100,6 +109,5 @@ DB_PORT=5432
 ```
 
 __TODO__
-- przyspieszyc livereload frontendu
 - dodanie nginx
 - rozdzielic konfiguracje dockera dla srodowiska dev i testing

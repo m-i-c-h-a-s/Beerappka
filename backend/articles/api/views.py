@@ -1,5 +1,6 @@
 from rest_framework import viewsets
 
+from articles.api.filters import ArticleFilter
 from articles.api.permissions import IsArticleAuthorOrReadOnly
 from articles.api.serializers import ArticleSerializer, ArticleCreateUpdateSerializer
 from articles.models import Article
@@ -11,6 +12,7 @@ class ArticlesViewSet(viewsets.ModelViewSet):
     permission_classes = [
         IsArticleAuthorOrReadOnly,
     ]
+    filterset_class = ArticleFilter
 
     serializers = {
         'default': ArticleSerializer,

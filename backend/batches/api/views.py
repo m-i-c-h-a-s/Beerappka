@@ -1,5 +1,6 @@
 from rest_framework.viewsets import ModelViewSet
 
+from batches.api.filters import BatchFilter
 from batches.api.serializers import BatchSerializer, BatchCreateSerializer, BatchUpdateSerializer, \
     MeasurementBLGSerializer
 from batches.models import Batch, MeasurementBLG
@@ -15,6 +16,7 @@ class BatchesViewSet(ModelViewSet):
         'update': BatchUpdateSerializer,
         'partial_update': BatchUpdateSerializer
     }
+    filterset_class = BatchFilter
 
     def get_serializer_class(self):
         return self.serializers.get(

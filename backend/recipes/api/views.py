@@ -1,5 +1,6 @@
 from rest_framework import viewsets
 
+from recipes.api.filters import RecipeFilter
 from recipes.api.permissions import IsRecipeOwnerOrReadOnlyPermission
 from recipes.api.serializers import RecipeSerializer, RecipeCreateUpdateSerializer, MaltSerializer, \
     HopsSerializer, YeastSerializer, ManufacturerSerializer
@@ -19,6 +20,7 @@ class RecipesViewSet(viewsets.ModelViewSet):
     permission_classes = [
         IsRecipeOwnerOrReadOnlyPermission,
     ]
+    filterset_class = RecipeFilter
 
     def get_serializer_class(self):
         return self.serializers.get(

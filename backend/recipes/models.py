@@ -146,7 +146,7 @@ class Mashing(models.Model):
         return f"{self.time} | {self.temperature} | {self.recipe}"
 
 
-""" 
+"""
     Model reprezentujący Producenta
 """
 
@@ -372,6 +372,8 @@ class RecipeHops(models.Model):
         null=True,
         blank=True,
     )
+
+    boiling_time = models.FloatField(verbose_name="Czas gotowania")
 
     class Meta:
         verbose_name = "Chmiel"

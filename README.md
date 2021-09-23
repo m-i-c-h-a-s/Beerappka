@@ -111,3 +111,4 @@ DB_PORT=5432
 __TODO__
 - dodanie nginx
 - rozdzielic konfiguracje dockera dla srodowiska dev i testing
+- wrzucić apkę dla testów na Heroku

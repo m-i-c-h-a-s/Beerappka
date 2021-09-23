@@ -6,7 +6,6 @@ name = "pypi"
 [packages]
 django = "3.2.2"
 python-dotenv = "*"
-psycopg2 = "*"
 djangorestframework = "*"
 drf-yasg = "*"
 django-rest-auth = {extras = ["with_social"], version = "*"}
@@ -14,6 +13,8 @@ django-cors-headers = "*"
 pillow = "*"
 black = "*"
 sorl-thumbnail = "*"
+psycopg2-binary = "*"
+django-filter = "*"
 
 [dev-packages]
 

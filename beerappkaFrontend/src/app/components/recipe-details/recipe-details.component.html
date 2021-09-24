@@ -79,10 +79,10 @@
                             <div class="card-header py-3">
                                 <h6 class="m-0 font-weight-bold text-primary">Surowce fermentujące</h6>
                             </div>
-                            <div class="card-body" *ngIf="recipe != undefined && recipe.malts != null">
-                                <div class="table-responsive">
+                            <div class="card-body">
+                                <div class="table-responsive" *ngIf="recipe != undefined && recipe.malts.length > 0; else noMaltsAdded">
                                     <table class="table table-bordered text-center" width="100%" cellspacing="0">
-                                        <thead>
+                                        <thead class="table-warning">
                                             <tr>
                                                 <th>Nazwa</th>
                                                 <th>Rodzaj</th>
@@ -102,6 +102,11 @@
                                         </tbody>
                                     </table>
                                 </div>
+                                <ng-template #noMaltsAdded>
+                                    <div class="text-center text-black-50">
+                                        Nie dodano żadnych słodów.
+                                    </div>
+                                </ng-template>
                             </div>
                         </div>
                     </div>
@@ -112,10 +117,10 @@
                             <div class="card-header py-3">
                                 <h6 class="m-0 font-weight-bold text-primary">Chmiele</h6>
                             </div>
-                            <div class="card-body" *ngIf="recipe != undefined && recipe.hops != null">
-                                <div class="table-responsive">
+                            <div class="card-body">
+                                <div class="table-responsive" *ngIf="recipe != undefined && recipe.hops.length > 0; else noHopsAdded">
                                     <table class="table table-bordered text-center" width="100%" cellspacing="0">
-                                        <thead>
+                                        <thead class="table-success">
                                             <tr>
                                                 <th>Nazwa</th>
                                                 <th>Użyto do</th>
@@ -129,12 +134,17 @@
                                                 <td> {{ recipeHop.hops.name }} </td>
                                                 <td> {{ recipeHop.hops.type }} </td>
                                                 <td> {{ recipeHop.quantity }} g </td>
-                                                <td>  min </td>
+                                                <td> {{ recipeHop.boiling_time }} min </td>
                                                 <td> {{ recipeHop.hops.alpha_acids }} </td>
                                             </tr>
                                         </tbody>
                                     </table>
                                 </div>
+                                <ng-template #noHopsAdded>
+                                    <div class="text-center text-black-50">
+                                        Nie dodano żadnych chmieli.
+                                    </div>
+                                </ng-template>
                             </div>
                         </div>
                     </div>
@@ -145,10 +155,10 @@
                             <div class="card-header py-3">
                                 <h6 class="m-0 font-weight-bold text-primary">Drożdże</h6>
                             </div>
-                            <div class="card-body" *ngIf="recipe != undefined && recipe.yeast != null">
-                                <div class="table-responsive">
+                            <div class="card-body">
+                                <div class="table-responsive" *ngIf="recipe != undefined && recipe.yeast.length > 0; else noYeastAdded">
                                     <table class="table table-bordered text-center" width="100%" cellspacing="0">
-                                        <thead>
+                                        <thead class="table-info">
                                             <tr>
                                                 <th>Nazwa</th>
                                                 <th>Rodzaj</th>
@@ -166,6 +176,11 @@
                                         </tbody>
                                     </table>
                                 </div>
+                                <ng-template #noYeastAdded>
+                                    <div class="text-center text-black-50">
+                                        Nie dodano żadnych drożdży.
+                                    </div>
+                                </ng-template>
                             </div>
                         </div>
                     </div>

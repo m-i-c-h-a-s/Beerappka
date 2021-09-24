@@ -24,6 +24,7 @@ import { PublicRecipesListComponent } from './components/public-recipes-list/pub
 import { RecipeDetailsComponent } from './components/recipe-details/recipe-details.component';
 import {PasswordResetComponent} from './components/password-reset/password-reset.component';
 import {PasswordResetFinishComponent} from "./components/password-reset-finish/password-reset-finish.component";
+import { MyRecipesListComponent } from './components/my-recipes-list/my-recipes-list.component';
 
 const routes: Routes = [
   { path: '', component: LandingPageComponent, canActivate: [AlreadyLoggedInGuard] },
@@ -47,6 +48,7 @@ const routes: Routes = [
   { path: 'edytuj-artykul/:id', component: ArticleUpdateComponent, canActivate: [AuthGuard]},
   { path: 'dodaj-recepture', component: RecipeCreatorComponent, canActivate: [AuthGuard]},
   { path: 'receptury-publiczne', component: PublicRecipesListComponent, canActivate: [AuthGuard]},
+  { path: 'moje-receptury', component: MyRecipesListComponent, canActivate: [AuthGuard]},
   { path: 'receptury/:id', component: RecipeDetailsComponent, canActivate: [AuthGuard]},
 ];
 

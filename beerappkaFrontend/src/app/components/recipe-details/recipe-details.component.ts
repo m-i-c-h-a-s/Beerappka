@@ -13,7 +13,6 @@ import { RecipeMalt } from '../recipe-creator/recipeMalt';
 })
 export class RecipeDetailsComponent implements OnInit {
   public recipe: Recipe | undefined;
-  //public malts: Array<RecipeMalt> = [];
   public malt: Malt;
 
   constructor(private recipeService: RecipesService,

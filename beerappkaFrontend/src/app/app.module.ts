@@ -39,6 +39,7 @@ import { PublicRecipesListComponent } from './components/public-recipes-list/pub
 import { PasswordResetComponent } from './components/password-reset/password-reset.component';
 import { PasswordResetFinishComponent } from './components/password-reset-finish/password-reset-finish.component';
 import { RecipeDetailsComponent } from './components/recipe-details/recipe-details.component';
+import { MyRecipesListComponent } from './components/my-recipes-list/my-recipes-list.component';
 
 registerLocaleData(localePl);
 
@@ -71,6 +72,7 @@ registerLocaleData(localePl);
     PasswordResetComponent,
     PasswordResetFinishComponent,
     RecipeDetailsComponent,
+    MyRecipesListComponent,
   ],
 
   imports: [

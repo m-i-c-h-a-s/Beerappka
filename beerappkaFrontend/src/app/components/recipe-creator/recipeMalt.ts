@@ -1,8 +1,7 @@
 import { Malt } from "./malt";
+import { MaltToAdd } from "./maltToAdd";
 
 export interface RecipeMalt {
-    id: number;
-    recipe: number;
-    malt: Malt;
+    malt: MaltToAdd;
     quantity: number;
 }

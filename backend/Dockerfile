@@ -5,27 +5,13 @@ ENV LC_ALL C.UTF-8
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
 
-FROM base AS python-deps
-
 RUN apt-get update \
-  && apt-get -y install --no-install-recommends gcc \
+  && apt-get -y install --no-install-recommends gcc netcat \postgresql libpq-dev python3-dev musl-dev \
   && apt-get clean
 
-COPY Pipfile .
-COPY Pipfile.lock .
+COPY requirements.txt .
 
-RUN pip install pipenv
-
-RUN PIPENV_VENV_IN_PROJECT=1 pipenv install --deploy
-
-FROM base AS runtime
-
-RUN apt-get update \
-  && apt-get -y install netcat postgresql libpq-dev python3-dev musl-dev \
-  && apt-get clean
-
-COPY --from=python-deps /.venv /.venv
-ENV PATH="/.venv/bin:$PATH"
+RUN pip install -r requirements.txt
 
 RUN useradd --create-home backend
 WORKDIR /home/backend

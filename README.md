@@ -8,11 +8,24 @@ Praca Inżynierska - Aplikacja internetowa do tworzenia i gromadzenia receptur p
 __Potrzebne narzedzia__:
 1. Python 3.7
 2. Postgres
-3. Pipenv
+
+Pipenv zastąpiony został plikiem requirements.txt
+
+Jeśli nie korzysta się z dockera,
+to najpierw trzeba stworzyć venv
+
+`cd backend`
+`python -m venv .venv`
+
+Następnie trzeba aktywować venv w z folderu backend
+`.\venv\Scripts\activate` (Windows)
+
 
 __Instalacja zaleznosci__
 
-``pipenv install``
+W aktywnym venv odpalic
+
+`pip install -r requirements.txt`
 
 __Konfiguracja ustawien__
 1. Stworzyc bazę danych Postgres

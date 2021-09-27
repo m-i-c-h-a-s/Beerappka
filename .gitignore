@@ -5,3 +5,5 @@ node_modules
 .vscode
 backend/media
 .venv
+.local
+.cache

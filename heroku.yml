@@ -1,0 +1,10 @@
+setup:
+build:
+  docker:
+    backend: backend/Dockerfile
+release:
+  command:
+    - ./deployment-tasks.sh
+  image: worker
+run:
+  backend: gunicorn backend.wsgi:application --bind 0.0.0.0:$PORT

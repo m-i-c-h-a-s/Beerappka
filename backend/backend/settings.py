@@ -11,9 +11,11 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 import os
 from pathlib import Path
-from dotenv import dotenv_values
+from dotenv import load_dotenv
 
-config = dotenv_values(".env")
+import dj_database_url
+
+load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -26,7 +28,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = "django-insecure-*@!lz@0bf$0nasm2@4heg+xhtn$n_8b@voy(y@l_%2rakd@k+i"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = config["DEBUG"]
+DEBUG = os.environ["DEBUG"]
 
 ALLOWED_HOSTS = []
 
@@ -96,14 +98,20 @@ WSGI_APPLICATION = "backend.wsgi.application"
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql_psycopg2",
-        "NAME": config["DB_NAME"],
-        "USER": config["DB_USER"],
-        "PASSWORD": config["DB_PASSWORD"],
-        "HOST": config["DB_HOST"],
-        "PORT": config["DB_PORT"],
+        "NAME": os.environ["DB_NAME"],
+        "USER": os.environ["DB_USER"],
+        "PASSWORD": os.environ["DB_PASSWORD"],
+        "HOST": os.environ["DB_HOST"],
+        "PORT": os.environ["DB_PORT"],
     }
 }
 
+
+DATABASE_URL = os.environ.get('DATABASE_URL', None)
+
+if DATABASE_URL:
+    db_from_env = dj_database_url.config(default=DATABASE_URL, conn_max_age=500)
+    DATABASES['default'].update(db_from_env)
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
@@ -142,6 +150,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 STATIC_URL = "/static/"
+STATIC_ROOT = os.path.join(BASE_DIR, "static")
 
 MEDIA_URL = "/media/"
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
@@ -177,5 +186,5 @@ if DEBUG:
     EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 
 
-FRONTEND_URL = config.get("FRONTEND_URL", "http://localhost:4200")
-FRONTEND_RESET_PASSWORD_CONFIRM_URL = config.get("FRONTEND_RESET_PASSWORD_CONFIRM_URL", "/resetuj-haslo-potwierdz/")
+FRONTEND_URL = os.environ.get("FRONTEND_URL", "http://localhost:4200")
+FRONTEND_RESET_PASSWORD_CONFIRM_URL = os.environ.get("FRONTEND_RESET_PASSWORD_CONFIRM_URL", "/resetuj-haslo-potwierdz/")

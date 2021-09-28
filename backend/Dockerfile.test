@@ -25,8 +25,6 @@ RUN pip wheel --no-cache-dir --no-deps --wheel-dir /usr/src/app/wheels -r requir
 FROM python:3.7.12-slim-buster 
 
 RUN useradd --create-home backend
-USER backend
-
 WORKDIR /home/backend
 RUN mkdir /home/backend/static
 RUN mkdir /home/backend/media
@@ -43,6 +41,8 @@ COPY . .
 RUN python manage.py collectstatic --noinput
 
 RUN chown -R backend /home/backend
+
+USER backend
 
 ENTRYPOINT ["/home/backend/entrypoint.sh"]
 

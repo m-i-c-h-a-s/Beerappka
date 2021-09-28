@@ -6,7 +6,8 @@ ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
 
 RUN apt-get update \
-  && apt-get -y install --no-install-recommends gcc netcat \postgresql libpq-dev python3-dev musl-dev \
+  && apt-get -y install --no-install-recommends gcc netcat \
+    postgresql libpq-dev python3-dev musl-dev \
   && apt-get clean
 
 COPY requirements.txt .

@@ -38,8 +38,6 @@ RUN chmod +x /home/backend/entrypoint.sh
 
 COPY . .
 
-RUN python manage.py collectstatic --noinput
-
 RUN chown -R backend /home/backend
 
 USER backend

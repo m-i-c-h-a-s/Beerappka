@@ -1,7 +1,3 @@
 build:
   docker:
     web: backend/Dockerfile.test
-release:
-  image: web
-  command:
-    - ./backend-deployment-tasks.sh

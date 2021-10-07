@@ -39,6 +39,8 @@ COPY . .
 
 RUN chown -R backend /home/backend
 
+RUN python manage.py collectstatic --noinput
+
 USER backend
 
 ENTRYPOINT ["/home/backend/entrypoint.sh"]

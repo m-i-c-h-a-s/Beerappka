@@ -12,4 +12,4 @@ FROM nginx:latest
 
 COPY --from=build /home/frontend/dist/beerappkaFrontend /usr/share/nginx/html
 
-EXPOSE 80
+EXPOSE $PORT

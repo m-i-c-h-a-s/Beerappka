@@ -1,0 +1,15 @@
+FROM node:14.15-alpine as build
+
+WORKDIR /home/frontend
+
+COPY ./ /home/frontend/
+
+RUN npm install
+
+RUN npm run build
+
+FROM nginx:latest
+
+COPY --from=build /home/frontend/dist/beerappkaFrontend /usr/share/nginx/html
+
+EXPOSE 80

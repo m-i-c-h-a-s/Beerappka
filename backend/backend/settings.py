@@ -191,10 +191,11 @@ REST_AUTH_SERIALIZERS = {
 OLD_PASSWORD_FIELD_ENABLED = True
 
 if DEBUG:
-    CORS_ALLOWED_ORIGINS = ["http://localhost:4200"]
     EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
-else:
-    CORS_ALLOWED_ORIGINS = os.environ.get('CORS_ALLOWED_ORIGINS').split(' ')
+
+CORS_ALLOWED_ORIGINS = os.environ.get(
+    'CORS_ALLOWED_ORIGINS', 'http://localhost:4200'
+).split(' ')
 
 
 FRONTEND_URL = os.environ.get("FRONTEND_URL", "http://localhost:4200")

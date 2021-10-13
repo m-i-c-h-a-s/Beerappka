@@ -9,7 +9,7 @@ from recipes.models import Recipe, Style, Malt, Hops, Yeast, Manufacturer
 
 
 class RecipesViewSet(viewsets.ModelViewSet):
-    queryset = Recipe.objects.all()
+    queryset = Recipe.objects.get_public()
     serializer_class = RecipeSerializer
     serializers = {
         'default': RecipeSerializer,

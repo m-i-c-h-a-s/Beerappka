@@ -1,6 +1,8 @@
 from django.contrib.auth.models import User
 from django.db import models
 
+from recipes.managers import RecipesManager
+
 """
     Model reprezentujący Styl piwa
 """
@@ -110,6 +112,8 @@ class Recipe(models.Model):
         null=True,
         verbose_name="Styl",
     )
+
+    objects = RecipesManager()
 
     class Meta:
         verbose_name = "Receptura"

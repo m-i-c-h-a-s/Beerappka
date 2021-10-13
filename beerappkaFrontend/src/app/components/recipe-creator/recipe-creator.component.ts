@@ -42,6 +42,12 @@ export class RecipeCreatorComponent implements OnInit {
   public recipeHops: Array<RecipeHop> = [];
   public recipeYeasts: Array<RecipeYeast> = [];
 
+  public maltName = '';
+  public maltType = '';
+  public maltQuantity = 0;
+  public maltEBC = 0;
+  public maltExtractivity = 0;
+
 
   // wort - brzeczka
   // sweet wort - brzeczka nastawna

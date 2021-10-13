@@ -19,9 +19,28 @@ export class PublicRecipesListComponent implements OnInit {
     this.recipesService.getAllRecipes().subscribe(data => {
       this.recipes = (data as any).results;
       this.totalLength = (data as any).results.length;
+      this.displayFullRecipeTypeName(this.recipes);
     }, err => {
       console.log(err);
     });
   }
 
+  public displayFullRecipeTypeName(recipes: Array<Recipe>) {
+    recipes.forEach(recipe => {
+      switch(recipe?.type) {
+        case 'm':
+          recipe.type = "Zacieranie";
+          break;
+        case 'e':
+          recipe.type = "Ekstrakty";
+          break;
+        case 'b':
+          recipe.type = "Brewkit";
+          break;
+        default:
+          recipe.type = "";
+          break;
+      }
+    });
+  }
 }

@@ -35,7 +35,8 @@ export class RecipeDetailsComponent implements OnInit {
       const id = params.id;
       this.recipeService.getRecipe(id).subscribe(data => {
         this.recipe = data as any;
-
+        if(this.recipe != undefined)
+          this.displayFullRecipeTypeName(this.recipe);
       }, err => {
         console.log(err);
         if (err.status === 404) {
@@ -62,4 +63,21 @@ export class RecipeDetailsComponent implements OnInit {
     return this.malt;
   }
 
+
+  public displayFullRecipeTypeName(recipe: Recipe) {
+    switch(recipe?.type) {
+      case 'm':
+        recipe.type = "Zacieranie";
+        break;
+      case 'e':
+        recipe.type = "Ekstrakty";
+        break;
+      case 'b':
+        recipe.type = "Brewkit";
+        break;
+      default:
+        recipe.type = "";
+        break;
+    }
+  }
 }

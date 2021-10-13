@@ -7,6 +7,7 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { AlcoholLevelCalculatorComponent } from './components/alcohol-level-calculator/alcohol-level-calculator.component';
 import { GravityCalculatorComponent } from './components/gravity-calculator/gravity-calculator.component';
 import { CarbonationCalculatorComponent } from './components/carbonation-calculator/carbonation-calculator.component';
+import { GravityCorrectionCalculatorComponent } from './components/gravity-correction-calculator/gravity-correction-calculator.component';
 import { AuthGuard } from './guards/auth.guard';
 import {AlreadyLoggedInGuard} from './guards/already-logged-in-guard.service';
 import {ProfileComponent} from './components/profile/profile.component';
@@ -25,6 +26,7 @@ import { RecipeDetailsComponent } from './components/recipe-details/recipe-detai
 import {PasswordResetComponent} from './components/password-reset/password-reset.component';
 import {PasswordResetFinishComponent} from "./components/password-reset-finish/password-reset-finish.component";
 import { MyRecipesListComponent } from './components/my-recipes-list/my-recipes-list.component';
+import { MyBatchesListComponent } from './components/my-batches-list/my-batches-list.component';
 
 const routes: Routes = [
   { path: '', component: LandingPageComponent, canActivate: [AlreadyLoggedInGuard] },
@@ -40,6 +42,7 @@ const routes: Routes = [
   { path: 'kalkulatory/poziom-alkoholu', component: AlcoholLevelCalculatorComponent, canActivate: [AuthGuard] },
   { path: 'kalkulatory/przeliczanie-gestosci', component: GravityCalculatorComponent, canActivate: [AuthGuard] },
   { path: 'kalkulatory/nagazowanie', component: CarbonationCalculatorComponent, canActivate: [AuthGuard] },
+  { path: 'kalkulatory/korekta-gestosci', component: GravityCorrectionCalculatorComponent, canActivate: [AuthGuard] },
   { path: 'piwowarzy', component: BrewersListComponent, canActivate: [AuthGuard]},
   { path: 'piwowarzy/:username', component: BrewerDetailsComponent, canActivate: [AuthGuard]},
   { path: 'artykuly', component: ArticlesListComponent, canActivate: [AuthGuard]},
@@ -49,6 +52,7 @@ const routes: Routes = [
   { path: 'dodaj-recepture', component: RecipeCreatorComponent, canActivate: [AuthGuard]},
   { path: 'receptury-publiczne', component: PublicRecipesListComponent, canActivate: [AuthGuard]},
   { path: 'moje-receptury', component: MyRecipesListComponent, canActivate: [AuthGuard]},
+  { path: 'moje-warki', component: MyBatchesListComponent, canActivate: [AuthGuard]},
   { path: 'receptury/:id', component: RecipeDetailsComponent, canActivate: [AuthGuard]},
 ];
 

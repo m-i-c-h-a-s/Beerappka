@@ -13,7 +13,19 @@
 
             <!-- Begin Page Content -->
             <div class="container-fluid">
-                <div class="row" *ngIf="recipes">
+                <div class="row mb-4">
+                    <div class="col-lg-12">
+                        <div class="card shadow py-2">
+                            <div class="card-body">
+                                <a routerLink="/dodaj-recepture/" class="text-decoration-none btn btn-info">
+                                    Stwórz recepturę
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row" *ngIf="recipes && recipes.length > 0; else noRecipesAdded;">
                     <div class="col-lg-4 col-xs-12 mb-4" *ngFor="let recipe of recipes | paginate: { itemsPerPage: 6, currentPage: page, totalItems: totalLength }">
                         <div class="mb-3">
                             <div class="card border-left-success shadow h-100 py-2">
@@ -23,7 +35,7 @@
                                             <div class="col-lg-9 col-xs-12">
                                                 <div class="col mb-1">
                                                     <div class="h4 mb-3 font-weight-bold text-gray-800">
-                                                        <i class="fas fa-fw fa-beer"></i>
+                                                        <i class="fas fa-poll-h"></i>
                                                         {{ recipe.name }}
                                                         <hr class="mt-1 mb-4">
                                                     </div>
@@ -66,6 +78,12 @@
                         </div>
                     </div>
                 </div>
+
+                <ng-template #noRecipesAdded>
+                    <div class="text-center text-black-50">
+                        Nie stworzono żadnych receptur.
+                    </div>
+                </ng-template>
 
                 <div class="row text-center mb-4"
                      *ngIf="totalLength > 6"

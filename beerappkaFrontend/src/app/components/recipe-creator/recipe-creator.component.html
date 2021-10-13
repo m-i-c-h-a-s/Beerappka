@@ -190,6 +190,7 @@
                     </div>
                 </div>
 
+                <!--
                 <div id="recipeFermentables" class="row">
                     <div class="col-lg-12 mb-4">
                         <div class="card shadow mb-4 border-bottom-info">
@@ -212,7 +213,7 @@
                                         <option [ngValue]="malt" selected disabled hidden>Wyszukaj...</option>
                                         <option *ngFor="let malt of malts;" [ngValue]="malt">{{ malt.name }}</option>
                                     </datalist>
-                                -->
+                                --><!--
                                     <select
                                         class="form-control bg-light border-0 small"
                                         placeholder="Wyszukaj..."
@@ -326,6 +327,192 @@
                         </div>
                     </div>
                 </div>
+                -->
+
+
+
+
+
+
+                <div id="recipeFermentables" class="row">
+                    <div class="col-lg-12 mb-4">
+                        <div class="card shadow mb-4 border-bottom-info">
+                            <div class="card-header py-3">
+                                <h6 class="m-0 font-weight-bold text-primary">Surowce fermentujące</h6>
+                            </div>
+                            <div class="card-body row">
+                                <div class="col-md mb-3">
+                                    <label>Nazwa</label>
+                                    <select
+                                        class="form-control bg-light border-0 small"
+                                        placeholder="Wyszukaj..."
+                                        required="required"
+                                        [(ngModel)]="malt"
+                                        [ngModelOptions]="{standalone: true}"
+                                    >
+                                        <option [ngValue]="malt" selected disabled hidden>Wyszukaj...</option>
+                                        <option *ngFor="let malt of malts;" [ngValue]="malt">{{ malt.name }}</option>
+                                    </select>
+
+                                </div>
+                                <div class="col-md mb-3">
+                                    <label>Rodzaj</label>
+                                    <select
+                                        class="form-control bg-light border-0 small"
+                                        placeholder="Wybierz"
+                                        required="required"
+                                        [(ngModel)]="malt.type"
+                                        [ngModelOptions]="{standalone: true}"
+                                    >
+                                        <option value="" selected disabled hidden>Wybierz</option>
+                                        <option value="gr">Słód</option>
+                                        <option value="de">Ekstrakt suchy</option>
+                                        <option value="le">Ekstrakt płynny</option>
+                                        <option value="su">Cukier</option>
+                                    </select>
+                                </div>
+                                <div class="col-md mb-3">
+                                    <label>Ilość</label>
+                                    <div class="input-group">
+                                        <input
+                                            type="text"
+                                            class="form-control bg-light border-0 small"
+                                            [(ngModel)]="recipeMalt.quantity"
+                                            [ngModelOptions]="{standalone: true}"
+                                        >
+                                        <div class="input-group-append">
+                                            <span class="input-group-text border-0 bg-light">kg</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md mb-3">
+                                    <label>Barwa</label>
+                                    <div class="input-group">
+                                        <input
+                                            type="text"
+                                            class="form-control bg-light border-0 small"
+                                            [(ngModel)]="malt.color"
+                                            [ngModelOptions]="{standalone: true}"
+                                        >
+                                        <div class="input-group-append">
+                                            <span class="input-group-text border-0 bg-light">EBC</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md mb-3">
+                                    <label>Ekstraktywność</label>
+                                    <div class="input-group">
+                                        <input
+                                            type="text"
+                                            class="form-control bg-light border-0 small"
+                                            [(ngModel)]="malt.extractivity"
+                                            [ngModelOptions]="{standalone: true}"
+                                        >
+                                        <div class="input-group-append">
+                                            <span class="input-group-text border-0 bg-light">%</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xl-12 mb-1 text-center">
+                                    <button class="btn btn-success btn-circle btn-sm m-1" (click)="addMalt()">
+                                        <i class="fas fa-plus"></i>
+                                    </button>
+                                    <button class="btn btn-danger btn-circle btn-sm m-1"  title="Usuń wszystkie">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div *ngIf="recipeMalts.length > 0">
+                                <div class="row card-body" *ngFor="let recipeMalt of recipeMalts;">
+                                    <div class="col-md mb-3">
+                                        <select
+                                            class="form-control bg-light border-0 small"
+                                            placeholder="Wyszukaj..."
+                                            required="required"
+                                            [(ngModel)]="recipeMalt.malt"
+                                            [ngModelOptions]="{standalone: true}"
+                                        >
+                                            <option [ngValue]="malt" selected disabled hidden>Wyszukaj...</option>
+                                            <option *ngFor="let malt of malts;" [ngValue]="malt">{{ malt.name }}</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md mb-3">
+                                        <select
+                                            class="form-control bg-light border-0 small"
+                                            placeholder="Wybierz"
+                                            required="required"
+                                            [(ngModel)]="recipeMalt.malt.type"
+                                            [ngModelOptions]="{standalone: true}"
+                                        >
+                                            <option value="" selected disabled hidden>Wybierz</option>
+                                            <option value="gr">Słód</option>
+                                            <option value="de">Ekstrakt suchy</option>
+                                            <option value="le">Ekstrakt płynny</option>
+                                            <option value="su">Cukier</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md mb-3">
+                                        <div class="input-group">
+                                            <input
+                                                type="text"
+                                                class="form-control bg-light border-0 small"
+                                                [(ngModel)]="recipeMalt.quantity"
+                                                [ngModelOptions]="{standalone: true}"
+                                            >
+                                            <div class="input-group-append">
+                                                <span class="input-group-text border-0 bg-light">kg</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md mb-3">
+                                        <div class="input-group">
+                                            <input
+                                                type="text"
+                                                class="form-control bg-light border-0 small"
+                                                [(ngModel)]="recipeMalt.malt.color"
+                                                [ngModelOptions]="{standalone: true}"
+                                            >
+                                            <div class="input-group-append">
+                                                <span class="input-group-text border-0 bg-light">EBC</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md mb-3">
+                                        <div class="input-group">
+                                            <input
+                                                type="text"
+                                                class="form-control bg-light border-0 small"
+                                                [(ngModel)]="recipeMalt.malt.extractivity"
+                                                [ngModelOptions]="{standalone: true}"
+                                            >
+                                            <div class="input-group-append">
+                                                <span class="input-group-text border-0 bg-light">%</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-1 mb-3">
+                                        <button class="btn btn-danger btn-circle btn-sm m-1" (click)="deleteMalt(recipeMalt);">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
 
                 <div id="recipeHops" class="row">
                     <div class="col-lg-12 mb-4">

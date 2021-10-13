@@ -40,6 +40,9 @@ import { PasswordResetComponent } from './components/password-reset/password-res
 import { PasswordResetFinishComponent } from './components/password-reset-finish/password-reset-finish.component';
 import { RecipeDetailsComponent } from './components/recipe-details/recipe-details.component';
 import { MyRecipesListComponent } from './components/my-recipes-list/my-recipes-list.component';
+import { GravityCorrectionCalculatorComponent } from './components/gravity-correction-calculator/gravity-correction-calculator.component';
+import { MyBatchesListComponent } from './components/my-batches-list/my-batches-list.component';
+import { BatchCreatorComponent } from './components/batch-creator/batch-creator.component';
 
 registerLocaleData(localePl);
 
@@ -73,6 +76,9 @@ registerLocaleData(localePl);
     PasswordResetFinishComponent,
     RecipeDetailsComponent,
     MyRecipesListComponent,
+    GravityCorrectionCalculatorComponent,
+    MyBatchesListComponent,
+    BatchCreatorComponent,
   ],
 
   imports: [

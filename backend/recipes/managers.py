@@ -5,3 +5,6 @@ class RecipesManager(models.Manager):
 
     def get_public(self):
         return self.get_queryset().filter(is_public=True)
+
+    def get_all(self):
+        return self.get_queryset()

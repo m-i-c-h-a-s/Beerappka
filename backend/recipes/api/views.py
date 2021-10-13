@@ -33,6 +33,31 @@ class RecipesViewSet(viewsets.ModelViewSet):
         serializer.save(user=user)
 
 
+class AllRecipesViewSet(viewsets.ModelViewSet):
+    queryset = Recipe.objects.get_all()
+    serializer_class = RecipeSerializer
+    serializers = {
+        'default': RecipeSerializer,
+        'create': RecipeCreateUpdateSerializer,
+        'update': RecipeCreateUpdateSerializer,
+        'partial_update': RecipeCreateUpdateSerializer
+    }
+    permission_classes = [
+        IsRecipeOwnerOrReadOnlyPermission,
+    ]
+    filterset_class = RecipeFilter
+
+    def get_serializer_class(self):
+        return self.serializers.get(
+            self.action,
+            self.serializers['default']
+        )
+
+    def perform_create(self, serializer):
+        user = self.request.user
+        serializer.save(user=user)
+
+
 class StylesViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = Style.objects.all()
     serializer_class = StyleSerializer

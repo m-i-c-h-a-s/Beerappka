@@ -8,8 +8,12 @@ import { BeerStylesService } from '../../services/beer-styles.service';
 import { RecipesService } from '../../services/recipes.service';
 import { Router } from '@angular/router';
 import { UserService } from 'src/app/services/user.service';
-import { User } from '../profile/user';
 import { RecipeForCreateUpdate } from './recipe-for-create-update';
+import { RecipeMalt } from './recipeMalt';
+import { RecipeHop } from './recipeHop';
+import { RecipeYeast } from './recipeYeast';
+import { Manufacturer } from './manufacturer';
+import { MaltToAdd } from './maltToAdd';
 
 @Component({
   selector: 'app-recipe-creator',
@@ -19,8 +23,31 @@ import { RecipeForCreateUpdate } from './recipe-for-create-update';
 
 export class RecipeCreatorComponent implements OnInit {
   public beerStyles: Array<BeerStyle> | undefined;
-  public style: BeerStyle;
+  public style: BeerStyle | undefined;
+  public manufacturer: Manufacturer | undefined;
   public recipe: RecipeForCreateUpdate;
+
+  public malt: MaltToAdd;
+  public hop: Hop;
+  public yeast: Yeast;
+
+  public recipeMalt: RecipeMalt;
+  public recipeHop: RecipeHop;
+
+  public malts: Array<Malt> = [];
+  public hops: Array<Hop> = [];
+  public yeasts: Array<Yeast> = [];
+
+  public recipeMalts: Array<RecipeMalt> = [];
+  public recipeHops: Array<RecipeHop> = [];
+  public recipeYeasts: Array<RecipeYeast> = [];
+
+  public maltName = '';
+  public maltType = '';
+  public maltQuantity = 0;
+  public maltEBC = 0;
+  public maltExtractivity = 0;
+
 
   // wort - brzeczka
   // sweet wort - brzeczka nastawna
@@ -28,11 +55,6 @@ export class RecipeCreatorComponent implements OnInit {
   amountOfSweetWortInLiters: number;
   amountOfBeerBeforeDryHoppingInLiters: number;
 
-  maltName = '';
-  maltType = '';
-  maltAmountInKilograms: number | undefined;
-  maltColourEBC: number | undefined;
-  maltExtractivityPercent: number | undefined;
   hopName = '';
   hopUsedFor = '';
   hopAmountInGrams: number | undefined;
@@ -44,9 +66,7 @@ export class RecipeCreatorComponent implements OnInit {
   yeastAmountInGrams: number | undefined;
   yeastLaboratory = '';
 
-  malts: Malt[] = [];
-  hops: Hop[] = [];
-  yeasts: Yeast[] = [];
+
 
   constructor(
     private beerStylesService: BeerStylesService,
@@ -57,6 +77,7 @@ export class RecipeCreatorComponent implements OnInit {
     this.blgBeforeBoiling = 0;
     this.amountOfSweetWortInLiters = 0;
     this.amountOfBeerBeforeDryHoppingInLiters = 0;
+
 
     this.style = {
       id: 0,
@@ -85,9 +106,53 @@ export class RecipeCreatorComponent implements OnInit {
       blg: 0,
       abv: 0,
       ebc: 0,
-      style: this.style
+      style: this.style.id,
+      malts: this.recipeMalts,
+      hops: this.recipeHops,
+      yeast: this.recipeYeasts,
     }
 
+    this.manufacturer = {
+      id: 0,
+      name: ''
+    }
+
+    this.malt = {
+      //id: 0,
+      name: '',
+      extractivity: 0,
+      type: '',
+      color: 0,
+      manufacturer: 0,
+    }
+
+    this.hop = {
+      id: 0,
+      name: '',
+      type: '',
+      origin: '',
+      alpha_acids: 0,
+      manufacturer: 0,
+    }
+
+    this.yeast = {
+      id: 0,
+      name: '',
+      type: '',
+      manufacturer: this.manufacturer
+    }
+
+    this.recipeMalt = {
+      malt: this.malt,
+      quantity: 0
+    }
+
+    this.recipeHop = {
+      hops: this.hop,
+      quantity: 0,
+      used_for: '',
+      boiling_time: 0
+    }
   }
 
   ngOnInit(): void {
@@ -96,12 +161,18 @@ export class RecipeCreatorComponent implements OnInit {
     }, err => {
       console.log(err);
     });
+
+    this.recipesService.getAllMalts().subscribe(data => {
+      this.malts = (data as any).results;
+    }, err => {
+      console.log(err);
+    });
   }
 
 
   createRecipe() {
     this.recipesService.createRecipe(this.recipe).subscribe(data => {
-      this.router.navigate(['/dashboard']);
+      this.router.navigate(['/receptury-publiczne']);
     }, err => {
       console.log(err);
     });
@@ -109,24 +180,25 @@ export class RecipeCreatorComponent implements OnInit {
 
 
   addMalt() {
-    const malt: Malt = {
-      name: this.maltName,
-      type: this.maltType,
-      amountInKilograms: this.maltAmountInKilograms,
-      color: this.maltColourEBC,
-      extractivity: this.maltExtractivityPercent,
-      manufacturer: null
+    const recipeMalt: RecipeMalt = {
+      malt: this.malt,
+      quantity: this.recipeMalt.quantity,
     };
 
-    this.malts.push(malt);
-
-    this.maltName = '';
-    this.maltType = '';
-    this.maltAmountInKilograms = undefined;
-    this.maltColourEBC = undefined;
-    this.maltExtractivityPercent = undefined;
+    this.recipeMalts.push(recipeMalt);
+    this.recipeMalt.malt = this.malt;
+    this.recipeMalt.quantity = 0;
   }
 
+  deleteMalt(recipeMalt: RecipeMalt) {
+    this.recipeMalts = this.recipeMalts.filter(e => e !== recipeMalt);
+  }
+
+  deleteMalts() {
+    this.recipeMalts = [];
+  }
+
+  /*
   addHop() {
     const hop: Hop = {
       name: this.hopName,
@@ -186,7 +258,7 @@ export class RecipeCreatorComponent implements OnInit {
   deleteYeasts() {
     this.yeasts = [];
   }
-
+  */
 
   calculateParameters() {
     this.calculateAmountOfBoilingWort();

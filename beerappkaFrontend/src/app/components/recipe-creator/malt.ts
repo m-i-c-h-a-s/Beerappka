@@ -1,8 +1,8 @@
 export interface Malt {
+    id: number;
     name: string;
+    extractivity: number | undefined;
     type: string;
     color: number | undefined;
-    extractivity: number | undefined;
-    amountInKilograms: number | undefined;
-    manufacturer: null;
+    manufacturer: number;
 }

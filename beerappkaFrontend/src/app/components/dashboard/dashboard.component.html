@@ -38,19 +38,23 @@
 
                                     <h5>
                                         <i class="fas fa-chevron-right"></i>
-                                        Liczba stworzonych receptur:
+                                        <span> Liczba stworzonych receptur: </span>
+                                        <span class="font-weight-light">{{ this.numberOfRecipes }}</span>
                                     </h5>
                                     <h5>
                                         <i class="fas fa-chevron-right"></i>
-                                        Liczba uwarzonych warek:
+                                        <span> Liczba uwarzonych warek: </span>
+                                        <span class="font-weight-light">{{ this.numberOfBatches }}</span>
                                     </h5>
                                     <h5>
                                         <i class="fas fa-chevron-right"></i>
-                                        Ostatnio stworzona receptura:
+                                        <span> Ostatnio stworzona receptura: </span>
+                                        <span class="font-weight-light">{{ this.latestRecipe.name }}</span>
                                     </h5>
                                     <h5>
                                         <i class="fas fa-chevron-right"></i>
-                                        Ostatnio uwarzone piwo:
+                                        <span> Ostatnio uwarzone piwo: </span>
+                                        <span class="font-weight-light">{{ this.latestBatch.name }}</span>
                                     </h5>
                                 </div>
                             </div>

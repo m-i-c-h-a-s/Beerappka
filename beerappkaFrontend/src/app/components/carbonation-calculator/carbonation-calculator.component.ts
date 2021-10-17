@@ -36,7 +36,7 @@ export class CarbonationCalculatorComponent implements OnInit {
     //CO2 In Beer = 3.0378 - (0.050062 * temp) + (0.00026555 * temp^2)
     //conversion from Celsius to Farenheit: F = 1.8 * C + 32
     if (this.beerTemperature != null)
-      this.residualCarbonationLevel = 3.0378 - (0.050062 * (this.beerTemperature * 1.8 + 32)) + (0.00026555 * (this.beerTemperature * 1.8 + 32) * (this.beerTemperature * 1.8 + 32));
+      this.residualCarbonationLevel = 3.0378 - (0.050062 * (this.beerTemperature * 1.8 + 32)) + (0.00026555 * Math.pow((this.beerTemperature * 1.8 + 32), 2));
   }
 
   calculatePrimingCarbonationLevel() {
@@ -52,13 +52,15 @@ export class CarbonationCalculatorComponent implements OnInit {
         this.beerTemperature != null && this.sugarType != null) {
       switch(this.sugarType) {
         case "whiteSugar":
-          this.amountOfSugarToRefermentation = (this.primingCarbonationLevel * this.amountOfBeerInLiters) / 0.455;
+          this.amountOfSugarToRefermentation = (this.primingCarbonationLevel * this.amountOfBeerInLiters) * 3.82;
           break;
 
-        case "brownSugar":
+        case "dryExtract":
+          this.amountOfSugarToRefermentation = (this.primingCarbonationLevel * this.amountOfBeerInLiters) * 6.8;
           break;
 
         case "glucose":
+          this.amountOfSugarToRefermentation = (this.primingCarbonationLevel * this.amountOfBeerInLiters) * 4.02;
           break;
 
         default:

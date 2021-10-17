@@ -35,4 +35,10 @@ export class GravityCalculatorComponent implements OnInit {
       this.gravityCalculatedToSg = (-260 / (this.gravityInBlg - 260));
     else this.gravityCalculatedToSg = null;
   }
+
+  convertSgToBlg2() {
+    if (this.gravityInSg != null && this.gravityInSg > 1)
+      this.gravityCalculatedToBlg = -463.37 + (668.72 * this.gravityInSg) - (205.35 * this.gravityInSg * this.gravityInSg);
+    else this.gravityCalculatedToBlg = null;
+  }
 }

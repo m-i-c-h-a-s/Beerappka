@@ -18,6 +18,10 @@ export class RecipesService extends BaseService {
     return this.http.get(this.getAPIUrl(`/recipes/`), this.httpOptions);
   }
 
+  public getUserRecipes(userId: number): Observable<ArrayBuffer> {
+    return this.http.get(this.getAPIUrl(`/all-recipes/?user__id=${userId}`), this.httpOptions);
+  }
+
   public getRecipe(id: number): Observable<ArrayBuffer> {
     return this.http.get(this.getAPIUrl(`/recipes/${id}`), this.httpOptions);
   }
@@ -32,5 +36,32 @@ export class RecipesService extends BaseService {
 
   public deleteRecipe(recipeId: number): Observable<ArrayBuffer> {
     return this.http.delete(this.getAPIUrl(`/recipes/${recipeId}/`), this.httpOptions);
+  }
+
+
+  public getAllMalts(): Observable<ArrayBuffer> {
+    return this.http.get(this.getAPIUrl(`/malts/`), this.httpOptions);
+  }
+
+  public getMalt(id: number): Observable<ArrayBuffer> {
+    return this.http.get(this.getAPIUrl(`/malts/${id}`), this.httpOptions);
+  }
+
+
+  public getAllHops(): Observable<ArrayBuffer> {
+    return this.http.get(this.getAPIUrl(`/hops/`), this.httpOptions);
+  }
+
+  public getHop(id: number): Observable<ArrayBuffer> {
+    return this.http.get(this.getAPIUrl(`/hops/${id}`), this.httpOptions);
+  }
+
+
+  public getAllYeast(): Observable<ArrayBuffer> {
+    return this.http.get(this.getAPIUrl(`/yeast/`), this.httpOptions);
+  }
+
+  public getYeast(id: number): Observable<ArrayBuffer> {
+    return this.http.get(this.getAPIUrl(`/yeast/${id}`), this.httpOptions);
   }
 }

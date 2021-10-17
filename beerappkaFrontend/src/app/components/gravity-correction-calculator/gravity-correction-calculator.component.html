@@ -1,0 +1,93 @@
+<!-- Page Wrapper -->
+<div id="wrapper">
+
+    <app-sidebar></app-sidebar>
+
+    <!-- Content Wrapper -->
+    <div id="content-wrapper" class="d-flex flex-column">
+
+        <!-- Main Content -->
+        <div id="content">
+
+          <app-topbar></app-topbar>
+
+            <!-- Begin Page Content -->
+            <div class="container-fluid">
+
+                <div class="row">
+                    <div class="col-lg-6 mb-4">
+                        <div class="card shadow mb-4 border-bottom-info">
+                            <div class="card-header py-3">
+                                <h6 class="m-0 font-weight-bold text-primary">Korekta gęstości</h6>
+                            </div>
+                            <div class="card-body">
+                                <form class="d-flex flex-column">
+                                    <div class="mb-3">
+                                        <label class="form-label">Ilość piwa</label>
+                                        <div class="input-group">
+                                            <input
+                                                class="form-control bg-light border-0 small"
+                                                type="number"
+                                                min=0
+                                                [(ngModel)]="amountOfBeerInLiters"
+                                                [ngModelOptions]="{standalone: true}"
+                                                (focusout)="calculateCorrection();"
+                                            >
+                                            <div class="input-group-append">
+                                                <span class="input-group-text border-0 bg-light">L</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label">Obecna gęstość</label>
+                                        <div class="input-group">
+                                            <input
+                                                class="form-control bg-light border-0 small"
+                                                type="number"
+                                                min=0
+                                                [(ngModel)]="currentGravity"
+                                                [ngModelOptions]="{standalone: true}"
+                                                (focusout)="calculateCorrection();"
+                                            >
+                                            <div class="input-group-append">
+                                                <span class="input-group-text border-0 bg-light">BLG</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label">Oczekiwana gęstość</label>
+                                        <div class="input-group">
+                                            <input
+                                                class="form-control bg-light border-0 small"
+                                                type="number"
+                                                min=0
+                                                [(ngModel)]="expectedGravity"
+                                                [ngModelOptions]="{standalone: true}"
+                                                (focusout)="calculateCorrection();"
+                                            >
+                                            <div class="input-group-append">
+                                                <span class="input-group-text border-0 bg-light">BLG</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <!-- /.container-fluid -->
+
+        </div>
+        <!-- End of Main Content -->
+
+        <!-- Footer -->
+        <app-footer></app-footer>
+        <!-- End of Footer -->
+
+    </div>
+    <!-- End of Content Wrapper -->
+
+</div>
+<!-- End of Page Wrapper -->

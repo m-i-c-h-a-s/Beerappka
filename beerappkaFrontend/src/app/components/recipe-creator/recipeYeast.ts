@@ -1,8 +1,8 @@
 import { Yeast } from "./yeast";
+import { YeastToAdd } from "./yeastToAdd";
 
 export interface RecipeYeast {
-    recipe: number;
-    yeast: Yeast;
+    yeast: YeastToAdd;
     quantity: number;
     form: string;
 }

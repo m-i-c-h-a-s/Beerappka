@@ -2,6 +2,7 @@ from django.contrib.auth.models import User
 from django.db import models
 
 from recipes.managers import RecipesManager
+from recipes.managers import MaltsManager
 
 """
     Model reprezentujący Styl piwa
@@ -195,6 +196,7 @@ class Malt(models.Model):
 
     color = models.FloatField(verbose_name="Barwa")
 
+
     manufacturer = models.ForeignKey(
         Manufacturer,
         on_delete=models.SET_NULL,
@@ -202,6 +204,10 @@ class Malt(models.Model):
         verbose_name="Producent",
         related_name="malts",
     )
+
+    is_default = models.BooleanField(default=False, verbose_name="Czy domyślny?")
+
+    objects = MaltsManager()
 
     class Meta:
         verbose_name = "Słód"
@@ -244,6 +250,8 @@ class Hops(models.Model):
         related_name="hops",
     )
 
+    is_default = models.BooleanField(default=False, verbose_name="Czy domyślny?")
+
     class Meta:
         verbose_name = "Chmiel"
         verbose_name_plural = "Chmiele"
@@ -278,6 +286,8 @@ class Yeast(models.Model):
         verbose_name="Producent",
         related_name="yeast",
     )
+
+    is_default = models.BooleanField(default=False, verbose_name="Czy domyślny?")
 
     class Meta:
         verbose_name = "Drożdże"

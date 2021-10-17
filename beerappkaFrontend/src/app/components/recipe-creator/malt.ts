@@ -5,4 +5,5 @@ export interface Malt {
     type: string;
     color: number | undefined;
     manufacturer: number;
+    is_default: boolean;
 }

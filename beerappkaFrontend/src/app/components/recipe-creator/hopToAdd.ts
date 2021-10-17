@@ -1,5 +1,4 @@
-export interface Hop {
-    id: number;
+export interface HopToAdd {
     name: string;
     type: string;
     origin: string;

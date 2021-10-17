@@ -14,12 +14,12 @@ export class RecipesService extends BaseService {
     super();
    }
 
-  public getAllRecipes(): Observable<ArrayBuffer> {
-    return this.http.get(this.getAPIUrl(`/recipes/`), this.httpOptions);
+  public getAllPublicRecipes(): Observable<ArrayBuffer> {
+    return this.http.get(this.getAPIUrl(`/recipes/only_public/`), this.httpOptions);
   }
 
   public getUserRecipes(userId: number): Observable<ArrayBuffer> {
-    return this.http.get(this.getAPIUrl(`/all-recipes/?user__id=${userId}`), this.httpOptions);
+    return this.http.get(this.getAPIUrl(`/recipes/?user__id=${userId}`), this.httpOptions);
   }
 
   public getRecipe(id: number): Observable<ArrayBuffer> {
@@ -41,6 +41,10 @@ export class RecipesService extends BaseService {
 
   public getAllMalts(): Observable<ArrayBuffer> {
     return this.http.get(this.getAPIUrl(`/malts/`), this.httpOptions);
+  }
+
+  public getDefaultMalts(): Observable<ArrayBuffer> {
+    return this.http.get(this.getAPIUrl(`/default-malts/`), this.httpOptions);
   }
 
   public getMalt(id: number): Observable<ArrayBuffer> {

@@ -1,7 +1,6 @@
 import { Manufacturer } from "./manufacturer";
 
-export interface Yeast {
-    id: number;
+export interface YeastToAdd {
     name: string;
     type: string;
     manufacturer: Manufacturer;

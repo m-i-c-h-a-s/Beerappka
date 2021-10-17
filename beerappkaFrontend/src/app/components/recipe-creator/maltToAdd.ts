@@ -4,4 +4,5 @@ export interface MaltToAdd {
     type: string;
     color: number | undefined;
     manufacturer: number;
+    is_default: boolean;
 }

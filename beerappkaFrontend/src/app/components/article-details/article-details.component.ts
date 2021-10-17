@@ -32,11 +32,13 @@ export class ArticleDetailsComponent implements OnInit {
   }
 
   public deleteArticle(articleId: number): void {
-    this.articleService.deleteArticle(articleId).subscribe(data => {
-      this.router.navigate(['/artykuly']);
-    }, err => {
-      console.log(err);
-    })
+    if(confirm("Czy na pewno chcesz usunąć artykuł?")) {
+      this.articleService.deleteArticle(articleId).subscribe(data => {
+        this.router.navigate(['/artykuly']);
+      }, err => {
+        console.log(err);
+      })
+    }
   }
 
 }

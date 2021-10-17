@@ -37,7 +37,9 @@ INSTALLED_APPS = [
     "django.contrib.contenttypes",
     "django.contrib.sessions",
     "django.contrib.messages",
+    "cloudinary_storage",
     "django.contrib.staticfiles",
+    "cloudinary",
     "django.contrib.sites",
     "rest_framework",
     "rest_framework.authtoken",
@@ -200,3 +202,11 @@ CORS_ALLOWED_ORIGINS = os.environ.get(
 
 FRONTEND_URL = os.environ.get("FRONTEND_URL", "http://localhost:4200")
 FRONTEND_RESET_PASSWORD_CONFIRM_URL = os.environ.get("FRONTEND_RESET_PASSWORD_CONFIRM_URL", "/resetuj-haslo-potwierdz/")
+
+if not DEBUG:
+    CLOUDINARY_STORAGE = {
+        'CLOUD_NAME': os.environ.get("CLOUDINARY_CLOUD_NAME", ""),
+        'API_KEY': os.environ.get("CLOUDINARY_API_KEY", ""),
+        'API_SECRET': os.environ.get("CLOUDINARY_API_SECRET", "")
+    }
+    DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'

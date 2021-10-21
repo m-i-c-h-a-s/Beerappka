@@ -41,17 +41,24 @@
                                         <option value="b">Brewkit</option>
                                     </select>
                                 </div>
+
                                 <div class="col-md mb-3">
-                                    <select
-                                        class="form-control bg-light border-0"
+                                    <ng-autocomplete
+                                        [(ngModel)]="style"
                                         placeholder="Styl"
-                                        required="required"
-                                        [(ngModel)]="recipe.style"
-                                        [ngModelOptions]="{standalone: true}"
-                                    >
-                                        <option value=0 selected disabled hidden>Styl</option>
-                                        <option *ngFor="let beerStyle of beerStyles;" value="{{ beerStyle.id }}"> {{ beerStyle.name }} </option>
-                                    </select>
+                                        [data]="beerStyles"
+                                        [heading]="'Styl'"
+                                        [searchKeyword]="'name'"
+                                        [itemTemplate]="beerStyleTemplate"
+                                        [notFoundTemplate]="notFoundTemplate"
+                                        (selected)='selectBeerStyle($event)'>
+                                    </ng-autocomplete>
+                                    <ng-template #beerStyleTemplate let-item>
+                                        <a [innerHTML]="item.name"></a>
+                                    </ng-template>
+                                    <ng-template #notFoundTemplate let-notFound>
+                                        <div [innerHTML]="'Nie znaleziono'"></div>
+                                    </ng-template>
                                 </div>
                             </div>
                         </div>
@@ -75,7 +82,7 @@
                                                 class="form-control bg-light border-0 small"
                                                 [(ngModel)]="recipe.expected_beer_amount"
                                                 [ngModelOptions]="{standalone: true}"
-                                                (focusout)="calculateParameters();"
+                                                (input)="calculateParameters();"
                                             >
                                             <div class="input-group-append">
                                                 <span class="input-group-text border-0 bg-light">L</span>
@@ -91,7 +98,7 @@
                                                 class="form-control bg-light border-0 small"
                                                 [(ngModel)]="recipe.boiling_time"
                                                 [ngModelOptions]="{standalone: true}"
-                                                (focusout)="calculateParameters();"
+                                                (input)="calculateParameters();"
                                             >
                                             <div class="input-group-append">
                                                 <span class="input-group-text border-0 bg-light">min</span>
@@ -107,7 +114,7 @@
                                                 class="form-control bg-light border-0 small"
                                                 [(ngModel)]="recipe.evaporation_rate"
                                                 [ngModelOptions]="{standalone: true}"
-                                                (focusout)="calculateParameters();"
+                                                (input)="calculateParameters();"
                                             >
                                             <div class="input-group-append">
                                                 <span class="input-group-text border-0 bg-light">%/h</span>
@@ -125,7 +132,7 @@
                                                 class="form-control bg-light border-0 small"
                                                 [(ngModel)]="recipe.boiling_losses"
                                                 [ngModelOptions]="{standalone: true}"
-                                                (focusout)="calculateParameters();"
+                                                (input)="calculateParameters();"
                                             >
                                             <div class="input-group-append">
                                                 <span class="input-group-text border-0 bg-light">%</span>
@@ -141,7 +148,7 @@
                                                 class="form-control bg-light border-0 small"
                                                 [(ngModel)]="recipe.fermentation_losses"
                                                 [ngModelOptions]="{standalone: true}"
-                                                (focusout)="calculateParameters();"
+                                                (input)="calculateParameters();"
                                             >
                                             <div class="input-group-append">
                                                 <span class="input-group-text border-0 bg-light">%</span>
@@ -157,7 +164,7 @@
                                                 class="form-control bg-light border-0 small"
                                                 [(ngModel)]="recipe.cold_hop_losses"
                                                 [ngModelOptions]="{standalone: true}"
-                                                (focusout)="calculateParameters();"
+                                                (input)="calculateParameters();"
                                             >
                                             <div class="input-group-append">
                                                 <span class="input-group-text border-0 bg-light">%</span>
@@ -197,16 +204,20 @@
                             <div class="card-body row">
                                 <div class="col-md mb-3">
                                     <label>Nazwa</label>
-                                    <select
-                                        class="form-control bg-light border-0 small"
-                                        placeholder="Wyszukaj..."
-                                        required="required"
+                                    <ng-autocomplete
                                         [(ngModel)]="malt"
-                                        [ngModelOptions]="{standalone: true}"
-                                    >
-                                        <option [ngValue]="malt" selected disabled hidden>Wyszukaj...</option>
-                                        <option *ngFor="let malt of malts;" [ngValue]="malt">{{ malt.name }}</option>
-                                    </select>
+                                        placeholder="Wyszukaj..."
+                                        [data]="malts"
+                                        [searchKeyword]="'name'"
+                                        [itemTemplate]="maltTemplate"
+                                        [notFoundTemplate]="notFoundTemplate">
+                                    </ng-autocomplete>
+                                    <ng-template #maltTemplate let-item>
+                                        <a [innerHTML]="item.name + ' │ EBC: ' + item.color + ' │ EX: ' + item.extractivity"></a>
+                                    </ng-template>
+                                    <ng-template #notFoundTemplate let-notFound>
+                                        <div [innerHTML]="'Nie znaleziono'"></div>
+                                    </ng-template>
                                 </div>
                                 <div class="col-md mb-3">
                                     <label>Rodzaj</label>
@@ -267,10 +278,10 @@
                                     </div>
                                 </div>
                                 <div class="col-xl-12 mb-1 text-center">
-                                    <button class="btn btn-success btn-circle btn-sm m-1" (click)="addMalt()">
+                                    <button class="btn btn-success btn-circle btn-sm m-1" title="Dodaj ten słód" (click)="addMalt()">
                                         <i class="fas fa-plus"></i>
                                     </button>
-                                    <button class="btn btn-danger btn-circle btn-sm m-1"  title="Usuń wszystkie" (click)="deleteMalts()">
+                                    <button class="btn btn-danger btn-circle btn-sm m-1"  title="Usuń wszystkie słody" (click)="deleteAllMalts()">
                                         <i class="fas fa-trash"></i>
                                     </button>
                                 </div>
@@ -363,16 +374,20 @@
                             <div class="card-body row">
                                 <div class="col-md mb-3">
                                     <label>Nazwa</label>
-                                    <select
-                                        class="form-control bg-light border-0 small"
-                                        placeholder="Wyszukaj..."
-                                        required="required"
+                                    <ng-autocomplete
                                         [(ngModel)]="hop"
-                                        [ngModelOptions]="{standalone: true}"
-                                    >
-                                        <option [ngValue]="hop" selected disabled hidden>Wyszukaj...</option>
-                                        <option *ngFor="let hop of hops;" [ngValue]="hop">{{ hop.name }}</option>
-                                    </select>
+                                        placeholder="Wyszukaj..."
+                                        [data]="hops"
+                                        [searchKeyword]="'name'"
+                                        [itemTemplate]="hopTemplate"
+                                        [notFoundTemplate]="notFoundTemplate">
+                                    </ng-autocomplete>
+                                    <ng-template #hopTemplate let-item>
+                                        <a [innerHTML]="item.name + ' | αk: ' + item.alpha_acids + '%'"></a>
+                                    </ng-template>
+                                    <ng-template #notFoundTemplate let-notFound>
+                                        <div [innerHTML]="'Nie znaleziono'"></div>
+                                    </ng-template>
                                 </div>
                                 <div class="col-md mb-3">
                                     <label>Użyto do</label>
@@ -433,43 +448,88 @@
                                     </div>
                                 </div>
                                 <div class="col-xl-12 mb-1 text-center">
-                                    <button class="btn btn-success btn-circle btn-sm m-1" >
+                                    <button class="btn btn-success btn-circle btn-sm m-1" title="Dodaj ten chmiel" (click)="addHop()">
                                         <i class="fas fa-plus"></i>
                                     </button>
-                                    <button class="btn btn-danger btn-circle btn-sm m-1"  title="Usuń wszystkie">
+                                    <button class="btn btn-danger btn-circle btn-sm m-1"  title="Usuń wszystkie chmiele" (click)="deleteAllHops()">
                                         <i class="fas fa-trash"></i>
                                     </button>
                                 </div>
                             </div>
-                            <div class="card-body" *ngIf="recipeHops.length > 0">
-                                <div class="table-responsive">
-                                    <table class="table table-bordered" width="100%" cellspacing="0">
-                                        <thead class="table-success">
-                                            <tr>
-                                                <th>Nazwa</th>
-                                                <th>Użyto do</th>
-                                                <th>Ilość</th>
-                                                <th>Czas gotowania</th>
-                                                <th>Alfa-kwasy</th>
-                                                <th></th>
-                                            </tr>
-                                        </thead>
-
-                                        <tbody *ngFor="let hop of recipeHops;">
-                                            <tr>
-                                                <td> {{ hop.hops.name }}  </td>
-                                                <td>  </td>
-                                                <td>  </td>
-                                                <td>  </td>
-                                                <td>  </td>
-                                                <td>
-                                                    <button class="btn btn-danger btn-circle btn-sm m-1" >
-                                                    <i class="fas fa-trash"></i>
-                                                    </button>
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
+                            <div *ngIf="recipeHops.length > 0">
+                                <div class="row card-body" *ngFor="let recipeHop of recipeHops;">
+                                    <div class="col-md mb-3">
+                                        <select
+                                            class="form-control bg-light border-0 small"
+                                            placeholder="Wyszukaj..."
+                                            required="required"
+                                            [(ngModel)]="recipeHop.hops"
+                                            [ngModelOptions]="{standalone: true}"
+                                        >
+                                            <option [ngValue]="recipeHop.hops">{{ recipeHop.hops.name }}</option>
+                                            <option disabled>---</option>
+                                            <option *ngFor="let hop of hops;" [ngValue]="hop">{{ hop.name }}</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md mb-3">
+                                        <select
+                                            class="form-control bg-light border-0 small"
+                                            placeholder="Wybierz"
+                                            required="required"
+                                            [(ngModel)]="recipeHop.used_for"
+                                            [ngModelOptions]="{standalone: true}"
+                                        >
+                                            <option value="" selected disabled hidden>Wybierz</option>
+                                            <option value="Goryczka">Goryczka</option>
+                                            <option value="Aromat">Aromat</option>
+                                            <option value="Smak">Smak</option>
+                                            <option value="Na zimno">Na zimno</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md mb-3">
+                                        <div class="input-group">
+                                            <input
+                                                type="text"
+                                                class="form-control bg-light border-0 small"
+                                                [(ngModel)]="recipeHop.quantity"
+                                                [ngModelOptions]="{standalone: true}"
+                                            >
+                                            <div class="input-group-append">
+                                                <span class="input-group-text border-0 bg-light">g</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md mb-3">
+                                        <div class="input-group">
+                                            <input
+                                                type="text"
+                                                class="form-control bg-light border-0 small"
+                                                [(ngModel)]="recipeHop.boiling_time"
+                                                [ngModelOptions]="{standalone: true}"
+                                            >
+                                            <div class="input-group-append">
+                                                <span class="input-group-text border-0 bg-light">min</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md mb-3">
+                                        <div class="input-group">
+                                            <input
+                                                type="text"
+                                                class="form-control bg-light border-0 small"
+                                                [(ngModel)]="hop.alpha_acids"
+                                                [ngModelOptions]="{standalone: true}"
+                                            >
+                                            <div class="input-group-append">
+                                                <span class="input-group-text border-0 bg-light">%</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-1 mb-3">
+                                        <button class="btn btn-danger btn-circle btn-sm m-1" (click)="deleteHop(recipeHop);">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -485,13 +545,20 @@
                             <div class="card-body row">
                                 <div class="col-md mb-3">
                                     <label>Nazwa</label>
-                                    <input
-                                        type="text"
-                                        class="form-control bg-light border-0 small"
+                                    <ng-autocomplete
+                                        [(ngModel)]="yeast"
                                         placeholder="Wyszukaj..."
-                                        [(ngModel)]="yeastName"
-                                        [ngModelOptions]="{standalone: true}"
-                                    >
+                                        [data]="yeasts"
+                                        [searchKeyword]="'name'"
+                                        [itemTemplate]="yeastTemplate"
+                                        [notFoundTemplate]="notFoundTemplate">
+                                    </ng-autocomplete>
+                                    <ng-template #yeastTemplate let-item>
+                                        <a [innerHTML]="item.name"></a>
+                                    </ng-template>
+                                    <ng-template #notFoundTemplate let-notFound>
+                                        <div [innerHTML]="'Nie znaleziono'"></div>
+                                    </ng-template>
                                 </div>
                                 <div class="col-md mb-3">
                                     <label>Rodzaj</label>
@@ -499,12 +566,12 @@
                                         class="form-control bg-light border-0 small"
                                         placeholder="Wybierz"
                                         required="required"
-                                        [(ngModel)]="yeastType"
+                                        [(ngModel)]="yeast.type"
                                         [ngModelOptions]="{standalone: true}"
                                     >
                                         <option value="" selected disabled hidden>Wybierz</option>
-                                        <option value="aleYeast">Ale</option>
-                                        <option value="lagerYeast">Lager</option>
+                                        <option value="uf">Ale</option>
+                                        <option value="lf">Lager</option>
                                     </select>
                                 </div>
                                 <div class="col-md mb-3">
@@ -513,13 +580,14 @@
                                         class="form-control bg-light border-0 small"
                                         placeholder="Wybierz"
                                         required="required"
-                                        [(ngModel)]="yeastForm"
+                                        [(ngModel)]="recipeYeast.form"
                                         [ngModelOptions]="{standalone: true}"
                                     >
                                         <option value="" selected disabled hidden>Wybierz</option>
-                                        <option value="dryYeast">Suche</option>
-                                        <option value="liquidYeast">Płynne</option>
-                                        <option value="slurryYeast">Gęstwa</option>
+                                        <option value="dr">Suche</option>
+                                        <option value="li">Płynne</option>
+                                        <option value="th">Gęstwa</option>
+                                        <option value="sp">Fermentacja spontaniczna</option>
                                     </select>
                                 </div>
                                 <div class="col-md mb-3">
@@ -528,62 +596,101 @@
                                         <input
                                             type="text"
                                             class="form-control bg-light border-0 small"
-                                            [(ngModel)]="yeastAmountInGrams"
+                                            [(ngModel)]="recipeYeast.quantity"
                                             [ngModelOptions]="{standalone: true}"
                                         >
                                         <div class="input-group-append">
                                             <span class="input-group-text border-0 bg-light">g</span>
                                         </div>
                                     </div>
-
                                 </div>
                                 <div class="col-md mb-3">
                                     <label>Laboratorium</label>
                                     <input
                                         type="text"
                                         class="form-control bg-light border-0 small"
-                                        [(ngModel)]="yeastLaboratory"
+                                        [(ngModel)]="recipeYeast.yeast.manufacturer.name"
                                         [ngModelOptions]="{standalone: true}"
                                     >
                                 </div>
                                 <div class="col-xl-12 mb-1 text-center">
-                                    <button class="btn btn-success btn-circle btn-sm m-1" >
+                                    <button class="btn btn-success btn-circle btn-sm m-1" title="Dodaj te drożdże" (click)="addYeast()">
                                         <i class="fas fa-plus"></i>
                                     </button>
-                                    <button class="btn btn-danger btn-circle btn-sm m-1" title="Usuń wszystkie">
+                                    <button class="btn btn-danger btn-circle btn-sm m-1" title="Usuń wszystkie drożdże" (click)="deleteAllYeasts()">
                                         <i class="fas fa-trash"></i>
                                     </button>
                                 </div>
                             </div>
-                            <div class="card-body" *ngIf="recipeYeasts.length > 0">
-                                <div class="table-responsive">
-                                    <table class="table table-bordered" width="100%" cellspacing="0">
-                                        <thead class="table-info">
-                                            <tr>
-                                                <th>Nazwa</th>
-                                                <th>Rodzaj</th>
-                                                <th>Postać</th>
-                                                <th>Ilość</th>
-                                                <th>Laboratorium</th>
-                                                <th></th>
-                                            </tr>
-                                        </thead>
-
-                                        <tbody *ngFor="let yeast of recipeYeasts;">
-                                            <tr>
-                                                <td>  </td>
-                                                <td>  </td>
-                                                <td>  </td>
-                                                <td>  </td>
-                                                <td>  </td>
-                                                <td>
-                                                    <button class="btn btn-danger btn-circle btn-sm m-1" >
-                                                    <i class="fas fa-trash"></i>
-                                                    </button>
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
+                            <div *ngIf="recipeYeasts.length > 0">
+                                <div class="row card-body" *ngFor="let recipeYeast of recipeYeasts;">
+                                    <div class="col-md mb-3">
+                                        <select
+                                            class="form-control bg-light border-0 small"
+                                            placeholder="Wyszukaj..."
+                                            required="required"
+                                            [(ngModel)]="recipeYeast.yeast"
+                                            [ngModelOptions]="{standalone: true}"
+                                        >
+                                            <option [ngValue]="recipeYeast.yeast">{{ recipeYeast.yeast.name }}</option>
+                                            <option disabled>---</option>
+                                            <option *ngFor="let yeast of yeasts;" [ngValue]="yeast">{{ yeast.name }}</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md mb-3">
+                                        <select
+                                            class="form-control bg-light border-0 small"
+                                            placeholder="Wybierz"
+                                            required="required"
+                                            [(ngModel)]="yeast.type"
+                                            [ngModelOptions]="{standalone: true}"
+                                        >
+                                            <option value="" selected disabled hidden>Wybierz</option>
+                                            <option value="uf">Ale</option>
+                                            <option value="lf">Lager</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md mb-3">
+                                        <select
+                                            class="form-control bg-light border-0 small"
+                                            placeholder="Wybierz"
+                                            required="required"
+                                            [(ngModel)]="recipeYeast.form"
+                                            [ngModelOptions]="{standalone: true}"
+                                        >
+                                            <option value="" selected disabled hidden>Wybierz</option>
+                                            <option value="dr">Suche</option>
+                                            <option value="li">Płynne</option>
+                                            <option value="th">Gęstwa</option>
+                                            <option value="sp">Fermentacja spontaniczna</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md mb-3">
+                                        <div class="input-group">
+                                            <input
+                                                type="text"
+                                                class="form-control bg-light border-0 small"
+                                                [(ngModel)]="recipeYeast.quantity"
+                                                [ngModelOptions]="{standalone: true}"
+                                            >
+                                            <div class="input-group-append">
+                                                <span class="input-group-text border-0 bg-light">g</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md mb-3">
+                                        <input
+                                            type="text"
+                                            class="form-control bg-light border-0 small"
+                                            [(ngModel)]="recipeYeast.yeast.manufacturer.name"
+                                            [ngModelOptions]="{standalone: true}"
+                                        >
+                                    </div>
+                                    <div class="col-1 mb-3">
+                                        <button class="btn btn-danger btn-circle btn-sm m-1" (click)="deleteYeast(recipeYeast);">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
                         </div>

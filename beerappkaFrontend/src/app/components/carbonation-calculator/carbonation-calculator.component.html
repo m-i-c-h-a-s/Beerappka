@@ -31,7 +31,7 @@
                                                 min=0
                                                 [(ngModel)]="amountOfBeerInLiters"
                                                 [ngModelOptions]="{standalone: true}"
-                                                (focusout)="calculateAmoutOfSugarToRefermenation();"
+                                                (input)="calculateAmoutOfSugarToRefermenation();"
                                             >
                                             <div class="input-group-append">
                                                 <span class="input-group-text border-0 bg-light">L</span>
@@ -47,7 +47,7 @@
                                                 min=0
                                                 [(ngModel)]="targetCarbonationLevel"
                                                 [ngModelOptions]="{standalone: true}"
-                                                (focusout)="calculateAmoutOfSugarToRefermenation();"
+                                                (input)="calculateAmoutOfSugarToRefermenation();"
                                             >
                                         </div>
                                     </div>
@@ -60,7 +60,7 @@
                                                 min=0
                                                 [(ngModel)]="beerTemperature"
                                                 [ngModelOptions]="{standalone: true}"
-                                                (focusout)="calculateAmoutOfSugarToRefermenation();"
+                                                (input)="calculateAmoutOfSugarToRefermenation();"
                                             >
                                             <div class="input-group-append">
                                                 <span class="input-group-text border-0 bg-light">°C</span>

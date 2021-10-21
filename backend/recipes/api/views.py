@@ -58,18 +58,48 @@ class MaltsViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = Malt.objects.all()
     serializer_class = MaltSerializer
 
-class DefaultMaltsViewSet(viewsets.ReadOnlyModelViewSet):
-    queryset = Malt.objects.get_default()
-    serializer_class = MaltSerializer
+    @action(detail=False)
+    def only_default(self, request):
+        queryset = Malt.objects.get_default()
+        page = self.paginate_queryset(queryset)
+        if page is not None:
+            serializer = self.get_serializer(page, many=True)
+            return self.get_paginated_response(serializer.data)
+
+        serializer = self.get_serializer(queryset, many=True)
+        return Response(serializer.data)
+
 
 class HopsViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = Hops.objects.all()
     serializer_class = HopsSerializer
 
+    @action(detail=False)
+    def only_default(self, request):
+        queryset = Hops.objects.get_default()
+        page = self.paginate_queryset(queryset)
+        if page is not None:
+            serializer = self.get_serializer(page, many=True)
+            return self.get_paginated_response(serializer.data)
+
+        serializer = self.get_serializer(queryset, many=True)
+        return Response(serializer.data)
+
 
 class YeastViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = Yeast.objects.all()
     serializer_class = YeastSerializer
+
+    @action(detail=False)
+    def only_default(self, request):
+        queryset = Yeast.objects.get_default()
+        page = self.paginate_queryset(queryset)
+        if page is not None:
+            serializer = self.get_serializer(page, many=True)
+            return self.get_paginated_response(serializer.data)
+
+        serializer = self.get_serializer(queryset, many=True)
+        return Response(serializer.data)
 
 
 class ManufacturersViewSet(viewsets.ReadOnlyModelViewSet):

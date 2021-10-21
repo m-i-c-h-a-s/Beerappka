@@ -31,7 +31,7 @@
                                                 min=0
                                                 [(ngModel)]="amountOfBeerInLiters"
                                                 [ngModelOptions]="{standalone: true}"
-                                                (focusout)="calculateCorrection();"
+                                                (input)="calculateCorrection();"
                                             >
                                             <div class="input-group-append">
                                                 <span class="input-group-text border-0 bg-light">L</span>
@@ -47,7 +47,7 @@
                                                 min=0
                                                 [(ngModel)]="currentGravity"
                                                 [ngModelOptions]="{standalone: true}"
-                                                (focusout)="calculateCorrection();"
+                                                (input)="calculateCorrection();"
                                             >
                                             <div class="input-group-append">
                                                 <span class="input-group-text border-0 bg-light">BLG</span>
@@ -63,7 +63,7 @@
                                                 min=0
                                                 [(ngModel)]="expectedGravity"
                                                 [ngModelOptions]="{standalone: true}"
-                                                (focusout)="calculateCorrection();"
+                                                (input)="calculateCorrection();"
                                             >
                                             <div class="input-group-append">
                                                 <span class="input-group-text border-0 bg-light">BLG</span>

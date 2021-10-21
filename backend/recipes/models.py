@@ -3,6 +3,8 @@ from django.db import models
 
 from recipes.managers import RecipesManager
 from recipes.managers import MaltsManager
+from recipes.managers import HopsManager
+from recipes.managers import YeastsManager
 
 """
     Model reprezentujący Styl piwa
@@ -252,6 +254,8 @@ class Hops(models.Model):
 
     is_default = models.BooleanField(default=False, verbose_name="Czy domyślny?")
 
+    objects = HopsManager()
+
     class Meta:
         verbose_name = "Chmiel"
         verbose_name_plural = "Chmiele"
@@ -288,6 +292,8 @@ class Yeast(models.Model):
     )
 
     is_default = models.BooleanField(default=False, verbose_name="Czy domyślny?")
+
+    objects = YeastsManager()
 
     class Meta:
         verbose_name = "Drożdże"

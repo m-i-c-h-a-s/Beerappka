@@ -29,7 +29,7 @@
                                                 class="form-control bg-light border-0 small"
                                                 [(ngModel)]="gravityInSg"
                                                 [ngModelOptions]="{standalone: true}"
-                                                (focusout)="convertSgToBlg2();"
+                                                (input)="convertSgToBlg2();"
                                             >
                                             <div class="input-group-append">
                                                 <span class="input-group-text border-0 bg-light">SG</span>
@@ -69,7 +69,7 @@
                                                 class="form-control bg-light border-0 small"
                                                 [(ngModel)]="gravityInBlg"
                                                 [ngModelOptions]="{standalone: true}"
-                                                (focusout)="convertBlgToSg();"
+                                                (input)="convertBlgToSg();"
                                             >
                                             <div class="input-group-append">
                                                 <span class="input-group-text border-0 bg-light">BLG</span>

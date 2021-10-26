@@ -60,12 +60,13 @@
                                                 <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
                                                       <label for="article_content" class="form-label">Treść</label>
                                                 </div>
-                                                <div class="h5 mb-0 font-weight-bold text-gray-800">
-                                                    <textarea [(ngModel)]="article.content"
-                                                              name="article_content"
-                                                              id="article_content"
-                                                              cols="30" rows="10"
-                                                      class="form-control bg-light border-0 small"></textarea>
+                                                <div class="h5 mb-0 text-gray-800">
+                                                      <editor
+                                                        [(ngModel)]="article.content"
+                                                        name="article_content"
+                                                        id="article_content"
+                                                        [init]="initEditor">
+                                                    </editor>
                                                 </div>
                                                 <div *ngIf="err && err.content" class="m-3 text-xs">
                                                     <div *ngFor="let e of err.content"

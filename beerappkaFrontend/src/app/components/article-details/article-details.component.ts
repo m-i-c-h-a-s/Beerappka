@@ -3,6 +3,7 @@ import {ArticlesService} from '../../services/articles.service';
 import {Article} from '../articles-list/article';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Permissions} from '../../permissions/permissions';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-article-details',
@@ -15,7 +16,8 @@ export class ArticleDetailsComponent implements OnInit {
   constructor(private articleService: ArticlesService,
               private route: ActivatedRoute,
               private router: Router,
-              public  permissions: Permissions) { }
+              public  permissions: Permissions,
+              public sanitizer: DomSanitizer) { }
 
   ngOnInit(): void {
     this.route.params.subscribe(params => {

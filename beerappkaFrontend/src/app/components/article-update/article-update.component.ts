@@ -5,6 +5,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {ArticleCreateUpdateErrors} from '../article-create/article-create-update-errors';
 import {ArticleForCreateUpdate} from '../article-create/article-for-create-update';
 import {Permissions} from '../../permissions/permissions';
+import { initEditor } from '../tinymce-editor/editor';
 
 @Component({
   selector: 'app-article-update',
@@ -15,6 +16,7 @@ export class ArticleUpdateComponent implements OnInit {
   public article: Article | undefined;
   public err: ArticleCreateUpdateErrors | undefined;
   private articleForUpdate: ArticleForCreateUpdate | undefined;
+  public initEditor = initEditor;
 
   constructor(
     private articlesService: ArticlesService,

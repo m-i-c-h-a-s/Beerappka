@@ -211,6 +211,9 @@ CORS_ALLOWED_ORIGINS = os.environ.get(
 FRONTEND_URL = os.environ.get("FRONTEND_URL", "http://localhost:4200")
 FRONTEND_RESET_PASSWORD_CONFIRM_URL = os.environ.get("FRONTEND_RESET_PASSWORD_CONFIRM_URL", "/resetuj-haslo-potwierdz/")
 
+ACCOUNT_CONFIRM_EMAIL_ON_GET = True
+REDIRECT_CONFIRM_EMAIL = os.environ.get("REDIRECT_CONFIRM_EMAIL", "/logowanie/")
+
 if not DEBUG:
     CLOUDINARY_STORAGE = {
         'CLOUD_NAME': os.environ.get("CLOUDINARY_CLOUD_NAME", ""),

@@ -6,6 +6,7 @@ import { registerLocaleData } from '@angular/common';
 import localePl from '@angular/common/locales/pl';
 
 import {NgxPaginationModule} from 'ngx-pagination';
+import { AutocompleteLibModule } from 'angular-ng-autocomplete';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -44,6 +45,7 @@ import { GravityCorrectionCalculatorComponent } from './components/gravity-corre
 import { MyBatchesListComponent } from './components/my-batches-list/my-batches-list.component';
 import { BatchCreatorComponent } from './components/batch-creator/batch-creator.component';
 import { EditorModule } from '@tinymce/tinymce-angular';
+import { RecipeUpdateComponent } from './components/recipe-update/recipe-update.component';
 
 registerLocaleData(localePl);
 
@@ -80,6 +82,7 @@ registerLocaleData(localePl);
     GravityCorrectionCalculatorComponent,
     MyBatchesListComponent,
     BatchCreatorComponent,
+    RecipeUpdateComponent,
   ],
 
   imports: [
@@ -88,7 +91,8 @@ registerLocaleData(localePl);
     FormsModule,
     HttpClientModule,
     NgxPaginationModule,
-    EditorModule
+    EditorModule,
+    AutocompleteLibModule
   ],
 
   providers: [

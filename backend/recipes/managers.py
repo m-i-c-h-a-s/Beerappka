@@ -15,3 +15,15 @@ class MaltsManager(models.Manager):
 
     def get_default(self):
         return self.get_queryset().filter(is_default=True)
+
+
+class HopsManager(models.Manager):
+
+    def get_default(self):
+        return self.get_queryset().filter(is_default=True)
+
+
+class YeastsManager(models.Manager):
+
+    def get_default(self):
+        return self.get_queryset().filter(is_default=True)

@@ -44,7 +44,7 @@ export class RecipesService extends BaseService {
   }
 
   public getDefaultMalts(): Observable<ArrayBuffer> {
-    return this.http.get(this.getAPIUrl(`/default-malts/`), this.httpOptions);
+    return this.http.get(this.getAPIUrl(`/malts/only_default/`), this.httpOptions);
   }
 
   public getMalt(id: number): Observable<ArrayBuffer> {
@@ -56,6 +56,10 @@ export class RecipesService extends BaseService {
     return this.http.get(this.getAPIUrl(`/hops/`), this.httpOptions);
   }
 
+  public getDefaultHops(): Observable<ArrayBuffer> {
+    return this.http.get(this.getAPIUrl(`/hops/only_default/`), this.httpOptions);
+  }
+
   public getHop(id: number): Observable<ArrayBuffer> {
     return this.http.get(this.getAPIUrl(`/hops/${id}`), this.httpOptions);
   }
@@ -63,6 +67,10 @@ export class RecipesService extends BaseService {
 
   public getAllYeast(): Observable<ArrayBuffer> {
     return this.http.get(this.getAPIUrl(`/yeast/`), this.httpOptions);
+  }
+
+  public getDefaultYeasts(): Observable<ArrayBuffer> {
+    return this.http.get(this.getAPIUrl(`/yeast/only_default/`), this.httpOptions);
   }
 
   public getYeast(id: number): Observable<ArrayBuffer> {

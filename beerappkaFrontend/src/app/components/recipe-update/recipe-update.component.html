@@ -10,8 +10,8 @@
 
         <!-- Main Content -->
         <div id="content">
-            <div class="container-fluid">
-                <form (ngSubmit)="createRecipe();">
+            <div class="container-fluid" *ngIf="recipe">
+                <form (ngSubmit)="updateRecipe();">
                 <div id="recipeHeader" class="row">
                     <div class="col-lg-12 mb-4">
                         <div class="card shadow mb-4 border-bottom-info">
@@ -45,7 +45,7 @@
 
                                 <div class="col-md mb-3">
                                     <ng-autocomplete
-                                        [(ngModel)]="style"
+                                        [(ngModel)]="recipe.style"
                                         [ngModelOptions]="{standalone: true}"
                                         placeholder="Styl"
                                         [data]="beerStyles"
@@ -226,35 +226,6 @@
                         </div>
                     </div>
                 </div>
-
-                <div class="row">
-                    <div class="col-lg-12 mb-4">
-                        <div class="card shadow mb-4 py-2">
-                            <div class="card-body">
-                                <div class="row no-gutters align-items-center">
-                                    <div class="col mr-2">
-                                        <div class="text-xs font-weight-bold text-info text-uppercase mb-1">BLG</div>
-                                        <div class="row no-gutters align-items-center">
-                                            <div class="col-auto">
-                                                <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">{{ recipe.blg }}</div>
-                                            </div>
-                                            <div class="col">
-                                                <div class="progress progress-sm mr-2">
-                                                    <div class="progress-bar bg-warning" role="progressbar"
-                                                        [style.width]="recipe.blg + '%'"
-                                                        style="width: 50%" aria-valuenow="50" aria-valuemin="0"
-                                                        aria-valuemax="100"></div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-
                 <div id="recipeFermentables" class="row">
                     <div class="col-lg-12 mb-4">
                         <div class="card shadow mb-4 border-bottom-info">
@@ -339,16 +310,16 @@
                                     </div>
                                 </div>
                                 <div class="col-xl-12 mb-1 text-center">
-                                    <button class="btn btn-success btn-circle btn-sm m-1" title="Dodaj ten słód" (click)="addMalt()">
+                                    <button class="btn btn-success btn-circle btn-sm m-1" title="Dodaj ten słód" (click)="addMalt();">
                                         <i class="fas fa-plus"></i>
                                     </button>
-                                    <button class="btn btn-danger btn-circle btn-sm m-1"  title="Usuń wszystkie słody" (click)="deleteAllMalts()">
+                                    <button class="btn btn-danger btn-circle btn-sm m-1"  title="Usuń wszystkie słody" (click)="deleteAllMalts();">
                                         <i class="fas fa-trash"></i>
                                     </button>
                                 </div>
                             </div>
-                            <div *ngIf="recipeMalts.length > 0">
-                                <div class="row card-body" *ngFor="let recipeMalt of recipeMalts;">
+                            <div *ngIf="recipe.malts.length > 0">
+                                <div class="row card-body" *ngFor="let recipeMalt of recipe.malts;">
                                     <div class="col-md mb-3">
                                         <select
                                             class="form-control bg-light border-0 small"
@@ -512,16 +483,16 @@
                                     </div>
                                 </div>
                                 <div class="col-xl-12 mb-1 text-center">
-                                    <button class="btn btn-success btn-circle btn-sm m-1" title="Dodaj ten chmiel" (click)="addHop()">
+                                    <button class="btn btn-success btn-circle btn-sm m-1" title="Dodaj ten chmiel" (click)="addHop();">
                                         <i class="fas fa-plus"></i>
                                     </button>
-                                    <button class="btn btn-danger btn-circle btn-sm m-1"  title="Usuń wszystkie chmiele" (click)="deleteAllHops()">
+                                    <button class="btn btn-danger btn-circle btn-sm m-1"  title="Usuń wszystkie chmiele" (click)="deleteAllHops();">
                                         <i class="fas fa-trash"></i>
                                     </button>
                                 </div>
                             </div>
-                            <div *ngIf="recipeHops.length > 0">
-                                <div class="row card-body" *ngFor="let recipeHop of recipeHops;">
+                            <div *ngIf="recipe.hops.length > 0">
+                                <div class="row card-body" *ngFor="let recipeHop of recipe.hops;">
                                     <div class="col-md mb-3">
                                         <select
                                             class="form-control bg-light border-0 small"
@@ -681,16 +652,16 @@
                                     >
                                 </div>
                                 <div class="col-xl-12 mb-1 text-center">
-                                    <button class="btn btn-success btn-circle btn-sm m-1" title="Dodaj te drożdże" (click)="addYeast()">
+                                    <button class="btn btn-success btn-circle btn-sm m-1" title="Dodaj te drożdże" (click)="addYeast();">
                                         <i class="fas fa-plus"></i>
                                     </button>
-                                    <button class="btn btn-danger btn-circle btn-sm m-1" title="Usuń wszystkie drożdże" (click)="deleteAllYeasts()">
+                                    <button class="btn btn-danger btn-circle btn-sm m-1" title="Usuń wszystkie drożdże" (click)="deleteAllYeasts();">
                                         <i class="fas fa-trash"></i>
                                     </button>
                                 </div>
                             </div>
-                            <div *ngIf="recipeYeasts.length > 0">
-                                <div class="row card-body" *ngFor="let recipeYeast of recipeYeasts;">
+                            <div *ngIf="recipe.yeast.length > 0">
+                                <div class="row card-body" *ngFor="let recipeYeast of recipe.yeast;">
                                     <div class="col-md mb-3">
                                         <select
                                             class="form-control bg-light border-0 small"

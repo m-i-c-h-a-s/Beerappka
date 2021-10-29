@@ -16,6 +16,8 @@ class Batch(models.Model):
 
     brewing_date = models.DateField(verbose_name="Data warzenia")
 
+    bottling_date = models.DateField(verbose_name="Data rozlewu")
+
     user = models.ForeignKey(
         User,
         on_delete=models.CASCADE,

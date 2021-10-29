@@ -14,7 +14,7 @@ export interface RecipeForCreateUpdate {
     boiling_losses: number;
     fermentation_losses: number;
     cold_hop_losses: number;
-    mashing_performance: number;
+    mashing_efficiency: number;
     water_to_grain_ratio: number;
     notes: string;
     blg: number;

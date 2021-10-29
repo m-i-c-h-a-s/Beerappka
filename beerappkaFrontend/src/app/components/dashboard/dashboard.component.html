@@ -22,7 +22,6 @@
                                 <div class="text-center mb-3">
                                     <img class="img-profile rounded-circle mb-3"
                                         src="{{ currentUser.profile.picture_thumb_50x50 }}"
-                                        *ngIf="currentUser.profile.picture_thumb_50x50; else profile_picture_placeholder"
                                     >
                                     <ng-template #profile_picture_placeholder>
                                         <img class="img-profile rounded-circle mb-3"

@@ -1,33 +1,39 @@
 import { Component, OnInit } from '@angular/core';
-import { Recipe } from './recipe';
-import { Malt } from './malt';
-import { Hop } from './hop';
-import { Yeast } from './yeast';
-import { BeerStyle } from './beerStyle';
+import { Recipe } from '../recipe-creator/recipe';
+import { Malt } from '../recipe-creator/malt';
+import { Hop } from '../recipe-creator/hop';
+import { Yeast } from '../recipe-creator/yeast';
+import { BeerStyle } from '../recipe-creator/beerStyle';
 import { BeerStylesService } from '../../services/beer-styles.service';
 import { RecipesService } from '../../services/recipes.service';
-import { Router } from '@angular/router';
-import { UserService } from 'src/app/services/user.service';
-import { RecipeForCreateUpdate } from './recipe-for-create-update';
-import { RecipeMalt } from './recipeMalt';
-import { RecipeHop } from './recipeHop';
-import { RecipeYeast } from './recipeYeast';
-import { Manufacturer } from './manufacturer';
-import { MaltToAdd } from './maltToAdd';
-import { HopToAdd } from './hopToAdd';
-import { YeastToAdd } from './yeastToAdd';
+import { ActivatedRoute, Router } from '@angular/router';
+import { RecipeForCreateUpdate } from '../recipe-creator/recipe-for-create-update';
+import { RecipeMalt } from '../recipe-creator/recipeMalt';
+import { RecipeHop } from '../recipe-creator/recipeHop';
+import { RecipeYeast } from '../recipe-creator/recipeYeast';
+import { Manufacturer } from '../recipe-creator/manufacturer';
+import { MaltToAdd } from '../recipe-creator/maltToAdd';
+import { HopToAdd } from '../recipe-creator/hopToAdd';
+import { YeastToAdd } from '../recipe-creator/yeastToAdd';
+import { Permissions } from '../../permissions/permissions';
 
 @Component({
-  selector: 'app-recipe-creator',
-  templateUrl: './recipe-creator.component.html',
-  styleUrls: ['./recipe-creator.component.sass']
+  selector: 'app-recipe-update',
+  templateUrl: './recipe-update.component.html',
+  styleUrls: ['./recipe-update.component.sass']
 })
 
-export class RecipeCreatorComponent implements OnInit {
+export class RecipeUpdateComponent implements OnInit {
+  public recipe: Recipe | undefined;
+  public recipeForUpdate: RecipeForCreateUpdate | undefined;
+
   public beerStyles: Array<BeerStyle> = [];
+  public malts: Array<Malt> = [];
+  public hops: Array<Hop> = [];
+  public yeasts: Array<Yeast> = [];
+
   public style: BeerStyle | undefined;
   public manufacturer: Manufacturer;
-  public recipe: RecipeForCreateUpdate;
 
   public malt: MaltToAdd;
   public hop: HopToAdd;
@@ -36,10 +42,6 @@ export class RecipeCreatorComponent implements OnInit {
   public recipeMalt: RecipeMalt;
   public recipeHop: RecipeHop;
   public recipeYeast: RecipeYeast;
-
-  public malts: Array<Malt> = [];
-  public hops: Array<Hop> = [];
-  public yeasts: Array<Yeast> = [];
 
   public recipeMalts: Array<RecipeMalt> = [];
   public recipeHops: Array<RecipeHop> = [];
@@ -55,8 +57,9 @@ export class RecipeCreatorComponent implements OnInit {
   constructor(
     private beerStylesService: BeerStylesService,
     private recipesService: RecipesService,
+    private route: ActivatedRoute,
     private router: Router,
-    private userService: UserService
+    private permissions: Permissions
   ) {
     this.blgBeforeBoiling = 0;
     this.amountOfSweetWortInLiters = 0;
@@ -70,29 +73,6 @@ export class RecipeCreatorComponent implements OnInit {
       max_blg: 0,
       min_ibu: 0,
       max_ibu: 0,
-    }
-
-    this.recipe = {
-      name: '',
-      type: '',
-      is_public: false,
-      boiling_time: 0,
-      expected_beer_amount: 0,
-      boiled_wort_amount: 0,
-      evaporation_rate: 0,
-      boiling_losses: 0,
-      fermentation_losses: 0,
-      cold_hop_losses: 0,
-      mashing_efficiency: 0,
-      water_to_grain_ratio: 0,
-      notes: '',
-      blg: 0,
-      abv: 0,
-      ebc: 0,
-      style: this.style.id,
-      malts: this.recipeMalts,
-      hops: this.recipeHops,
-      yeast: this.recipeYeasts,
     }
 
     this.manufacturer = {
@@ -145,6 +125,22 @@ export class RecipeCreatorComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.route.params.subscribe(params => {
+      const id = params.id;
+      this.recipesService.getRecipe(id).subscribe(data => {
+        this.recipe = (data as any) as Recipe;
+        if (!this.permissions.isRecipeAuthor(this.recipe)) {
+          this.router.navigate(['/receptury-publiczne']);
+        }
+      }, err => {
+        console.log(err);
+        if (err.status === 404) {
+          this.router.navigate(['/receptury-publiczne']);
+        }
+      });
+    });
+
+
     this.beerStylesService.getAllBeerStyles().subscribe(data => {
       this.beerStyles = (data as any).results;
     }, err => {
@@ -171,12 +167,37 @@ export class RecipeCreatorComponent implements OnInit {
   }
 
 
-  createRecipe() {
-    this.recipesService.createRecipe(this.recipe).subscribe(data => {
-      this.router.navigate(['/receptury-publiczne']);
-    }, err => {
-      console.log(err);
-    });
+  updateRecipe() {
+    if (this.recipe) {
+      this.recipeForUpdate = {
+        name: this.recipe.name,
+        type: this.recipe.type,
+        is_public: this.recipe.is_public,
+        boiling_time: this.recipe.boiling_time,
+        expected_beer_amount: this.recipe.expected_beer_amount,
+        boiled_wort_amount: this.recipe.boiled_wort_amount,
+        evaporation_rate: this.recipe.evaporation_rate,
+        boiling_losses: this.recipe.boiling_losses,
+        fermentation_losses: this.recipe.fermentation_losses,
+        cold_hop_losses: this.recipe.cold_hop_losses,
+        mashing_efficiency: this.recipe.mashing_efficiency,
+        water_to_grain_ratio: this.recipe.water_to_grain_ratio,
+        notes: this.recipe.notes,
+        blg: this.recipe.blg,
+        abv: this.recipe.abv,
+        ebc: this.recipe.ebc,
+        style: this.recipe.style.id,
+        malts: this.recipe.malts,
+        hops: this.recipe.hops,
+        yeast: this.recipe.yeast
+      }
+      const recipeId = this.recipe.id;
+      this.recipesService.updateRecipe(this.recipe.id, this.recipeForUpdate).subscribe(data => {
+        this.router.navigate([`/receptury/${recipeId}`]);
+      }, err => {
+        console.log(err);
+      });
+    }
   }
 
 
@@ -209,11 +230,13 @@ export class RecipeCreatorComponent implements OnInit {
   }
 
   deleteMalt(recipeMalt: RecipeMalt) {
-    this.recipeMalts = this.recipeMalts.filter(e => e !== recipeMalt);
+    if (this.recipe)
+      this.recipe.malts = this.recipe.malts.filter(e => e !== recipeMalt);
   }
 
   deleteAllMalts() {
-    this.recipeMalts = [];
+    if (this.recipe)
+      this.recipe.malts = [];
   }
 
 
@@ -250,11 +273,13 @@ export class RecipeCreatorComponent implements OnInit {
   }
 
   deleteHop(recipeHop: RecipeHop) {
-    this.recipeHops = this.recipeHops.filter(e => e !== recipeHop);
+    if (this.recipe)
+      this.recipe.hops = this.recipe.hops.filter(e => e !== recipeHop);
   }
 
   deleteAllHops() {
-    this.recipeHops = [];
+    if (this.recipe)
+      this.recipe.hops = [];
   }
 
 
@@ -285,26 +310,29 @@ export class RecipeCreatorComponent implements OnInit {
   }
 
   deleteYeast(recipeYeast: RecipeYeast) {
-    this.recipeYeasts = this.recipeYeasts.filter(e => e !== recipeYeast);
+    if (this.recipe)
+      this.recipe.yeast = this.recipe.yeast.filter(e => e !== recipeYeast);
   }
 
   deleteAllYeasts() {
-    this.recipeYeasts = [];
+    if (this.recipe)
+      this.recipe.yeast = [];
   }
 
 
   calculateParameters() {
-    this.calculateAmountOfBoilingWort();
-    this.calculateAmountOfSweetWort();
-    this.calculateAmountOfBeerBeforeDryHopping();
+    //this.calculateAmountOfBoilingWort();
+    //this.calculateAmountOfSweetWort();
+    //this.calculateAmountOfBeerBeforeDryHopping();
   }
 
+ /*
   calculateAmountOfBoilingWort() {
-    if (this.recipe.expected_beer_amount != null)
-      this.recipe.boiled_wort_amount = +this.recipe.expected_beer_amount;
-    if (this.recipe.boiled_wort_amount != null && this.recipe.boiling_time != null && this.recipe.evaporation_rate != null)
-      this.recipe.boiled_wort_amount += +this.recipe.boiled_wort_amount * (this.recipe.boiling_time / 60) * (this.recipe.evaporation_rate / 100);
-    if (this.recipe.boiled_wort_amount != null && this.recipe.boiling_losses != null)
+    if (this.recipeForUpdate.expected_beer_amount != null)
+      this.recipeForUpdate.boiled_wort_amount = +this.recipeForUpdate.expected_beer_amount;
+    if (this.recipeForUpdate.boiled_wort_amount != null && this.recipeForUpdate.boiling_time != null && this.recipeForUpdate.evaporation_rate != null)
+      this.recipeForUpdate.boiled_wort_amount += +this.recipe.boiled_wort_amount * (this.recipeForUpdate.boiling_time / 60) * (this.recipeForUpdate.evaporation_rate / 100);
+    if (this.recipeForUpdate.boiled_wort_amount != null && this.recipe.boiling_losses != null)
       this.recipe.boiled_wort_amount += +this.recipe.boiled_wort_amount * (this.recipe.boiling_losses / 100);
     if (this.recipe.expected_beer_amount != null && this.recipe.boiled_wort_amount != null && this.recipe.fermentation_losses != null)
       this.recipe.boiled_wort_amount += +this.recipe.expected_beer_amount * (this.recipe.fermentation_losses / 100);
@@ -341,9 +369,11 @@ export class RecipeCreatorComponent implements OnInit {
     let worthWeight = water + extract;
     blg = 100 * extract / worthWeight;
   }
+  */
 
   selectBeerStyle(item: BeerStyle) {
-    this.recipe.style = item.id;
+    if (this.recipeForUpdate)
+      this.recipeForUpdate.style = item.id;
   }
 
 }

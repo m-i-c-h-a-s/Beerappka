@@ -27,6 +27,7 @@ import {PasswordResetComponent} from './components/password-reset/password-reset
 import {PasswordResetFinishComponent} from "./components/password-reset-finish/password-reset-finish.component";
 import { MyRecipesListComponent } from './components/my-recipes-list/my-recipes-list.component';
 import { MyBatchesListComponent } from './components/my-batches-list/my-batches-list.component';
+import { RecipeUpdateComponent } from './components/recipe-update/recipe-update.component';
 
 const routes: Routes = [
   { path: '', component: LandingPageComponent, canActivate: [AlreadyLoggedInGuard] },
@@ -50,6 +51,7 @@ const routes: Routes = [
   { path: 'artykuly/:id', component: ArticleDetailsComponent, canActivate: [AuthGuard]},
   { path: 'edytuj-artykul/:id', component: ArticleUpdateComponent, canActivate: [AuthGuard]},
   { path: 'dodaj-recepture', component: RecipeCreatorComponent, canActivate: [AuthGuard]},
+  { path: 'edytuj-recepture/:id', component: RecipeUpdateComponent, canActivate: [AuthGuard]},
   { path: 'receptury-publiczne', component: PublicRecipesListComponent, canActivate: [AuthGuard]},
   { path: 'moje-receptury', component: MyRecipesListComponent, canActivate: [AuthGuard]},
   { path: 'moje-warki', component: MyBatchesListComponent, canActivate: [AuthGuard]},

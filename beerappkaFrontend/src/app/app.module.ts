@@ -44,6 +44,7 @@ import { MyRecipesListComponent } from './components/my-recipes-list/my-recipes-
 import { GravityCorrectionCalculatorComponent } from './components/gravity-correction-calculator/gravity-correction-calculator.component';
 import { MyBatchesListComponent } from './components/my-batches-list/my-batches-list.component';
 import { BatchCreatorComponent } from './components/batch-creator/batch-creator.component';
+import { RecipeUpdateComponent } from './components/recipe-update/recipe-update.component';
 
 registerLocaleData(localePl);
 
@@ -80,6 +81,7 @@ registerLocaleData(localePl);
     GravityCorrectionCalculatorComponent,
     MyBatchesListComponent,
     BatchCreatorComponent,
+    RecipeUpdateComponent,
   ],
 
   imports: [

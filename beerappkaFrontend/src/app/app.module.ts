@@ -44,6 +44,7 @@ import { MyRecipesListComponent } from './components/my-recipes-list/my-recipes-
 import { GravityCorrectionCalculatorComponent } from './components/gravity-correction-calculator/gravity-correction-calculator.component';
 import { MyBatchesListComponent } from './components/my-batches-list/my-batches-list.component';
 import { BatchCreatorComponent } from './components/batch-creator/batch-creator.component';
+import { EditorModule } from '@tinymce/tinymce-angular';
 import { RecipeUpdateComponent } from './components/recipe-update/recipe-update.component';
 
 registerLocaleData(localePl);
@@ -90,6 +91,7 @@ registerLocaleData(localePl);
     FormsModule,
     HttpClientModule,
     NgxPaginationModule,
+    EditorModule,
     AutocompleteLibModule
   ],
 

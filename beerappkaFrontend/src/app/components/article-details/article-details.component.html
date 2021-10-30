@@ -67,8 +67,8 @@
                                       <div class="row no-gutters align-items-center">
                                           <div class="col-xs-12">
                                               <div class="col mb-3">
-                                                  <div class="font-weight-bold text-black-50 mb-1 article-content">
-                                                    {{ article.content }}
+                                                  <div class="mb-1"
+                                                    [innerHTML]="sanitizer.bypassSecurityTrustHtml(article.content)">
                                                   </div>
                                               </div>
                                           </div>

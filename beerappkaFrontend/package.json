@@ -5,6 +5,7 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
+    "build-test": "ng build --configuration=test",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
@@ -19,6 +20,7 @@
     "@angular/platform-browser": "~11.2.6",
     "@angular/platform-browser-dynamic": "~11.2.6",
     "@angular/router": "~11.2.6",
+    "@tinymce/tinymce-angular": "^4.2.4",
     "angular-ng-autocomplete": "^2.0.5",
     "bootstrap": "^5.0.0-beta3",
     "bootstrap-sass": "^3.4.1",
@@ -28,6 +30,7 @@
     "popper.js": "^1.16.1",
     "rxjs": "~6.6.0",
     "startbootstrap-sb-admin-2": "^4.1.4",
+    "tinymce": "^5.10.0",
     "tslib": "^2.0.0",
     "zone.js": "~0.11.3"
   },

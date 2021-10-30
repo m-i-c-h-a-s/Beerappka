@@ -3,6 +3,7 @@ import {ArticleForCreateUpdate} from './article-for-create-update';
 import {ArticlesService} from '../../services/articles.service';
 import {ArticleCreateUpdateErrors} from './article-create-update-errors';
 import {Router} from '@angular/router';
+import { initEditor } from '../tinymce-editor/editor';
 
 @Component({
   selector: 'app-article-create',
@@ -12,6 +13,7 @@ import {Router} from '@angular/router';
 export class ArticleCreateComponent implements OnInit {
   public article: ArticleForCreateUpdate;
   public err: ArticleCreateUpdateErrors | undefined;
+  public initEditor = initEditor;
 
   constructor(
     private articleService: ArticlesService,

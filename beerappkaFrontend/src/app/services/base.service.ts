@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
 import { HttpHeaders } from '@angular/common/http';
+import { environment } from './../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class BaseService {
   protected readonly httpOptions: any;
-  private BASE_API_URL = 'http://localhost:8000/api/v1';
+  private BASE_API_URL = environment.BASE_API_URL;
 
   constructor() {
     this.httpOptions = {

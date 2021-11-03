@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { BatchForCreateUpdate } from './batch-for-create-update';
 
 @Component({
   selector: 'app-batch-creator',
@@ -6,7 +7,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./batch-creator.component.sass']
 })
 export class BatchCreatorComponent implements OnInit {
-
+  public batch: BatchForCreateUpdate | undefined;
+  
   constructor() { }
 
   ngOnInit(): void {

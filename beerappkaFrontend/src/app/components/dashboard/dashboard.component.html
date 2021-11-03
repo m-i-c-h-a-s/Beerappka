@@ -10,7 +10,6 @@
 
         <!-- Main Content -->
         <div id="content">
-            <!-- <app-recipe-creator></app-recipe-creator>-->
             <div class="container-fluid">
                 <div class="row" *ngIf="currentUser && currentUser.profile">
                     <div class="col-lg-6 mb-4">
@@ -48,12 +47,12 @@
                                     <h5>
                                         <i class="fas fa-chevron-right"></i>
                                         <span> Ostatnio stworzona receptura: </span>
-                                        <span class="font-weight-light">{{ this.latestRecipe.name }}</span>
+                                        <span *ngIf="this.latestRecipe" class="font-weight-light">{{ this.latestRecipe.name }}</span>
                                     </h5>
                                     <h5>
                                         <i class="fas fa-chevron-right"></i>
                                         <span> Ostatnio uwarzone piwo: </span>
-                                        <span class="font-weight-light">{{ this.latestBatch.name }}</span>
+                                        <span *ngIf="this.latestBatch" class="font-weight-light">{{ this.latestBatch.name }}</span>
                                     </h5>
                                 </div>
                             </div>
@@ -97,7 +96,7 @@
                             <div class="card-body">
                                 <button class="btn btn-danger"
                                      type="submit"
-                                     routerLink="/dashboard"
+                                     routerLink="/moje-receptury"
                                      routerLinkActive="active"
                                 >
                                     <span class="text">Stwórz warkę</span>

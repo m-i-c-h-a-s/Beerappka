@@ -38,6 +38,12 @@ class Style(models.Model):
     # max IBU gorycz
     max_ibu = models.FloatField()
 
+    # min poziom nasycenia CO2
+    min_carbonation = models.FloatField()
+
+    # max poziom nasycenia CO2
+    max_carbonation = models.FloatField()
+
     class Meta:
         verbose_name = "Styl Piwa"
         verbose_name_plural = "Style piwa"

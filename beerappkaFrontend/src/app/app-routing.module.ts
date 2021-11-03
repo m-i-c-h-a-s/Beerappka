@@ -28,6 +28,7 @@ import {PasswordResetFinishComponent} from "./components/password-reset-finish/p
 import { MyRecipesListComponent } from './components/my-recipes-list/my-recipes-list.component';
 import { MyBatchesListComponent } from './components/my-batches-list/my-batches-list.component';
 import { RecipeUpdateComponent } from './components/recipe-update/recipe-update.component';
+import { BatchCreatorComponent } from './components/batch-creator/batch-creator.component';
 
 const routes: Routes = [
   { path: '', component: LandingPageComponent, canActivate: [AlreadyLoggedInGuard] },
@@ -55,6 +56,7 @@ const routes: Routes = [
   { path: 'receptury-publiczne', component: PublicRecipesListComponent, canActivate: [AuthGuard]},
   { path: 'moje-receptury', component: MyRecipesListComponent, canActivate: [AuthGuard]},
   { path: 'moje-warki', component: MyBatchesListComponent, canActivate: [AuthGuard]},
+  { path: 'stworz-warke', component: BatchCreatorComponent, canActivate: [AuthGuard]},
   { path: 'receptury/:id', component: RecipeDetailsComponent, canActivate: [AuthGuard]},
 ];
 

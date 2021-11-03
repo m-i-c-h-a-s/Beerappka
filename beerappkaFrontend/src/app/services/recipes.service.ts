@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import {Observable} from 'rxjs';
 import {HttpClient} from '@angular/common/http';
 import {BaseService} from './base.service';
-import { Recipe } from '../components/recipe-creator/recipe';
 import { RecipeForCreateUpdate } from '../components/recipe-creator/recipe-for-create-update';
 
 @Injectable({

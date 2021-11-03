@@ -18,6 +18,7 @@
                         <div class="card shadow h-100 py-2">
                             <div class="card-body">
                                 <a routerLink="/dodaj-artykul/" class="text-decoration-none btn btn-primary">
+                                    <i class="fas fa-plus mr-1"></i>
                                     Dodaj artykuł
                                 </a>
                             </div>
@@ -33,7 +34,7 @@
                                     <a routerLink="/artykuly/{{ article.id }}" class="text-decoration-none">
                                         <div class="row no-gutters align-items-center">
                                             <div class="col-lg-9 col-xs-12">
-                                                <div class="col mb-3">
+                                                <div class="col mb-2">
                                                     <div class="text-xs font-weight-bold text-black-50 text-uppercase mb-1">
                                                       Dodany <span class="text-success">{{ article.creation_date }}</span>
                                                       przez <span class="text-success">{{ article.author.username }}</span>

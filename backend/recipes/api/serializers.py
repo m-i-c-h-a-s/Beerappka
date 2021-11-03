@@ -28,6 +28,7 @@ class HopsSerializer(serializers.ModelSerializer):
 
 
 class YeastSerializer(serializers.ModelSerializer):
+    manufacturer = ManufacturerSerializer()
 
     class Meta:
         model = Yeast

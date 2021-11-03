@@ -20,9 +20,11 @@
                             <div class="card-body">
                                 <a routerLink="/edytuj-artykul/{{ article.id }}"
                                    class="text-decoration-none btn btn-primary mr-2">
-                                    Edytuj
+                                   <i class="fas fa-edit"></i>
+                                   Edytuj
                                 </a>
                                 <button class="btn btn-danger" (click)="deleteArticle(article.id)">
+                                    <i class="fas fa-trash-alt"></i>
                                     Usuń
                                 </button>
                             </div>

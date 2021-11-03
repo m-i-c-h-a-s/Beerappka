@@ -18,7 +18,9 @@ export class MyRecipesListComponent implements OnInit {
   page: number = 1;
 
 
-  constructor(private userService: UserService, private router: Router, private recipesService: RecipesService) { }
+  constructor(private userService: UserService,
+              private router: Router,
+              private recipesService: RecipesService) { }
 
   ngOnInit(): void {
     this.userService.getCurrentUserData().subscribe(data => {

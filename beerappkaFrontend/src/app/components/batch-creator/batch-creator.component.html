@@ -1,1 +1,64 @@
-<p>batch-creator works!</p>
+<!-- Page Wrapper -->
+<div id="wrapper">
+
+    <app-sidebar></app-sidebar>
+
+    <!-- Content Wrapper -->
+    <div id="content-wrapper" class="d-flex flex-column">
+
+        <app-topbar></app-topbar>
+
+        <!-- Main Content -->
+        <div id="content">
+            <div class="container-fluid">
+                <form>
+                <div id="recipeHeader" class="row">
+                    <div class="col-lg-12 mb-4">
+                        <div class="card shadow mb-4 border-bottom-info">
+                            <div class="card-header py-3">
+                                <h6 class="m-0 font-weight-bold text-primary">Warka</h6>
+                            </div>
+                            <div class="card-body row">
+                                <div class="col-md mb-3">
+                                    <input
+                                        type="text"
+                                        class="form-control bg-light border-0"
+                                        placeholder="Nazwa"
+
+
+                                    />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-12 mb-4 text-center">
+                    <button
+                        class="btn btn-primary mx-2"
+                        type="submit"
+                    >
+                        <span class="text">Zapisz warkę</span>
+                    </button>
+                    <button
+                        class="btn btn-light mx-2"
+                        type="cancel"
+                        routerLink="/moje-warki"
+                    >
+                        <span class="text">Anuluj</span>
+                    </button>
+                </div>
+                </form>
+            </div>
+        </div>
+        <!-- End of Main Content -->
+
+        <!-- Footer -->
+        <app-footer></app-footer>
+        <!-- End of Footer -->
+
+    </div>
+    <!-- End of Content Wrapper -->
+
+</div>
+<!-- End of Page Wrapper -->

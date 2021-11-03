@@ -7,6 +7,7 @@ import { Malt } from '../recipe-creator/malt';
 import { RecipeMalt } from '../recipe-creator/recipeMalt';
 import { RecipeHop } from '../recipe-creator/recipeHop';
 import { RecipeYeast } from '../recipe-creator/recipeYeast';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-recipe-details',
@@ -20,7 +21,8 @@ export class RecipeDetailsComponent implements OnInit {
   constructor(private recipeService: RecipesService,
               private route: ActivatedRoute,
               private router: Router,
-              public  permissions: Permissions)
+              public  permissions: Permissions,
+              public sanitizer: DomSanitizer)
   {}
 
   ngOnInit(): void {

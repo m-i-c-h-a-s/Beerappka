@@ -7,4 +7,5 @@ export interface BatchForCreateUpdate {
     name: string;
     number: number;
     brewing_date: string;
+    bottling_date: string;
 }

@@ -11,7 +11,7 @@
         <!-- Main Content -->
         <div id="content">
             <div class="container-fluid">
-                <form (ngSubmit)="createRecipe();">
+                <form (ngSubmit)="createRecipe()">
                 <div id="recipeHeader" class="row">
                     <div class="col-lg-12 mb-4">
                         <div class="card shadow mb-4 border-bottom-info">
@@ -198,7 +198,7 @@
                                             type="number"
                                             min=0
                                             class="form-control bg-light border-0 small"
-                                            [(ngModel)]="recipe.mashing_efficiency"
+                                            [(ngModel)]="recipe.water_to_grain_ratio"
                                             [ngModelOptions]="{standalone: true}"
                                             (input)="calculateParameters();"
                                         >
@@ -261,7 +261,7 @@
                             <div class="card-header py-3">
                                 <h6 class="m-0 font-weight-bold text-primary">Surowce fermentujące</h6>
                             </div>
-                            <div class="card-body row">
+                            <form class="card-body row">
                                 <div class="col-md mb-3">
                                     <label>Nazwa</label>
                                     <ng-autocomplete
@@ -339,14 +339,14 @@
                                     </div>
                                 </div>
                                 <div class="col-xl-12 mb-1 text-center">
-                                    <button class="btn btn-success btn-circle btn-sm m-1" title="Dodaj ten słód" (click)="addMalt()">
+                                    <a class="btn btn-success btn-circle btn-sm m-1" title="Dodaj ten słód" (click)="addMalt()">
                                         <i class="fas fa-plus"></i>
-                                    </button>
-                                    <button class="btn btn-danger btn-circle btn-sm m-1"  title="Usuń wszystkie słody" (click)="deleteAllMalts()">
+                                    </a>
+                                    <a class="btn btn-danger btn-circle btn-sm m-1"  title="Usuń wszystkie słody" (click)="deleteAllMalts()">
                                         <i class="fas fa-trash"></i>
-                                    </button>
+                                    </a>
                                 </div>
-                            </div>
+                            </form>
                             <div *ngIf="recipeMalts.length > 0">
                                 <div class="row card-body" *ngFor="let recipeMalt of recipeMalts;">
                                     <div class="col-md mb-3">
@@ -417,9 +417,9 @@
                                         </div>
                                     </div>
                                     <div class="col-1 mb-3">
-                                        <button class="btn btn-danger btn-circle btn-sm m-1" (click)="deleteMalt(recipeMalt);">
+                                        <a class="btn btn-danger btn-circle btn-sm m-1" (click)="deleteMalt(recipeMalt);">
                                             <i class="fas fa-trash"></i>
-                                        </button>
+                                        </a>
                                     </div>
                                 </div>
                             </div>
@@ -512,12 +512,12 @@
                                     </div>
                                 </div>
                                 <div class="col-xl-12 mb-1 text-center">
-                                    <button class="btn btn-success btn-circle btn-sm m-1" title="Dodaj ten chmiel" (click)="addHop()">
+                                    <a class="btn btn-success btn-circle btn-sm m-1" title="Dodaj ten chmiel" (click)="addHop()">
                                         <i class="fas fa-plus"></i>
-                                    </button>
-                                    <button class="btn btn-danger btn-circle btn-sm m-1"  title="Usuń wszystkie chmiele" (click)="deleteAllHops()">
+                                    </a>
+                                    <a class="btn btn-danger btn-circle btn-sm m-1"  title="Usuń wszystkie chmiele" (click)="deleteAllHops()">
                                         <i class="fas fa-trash"></i>
-                                    </button>
+                                    </a>
                                 </div>
                             </div>
                             <div *ngIf="recipeHops.length > 0">
@@ -592,9 +592,9 @@
                                         </div>
                                     </div>
                                     <div class="col-1 mb-3">
-                                        <button class="btn btn-danger btn-circle btn-sm m-1" (click)="deleteHop(recipeHop);">
+                                        <a class="btn btn-danger btn-circle btn-sm m-1" (click)="deleteHop(recipeHop);">
                                             <i class="fas fa-trash"></i>
-                                        </button>
+                                        </a>
                                     </div>
                                 </div>
                             </div>
@@ -676,17 +676,17 @@
                                     <input
                                         type="text"
                                         class="form-control bg-light border-0 small"
-                                        [(ngModel)]="recipeYeast.yeast.manufacturer.name"
+                                        [(ngModel)]="yeast.manufacturer.name"
                                         [ngModelOptions]="{standalone: true}"
                                     >
                                 </div>
                                 <div class="col-xl-12 mb-1 text-center">
-                                    <button class="btn btn-success btn-circle btn-sm m-1" title="Dodaj te drożdże" (click)="addYeast()">
+                                    <a class="btn btn-success btn-circle btn-sm m-1" title="Dodaj te drożdże" (click)="addYeast()">
                                         <i class="fas fa-plus"></i>
-                                    </button>
-                                    <button class="btn btn-danger btn-circle btn-sm m-1" title="Usuń wszystkie drożdże" (click)="deleteAllYeasts()">
+                                    </a>
+                                    <a class="btn btn-danger btn-circle btn-sm m-1" title="Usuń wszystkie drożdże" (click)="deleteAllYeasts()">
                                         <i class="fas fa-trash"></i>
-                                    </button>
+                                    </a>
                                 </div>
                             </div>
                             <div *ngIf="recipeYeasts.length > 0">
@@ -709,7 +709,7 @@
                                             class="form-control bg-light border-0 small"
                                             placeholder="Wybierz"
                                             required="required"
-                                            [(ngModel)]="yeast.type"
+                                            [(ngModel)]="recipeYeast.yeast.type"
                                             [ngModelOptions]="{standalone: true}"
                                         >
                                             <option value="" selected disabled hidden>Wybierz</option>
@@ -754,9 +754,9 @@
                                         >
                                     </div>
                                     <div class="col-1 mb-3">
-                                        <button class="btn btn-danger btn-circle btn-sm m-1" (click)="deleteYeast(recipeYeast);">
+                                        <a class="btn btn-danger btn-circle btn-sm m-1" (click)="deleteYeast(recipeYeast);">
                                             <i class="fas fa-trash"></i>
-                                        </button>
+                                        </a>
                                     </div>
                                 </div>
                             </div>
@@ -772,12 +772,13 @@
                             </div>
                             <div class="card-body row">
                                 <div class="col">
-                                    <textarea
-                                        rows="4"
-                                        class="form-control bg-light border-0"
+                                    <editor
                                         [(ngModel)]="recipe.notes"
-                                        [ngModelOptions]="{standalone: true}"
-                                    ></textarea>
+                                        id="recipe_notes"
+                                        name="recipe_notes"
+                                        [init]="initEditor"
+                                    >
+                                    </editor>
                                 </div>
                             </div>
                         </div>
@@ -810,13 +811,13 @@
                     >
                         <span class="text">Zapisz recepturę</span>
                     </button>
-                    <button
+                    <a
                         class="btn btn-light mx-2"
                         type="cancel"
                         routerLink="/moje-receptury"
                     >
                         <span class="text">Anuluj</span>
-                    </button>
+                    </a>
                 </div>
                 </form>
             </div>

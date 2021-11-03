@@ -37,7 +37,6 @@
               "src/styles.sass"
             ],
             "scripts": [
-              "src/assets/startbootstrap-sb-admin-2/js/sb-admin-2.js",
               "node_modules/jquery/dist/jquery.slim.js",
               "node_modules/popper.js/dist/umd/popper.js",
               "node_modules/bootstrap/dist/js/bootstrap.js",
@@ -45,6 +44,7 @@
               "src/assets/startbootstrap-sb-admin-2/vendor/jquery/jquery.min.js",
               "src/assets/startbootstrap-sb-admin-2/vendor/bootstrap/js/bootstrap.bundle.min.js",
               "src/assets/startbootstrap-sb-admin-2/vendor/jquery-easing/jquery.easing.min.js",
+              "src/assets/startbootstrap-sb-admin-2/js/sb-admin-2.js",
               "src/assets/startbootstrap-sb-admin-2/vendor/datatables/jquery.dataTables.min.js",
               "src/assets/startbootstrap-sb-admin-2/vendor/datatables/dataTables.bootstrap4.min.js",
               "src/assets/startbootstrap-sb-admin-2/js/demo/datatables-demo.js"

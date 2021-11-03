@@ -16,6 +16,7 @@ import { MaltToAdd } from '../recipe-creator/maltToAdd';
 import { HopToAdd } from '../recipe-creator/hopToAdd';
 import { YeastToAdd } from '../recipe-creator/yeastToAdd';
 import { Permissions } from '../../permissions/permissions';
+import { initEditor } from '../tinymce-editor/editor';
 
 @Component({
   selector: 'app-recipe-update',
@@ -26,6 +27,7 @@ import { Permissions } from '../../permissions/permissions';
 export class RecipeUpdateComponent implements OnInit {
   public recipe: Recipe | undefined;
   public recipeForUpdate: RecipeForCreateUpdate | undefined;
+  public initEditor = initEditor;
 
   public beerStyles: Array<BeerStyle> = [];
   public malts: Array<Malt> = [];
@@ -61,6 +63,7 @@ export class RecipeUpdateComponent implements OnInit {
     private router: Router,
     private permissions: Permissions
   ) {
+    this.initEditor.height = 200;
     this.blgBeforeBoiling = 0;
     this.amountOfSweetWortInLiters = 0;
     this.amountOfBeerBeforeDryHoppingInLiters = 0;
@@ -77,7 +80,7 @@ export class RecipeUpdateComponent implements OnInit {
 
     this.manufacturer = {
       id: 0,
-      name: ''
+      name: '',
     }
 
     this.malt = {
@@ -190,7 +193,7 @@ export class RecipeUpdateComponent implements OnInit {
         malts: this.recipe.malts,
         hops: this.recipe.hops,
         yeast: this.recipe.yeast
-      }
+      };
       const recipeId = this.recipe.id;
       this.recipesService.updateRecipe(this.recipe.id, this.recipeForUpdate).subscribe(data => {
         this.router.navigate([`/receptury/${recipeId}`]);

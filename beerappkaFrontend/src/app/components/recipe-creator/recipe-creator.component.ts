@@ -16,6 +16,7 @@ import { Manufacturer } from './manufacturer';
 import { MaltToAdd } from './maltToAdd';
 import { HopToAdd } from './hopToAdd';
 import { YeastToAdd } from './yeastToAdd';
+import { initEditor } from '../tinymce-editor/editor';
 
 @Component({
   selector: 'app-recipe-creator',
@@ -28,6 +29,7 @@ export class RecipeCreatorComponent implements OnInit {
   public style: BeerStyle | undefined;
   public manufacturer: Manufacturer;
   public recipe: RecipeForCreateUpdate;
+  public initEditor = initEditor;
 
   public malt: MaltToAdd;
   public hop: HopToAdd;
@@ -58,6 +60,7 @@ export class RecipeCreatorComponent implements OnInit {
     private router: Router,
     private userService: UserService
   ) {
+    this.initEditor.height = 200;
     this.blgBeforeBoiling = 0;
     this.amountOfSweetWortInLiters = 0;
     this.amountOfBeerBeforeDryHoppingInLiters = 0;
@@ -173,7 +176,7 @@ export class RecipeCreatorComponent implements OnInit {
 
   createRecipe() {
     this.recipesService.createRecipe(this.recipe).subscribe(data => {
-      this.router.navigate(['/receptury-publiczne']);
+      this.router.navigate(['/moje-receptury']);
     }, err => {
       console.log(err);
     });
@@ -271,6 +274,10 @@ export class RecipeCreatorComponent implements OnInit {
     };
     this.recipeYeasts.push(recipeYeast);
 
+    this.manufacturer = {
+      id: 0,
+      name: '',
+    }
     this.yeast = {
       name: '',
       type: '',
@@ -345,7 +352,6 @@ export class RecipeCreatorComponent implements OnInit {
   selectBeerStyle(item: BeerStyle) {
     this.recipe.style = item.id;
   }
-
 }
 
 

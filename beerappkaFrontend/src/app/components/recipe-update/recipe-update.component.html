@@ -11,7 +11,7 @@
         <!-- Main Content -->
         <div id="content">
             <div class="container-fluid" *ngIf="recipe">
-                <form (ngSubmit)="updateRecipe();">
+                <form>
                 <div id="recipeHeader" class="row">
                     <div class="col-lg-12 mb-4">
                         <div class="card shadow mb-4 border-bottom-info">
@@ -198,7 +198,7 @@
                                             type="number"
                                             min=0
                                             class="form-control bg-light border-0 small"
-                                            [(ngModel)]="recipe.mashing_efficiency"
+                                            [(ngModel)]="recipe.water_to_grain_ratio"
                                             [ngModelOptions]="{standalone: true}"
                                             (input)="calculateParameters();"
                                         >
@@ -680,7 +680,7 @@
                                             class="form-control bg-light border-0 small"
                                             placeholder="Wybierz"
                                             required="required"
-                                            [(ngModel)]="yeast.type"
+                                            [(ngModel)]="recipeYeast.yeast.type"
                                             [ngModelOptions]="{standalone: true}"
                                         >
                                             <option value="" selected disabled hidden>Wybierz</option>
@@ -743,12 +743,13 @@
                             </div>
                             <div class="card-body row">
                                 <div class="col">
-                                    <textarea
-                                        rows="4"
-                                        class="form-control bg-light border-0"
+                                    <editor
                                         [(ngModel)]="recipe.notes"
-                                        [ngModelOptions]="{standalone: true}"
-                                    ></textarea>
+                                        id="recipe_notes_u"
+                                        name="recipe_notes_u"
+                                        [init]="initEditor"
+                                    >
+                                    </editor>
                                 </div>
                             </div>
                         </div>
@@ -778,6 +779,7 @@
                     <button
                         class="btn btn-primary mx-2"
                         type="submit"
+                        (click)="updateRecipe();"
                     >
                         <span class="text">Zapisz recepturę</span>
                     </button>

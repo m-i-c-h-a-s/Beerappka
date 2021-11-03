@@ -97,7 +97,9 @@ class RecipeCreateUpdateSerializer(serializers.ModelSerializer):
             RecipeHops.objects.create(recipe=recipe, hops=hops, **recipe_hops_data)
         for recipe_yeast_data in yeast_data:
             y_data = recipe_yeast_data.pop('yeast')
-            yeast, _ = Yeast.objects.get_or_create(**y_data)
+            manufacturer_data = y_data.pop('manufacturer')
+            manufacturer, _ = Manufacturer.objects.get_or_create(**manufacturer_data)
+            yeast, _ = Yeast.objects.get_or_create(**y_data, manufacturer=manufacturer)
             RecipeYeast.objects.create(recipe=recipe, yeast=yeast, **recipe_yeast_data)
         return recipe
 
@@ -121,6 +123,8 @@ class RecipeCreateUpdateSerializer(serializers.ModelSerializer):
         RecipeYeast.objects.filter(recipe=instance).delete()
         for recipe_yeast_data in yeast_data:
             y_data = recipe_yeast_data.pop('yeast')
-            yeast, _ = Yeast.objects.get_or_create(**y_data)
+            manufacturer_data = y_data.pop('manufacturer')
+            manufacturer, _ = Manufacturer.objects.get_or_create(**manufacturer_data)
+            yeast, _ = Yeast.objects.get_or_create(**y_data, manufacturer=manufacturer)
             RecipeYeast.objects.create(recipe=instance, yeast=yeast, **recipe_yeast_data)
         return instance

@@ -6,6 +6,7 @@ from recipes.managers import MaltsManager
 from recipes.managers import HopsManager
 from recipes.managers import YeastsManager
 
+
 """
     Model reprezentujący Styl piwa
 """
@@ -132,31 +133,6 @@ class Recipe(models.Model):
     def __str__(self):
         return f"{self.name}"
 
-
-"""
-    Model reprezentujący Zacieranie
-"""
-
-
-class Mashing(models.Model):
-    time = models.IntegerField(verbose_name="Czas")
-
-    temperature = models.FloatField(verbose_name="Temperatura")
-
-    recipe = models.ForeignKey(
-        Recipe,
-        on_delete=models.CASCADE,
-        related_name="mashing",
-        verbose_name="Przepis",
-    )
-
-    class Meta:
-        verbose_name = "Zacieranie"
-        verbose_name_plural = "Zacierania"
-        ordering = ["-id"]
-
-    def __str__(self):
-        return f"{self.time} | {self.temperature} | {self.recipe}"
 
 
 """

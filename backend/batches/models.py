@@ -81,7 +81,7 @@ class Mashing(models.Model):
     batch = models.ForeignKey(
         Batch,
         on_delete=models.CASCADE,
-        related_name="mashing",
+        related_name="mashings",
         verbose_name="Warka",
     )
 
@@ -91,4 +91,4 @@ class Mashing(models.Model):
         ordering = ["-id"]
 
     def __str__(self):
-        return f"{self.time} | {self.temperature} | {self.recipe}"
+        return f"{self.time}s | {self.temperature} st.C | {self.batch}"

@@ -1,11 +1,11 @@
 from rest_framework.viewsets import ModelViewSet
 from rest_framework.decorators import action
 from rest_framework.response import Response
-from rest_framework import status
+from rest_framework import serializers, status
 
 from batches.api.filters import BatchFilter
 from batches.api.serializers import BatchSerializer, BatchCreateSerializer, BatchUpdateSerializer, \
-    MeasurementBLGSerializer, AddMashingSerializer
+    MeasurementBLGSerializer, AddEditMashingSerializer
 from batches.models import Batch, MeasurementBLG
 from batches.api.permissions import IsBatchOwnerOrReadOnlyPermission, IsBatchOwnerForMeasurementBLGOrReadOnlyPermission
 
@@ -18,7 +18,8 @@ class BatchesViewSet(ModelViewSet):
         'create': BatchCreateSerializer,
         'update': BatchUpdateSerializer,
         'partial_update': BatchUpdateSerializer,
-        'add_mashing': AddMashingSerializer
+        'add_mashing': AddEditMashingSerializer,
+        'edit_mashing': AddEditMashingSerializer
     }
     filterset_class = BatchFilter
 
@@ -52,6 +53,24 @@ class BatchesViewSet(ModelViewSet):
         if mashing:
             mashing.delete()
             return Response(status=status.HTTP_200_OK)
+        return Response(status=status.HTTP_404_NOT_FOUND)
+    
+    @action(
+        detail=True,
+        methods=['patch'],
+        url_path=r'edit_mashing/(?P<mashing_id>[0-9]+)'
+    )
+    def edit_mashing(self, request, pk, mashing_id):
+        batch = self.get_object()
+        mashing = batch.mashings.filter(id=mashing_id).first()
+        if mashing:
+            serializer = self.get_serializer(
+                instance=mashing, data=request.data
+            )
+            if serializer.is_valid():
+                serializer.save()
+                return Response(serializer.data)
+            return Response(serializer.errors) 
         return Response(status=status.HTTP_404_NOT_FOUND)
 
 

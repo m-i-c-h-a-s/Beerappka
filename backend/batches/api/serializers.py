@@ -12,7 +12,7 @@ class MashingSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
-class AddMashingSerializer(serializers.ModelSerializer):
+class AddEditMashingSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Mashing

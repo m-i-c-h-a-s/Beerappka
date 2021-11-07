@@ -19,11 +19,32 @@ class AddEditMashingSerializer(serializers.ModelSerializer):
         fields = '__all__'
         read_only_fields = ('id', 'batch')
 
+    
+class MeasurementBLGSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = MeasurementBLG
+        fields = '__all__'
+
+    def validate_batch(self, batch):
+        if batch.user == self.context.get('request').user:
+            return batch
+        raise serializers.ValidationError('Warka musi należeć do zalogowanego usera.')
+
+
+class AddEditMeasurementBLGSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = MeasurementBLG
+        fields = '__all__'
+        read_only_fields = ('id', 'batch')
+
 
 class BatchSerializer(serializers.ModelSerializer):
     user = UserSerializer()
     recipe = RecipeSerializer()
     mashings = MashingSerializer(many=True)
+    measurements_blg = MeasurementBLGSerializer(many=True)
 
     class Meta:
         model = Batch
@@ -42,16 +63,3 @@ class BatchUpdateSerializer(serializers.ModelSerializer):
     class Meta:
         model = Batch
         exclude = ("user", "recipe")
-
-
-class MeasurementBLGSerializer(serializers.ModelSerializer):
-
-    class Meta:
-        model = MeasurementBLG
-        fields = '__all__'
-
-    def validate_batch(self, batch):
-        if batch.user == self.context.get('request').user:
-            return batch
-        raise serializers.ValidationError('Warka musi należeć do zalogowanego usera.')
-

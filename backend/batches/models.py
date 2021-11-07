@@ -55,7 +55,7 @@ class MeasurementBLG(models.Model):
     batch = models.ForeignKey(
         Batch,
         on_delete=models.CASCADE,
-        related_name="measurement_blg",
+        related_name="measurements_blg",
         verbose_name="Warka",
     )
 

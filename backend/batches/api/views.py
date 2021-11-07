@@ -5,9 +5,9 @@ from rest_framework import serializers, status
 
 from batches.api.filters import BatchFilter
 from batches.api.serializers import BatchSerializer, BatchCreateSerializer, BatchUpdateSerializer, \
-    MeasurementBLGSerializer, AddEditMashingSerializer
+    MeasurementBLGSerializer, AddEditMashingSerializer, AddEditMeasurementBLGSerializer
 from batches.models import Batch, MeasurementBLG
-from batches.api.permissions import IsBatchOwnerOrReadOnlyPermission, IsBatchOwnerForMeasurementBLGOrReadOnlyPermission
+from batches.api.permissions import IsBatchOwnerOrReadOnlyPermission
 
 
 class BatchesViewSet(ModelViewSet):
@@ -19,7 +19,9 @@ class BatchesViewSet(ModelViewSet):
         'update': BatchUpdateSerializer,
         'partial_update': BatchUpdateSerializer,
         'add_mashing': AddEditMashingSerializer,
-        'edit_mashing': AddEditMashingSerializer
+        'edit_mashing': AddEditMashingSerializer,
+        'add_blg_measurement': AddEditMeasurementBLGSerializer,
+        'edit_blg_measurement': AddEditMeasurementBLGSerializer
     }
     filterset_class = BatchFilter
 
@@ -73,16 +75,42 @@ class BatchesViewSet(ModelViewSet):
             return Response(serializer.errors) 
         return Response(status=status.HTTP_404_NOT_FOUND)
 
-
-class MeasurementBLGViewSet(ModelViewSet):
-    queryset = MeasurementBLG.objects.all()
-    permission_classes = [IsBatchOwnerForMeasurementBLGOrReadOnlyPermission,]
-    serializers = {
-        'default': MeasurementBLGSerializer
-    }
-
-    def get_serializer_class(self):
-        return self.serializers.get(
-            self.action,
-            self.serializers.get('default')
-        )
+    @action(detail=True, methods=['post'])
+    def add_blg_measurement(self, request, pk):
+        batch = self.get_object()
+        serializer = self.get_serializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save(batch=batch)
+            return Response(serializer.data)
+        return Response(serializer.errors)
+    
+    @action(
+        detail=True,
+        methods=['delete'],
+        url_path=r'delete_blg_measurement/(?P<blg_measurement_id>[0-9]+)'
+    )
+    def delete_blg_measurement(self, request, pk, blg_measurement_id):
+        batch = self.get_object()
+        blg_measurement = batch.measurements_blg.filter(id=blg_measurement_id).first()
+        if blg_measurement:
+            blg_measurement.delete()
+            return Response(status=status.HTTP_200_OK)
+        return Response(status=status.HTTP_404_NOT_FOUND)
+    
+    @action(
+        detail=True,
+        methods=['patch'],
+        url_path=r'edit_blg_measurement/(?P<blg_measurement_id>[0-9]+)'
+    )
+    def edit_blg_measurement(self, request, pk, blg_measurement_id):
+        batch = self.get_object()
+        blg_measurement = batch.measurements_blg.filter(id=blg_measurement_id).first()
+        if blg_measurement:
+            serializer = self.get_serializer(
+                instance=blg_measurement, data=request.data
+            )
+            if serializer.is_valid():
+                serializer.save()
+                return Response(serializer.data)
+            return Response(serializer.errors) 
+        return Response(status=status.HTTP_404_NOT_FOUND)

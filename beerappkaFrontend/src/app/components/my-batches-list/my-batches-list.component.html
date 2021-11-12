@@ -16,14 +16,14 @@
                 <div class="row" *ngIf="batches && batches.length > 0; else noRecipesAdded;">
                     <div class="col-lg-4 col-xs-12 mb-4" *ngFor="let batch of batches | paginate: { itemsPerPage: 6, currentPage: page, totalItems: totalLength }">
                         <div class="mb-3">
-                            <div class="card border-left-success shadow h-100 py-2">
+                            <div class="card border-left-secondary shadow h-100 py-2">
                                 <div class="card-body">
                                     <a routerLink="/warki/{{ batch.id }}" class="text-decoration-none">
                                         <div class="row no-gutters align-items-center">
                                             <div class="col-lg-9 col-xs-12">
                                                 <div class="col mb-1">
                                                     <div class="h4 mb-3 font-weight-bold text-gray-800">
-                                                        <i class="fas fa-poll-h"></i>
+                                                        <i class="fas fa-beer"></i>
                                                         {{ batch.name }}
                                                         <hr class="mt-1 mb-4">
                                                     </div>
@@ -58,8 +58,9 @@
                                                     <div class="text-xs font-weight-bold text-black-50 text-uppercase mt-3">
                                                         Uwarzona: <span class="text-success">{{ batch.brewing_date | date: 'YYYY-MM-dd' }}</span>
                                                     </div>
-                                                    <div *ngIf="batch.bottling_date" class="text-xs font-weight-bold text-black-50 text-uppercase mb-1">
-                                                        Zabutelkowana: <span class="text-success">{{ batch.bottling_date }}</span>
+                                                    <div class="text-xs font-weight-bold text-black-50 text-uppercase mb-1">
+                                                        Zabutelkowana: <span *ngIf="batch.bottling_date; else noBottlingDate;" class="text-success">{{ batch.bottling_date }}</span>
+                                                        <ng-template #noBottlingDate> <span class="text-success"> --- </span> </ng-template>
                                                     </div>
                                                 </div>
                                             </div>

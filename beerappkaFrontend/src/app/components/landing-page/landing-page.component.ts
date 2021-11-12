@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { UserService } from '../../services/user.service';
 
 @Component({
   selector: 'app-landing-page',
@@ -6,9 +7,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./landing-page.component.sass']
 })
 export class LandingPageComponent implements OnInit {
+  public isLoggedIn = false;
 
-  constructor() { }
+  constructor(public userService: UserService) { }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.isLoggedIn = this.userService.isLoggedIn();
+  }
 
 }

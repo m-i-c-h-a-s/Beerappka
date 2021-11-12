@@ -6,7 +6,7 @@ export interface Batch {
     user: User;
     recipe: Recipe;
     name: string;
-    number: number;
+    number: number | undefined;
     brewing_date: string;
-    bottling_date: string;
+    bottling_date: string | undefined;
 }

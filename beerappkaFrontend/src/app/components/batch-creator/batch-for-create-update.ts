@@ -1,11 +1,9 @@
 import { User } from "../profile/user";
-import { Recipe } from "../recipe-creator/recipe";
 
 export interface BatchForCreateUpdate {
-    user: User;
-    recipe: Recipe;
     name: string;
-    number: number;
+    number: number | undefined;
     brewing_date: string;
-    bottling_date: string;
+    bottling_date: string | undefined;
+    recipe: number;
 }

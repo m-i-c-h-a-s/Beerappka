@@ -322,6 +322,11 @@ export class RecipeUpdateComponent implements OnInit {
       this.recipe.yeast = [];
   }
 
+  confirmCancellation() {
+    if (confirm("Czy na pewno chcesz anulować edytowanie receptury?")) {
+      this.router.navigate(['/moje-receptury']);
+    }
+  }
 
   calculateParameters() {
     //this.calculateAmountOfBoilingWort();

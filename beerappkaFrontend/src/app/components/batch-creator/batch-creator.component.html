@@ -1,32 +1,317 @@
-<!-- Page Wrapper -->
 <div id="wrapper">
 
     <app-sidebar></app-sidebar>
 
-    <!-- Content Wrapper -->
     <div id="content-wrapper" class="d-flex flex-column">
 
         <app-topbar></app-topbar>
 
-        <!-- Main Content -->
         <div id="content">
             <div class="container-fluid">
                 <form>
-                <div id="recipeHeader" class="row">
-                    <div class="col-lg-12 mb-4">
+                <div class="row">
+                    <div class="col-lg-6 mb-4">
                         <div class="card shadow mb-4 border-bottom-info">
                             <div class="card-header py-3">
                                 <h6 class="m-0 font-weight-bold text-primary">Warka</h6>
                             </div>
-                            <div class="card-body row">
-                                <div class="col-md mb-3">
-                                    <input
-                                        type="text"
-                                        class="form-control bg-light border-0"
-                                        placeholder="Nazwa"
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-lg-8 col-sm-8 col-12 mb-3">
+                                        <label>Nazwa warki</label>
+                                        <input
+                                            type="text"
+                                            class="form-control bg-light border-0"
+                                            placeholder="Nazwa"
+                                            [(ngModel)]="batch.name"
+                                            [ngModelOptions]="{standalone: true}"
+                                        />
+                                    </div>
+                                    <div class="col-lg-4 col-sm-4 col-12 mb-3">
+                                        <label>Nr warki</label>
+                                        <input
+                                            type="number"
+                                            min="0"
+                                            class="form-control bg-light border-0"
+                                            placeholder="#"
+                                            title="Tu możesz zapisać numer warki (które to z kolei uwarzone przez Ciebie piwo)"
+                                            [(ngModel)]="batch.number"
+                                            [ngModelOptions]="{standalone: true}"
+                                        />
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md mb-3">
+                                        <label>Data warzenia</label>
+                                        <input
+                                            type="date"
+                                            class="form-control bg-light border-0"
+                                            [(ngModel)]="batch.brewing_date"
+                                            [ngModelOptions]="{standalone: true}"
+                                        />
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md mb-3">
+                                        <label>Data rozlewu</label>
+                                        <input
+                                            type="date"
+                                            class="form-control bg-light border-0"
+                                            [(ngModel)]="batch.bottling_date"
+                                            [ngModelOptions]="{standalone: true}"
+                                        />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 mb-4" *ngIf="this.recipe">
+                        <div class="card shadow mb-4 border-bottom-info">
+                            <div class="card-header py-3">
+                                <h6 class="m-0 font-weight-bold text-primary">Warka na podstawie receptury</h6>
+                            </div>
+                            <div class="card-body">
+                                <div class="row no-gutters align-items-center">
+                                    <div class="col-xs-12">
+                                        <div class="col mb-1">
+                                            <div class="h4 mb-3 font-weight-bold text-gray-800">
+                                                <i class="fas fa-poll-h"></i>
+                                                {{ recipe.name }}
+                                                <hr class="mt-1 mb-4">
+                                            </div>
+                                            <div class="h6 mb-1 font-weight-bold text-gray-800">
+                                                Styl:
+                                                <span class="text-info">{{ recipe.style.name }}</span>
+                                            </div>
+                                            <div class="h6 mb-1 font-weight-bold text-gray-800">
+                                                Typ:
+                                                <span class="text-info">{{ recipe.type }}</span>
+                                            </div>
+                                            <div class="h6 mb-1 font-weight-bold text-gray-800">
+                                                Rozmiar:
+                                                <span class="text-info">{{ recipe.expected_beer_amount }}L</span>
+                                            </div>
+                                            <div class="h6 mb-1 font-weight-bold text-gray-800">
+                                                BLG:
+                                                <span class="text-info">{{ recipe.blg }}</span>
+                                            </div>
+                                            <div class="h6 mb-1 font-weight-bold text-gray-800">
+                                                ABV:
+                                                <span class="text-info">{{ recipe.abv }}%</span>
+                                            </div>
+                                            <div class="h6 mb-1 font-weight-bold text-gray-800">
+                                                EBC:
+                                                <span class="text-info">{{ recipe.ebc }}</span>
+                                            </div>
+                                            <div class="text-xs font-weight-bold text-black-50 text-uppercase mt-3">
+                                                Utworzona: <span class="text-success">{{ recipe.creation_date | date: 'YYYY-MM-dd' }}</span>
+                                            </div>
+                                            <div class="text-xs font-weight-bold text-black-50 text-uppercase mb-1">
+                                                Autor: <span class="text-success">{{ recipe.user.username }}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
+                </div>
 
-                                    />
+                <div class="row">
+                    <div class="col-xl-4 mb-4">
+                        <div class="card shadow mb-4 border-bottom-info">
+                            <div class="card-header py-3">
+                                <h6 class="m-0 font-weight-bold text-primary">Etapy zacierania</h6>
+                            </div>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-xl-5 mb-3">
+                                        <label>Czas</label>
+                                        <div class="input-group">
+                                            <input
+                                                type="number"
+                                                min="0"
+                                                class="form-control bg-light border-0"
+                                                [(ngModel)]="mashing.time"
+                                                [ngModelOptions]="{standalone: true}"
+                                            >
+                                            <div class="input-group-append">
+                                                <span class="input-group-text border-0 bg-light">min</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-5 mb-3">
+                                        <label>Temperatura</label>
+                                        <div class="input-group">
+                                            <input
+                                                type="number"
+                                                min="0"
+                                                class="form-control bg-light border-0"
+                                                [(ngModel)]="mashing.temperature"
+                                                [ngModelOptions]="{standalone: true}"
+                                            >
+                                            <div class="input-group-append">
+                                                <span class="input-group-text border-0 bg-light">°C</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-1 mb-3 text-center">
+                                        <label>ㅤ</label>
+                                        <a class="btn btn-success btn-circle btn-sm m-1" title="Dodaj ten etap zacierania" (click)="addMashing();">
+                                            <i class="fas fa-plus"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="mt-3" *ngIf="mashings.length > 0">
+                                    <div class="row" *ngFor="let mashing of mashings;">
+                                        <div class="col-6 mb-3">
+                                            <div class="input-group">
+                                                <input
+                                                    type="number"
+                                                    min="0"
+                                                    class="form-control bg-light border-0"
+                                                    [(ngModel)]="mashing.time"
+                                                    [ngModelOptions]="{standalone: true}"
+                                                >
+                                                <div class="input-group-append">
+                                                    <span class="input-group-text border-0 bg-light">min</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-6 mb-3">
+                                            <div class="input-group">
+                                                <input
+                                                    type="number"
+                                                    min="0"
+                                                    class="form-control bg-light border-0"
+                                                    [(ngModel)]="mashing.temperature"
+                                                    [ngModelOptions]="{standalone: true}"
+                                                >
+                                                <div class="input-group-append">
+                                                    <span class="input-group-text border-0 bg-light">°C</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-8 mb-4">
+                        <div class="card shadow mb-4 border-bottom-info">
+                            <div class="card-header py-3">
+                                <h6 class="m-0 font-weight-bold text-primary">Pomiary gęstości</h6>
+                            </div>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-3 mb-3">
+                                        <label>Data i czas</label>
+                                        <input
+                                            type="datetime-local"
+                                            class="form-control bg-light border-0"
+                                            [(ngModel)]="measurementBLG.date"
+                                            [ngModelOptions]="{standalone: true}"
+                                        />
+                                    </div>
+                                    <div class="col-md-2 mb-3">
+                                        <label>BLG</label>
+                                        <input
+                                            type="number"
+                                            class="form-control bg-light border-0"
+                                            [(ngModel)]="measurementBLG.blg"
+                                            [ngModelOptions]="{standalone: true}"
+                                        />
+                                    </div>
+                                    <div class="col-md-3 mb-3">
+                                        <label>Temp. piwa</label>
+                                        <div class="input-group">
+                                            <input
+                                                type="number"
+                                                min="0"
+                                                class="form-control bg-light border-0"
+                                                [(ngModel)]="measurementBLG.beer_temperature"
+                                                [ngModelOptions]="{standalone: true}"
+                                            >
+                                            <div class="input-group-append">
+                                                <span class="input-group-text border-0 bg-light">°C</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3 mb-3">
+                                        <label>Temp. otoczenia</label>
+                                        <div class="input-group">
+                                            <input
+                                                type="number"
+                                                min="0"
+                                                class="form-control bg-light border-0"
+                                                [(ngModel)]="measurementBLG.ambient_temperature"
+                                                [ngModelOptions]="{standalone: true}"
+                                            >
+                                            <div class="input-group-append">
+                                                <span class="input-group-text border-0 bg-light">°C</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-1 mb-3 text-center">
+                                        <label>ㅤ</label>
+                                        <a class="btn btn-success btn-circle btn-sm m-1" title="Dodaj pomiar gęstości" (click)="addMeasurementBLG();">
+                                            <i class="fas fa-plus"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="mt-3" *ngIf="measurementsBLG.length > 0">
+                                    <div class="row" *ngFor="let measurementBLG of measurementsBLG;">
+                                        <div class="col-lg-3 mb-3">
+                                            <input
+                                                type="datetime-local"
+                                                class="form-control bg-light border-0"
+                                                [(ngModel)]="measurementBLG.date"
+                                                [ngModelOptions]="{standalone: true}"
+                                            />
+                                        </div>
+                                        <div class="col-lg-2 mb-3">
+                                            <div class="input-group">
+                                                <input
+                                                    type="number"
+                                                    class="form-control bg-light border-0"
+                                                    [(ngModel)]="measurementBLG.blg"
+                                                    [ngModelOptions]="{standalone: true}"
+                                                />
+                                                <div class="input-group-append">
+                                                    <span class="input-group-text border-0 bg-light">BLG</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-3 mb-3">
+                                            <div class="input-group">
+                                                <input
+                                                    type="number"
+                                                    min="0"
+                                                    class="form-control bg-light border-0"
+                                                    [(ngModel)]="measurementBLG.beer_temperature"
+                                                    [ngModelOptions]="{standalone: true}"
+                                                >
+                                                <div class="input-group-append">
+                                                    <span class="input-group-text border-0 bg-light">°C</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-3 mb-3">
+                                            <div class="input-group">
+                                                <input
+                                                    type="number"
+                                                    min="0"
+                                                    class="form-control bg-light border-0"
+                                                    [(ngModel)]="measurementBLG.ambient_temperature"
+                                                    [ngModelOptions]="{standalone: true}"
+                                                >
+                                                <div class="input-group-append">
+                                                    <span class="input-group-text border-0 bg-light">°C</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -37,28 +322,24 @@
                     <button
                         class="btn btn-primary mx-2"
                         type="submit"
+                        (click)="createBatch();"
                     >
                         <span class="text">Zapisz warkę</span>
                     </button>
-                    <button
+                    <as
                         class="btn btn-light mx-2"
                         type="cancel"
                         routerLink="/moje-warki"
                     >
                         <span class="text">Anuluj</span>
-                    </button>
+                    </as>
                 </div>
                 </form>
             </div>
         </div>
-        <!-- End of Main Content -->
 
-        <!-- Footer -->
         <app-footer></app-footer>
-        <!-- End of Footer -->
 
     </div>
-    <!-- End of Content Wrapper -->
 
 </div>
-<!-- End of Page Wrapper -->

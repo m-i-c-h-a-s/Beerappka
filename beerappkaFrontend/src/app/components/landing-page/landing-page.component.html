@@ -11,7 +11,7 @@
               Gromadzenie przepisów piwowarskich nigdy nie było przyjemniejsze!
             </p>
             <p>Beer Different</p>
-            <p>
+            <p *ngIf="!isLoggedIn">
               <button
                   class="btn btn-light btn-sm border-dark"
                   routerLink="/rejestracja"
@@ -20,8 +20,8 @@
                   Załóż DARMOWE konto
               </button>
             </p>
-            <p>lub</p>
-            <p>
+            <p *ngIf="!isLoggedIn">lub</p>
+            <p *ngIf="!isLoggedIn">
               <button
                 class="btn btn-light btn-sm border-dark"
                 routerLink="/logowanie"
@@ -45,11 +45,11 @@
             <p>W naszej Beerappce będziesz mógł to zrobić bez najmniejszego problemu!</p>
             <p>Beerappka pozwoli ci między innymi na:</p>
             <ul>
-              <li>gromadzenie receptur piwowarskich</li>
-              <li>tworzenie warek</li>
+              <li>układanie receptur piwowarskich</li>
+              <li>gromadzenie utworzonych przepisów</li>
               <li>dokumentowanie procesu warzenia</li>
               <li>dzielenie się wynikami z innymi użytkownikami</li>
-              <li>przeglądanie pzepisów innych</li>
+              <li>przeglądanie przepisów innych</li>
               <li>obliczanie różnych istotnych parametrów</li>
             </ul>
           </div>
@@ -74,7 +74,7 @@
             <p>Dzięki aplikacji będziesz mógł poznać osoby, które dzielą taką samą pasję jak Ty.</p>
             <p>Będziesz mógł inspirować się ich pomysłami.</p>
             <p>Możliwości jest wiele.</p>
-            <p>
+            <p *ngIf="!isLoggedIn">
               <button
                   class="btn btn-light btn-sm border-dark"
                   routerLink="/rejestracja"

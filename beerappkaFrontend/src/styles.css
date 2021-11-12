@@ -19,3 +19,20 @@ body {
   border-radius: 50%;
   display: block;
 }
+
+*::-webkit-scrollbar {
+  width: 5px;
+}
+
+*::-webkit-scrollbar-track {
+  background: #2EAC6D;
+}
+
+*::-webkit-scrollbar-thumb {
+  background: #1e7047;
+  border-radius: 25px;
+}
+
+*::-webkit-scrollbar-thumb:hover {
+  background: #185c3a;
+}

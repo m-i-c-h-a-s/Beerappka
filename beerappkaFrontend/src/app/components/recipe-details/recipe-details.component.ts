@@ -3,7 +3,6 @@ import { RecipesService } from '../../services/recipes.service';
 import { Recipe } from '../recipe-creator/recipe';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Permissions } from '../../permissions/permissions';
-import { Malt } from '../recipe-creator/malt';
 import { RecipeMalt } from '../recipe-creator/recipeMalt';
 import { RecipeHop } from '../recipe-creator/recipeHop';
 import { RecipeYeast } from '../recipe-creator/recipeYeast';

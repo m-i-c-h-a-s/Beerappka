@@ -8,6 +8,7 @@ import {UserService} from '../../services/user.service';
 })
 export class PageTopBarComponent implements OnInit {
   public isLoggedIn = false;
+  
   constructor(public userService: UserService) { }
 
   ngOnInit(): void {

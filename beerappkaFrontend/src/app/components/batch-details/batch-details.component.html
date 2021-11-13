@@ -1,0 +1,189 @@
+<div id="wrapper">
+
+    <app-sidebar></app-sidebar>
+
+    <div id="content-wrapper" class="d-flex flex-column">
+
+        <div id="content">
+
+            <app-topbar></app-topbar>
+
+            <div class="container-fluid" *ngIf="batch && loaderService.isLoading">
+                <div class="row">
+                    <div class="col-lg-6 col-xs-12 mb-4">
+                        <div class="mb-3">
+                            <div class="card shadow h-100 border-left-secondary">
+                                <div class="card-header py-3">
+                                    <h6 class="m-0 font-weight-bold text-primary">Warka</h6>
+                                </div>
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col-xs-12">
+                                            <div class="mb-1">
+                                                <div class="h6 mb-1 font-weight-bold text-gray-800">
+                                                    Nazwa:
+                                                    <span class="text-info">{{ batch.name }}</span>
+                                                </div>
+                                                <div *ngIf="batch.number" class="h6 mb-1 font-weight-bold text-gray-800">
+                                                    Numer:
+                                                    <span class="text-info">{{ batch.number }}</span>
+                                                </div>
+                                                <div class="h6 mb-1 font-weight-bold text-gray-800">
+                                                    Data warzenia: <span class="text-info">{{ batch.brewing_date | date: 'YYYY-MM-dd' }}</span>
+                                                </div>
+                                                <div class="h6 mb-1 font-weight-bold text-gray-800">
+                                                    Data butelkowania:
+                                                        <span *ngIf="batch.bottling_date; else noBottlingDate;" class="text-info">{{ batch.bottling_date | date: 'YYYY-MM-dd' }}</span>
+                                                        <ng-template #noBottlingDate>
+                                                            <span class="text-info">---</span>
+                                                        </ng-template>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-xs-12 mb-4">
+                        <div class="mb-3">
+                            <div class="card shadow h-100">
+                                <div class="card-header py-3">
+                                    <h6 class="m-0 font-weight-bold text-primary">Warka na podstawie receptury</h6>
+                                </div>
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col-xs-12">
+                                            <div class="col mb-1">
+                                                <div class="h4 mb-3 font-weight-bold text-gray-800">
+                                                    <i class="fas fa-poll-h"></i>
+                                                    {{ batch.recipe.name }}
+                                                    <hr class="mt-1 mb-4">
+                                                </div>
+                                                <div class="h6 mb-1 font-weight-bold text-gray-800">
+                                                    Styl:
+                                                    <span class="text-info">{{ batch.recipe.style.name }}</span>
+                                                </div>
+                                                <div class="h6 mb-1 font-weight-bold text-gray-800">
+                                                    Typ:
+                                                    <span class="text-info">{{ batch.recipe.type }}</span>
+                                                </div>
+                                                <div class="h6 mb-1 font-weight-bold text-gray-800">
+                                                    Rozmiar:
+                                                    <span class="text-info">{{ batch.recipe.expected_beer_amount }}L</span>
+                                                </div>
+                                                <div class="h6 mb-1 font-weight-bold text-gray-800">
+                                                    BLG:
+                                                    <span class="text-info">{{ batch.recipe.blg }}</span>
+                                                </div>
+                                                <div class="h6 mb-1 font-weight-bold text-gray-800">
+                                                    ABV:
+                                                    <span class="text-info">{{ batch.recipe.abv }}%</span>
+                                                </div>
+                                                <div class="h6 mb-1 font-weight-bold text-gray-800">
+                                                    EBC:
+                                                    <span class="text-info">{{ batch.recipe.ebc }}</span>
+                                                </div>
+                                                <div class="text-xs font-weight-bold text-black-50 text-uppercase mt-3">
+                                                    Utworzona: <span class="text-success">{{ batch.recipe.creation_date | date: 'YYYY-MM-dd' }}</span>
+                                                </div>
+                                                <div class="text-xs font-weight-bold text-black-50 text-uppercase mb-1">
+                                                    Autor: <span class="text-success">{{ batch.recipe.user.username }}</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12 col-xs-12 mb-4">
+                        <div class="card shadow mb-4">
+                            <div class="card-header py-3">
+                                <h6 class="m-0 font-weight-bold text-primary">Etapy zacierania</h6>
+                            </div>
+                            <div class="card-body">
+                                <div class="table-responsive" *ngIf="batch.mashings != undefined && batch.mashings.length > 0; else noMashingsAdded">
+                                    <table class="table table-bordered text-center" width="100%" cellspacing="0">
+                                        <thead class="table-secondary">
+                                            <tr>
+                                                <th>Czas</th>
+                                                <th>Temperatura</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody *ngFor="let mashing of batch.mashings;">
+                                            <tr>
+                                                <td> {{ mashing.time }} min </td>
+                                                <td> {{ mashing.temperature }} °C </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <ng-template #noMashingsAdded>
+                                    <div class="text-center text-black-50">
+                                        Nie dodano etapów zacierania.
+                                    </div>
+                                </ng-template>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12 col-xs-12 mb-4">
+                        <div class="card shadow mb-4">
+                            <div class="card-header py-3">
+                                <h6 class="m-0 font-weight-bold text-primary">Pomiary gęstości</h6>
+                            </div>
+                            <div class="card-body">
+                                <div class="table-responsive" *ngIf="batch.measurements_blg != undefined && batch.measurements_blg.length > 0; else noMeasurementsBlgAdded">
+                                    <table class="table table-bordered text-center" width="100%" cellspacing="0">
+                                        <thead class="table-secondary">
+                                            <tr>
+                                                <th>Data i czas</th>
+                                                <th>Gęstość</th>
+                                                <th>Temp. piwa</th>
+                                                <th>Temp. otoczenia</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody *ngFor="let measurement_blg of batch.measurements_blg;">
+                                            <tr>
+                                                <td> {{ measurement_blg.date | date: 'dd-MM-yy,' }} godz. {{ measurement_blg.date | date: 'HH:mm' }} </td>
+                                                <td> {{ measurement_blg.blg }} BLG </td>
+                                                <td> {{ measurement_blg.beer_temperature }} °C </td>
+                                                <td> {{ measurement_blg.ambient_temperature }} °C </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <ng-template #noMeasurementsBlgAdded>
+                                    <div class="text-center text-black-50">
+                                        Nie dodano żadnych pomiarów.
+                                    </div>
+                                </ng-template>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" *ngIf="batch">
+                    <div class="col-lg-12 mb-4">
+                        <div class="card shadow">
+                            <div class="card-body">
+                                <button class="btn btn-primary btn-sm mx-2 my-2" routerLink="/edytuj-warke/{{ batch.id }}">
+                                    <i class="fas fa-edit"></i>
+                                    Edytuj warkę
+                                </button>
+                                <button class="btn btn-danger btn-sm mx-2 my-2" (click)="deleteBatch(batch.id);">
+                                    <i class="fas fa-trash-alt"></i>
+                                    Usuń warkę
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <app-footer></app-footer>
+    </div>
+</div>

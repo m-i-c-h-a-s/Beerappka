@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { BeerStylesService } from 'src/app/services/beer-styles.service';
+import { BeerStyle } from '../recipe-creator/beerStyle';
 import { beerStyleCarbonationInfo } from './beerStyleCarbonationInfo';
 
 @Component({
@@ -7,6 +9,7 @@ import { beerStyleCarbonationInfo } from './beerStyleCarbonationInfo';
   styleUrls: ['./carbonation-calculator.component.sass']
 })
 export class CarbonationCalculatorComponent implements OnInit {
+  //public beerStyles: Array<BeerStyle> | undefined;
 
   public amountOfBeerInLiters: number | null;
   public targetCarbonationLevel: number | null;
@@ -18,7 +21,8 @@ export class CarbonationCalculatorComponent implements OnInit {
   public primingCarbonationLevel: number | null;
 
 
-  constructor() {
+  constructor(//public beerStyleService: BeerStylesService
+  ) {
     this.amountOfBeerInLiters = null;
     this.targetCarbonationLevel = null;
     this.beerTemperature = null;
@@ -30,6 +34,11 @@ export class CarbonationCalculatorComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    /*this.beerStyleService.getAllBeerStyles().subscribe(data => {
+      this.beerStyles = (data as any).results;
+    }, err => {
+      console.log(err);
+    });*/
   }
 
   calculateResidualCarbonationLevel() {

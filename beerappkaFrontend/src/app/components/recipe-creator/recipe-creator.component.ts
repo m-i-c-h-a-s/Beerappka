@@ -75,6 +75,8 @@ export class RecipeCreatorComponent implements OnInit {
       max_blg: 0,
       min_ibu: 0,
       max_ibu: 0,
+      min_carbonation: 0,
+      max_carbonation: 0,
     }
 
     this.recipe = {
@@ -213,6 +215,7 @@ export class RecipeCreatorComponent implements OnInit {
         malt: this.malt,
         quantity: 0
       }
+      this.calcBlg(this.recipe.malts, this.recipe.mashing_efficiency, this.recipe.expected_beer_amount);
     }
   }
 
@@ -360,7 +363,8 @@ export class RecipeCreatorComponent implements OnInit {
     extract_ml = extract / 1.587;
     water = beerAmountInLiters * 1000 - extract_ml;
     let worthWeight = water + extract;
-    this.recipe.blg = 100 * extract / worthWeight;
+    blg = (100 * extract / worthWeight);
+    this.recipe.blg = Math.round(blg);
   }
 
   selectBeerStyle(item: BeerStyle) {

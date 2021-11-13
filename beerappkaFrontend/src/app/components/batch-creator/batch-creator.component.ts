@@ -54,6 +54,8 @@ export class BatchCreatorComponent implements OnInit {
     if (this.recipeId)
       this.recipeService.getRecipe(this.recipeId).subscribe(data => {
         this.recipe = data as any;
+        if (this.recipe)
+          this.displayFullRecipeTypeName(this.recipe);
       }, err => {
         console.log(err);
       });
@@ -98,6 +100,23 @@ export class BatchCreatorComponent implements OnInit {
         beer_temperature: 0,
         ambient_temperature: 0,
       }
+    }
+  }
+
+  public displayFullRecipeTypeName(recipe: Recipe) {
+    switch(recipe?.type) {
+      case 'm':
+        recipe.type = "Zacieranie";
+        break;
+      case 'e':
+        recipe.type = "Ekstrakty";
+        break;
+      case 'b':
+        recipe.type = "Brewkit";
+        break;
+      default:
+        recipe.type = "";
+        break;
     }
   }
 }

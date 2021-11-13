@@ -338,6 +338,53 @@
                                 <h6 class="m-0 font-weight-bold text-primary">Surowce fermentujące</h6>
                             </div>
                             <form (ngSubmit)="addMalt()" class="card-body row">
+                                <div *ngIf="recipe.malts.length > 0">
+                                    <div class="row no-gutters align-items-center mb-3">
+                                        <div class="col">
+                                            <div class="progress progress-sm mr-2" style="height: 30px;">
+                                                <div class="progress-bar bg-warning"
+                                                    role="progressbar"
+                                                    [style.width]="recipe.blg + '%'"
+                                                    aria-valuenow="recipe.blg"
+                                                    aria-valuemin="0"
+                                                    aria-valuemax="100"
+                                                >
+                                                    {{ recipe.blg }} BLG
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row no-gutters align-items-center mb-3">
+                                        <div class="col">
+                                            <div class="progress progress-sm mr-2" style="height: 30px;">
+                                                <div class="progress-bar bg-danger"
+                                                    role="progressbar"
+                                                    [style.width]="recipe.abv + '%'"
+                                                    aria-valuenow="recipe.abv"
+                                                    aria-valuemin="0"
+                                                    aria-valuemax="100"
+                                                >
+                                                    {{ recipe.abv }} %
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row no-gutters align-items-center mb-4">
+                                        <div class="col">
+                                            <div class="progress progress-sm mr-2" style="height: 30px;">
+                                                <div class="progress-bar bg-info"
+                                                    role="progressbar"
+                                                    [style.width]="recipe.ebc + '%'"
+                                                    aria-valuenow="recipe.ebc"
+                                                    aria-valuemin="0"
+                                                    aria-valuemax="100"
+                                                >
+                                                    {{ recipe.ebc }} EBC
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                                 <div class="col-md mb-3">
                                     <label>Nazwa</label>
                                     <ng-autocomplete

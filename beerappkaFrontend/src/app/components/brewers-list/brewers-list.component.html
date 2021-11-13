@@ -12,7 +12,7 @@
             <app-topbar></app-topbar>
 
             <!-- Begin Page Content -->
-            <div class="container-fluid">
+            <div class="container-fluid" *ngIf="loaderService.isLoading">
 
                 <div class="row" *ngIf="allUsers">
                     <div class="col-xs-12 col-lg-6 mb-4" *ngFor="let user of allUsers | paginate: { itemsPerPage: 8, currentPage: page, totalItems: totalLength }">

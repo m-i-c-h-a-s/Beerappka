@@ -76,6 +76,8 @@ export class RecipeUpdateComponent implements OnInit {
       max_blg: 0,
       min_ibu: 0,
       max_ibu: 0,
+      min_carbonation: 0,
+      max_carbonation: 0,
     }
 
     this.manufacturer = {

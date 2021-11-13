@@ -20,7 +20,7 @@ export class DashboardComponent implements OnInit {
   public numberOfBatches: any;
   public latestRecipe: any;
   public latestBatch: any;
-
+  public batches: Array<Batch> | undefined;
 
   date = new Date();
 
@@ -46,6 +46,8 @@ export class DashboardComponent implements OnInit {
       if (this.currentUser)
         this.batchesService.getUserBatches(this.currentUser.id).subscribe(data => {
           this.latestBatch = (data as any).results[0];
+          this.batches = (data as any).results;
+          this.checkCurrentBatches();
         }, err => {
           console.log(err);
         });
@@ -53,5 +55,15 @@ export class DashboardComponent implements OnInit {
     }, err => {
       console.log(err);
     });
+  }
+
+  private checkCurrentBatches() {
+    if (this.batches) {
+      this.batches.forEach(batch => {
+        if (batch.bottling_date)
+          if (this.batches)
+            this.batches = this.batches.filter(e => e !== batch);
+      });
+    }
   }
 }

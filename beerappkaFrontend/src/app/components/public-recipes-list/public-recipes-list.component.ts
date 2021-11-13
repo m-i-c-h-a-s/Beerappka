@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { LoaderService } from 'src/app/loader/loader.service';
 import { RecipesService } from '../../services/recipes.service';
 import { Recipe } from '../recipe-creator/recipe';
 
@@ -13,7 +14,9 @@ export class PublicRecipesListComponent implements OnInit {
   totalLength: any;
   page: number = 1;
 
-  constructor(private recipesService: RecipesService) {}
+  constructor(private recipesService: RecipesService,
+              public loaderService: LoaderService
+  ) {}
 
   ngOnInit(): void {
     this.recipesService.getAllPublicRecipes().subscribe(data => {

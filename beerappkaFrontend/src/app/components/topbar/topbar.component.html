@@ -1,4 +1,4 @@
- <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+ <nav class="navbar navbar-expand navbar-light bg-white topbar static-top shadow">
 
   <!-- Sidebar Toggle (Topbar) -->
   <button id="sidebarToggleTop" class="btn btn-link rounded-circle mr-3">
@@ -44,3 +44,12 @@
   </ul>
 
 </nav>
+
+<div *ngIf="loaderService.isLoading | async">
+    <mat-progress-bar
+        mode="determinate"
+    >
+    </mat-progress-bar>
+</div>
+
+<div class="mb-4"></div>

@@ -12,7 +12,7 @@
             <app-topbar></app-topbar>
 
             <!-- Begin Page Content -->
-            <div class="container-fluid">
+            <div class="container-fluid" *ngIf="loaderService.isLoading">
                 <div class="row mb-4">
                     <div class="col-lg-12">
                         <div class="card shadow h-100 py-2">
@@ -26,7 +26,7 @@
                     </div>
                 </div>
 
-                <div class="row" *ngIf="articles">
+                <div class="row" *ngIf="articles && articles.length > 0; else noArticles;">
                     <div class="col-lg-6 col-xs-12 mb-4" *ngFor="let article of articles | paginate: { itemsPerPage: 8, currentPage: page, totalItems: totalLength }">
                         <div class="mb-3">
                             <div class="card border-bottom-success shadow h-100 py-2">
@@ -52,6 +52,12 @@
                         </div>
                     </div>
                 </div>
+
+                <ng-template #noArticles>
+                    <div class="text-center text-black-50">
+                        Brak artykułów.
+                    </div>
+                </ng-template>
 
                 <div class="row text-center mb-4"
                      *ngIf="totalLength > 8"

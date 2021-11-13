@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {UserData} from '../components/login-page/user-data';
 import {Article} from '../components/articles-list/article';
 import { Recipe } from '../components/recipe-creator/recipe';
+import { Batch } from '../components/batch-creator/batch';
 
 @Injectable({
   providedIn: 'root'
@@ -19,5 +20,9 @@ export class Permissions {
 
   isRecipeAuthor(recipe: Recipe): boolean {
     return recipe.user.id === this.currentUser.id;
+  }
+
+  isBatchAuthor(batch: Batch): boolean {
+    return batch.user.id === this.currentUser.id;
   }
 }

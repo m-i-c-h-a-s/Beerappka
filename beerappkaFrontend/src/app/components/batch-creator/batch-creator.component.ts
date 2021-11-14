@@ -84,6 +84,10 @@ export class BatchCreatorComponent implements OnInit {
     }
   }
 
+  deleteMashing(mashing: MashingForCreateUpdate) {
+    this.mashings = this.mashings.filter(e => e !== mashing);
+  }
+
   addMeasurementBLG() {
     if (this.measurementBLG.date != '' && this.measurementBLG.blg != 0 && this.measurementBLG.beer_temperature != 0 && this.measurementBLG.ambient_temperature != 0) {
       const measurementBLG: MeasurementBLGForCreateUpdate = {
@@ -101,6 +105,10 @@ export class BatchCreatorComponent implements OnInit {
         ambient_temperature: 0,
       }
     }
+  }
+
+  deleteMeasurementBLG(measurementBLG: MeasurementBLGForCreateUpdate) {
+    this.measurementsBLG = this.measurementsBLG.filter(e => e !== measurementBLG);
   }
 
   public displayFullRecipeTypeName(recipe: Recipe) {

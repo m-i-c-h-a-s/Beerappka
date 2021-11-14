@@ -6,4 +6,6 @@ export interface BeerStyle {
   max_blg: number;
   min_ibu: number;
   max_ibu: number;
+  min_carbonation: number;
+  max_carbonation: number;
 }

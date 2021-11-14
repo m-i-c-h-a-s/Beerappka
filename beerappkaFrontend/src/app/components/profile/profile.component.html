@@ -16,7 +16,7 @@
 
                 <div class="row" *ngIf="currentUser && currentUser.profile">
                     <div class="col-lg-6 mb-3">
-                        <div class="card shadow mb-4 border-bottom-info">
+                        <div class="card shadow mb-4">
                             <div class="card-header py-3">
                                 <h6 class="m-0 font-weight-bold text-primary">
                                   Profil
@@ -142,7 +142,7 @@
                         </div>
                     </div>
                     <div class="col-lg-6 mb-3">
-                        <div class="card shadow mb-4 border-bottom-info">
+                        <div class="card shadow mb-4">
                             <div class="card-header py-3">
                                 <h6 class="m-0 font-weight-bold text-primary">Profil</h6>
                             </div>
@@ -273,23 +273,32 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-6">
-                        <div class="card shadow border-bottom-info">
+                    <div class="col-lg-6 mb-3">
+                        <div class="card shadow">
                             <div class="col-lg-12 ml-2 mt-4">
                                 <a class="btn btn-primary mb-3"
                                     routerLink="/edytuj-profil"
                                     role="button">
-                                    <span class="text">Edytuj profil</span>
+                                    <span class="text">
+                                        <i class="fas fa-edit"></i>
+                                        Edytuj profil
+                                    </span>
                                 </a>
                                 <a class="btn btn-primary ml-4 mb-3"
                                     routerLink="/edytuj-profil/zmien-haslo"
                                     role="button">
-                                    <span class="text">Zmień hasło</span>
+                                    <span class="text">
+                                        <i class="fas fa-key"></i>
+                                        Zmień hasło
+                                    </span>
                                 </a>
                                 <a class="btn btn-danger ml-4 mb-3"
                                     routerLink="/edytuj-profil/usun-konto"
                                     role="button">
-                                    <span class="text">Usuń konto</span>
+                                    <span class="text">
+                                        <i class="fas fa-trash-alt"></i>
+                                        Usuń konto
+                                    </span>
                                 </a>
                             </div>
                         </div>

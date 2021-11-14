@@ -5,4 +5,5 @@ export interface Yeast {
     name: string;
     type: string;
     manufacturer: Manufacturer;
+    is_default: false,
 }

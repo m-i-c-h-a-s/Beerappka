@@ -12,7 +12,6 @@ from recipes.models import (
     RecipeMalt,
     RecipeYeast,
     RecipeWater,
-    Mashing,
 )
 
 
@@ -40,10 +39,6 @@ class StyleAdmin(admin.ModelAdmin):
     pass
 
 
-class MashingInline(admin.TabularInline):
-    model = Mashing
-    extra = 1
-
 
 class RecipeAdmin(admin.ModelAdmin):
     inlines = [
@@ -51,7 +46,6 @@ class RecipeAdmin(admin.ModelAdmin):
         RecipeMaltInline,
         RecipeYeastInline,
         RecipeWaterInline,
-        MashingInline,
     ]
 
 

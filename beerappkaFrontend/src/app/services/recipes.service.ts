@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import {Observable} from 'rxjs';
 import {HttpClient} from '@angular/common/http';
 import {BaseService} from './base.service';
-import { Recipe } from '../components/recipe-creator/recipe';
 import { RecipeForCreateUpdate } from '../components/recipe-creator/recipe-for-create-update';
 
 @Injectable({
@@ -14,12 +13,12 @@ export class RecipesService extends BaseService {
     super();
    }
 
-  public getAllRecipes(): Observable<ArrayBuffer> {
-    return this.http.get(this.getAPIUrl(`/recipes/`), this.httpOptions);
+  public getAllPublicRecipes(): Observable<ArrayBuffer> {
+    return this.http.get(this.getAPIUrl(`/recipes/only_public/`), this.httpOptions);
   }
 
   public getUserRecipes(userId: number): Observable<ArrayBuffer> {
-    return this.http.get(this.getAPIUrl(`/all-recipes/?user__id=${userId}`), this.httpOptions);
+    return this.http.get(this.getAPIUrl(`/recipes/?user__id=${userId}`), this.httpOptions);
   }
 
   public getRecipe(id: number): Observable<ArrayBuffer> {
@@ -43,6 +42,10 @@ export class RecipesService extends BaseService {
     return this.http.get(this.getAPIUrl(`/malts/`), this.httpOptions);
   }
 
+  public getDefaultMalts(): Observable<ArrayBuffer> {
+    return this.http.get(this.getAPIUrl(`/malts/only_default/`), this.httpOptions);
+  }
+
   public getMalt(id: number): Observable<ArrayBuffer> {
     return this.http.get(this.getAPIUrl(`/malts/${id}`), this.httpOptions);
   }
@@ -52,6 +55,10 @@ export class RecipesService extends BaseService {
     return this.http.get(this.getAPIUrl(`/hops/`), this.httpOptions);
   }
 
+  public getDefaultHops(): Observable<ArrayBuffer> {
+    return this.http.get(this.getAPIUrl(`/hops/only_default/`), this.httpOptions);
+  }
+
   public getHop(id: number): Observable<ArrayBuffer> {
     return this.http.get(this.getAPIUrl(`/hops/${id}`), this.httpOptions);
   }
@@ -59,6 +66,10 @@ export class RecipesService extends BaseService {
 
   public getAllYeast(): Observable<ArrayBuffer> {
     return this.http.get(this.getAPIUrl(`/yeast/`), this.httpOptions);
+  }
+
+  public getDefaultYeasts(): Observable<ArrayBuffer> {
+    return this.http.get(this.getAPIUrl(`/yeast/only_default/`), this.httpOptions);
   }
 
   public getYeast(id: number): Observable<ArrayBuffer> {

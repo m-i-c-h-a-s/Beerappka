@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { LoaderService } from 'src/app/loader/loader.service';
 import { RecipesService } from 'src/app/services/recipes.service';
 import { UserService } from 'src/app/services/user.service';
 import { User } from '../profile/user';
@@ -18,7 +19,11 @@ export class MyRecipesListComponent implements OnInit {
   page: number = 1;
 
 
-  constructor(private userService: UserService, private router: Router, private recipesService: RecipesService) { }
+  constructor(private userService: UserService,
+              private router: Router,
+              private recipesService: RecipesService,
+              public loaderService: LoaderService
+  ) { }
 
   ngOnInit(): void {
     this.userService.getCurrentUserData().subscribe(data => {

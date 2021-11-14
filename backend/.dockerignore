@@ -2,3 +2,7 @@ Dockerfile
 db.sqlite3
 .env.example
 .idea
+.venv
+.local
+.cache
+.vscode-server

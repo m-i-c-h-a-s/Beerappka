@@ -18,9 +18,9 @@ export class DashboardComponent implements OnInit {
   public currentUser: User | undefined;
   public numberOfRecipes: any;
   public numberOfBatches: any;
-  public latestRecipe: Recipe | any;
-  public latestBatch: Batch | any;
-
+  public latestRecipe: any;
+  public latestBatch: any;
+  public batches: Array<Batch> | undefined;
 
   date = new Date();
 
@@ -33,10 +33,11 @@ export class DashboardComponent implements OnInit {
   ngOnInit(): void {
     this.userService.getCurrentUserData().subscribe(data => {
       this.currentUser = data as any;
+      this.numberOfRecipes = this.currentUser?.number_of_recipes;
+      this.numberOfBatches = this.currentUser?.number_of_batches;
 
       if (this.currentUser)
         this.recipesService.getUserRecipes(this.currentUser.id).subscribe(data => {
-          this.numberOfRecipes = (data as any).results.length;
           this.latestRecipe = (data as any).results[0];
         }, err => {
           console.log(err);
@@ -44,8 +45,9 @@ export class DashboardComponent implements OnInit {
 
       if (this.currentUser)
         this.batchesService.getUserBatches(this.currentUser.id).subscribe(data => {
-          this.numberOfBatches = (data as any).results.length;
           this.latestBatch = (data as any).results[0];
+          this.batches = (data as any).results;
+          this.checkCurrentBatches();
         }, err => {
           console.log(err);
         });
@@ -53,5 +55,15 @@ export class DashboardComponent implements OnInit {
     }, err => {
       console.log(err);
     });
+  }
+
+  private checkCurrentBatches() {
+    if (this.batches) {
+      this.batches.forEach(batch => {
+        if (batch.bottling_date)
+          if (this.batches)
+            this.batches = this.batches.filter(e => e !== batch);
+      });
+    }
   }
 }

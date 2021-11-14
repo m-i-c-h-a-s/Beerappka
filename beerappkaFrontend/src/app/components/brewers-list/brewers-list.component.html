@@ -12,7 +12,7 @@
             <app-topbar></app-topbar>
 
             <!-- Begin Page Content -->
-            <div class="container-fluid">
+            <div class="container-fluid" *ngIf="loaderService.isLoading">
 
                 <div class="row" *ngIf="allUsers">
                     <div class="col-xs-12 col-lg-6 mb-4" *ngFor="let user of allUsers | paginate: { itemsPerPage: 8, currentPage: page, totalItems: totalLength }">
@@ -21,7 +21,7 @@
                                 <div class="card-body">
                                     <a routerLink="/piwowarzy/{{ user.username }}" class="text-decoration-none">
                                         <div class="row no-gutters align-items-center">
-                                            <div class="col-lg-1 col-xs-12">
+                                            <div class="col-auto">
                                                 <img src="{{ user.profile.picture_thumb_150x150 }}"
                                                      alt="zdjęcie profilowe"
                                                      class="profile-picture"
@@ -31,12 +31,11 @@
                                                          src="/assets/startbootstrap-sb-admin-2/img/undraw_profile.svg">
                                                 </ng-template>
                                             </div>
-                                            <div class="col-lg-11 col-xs-12">
+                                            <div class="col-auto">
                                                 <div class="col mb-3">
                                                     <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
                                                         Login
                                                     </div>
-
                                                     <div class="h5 mb-0 font-weight-bold text-gray-800">
                                                       {{ user.username }}
                                                     </div>

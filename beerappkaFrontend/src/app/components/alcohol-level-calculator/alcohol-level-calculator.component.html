@@ -44,7 +44,7 @@
                                           class="form-control bg-light border-0 small"
                                           [(ngModel)]="originalGravity"
                                           [ngModelOptions]="{standalone: true}"
-                                          (focusout)="calculateParameters();"
+                                          (input)="calculateParameters();"
                                       >
                                     </div>
                                     <div class="mb-3">
@@ -55,7 +55,7 @@
                                           class="form-control bg-light border-0 small"
                                           [(ngModel)]="finalGravity"
                                           [ngModelOptions]="{standalone: true}"
-                                          (focusout)="calculateParameters();"
+                                          (input)="calculateParameters();"
                                       >
                                     </div>
                                     <div>

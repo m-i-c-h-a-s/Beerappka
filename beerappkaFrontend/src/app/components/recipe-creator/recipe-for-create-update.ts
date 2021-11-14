@@ -1,4 +1,3 @@
-import { BeerStyle } from "./beerStyle";
 import { RecipeHop } from "./recipeHop";
 import { RecipeMalt } from "./recipeMalt";
 import { RecipeYeast } from "./recipeYeast";
@@ -14,13 +13,13 @@ export interface RecipeForCreateUpdate {
     boiling_losses: number;
     fermentation_losses: number;
     cold_hop_losses: number;
-    mashing_performance: number;
+    mashing_efficiency: number;
     water_to_grain_ratio: number;
     notes: string;
     blg: number;
     abv: number;
     ebc: number;
-    style: number | undefined;
+    style: number;
     malts: Array<RecipeMalt>;
     hops: Array<RecipeHop>;
     yeast: Array<RecipeYeast>;

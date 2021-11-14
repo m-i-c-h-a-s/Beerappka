@@ -1,7 +1,8 @@
 export interface MaltToAdd {
     name: string;
-    extractivity: number | undefined;
+    extractivity: number;
     type: string;
-    color: number | undefined;
+    color: number;
     manufacturer: number;
+    is_default: boolean;
 }

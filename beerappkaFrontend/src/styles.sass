@@ -1,6 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 $dark-brown: #3C2F3D
 $green: #2EAC6D
+$darkGreen: #1b6540
 
 body
   color: $dark-brown
@@ -21,3 +22,16 @@ body
     border-radius: 50%
     display: block
 
+*::-webkit-scrollbar
+  width: 5px
+  //background-color: red
+
+*::-webkit-scrollbar-track
+  background: $green
+
+*::-webkit-scrollbar-thumb
+  background: darken($green, 15%)
+  border-radius: 25px
+
+*::-webkit-scrollbar-thumb:hover
+  background: darken($green, 20%)

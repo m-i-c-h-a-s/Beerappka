@@ -59,6 +59,8 @@ class ProfileSerializer(PictureThumbnailMixinSerializer, serializers.ModelSerial
 
 class UserSerializer(serializers.ModelSerializer):
     profile = ProfileSerializer()
+    number_of_recipes = serializers.SerializerMethodField()
+    number_of_batches = serializers.SerializerMethodField()
 
     class Meta:
         model = User
@@ -72,7 +74,15 @@ class UserSerializer(serializers.ModelSerializer):
             "date_joined",
             "last_login",
             "profile",
+            "number_of_recipes",
+            "number_of_batches",
         ]
+
+    def get_number_of_recipes(self, obj):
+        return obj.recipes.all().count()
+
+    def get_number_of_batches(self, obj):
+        return obj.batches.all().count()
 
 
 class UpdateUserSerializer(serializers.ModelSerializer):

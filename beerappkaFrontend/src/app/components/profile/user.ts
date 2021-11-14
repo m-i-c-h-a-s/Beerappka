@@ -10,4 +10,7 @@ export interface User {
   date_joined: string;
   last_login: string;
   profile: Profile;
+  number_of_recipes: number;
+  number_of_batches: number;
+  last_recipe_name: string;
 }

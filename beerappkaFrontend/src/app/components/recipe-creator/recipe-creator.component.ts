@@ -14,6 +14,10 @@ import { RecipeHop } from './recipeHop';
 import { RecipeYeast } from './recipeYeast';
 import { Manufacturer } from './manufacturer';
 import { MaltToAdd } from './maltToAdd';
+import { HopToAdd } from './hopToAdd';
+import { YeastToAdd } from './yeastToAdd';
+import { initEditor } from '../tinymce-editor/editor';
+import { RecipeCreateUpdateErrors } from './recipe-create-update-errors';
 
 @Component({
   selector: 'app-recipe-creator',
@@ -22,17 +26,20 @@ import { MaltToAdd } from './maltToAdd';
 })
 
 export class RecipeCreatorComponent implements OnInit {
-  public beerStyles: Array<BeerStyle> | undefined;
+  public beerStyles: Array<BeerStyle> = [];
   public style: BeerStyle | undefined;
-  public manufacturer: Manufacturer | undefined;
+  public manufacturer: Manufacturer;
   public recipe: RecipeForCreateUpdate;
+  public initEditor = initEditor;
+  public err: RecipeCreateUpdateErrors | undefined;
 
   public malt: MaltToAdd;
-  public hop: Hop;
-  public yeast: Yeast;
+  public hop: HopToAdd;
+  public yeast: YeastToAdd;
 
   public recipeMalt: RecipeMalt;
   public recipeHop: RecipeHop;
+  public recipeYeast: RecipeYeast;
 
   public malts: Array<Malt> = [];
   public hops: Array<Hop> = [];
@@ -42,12 +49,6 @@ export class RecipeCreatorComponent implements OnInit {
   public recipeHops: Array<RecipeHop> = [];
   public recipeYeasts: Array<RecipeYeast> = [];
 
-  public maltName = '';
-  public maltType = '';
-  public maltQuantity = 0;
-  public maltEBC = 0;
-  public maltExtractivity = 0;
-
 
   // wort - brzeczka
   // sweet wort - brzeczka nastawna
@@ -55,29 +56,16 @@ export class RecipeCreatorComponent implements OnInit {
   amountOfSweetWortInLiters: number;
   amountOfBeerBeforeDryHoppingInLiters: number;
 
-  hopName = '';
-  hopUsedFor = '';
-  hopAmountInGrams: number | undefined;
-  hopBoilingTimeInMinutes: number | undefined;
-  hopAlphaAcidsPercent: number | undefined;
-  yeastName = '';
-  yeastType = '';
-  yeastForm = '';
-  yeastAmountInGrams: number | undefined;
-  yeastLaboratory = '';
-
-
-
   constructor(
     private beerStylesService: BeerStylesService,
     private recipesService: RecipesService,
     private router: Router,
     private userService: UserService
   ) {
+    this.initEditor.height = 200;
     this.blgBeforeBoiling = 0;
     this.amountOfSweetWortInLiters = 0;
     this.amountOfBeerBeforeDryHoppingInLiters = 0;
-
 
     this.style = {
       id: 0,
@@ -87,6 +75,8 @@ export class RecipeCreatorComponent implements OnInit {
       max_blg: 0,
       min_ibu: 0,
       max_ibu: 0,
+      min_carbonation: 0,
+      max_carbonation: 0,
     }
 
     this.recipe = {
@@ -100,16 +90,16 @@ export class RecipeCreatorComponent implements OnInit {
       boiling_losses: 0,
       fermentation_losses: 0,
       cold_hop_losses: 0,
-      mashing_performance: 0,
+      mashing_efficiency: 0,
       water_to_grain_ratio: 0,
       notes: '',
       blg: 0,
       abv: 0,
       ebc: 0,
       style: this.style.id,
-      malts: this.recipeMalts,
-      hops: this.recipeHops,
-      yeast: this.recipeYeasts,
+      malts: [],
+      hops: [],
+      yeast: [],
     }
 
     this.manufacturer = {
@@ -118,28 +108,28 @@ export class RecipeCreatorComponent implements OnInit {
     }
 
     this.malt = {
-      //id: 0,
       name: '',
       extractivity: 0,
       type: '',
       color: 0,
       manufacturer: 0,
+      is_default: false,
     }
 
     this.hop = {
-      id: 0,
       name: '',
       type: '',
       origin: '',
       alpha_acids: 0,
       manufacturer: 0,
+      is_default: false,
     }
 
     this.yeast = {
-      id: 0,
       name: '',
       type: '',
-      manufacturer: this.manufacturer
+      manufacturer: this.manufacturer,
+      is_default: false,
     }
 
     this.recipeMalt = {
@@ -153,6 +143,12 @@ export class RecipeCreatorComponent implements OnInit {
       used_for: '',
       boiling_time: 0
     }
+
+    this.recipeYeast = {
+      yeast: this.yeast,
+      quantity: 0,
+      form: ''
+    }
   }
 
   ngOnInit(): void {
@@ -162,8 +158,20 @@ export class RecipeCreatorComponent implements OnInit {
       console.log(err);
     });
 
-    this.recipesService.getAllMalts().subscribe(data => {
+    this.recipesService.getDefaultMalts().subscribe(data => {
       this.malts = (data as any).results;
+    }, err => {
+      console.log(err);
+    });
+
+    this.recipesService.getDefaultHops().subscribe(data => {
+      this.hops = (data as any).results;
+    }, err => {
+      console.log(err);
+    });
+
+    this.recipesService.getDefaultYeasts().subscribe(data => {
+      this.yeasts = (data as any).results;
     }, err => {
       console.log(err);
     });
@@ -172,93 +180,142 @@ export class RecipeCreatorComponent implements OnInit {
 
   createRecipe() {
     this.recipesService.createRecipe(this.recipe).subscribe(data => {
-      this.router.navigate(['/receptury-publiczne']);
+      this.router.navigate(['/moje-receptury']);
     }, err => {
       console.log(err);
+      this.err = err.error;
     });
   }
 
 
   addMalt() {
-    const recipeMalt: RecipeMalt = {
-      malt: this.malt,
-      quantity: this.recipeMalt.quantity,
-    };
+    if (this.malt.name != '' && this.recipeMalt.quantity !== 0 && this.malt.color !== 0 && this.malt.extractivity !== 0) {
+      const recipeMalt: RecipeMalt = {
+        malt: {
+          name: this.malt.name,
+          extractivity: this.malt.extractivity,
+          type: this.malt.type,
+          color: this.malt.color,
+          manufacturer: this.malt.manufacturer,
+          is_default: false,
+        },
+        quantity: this.recipeMalt.quantity,
+      };
+      this.recipe.malts.push(recipeMalt);
 
-    this.recipeMalts.push(recipeMalt);
-    this.recipeMalt.malt = this.malt;
-    this.recipeMalt.quantity = 0;
+      this.malt = {
+        name: '',
+        extractivity: 0,
+        type: '',
+        color: 0,
+        manufacturer: 0,
+        is_default: false,
+      }
+      this.recipeMalt = {
+        malt: this.malt,
+        quantity: 0
+      }
+      this.calcBlg(this.recipe.malts, this.recipe.mashing_efficiency, this.recipe.expected_beer_amount);
+    }
   }
 
   deleteMalt(recipeMalt: RecipeMalt) {
-    this.recipeMalts = this.recipeMalts.filter(e => e !== recipeMalt);
+    this.recipe.malts = this.recipe.malts.filter(e => e !== recipeMalt);
   }
 
-  deleteMalts() {
-    this.recipeMalts = [];
+  deleteAllMalts() {
+    this.recipe.malts.length = 0;
   }
 
-  /*
+
   addHop() {
-    const hop: Hop = {
-      name: this.hopName,
-      usedFor: this.hopUsedFor,
-      amountInGrams: this.hopAmountInGrams,
-      boilingTimeInMinutes: this.hopBoilingTimeInMinutes,
-      alphaAcidsPercent: this.hopAlphaAcidsPercent,
-    };
+    if (this.hop.name != '' && this.recipeHop.used_for != '' && this.recipeHop.quantity != 0 && this.recipeHop.boiling_time != 0 && this.hop.alpha_acids != 0) {
+      const recipeHop: RecipeHop = {
+        hops: {
+          name: this.hop.name,
+          type: this.hop.type,
+          origin: this.hop.origin,
+          alpha_acids: this.hop.alpha_acids,
+          manufacturer: this.hop.manufacturer,
+          is_default: false,
+        },
+        quantity: this.recipeHop.quantity,
+        used_for: this.recipeHop.used_for,
+        boiling_time: this.recipeHop.boiling_time
+      };
+      this.recipe.hops.push(recipeHop);
 
-    this.hops.push(hop);
-
-    this.hopName = '';
-    this.hopUsedFor = '';
-    this.hopAmountInGrams = undefined;
-    this.hopBoilingTimeInMinutes = undefined;
-    this.hopAlphaAcidsPercent = undefined;
+      this.hop = {
+        name: '',
+        type: '',
+        origin: '',
+        alpha_acids: 0,
+        manufacturer: 0,
+        is_default: false,
+      }
+      this.recipeHop = {
+        hops: this.hop,
+        quantity: 0,
+        used_for: '',
+        boiling_time: 0
+      }
+    }
   }
+
+  deleteHop(recipeHop: RecipeHop) {
+    this.recipe.hops = this.recipe.hops.filter(e => e !== recipeHop);
+  }
+
+  deleteAllHops() {
+    this.recipe.hops.length = 0;
+  }
+
 
   addYeast() {
-    const yeast: Yeast = {
-      name: this.yeastName,
-      type: this.yeastType,
-      form: this.yeastForm,
-      amountInGrams: this.yeastAmountInGrams,
-      laboratory: this.yeastLaboratory,
-    };
+    if (this.yeast.name != '' && this.yeast.type != '' && this.recipeYeast.form != '' && this.recipeYeast.quantity !== 0) {
+      const recipeYeast: RecipeYeast = {
+        yeast: {
+          name: this.yeast.name,
+          type: this.yeast.type,
+          manufacturer: this.yeast.manufacturer,
+          is_default: false,
+        },
+        quantity: this.recipeYeast.quantity,
+        form: this.recipeYeast.form
+      };
+      this.recipe.yeast.push(recipeYeast);
 
-    this.yeasts.push(yeast);
-
-    this.yeastName = '';
-    this.yeastType = '';
-    this.yeastForm = '';
-    this.yeastAmountInGrams = undefined;
-    this.yeastLaboratory = '';
+      this.manufacturer = {
+        id: 0,
+        name: '',
+      }
+      this.yeast = {
+        name: '',
+        type: '',
+        manufacturer: this.manufacturer,
+        is_default: false,
+      }
+      this.recipeYeast = {
+        yeast: this.yeast,
+        quantity: 0,
+        form: ''
+      }
+    }
   }
 
-  deleteMalt(malt: Malt) {
-    this.malts = this.malts.filter(e => e !== malt);
+  deleteYeast(recipeYeast: RecipeYeast) {
+    this.recipe.yeast = this.recipe.yeast.filter(e => e !== recipeYeast);
   }
 
-  deleteHop(hop: Hop) {
-    this.hops = this.hops.filter(e => e !== hop);
+  deleteAllYeasts() {
+    this.recipe.yeast.length = 0;
   }
 
-  deleteYeast(yeast: Yeast) {
-    this.yeasts = this.yeasts.filter(e => e !== yeast);
+  confirmCancellation() {
+    if (confirm("Czy na pewno chcesz anulować tworzenie receptury?")) {
+      this.router.navigate(['/moje-receptury']);
+    }
   }
-
-  deleteMalts() {
-    this.malts = [];
-  }
-
-  deleteHops() {
-    this.hops = [];
-  }
-
-  deleteYeasts() {
-    this.yeasts = [];
-  }
-  */
 
   calculateParameters() {
     this.calculateAmountOfBoilingWort();
@@ -294,6 +351,26 @@ export class RecipeCreatorComponent implements OnInit {
     if (this.recipe.expected_beer_amount != null && this.recipe.cold_hop_losses != null)
       this.amountOfBeerBeforeDryHoppingInLiters += +this.recipe.expected_beer_amount * (this.recipe.cold_hop_losses / 100);
   }
+
+  calcBlg(malts: Array<RecipeMalt>, mashingEfficiency: number, beerAmountInLiters: number) {
+    let extract = 0;
+    let extract_ml = 0;
+    let water = 0;
+    let blg = 0;
+    malts.forEach(malt => {
+      extract += (malt.quantity * malt.malt.extractivity * mashingEfficiency) / 10;
+    });
+    extract_ml = extract / 1.587;
+    water = beerAmountInLiters * 1000 - extract_ml;
+    let worthWeight = water + extract;
+    blg = (100 * extract / worthWeight);
+    this.recipe.blg = Math.round(blg);
+  }
+
+  selectBeerStyle(item: BeerStyle) {
+    this.recipe.style = item.id;
+  }
 }
+
 
 

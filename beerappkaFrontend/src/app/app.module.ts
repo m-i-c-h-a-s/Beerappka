@@ -6,6 +6,8 @@ import { registerLocaleData } from '@angular/common';
 import localePl from '@angular/common/locales/pl';
 
 import {NgxPaginationModule} from 'ngx-pagination';
+import { AutocompleteLibModule } from 'angular-ng-autocomplete';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -43,6 +45,10 @@ import { MyRecipesListComponent } from './components/my-recipes-list/my-recipes-
 import { GravityCorrectionCalculatorComponent } from './components/gravity-correction-calculator/gravity-correction-calculator.component';
 import { MyBatchesListComponent } from './components/my-batches-list/my-batches-list.component';
 import { BatchCreatorComponent } from './components/batch-creator/batch-creator.component';
+import { EditorModule } from '@tinymce/tinymce-angular';
+import { RecipeUpdateComponent } from './components/recipe-update/recipe-update.component';
+import { InterceptorService } from './loader/interceptor.service';
+import { BatchDetailsComponent } from './components/batch-details/batch-details.component';
 
 registerLocaleData(localePl);
 
@@ -79,6 +85,8 @@ registerLocaleData(localePl);
     GravityCorrectionCalculatorComponent,
     MyBatchesListComponent,
     BatchCreatorComponent,
+    RecipeUpdateComponent,
+    BatchDetailsComponent,
   ],
 
   imports: [
@@ -86,7 +94,10 @@ registerLocaleData(localePl);
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    EditorModule,
+    AutocompleteLibModule,
+    MatProgressBarModule
   ],
 
   providers: [
@@ -94,6 +105,11 @@ registerLocaleData(localePl);
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,
+      multi: true
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: InterceptorService,
       multi: true
     },
     {

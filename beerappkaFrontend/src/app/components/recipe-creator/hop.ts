@@ -5,4 +5,5 @@ export interface Hop {
     origin: string;
     alpha_acids: number;
     manufacturer: number;
+    is_default: false,
 }

@@ -2,6 +2,10 @@ from django.contrib.auth.models import User
 from django.db import models
 
 from recipes.managers import RecipesManager
+from recipes.managers import MaltsManager
+from recipes.managers import HopsManager
+from recipes.managers import YeastsManager
+
 
 """
     Model reprezentujący Styl piwa
@@ -34,6 +38,12 @@ class Style(models.Model):
 
     # max IBU gorycz
     max_ibu = models.FloatField()
+
+    # min poziom nasycenia CO2
+    min_carbonation = models.FloatField()
+
+    # max poziom nasycenia CO2
+    max_carbonation = models.FloatField()
 
     class Meta:
         verbose_name = "Styl Piwa"
@@ -82,7 +92,7 @@ class Recipe(models.Model):
 
     cold_hop_losses = models.FloatField(verbose_name="Straty chmielenia na zimno")
 
-    mashing_performance = models.FloatField(verbose_name="Wydajność zacierania")
+    mashing_efficiency = models.FloatField(verbose_name="Wydajność zacierania")
 
     water_to_grain_ratio = models.FloatField(verbose_name="Stosunek wody do ziarna")
 
@@ -123,31 +133,6 @@ class Recipe(models.Model):
     def __str__(self):
         return f"{self.name}"
 
-
-"""
-    Model reprezentujący Zacieranie
-"""
-
-
-class Mashing(models.Model):
-    time = models.IntegerField(verbose_name="Czas")
-
-    temperature = models.FloatField(verbose_name="Temperatura")
-
-    recipe = models.ForeignKey(
-        Recipe,
-        on_delete=models.CASCADE,
-        related_name="mashing",
-        verbose_name="Przepis",
-    )
-
-    class Meta:
-        verbose_name = "Zacieranie"
-        verbose_name_plural = "Zacierania"
-        ordering = ["-id"]
-
-    def __str__(self):
-        return f"{self.time} | {self.temperature} | {self.recipe}"
 
 
 """
@@ -195,6 +180,7 @@ class Malt(models.Model):
 
     color = models.FloatField(verbose_name="Barwa")
 
+
     manufacturer = models.ForeignKey(
         Manufacturer,
         on_delete=models.SET_NULL,
@@ -202,6 +188,10 @@ class Malt(models.Model):
         verbose_name="Producent",
         related_name="malts",
     )
+
+    is_default = models.BooleanField(default=False, verbose_name="Czy domyślny?")
+
+    objects = MaltsManager()
 
     class Meta:
         verbose_name = "Słód"
@@ -244,6 +234,10 @@ class Hops(models.Model):
         related_name="hops",
     )
 
+    is_default = models.BooleanField(default=False, verbose_name="Czy domyślny?")
+
+    objects = HopsManager()
+
     class Meta:
         verbose_name = "Chmiel"
         verbose_name_plural = "Chmiele"
@@ -278,6 +272,10 @@ class Yeast(models.Model):
         verbose_name="Producent",
         related_name="yeast",
     )
+
+    is_default = models.BooleanField(default=False, verbose_name="Czy domyślny?")
+
+    objects = YeastsManager()
 
     class Meta:
         verbose_name = "Drożdże"

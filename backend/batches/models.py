@@ -12,9 +12,11 @@ class Batch(models.Model):
     name = models.CharField(max_length=45, verbose_name="Nazwa")
 
     # określa, która to jest warka w życiu danego piwowara
-    number = models.PositiveIntegerField(verbose_name="Numer")
+    number = models.PositiveIntegerField(null=True, blank=True, verbose_name="Numer")
 
     brewing_date = models.DateField(verbose_name="Data warzenia")
+
+    bottling_date = models.DateField(null=True, blank=True, verbose_name="Data rozlewu")
 
     user = models.ForeignKey(
         User,
@@ -53,7 +55,7 @@ class MeasurementBLG(models.Model):
     batch = models.ForeignKey(
         Batch,
         on_delete=models.CASCADE,
-        related_name="measurement_blg",
+        related_name="measurements_blg",
         verbose_name="Warka",
     )
 
@@ -64,3 +66,29 @@ class MeasurementBLG(models.Model):
 
     def __str__(self):
         return f"{self.date} | {self.batch}"
+
+
+"""
+    Model reprezentujący Zacieranie
+"""
+
+
+class Mashing(models.Model):
+    time = models.IntegerField(verbose_name="Czas")
+
+    temperature = models.FloatField(verbose_name="Temperatura")
+
+    batch = models.ForeignKey(
+        Batch,
+        on_delete=models.CASCADE,
+        related_name="mashings",
+        verbose_name="Warka",
+    )
+
+    class Meta:
+        verbose_name = "Zacieranie"
+        verbose_name_plural = "Zacierania"
+        ordering = ["-id"]
+
+    def __str__(self):
+        return f"{self.time}s | {self.temperature} st.C | {self.batch}"

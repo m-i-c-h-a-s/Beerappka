@@ -91,4 +91,4 @@ class Mashing(models.Model):
         ordering = ["-id"]
 
     def __str__(self):
-        return f"{self.time}s | {self.temperature} st.C | {self.batch}"
+        return f"{self.time}min | {self.temperature} st.C | {self.batch}"

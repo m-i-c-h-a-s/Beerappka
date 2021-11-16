@@ -103,6 +103,7 @@ class RecipeCreateUpdateSerializer(serializers.ModelSerializer):
             RecipeYeast.objects.create(recipe=recipe, yeast=yeast, **recipe_yeast_data)
         return recipe
 
+    @transaction.atomic
     def update(self, instance, validated_data):
         malts_data = validated_data.pop('malts')
         hops_data = validated_data.pop('hops')

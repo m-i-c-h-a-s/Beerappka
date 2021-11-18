@@ -128,4 +128,4 @@ class RecipeCreateUpdateSerializer(serializers.ModelSerializer):
             manufacturer, _ = Manufacturer.objects.get_or_create(**manufacturer_data)
             yeast, _ = Yeast.objects.get_or_create(**y_data, manufacturer=manufacturer)
             RecipeYeast.objects.create(recipe=instance, yeast=yeast, **recipe_yeast_data)
-        return instance
+        return super().update(instance, validated_data)

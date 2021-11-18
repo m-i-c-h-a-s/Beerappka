@@ -93,4 +93,4 @@ class BatchCreateUpdateSerializer(serializers.ModelSerializer):
         for mashing in mashings:
             Mashing.objects.create(**mashing, batch=instance)
 
-        return instance
+        return super().update(instance, validated_data)

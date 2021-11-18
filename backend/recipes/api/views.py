@@ -35,7 +35,11 @@ class RecipesViewSet(viewsets.ModelViewSet):
         serializer.save(user=user)
 
     def get_queryset(self):
-            return Recipe.objects.get_all(self.request)
+        return Recipe.objects.get_all(self.request).select_related(
+            'user', 'user__profile', 'style'
+        ).prefetch_related(
+            'yeast', 'hops', 'malts'
+        )
 
     @action(detail=False)
     def only_public(self, request):

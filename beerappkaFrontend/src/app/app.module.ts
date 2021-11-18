@@ -8,6 +8,7 @@ import localePl from '@angular/common/locales/pl';
 import {NgxPaginationModule} from 'ngx-pagination';
 import { AutocompleteLibModule } from 'angular-ng-autocomplete';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -97,7 +98,8 @@ registerLocaleData(localePl);
     NgxPaginationModule,
     EditorModule,
     AutocompleteLibModule,
-    MatProgressBarModule
+    MatProgressBarModule,
+    ReactiveFormsModule
   ],
 
   providers: [

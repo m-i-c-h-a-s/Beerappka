@@ -1,12 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { BatchesService } from 'src/app/services/batches.service';
 import { RecipesService } from 'src/app/services/recipes.service';
 import { Recipe } from '../recipe-creator/recipe';
 import { BatchForCreateUpdate } from './batch-for-create-update';
 import { MashingForCreateUpdate } from './mashing-for-create-update';
 import { MeasurementBLGForCreateUpdate } from './measurementBLG-for-create-update';
+
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-batch-creator',
@@ -25,6 +27,7 @@ export class BatchCreatorComponent implements OnInit {
   constructor(private recipeService: RecipesService,
               private batchesService: BatchesService,
               private router: Router,
+              private route: ActivatedRoute,
               public sanitizer: DomSanitizer
   ) {
     this.recipeId = history.state.recipeId;
@@ -35,6 +38,8 @@ export class BatchCreatorComponent implements OnInit {
       brewing_date: '',
       bottling_date: undefined,
       recipe: this.recipeId,
+      mashings: [],
+      measurements_blg: [],
     }
 
     this.measurementBLG = {
@@ -51,7 +56,9 @@ export class BatchCreatorComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    if (this.recipeId)
+    this.route.params.subscribe(params => {
+      this.recipeId = params.id;
+      if (this.recipeId)
       this.recipeService.getRecipe(this.recipeId).subscribe(data => {
         this.recipe = data as any;
         if (this.recipe)
@@ -59,6 +66,7 @@ export class BatchCreatorComponent implements OnInit {
       }, err => {
         console.log(err);
       });
+    });
   }
 
   createBatch() {
@@ -75,17 +83,19 @@ export class BatchCreatorComponent implements OnInit {
         time: this.mashing.time,
         temperature: this.mashing.temperature,
       };
-      this.mashings.push(mashing);
+      this.batch.mashings.push(mashing);
 
       this.mashing = {
         time: 0,
         temperature: 0,
       }
+    } else {
+      //(<HTMLInputElement>document.getElementById("mashingTime")).setAttribute("class", "input-group border-bottom-danger rounded");
     }
   }
 
   deleteMashing(mashing: MashingForCreateUpdate) {
-    this.mashings = this.mashings.filter(e => e !== mashing);
+    this.batch.mashings = this.batch.mashings.filter(e => e !== mashing);
   }
 
   addMeasurementBLG() {
@@ -96,7 +106,7 @@ export class BatchCreatorComponent implements OnInit {
         beer_temperature: this.measurementBLG.beer_temperature,
         ambient_temperature: this.measurementBLG.ambient_temperature,
       };
-      this.measurementsBLG.push(measurementBLG);
+      this.batch.measurements_blg.push(measurementBLG);
 
       this.measurementBLG = {
         date: '',
@@ -108,7 +118,7 @@ export class BatchCreatorComponent implements OnInit {
   }
 
   deleteMeasurementBLG(measurementBLG: MeasurementBLGForCreateUpdate) {
-    this.measurementsBLG = this.measurementsBLG.filter(e => e !== measurementBLG);
+    this.batch.measurements_blg = this.batch.measurements_blg.filter(e => e !== measurementBLG);
   }
 
   public displayFullRecipeTypeName(recipe: Recipe) {

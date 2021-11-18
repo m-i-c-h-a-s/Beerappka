@@ -57,8 +57,8 @@ const routes: Routes = [
   { path: 'receptury-publiczne', component: PublicRecipesListComponent, canActivate: [AuthGuard]},
   { path: 'moje-receptury', component: MyRecipesListComponent, canActivate: [AuthGuard]},
   { path: 'moje-warki', component: MyBatchesListComponent, canActivate: [AuthGuard]},
-  { path: 'stworz-warke', component: BatchCreatorComponent, canActivate: [AuthGuard]},
   { path: 'receptury/:id', component: RecipeDetailsComponent, canActivate: [AuthGuard]},
+  { path: 'receptury/:id/stworz-warke', component: BatchCreatorComponent, canActivate: [AuthGuard]},
   { path: 'warki/:id', component: BatchDetailsComponent, canActivate: [AuthGuard]},
   { path: '**', redirectTo: '/' },
 ];

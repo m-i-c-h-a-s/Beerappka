@@ -101,8 +101,8 @@ class Recipe(models.Model):
     # BLG ilość cukrów w brzeczce (skala Ballinga)
     blg = models.FloatField()
 
-    # ABV alkohol objętościowo
-    abv = models.FloatField()
+    # IBU - goryczka w skali IBU
+    ibu = models.FloatField()
 
     # EBC barwa piwa
     ebc = models.FloatField()

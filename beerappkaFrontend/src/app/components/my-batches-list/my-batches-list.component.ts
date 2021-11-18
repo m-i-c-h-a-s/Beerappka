@@ -4,7 +4,6 @@ import { BatchesService } from 'src/app/services/batches.service';
 import { UserService } from 'src/app/services/user.service';
 import { Batch } from '../batch-creator/batch';
 import { User } from '../profile/user';
-import { Recipe } from '../recipe-creator/recipe';
 
 @Component({
   selector: 'app-my-batches-list',

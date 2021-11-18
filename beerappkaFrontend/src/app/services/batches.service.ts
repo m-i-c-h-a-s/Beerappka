@@ -21,6 +21,10 @@ export class BatchesService extends BaseService {
     return this.http.get(this.getAPIUrl(`/batches/?user__id=${userId}`), this.httpOptions);
   }
 
+  public getNotBottledBatches(userId: number): Observable<ArrayBuffer> {
+    return this.http.get(this.getAPIUrl(`/batches/not_bottled/`), this.httpOptions);
+  }
+
   public getBatch(id: number): Observable<ArrayBuffer> {
     return this.http.get(this.getAPIUrl(`/batches/${id}`), this.httpOptions);
   }

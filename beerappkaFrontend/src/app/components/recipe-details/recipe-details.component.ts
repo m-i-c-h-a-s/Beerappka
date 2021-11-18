@@ -19,8 +19,8 @@ export class RecipeDetailsComponent implements OnInit {
 
   constructor(private recipeService: RecipesService,
               private route: ActivatedRoute,
-              private router: Router,
-              public  permissions: Permissions,
+              public router: Router,
+              public permissions: Permissions,
               public sanitizer: DomSanitizer,
               public loaderService: LoaderService
   ) { }

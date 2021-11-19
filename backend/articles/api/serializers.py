@@ -12,6 +12,14 @@ class ArticleSerializer(serializers.ModelSerializer):
         fields = "__all__"
 
 
+class ArticleListSerializer(serializers.ModelSerializer):
+    author = UserSerializer()
+
+    class Meta:
+        model = Article
+        exclude = ('content',)
+
+
 class ArticleCreateUpdateSerializer(serializers.ModelSerializer):
 
     class Meta:

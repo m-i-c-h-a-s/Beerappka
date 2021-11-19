@@ -14,9 +14,7 @@ export class ArticlesListComponent implements OnInit {
   totalLength: any;
   page: number = 1;
 
-  constructor(private articlesService: ArticlesService,
-              public loaderService: LoaderService
-  ) { }
+  constructor(private articlesService: ArticlesService) { }
 
   ngOnInit(): void {
     this.articlesService.getAllArticles().subscribe(data => {

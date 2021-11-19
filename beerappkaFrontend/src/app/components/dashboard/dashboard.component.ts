@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {UserService} from '../../services/user.service';
-import {Router} from '@angular/router';
-import {User} from '../profile/user';
-import { RecipesService } from 'src/app/services/recipes.service';
+import { UserService } from '../../services/user.service';
+import { User } from '../profile/user';
 import { Batch } from '../batch-creator/batch';
 import { BatchesService } from 'src/app/services/batches.service';
 
@@ -27,9 +25,8 @@ export class DashboardComponent implements OnInit {
       this.currentUser = data as any;
 
       if (this.currentUser)
-        this.batchesService.getUserBatches(this.currentUser.id).subscribe(data => {
+        this.batchesService.getNotBottledBatches().subscribe(data => {
           this.batches = (data as any).results;
-          this.checkCurrentBatches();
         }, err => {
           console.log(err);
         });
@@ -38,13 +35,4 @@ export class DashboardComponent implements OnInit {
     });
   }
 
-  private checkCurrentBatches() {
-    if (this.batches) {
-      this.batches.forEach(batch => {
-        if (batch.bottling_date)
-          if (this.batches)
-            this.batches = this.batches.filter(e => e !== batch);
-      });
-    }
-  }
 }

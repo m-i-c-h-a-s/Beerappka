@@ -50,6 +50,7 @@ import { EditorModule } from '@tinymce/tinymce-angular';
 import { RecipeUpdateComponent } from './components/recipe-update/recipe-update.component';
 import { InterceptorService } from './loader/interceptor.service';
 import { BatchDetailsComponent } from './components/batch-details/batch-details.component';
+import { MyArticlesListComponent } from './components/my-articles-list/my-articles-list.component';
 
 registerLocaleData(localePl);
 
@@ -88,6 +89,7 @@ registerLocaleData(localePl);
     BatchCreatorComponent,
     RecipeUpdateComponent,
     BatchDetailsComponent,
+    MyArticlesListComponent,
   ],
 
   imports: [

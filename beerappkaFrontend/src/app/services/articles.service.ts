@@ -12,8 +12,13 @@ export class ArticlesService extends BaseService{
   constructor(private http: HttpClient) {
     super();
   }
+
   public getAllArticles(): Observable<ArrayBuffer> {
     return this.http.get(this.getAPIUrl(`/articles/`), this.httpOptions);
+  }
+
+  public getUserArticles(): Observable<ArrayBuffer> {
+    return this.http.get(this.getAPIUrl(`/articles/my/`), this.httpOptions);
   }
 
   public getArticle(id: number): Observable<ArrayBuffer> {

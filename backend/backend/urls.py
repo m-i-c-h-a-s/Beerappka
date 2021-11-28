@@ -60,6 +60,7 @@ urlpatterns = [
 ]
 
 if settings.DEBUG:
+    urlpatterns += [path("silk/", include("silk.urls", namespace="silk"))]
     urlpatterns += [
         url(
             r"^api/v1/docs/$",

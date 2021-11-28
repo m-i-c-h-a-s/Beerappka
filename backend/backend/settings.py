@@ -58,10 +58,19 @@ INSTALLED_APPS = [
     "django_filters"
 ]
 
+if DEBUG:
+    INSTALLED_APPS += ("silk",)
+
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     'whitenoise.middleware.WhiteNoiseMiddleware',
     "django.contrib.sessions.middleware.SessionMiddleware",
+]
+
+if DEBUG:
+    MIDDLEWARE += ["silk.middleware.SilkyMiddleware",]
+
+MIDDLEWARE += [
     "corsheaders.middleware.CorsMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
@@ -69,6 +78,8 @@ MIDDLEWARE = [
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
+
+
 
 ROOT_URLCONF = "backend.urls"
 

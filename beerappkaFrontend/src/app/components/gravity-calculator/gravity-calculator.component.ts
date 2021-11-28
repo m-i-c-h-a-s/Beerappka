@@ -30,9 +30,12 @@ export class GravityCalculatorComponent implements OnInit {
     else this.gravityCalculatedToBlg = null;
   }
 
+  // funkcja przeliczająca gęstość ze skali BLG (Skala Ballinga - zwana także skalą Plato) na skalę SG (Specific Gravity)
+  // została zaimplementowana na podstawie wzoru ze strony http://betatestbrewing.com/pages/plato_to_sg.html
   convertBlgToSg() {
     if (this.gravityInBlg != null && this.gravityInBlg > 0)
-      this.gravityCalculatedToSg = (-260 / (this.gravityInBlg - 260));
+      this.gravityCalculatedToSg = 1 + (this.gravityInBlg / (258.6 - 227.1 * (this.gravityInBlg / 258.2)));
+      //this.gravityCalculatedToSg = (-260 / (this.gravityInBlg - 260));
     else this.gravityCalculatedToSg = null;
   }
 

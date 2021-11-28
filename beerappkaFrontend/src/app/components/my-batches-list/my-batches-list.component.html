@@ -20,7 +20,7 @@
                                 <div class="card-body">
                                     <a routerLink="/warki/{{ batch.id }}" class="text-decoration-none">
                                         <div class="row no-gutters align-items-center">
-                                            <div class="col-lg-9 col-xs-12">
+                                            <div class="col-lg-11 col-xs-12">
                                                 <div class="col mb-1">
                                                     <div class="h4 mb-3 font-weight-bold text-gray-800">
                                                         <i class="fas fa-beer"></i>
@@ -44,16 +44,16 @@
                                                         <span class="text-info">{{ batch.recipe.expected_beer_amount }}L</span>
                                                     </div>
                                                     <div class="h6 mb-1 font-weight-bold text-gray-800">
-                                                        BLG:
-                                                        <span class="text-info">{{ batch.recipe.blg }}</span>
+                                                        Ekstrakt:
+                                                        <span class="text-info">{{ batch.recipe.blg }} BLG</span>
                                                     </div>
                                                     <div class="h6 mb-1 font-weight-bold text-gray-800">
-                                                        ABV:
-                                                        <span class="text-info">{{ batch.recipe.abv }}%</span>
+                                                        Goryczka:
+                                                        <span class="text-info">{{ batch.recipe.ibu }} IBU</span>
                                                     </div>
                                                     <div class="h6 mb-1 font-weight-bold text-gray-800">
-                                                        EBC:
-                                                        <span class="text-info">{{ batch.recipe.ebc }}</span>
+                                                        Kolor:
+                                                        <span class="text-info">{{ batch.recipe.ebc }} EBC</span>
                                                     </div>
                                                     <div class="text-xs font-weight-bold text-black-50 text-uppercase mt-3">
                                                         Uwarzona: <span class="text-success">{{ batch.brewing_date | date: 'YYYY-MM-dd' }}</span>

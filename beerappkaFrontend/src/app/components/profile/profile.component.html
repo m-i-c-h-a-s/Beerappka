@@ -33,8 +33,13 @@
                                                             Zdjęcie profilowe
                                                         </div>
                                                         <div class="h5 mb-0 font-weight-bold text-gray-800">
-                                                           <img src="{{ currentUser.profile.picture_thumb_150x150 }}"
+                                                           <img *ngIf="currentUser.profile.picture_thumb_150x150; else noProfilePicture;"
+                                                                src="{{ currentUser.profile.picture_thumb_150x150 }}"
                                                                 alt="zdjęcie profilowe" class="mx-auto  profile-card__picture">
+                                                            <ng-template #noProfilePicture>
+                                                                <img src="/assets/startbootstrap-sb-admin-2/img/undraw_profile.svg"
+                                                                     alt="zdjęcie profilowe" class="mx-auto  profile-card__picture">
+                                                            </ng-template>
                                                         </div>
                                                     </div>
                                                 </div>

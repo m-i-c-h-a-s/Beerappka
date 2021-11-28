@@ -7,7 +7,7 @@ export interface RecipeForCreateUpdate {
     type: string;
     is_public: boolean;
     boiling_time: number;
-    expected_beer_amount: number;
+    expected_beer_amount: number | undefined;
     boiled_wort_amount: number;
     evaporation_rate: number;
     boiling_losses: number;
@@ -17,7 +17,7 @@ export interface RecipeForCreateUpdate {
     water_to_grain_ratio: number;
     notes: string;
     blg: number;
-    abv: number;
+    ibu: number;
     ebc: number;
     style: number;
     malts: Array<RecipeMalt>;

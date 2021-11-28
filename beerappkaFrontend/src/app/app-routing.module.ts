@@ -30,6 +30,7 @@ import { MyBatchesListComponent } from './components/my-batches-list/my-batches-
 import { RecipeUpdateComponent } from './components/recipe-update/recipe-update.component';
 import { BatchCreatorComponent } from './components/batch-creator/batch-creator.component';
 import { BatchDetailsComponent } from './components/batch-details/batch-details.component';
+import { MyArticlesListComponent } from './components/my-articles-list/my-articles-list.component';
 
 const routes: Routes = [
   { path: '', component: LandingPageComponent, canActivate: [AlreadyLoggedInGuard] },
@@ -49,6 +50,7 @@ const routes: Routes = [
   { path: 'piwowarzy', component: BrewersListComponent, canActivate: [AuthGuard]},
   { path: 'piwowarzy/:username', component: BrewerDetailsComponent, canActivate: [AuthGuard]},
   { path: 'artykuly', component: ArticlesListComponent, canActivate: [AuthGuard]},
+  { path: 'moje-artykuly', component: MyArticlesListComponent, canActivate: [AuthGuard]},
   { path: 'dodaj-artykul', component: ArticleCreateComponent, canActivate: [AuthGuard]},
   { path: 'artykuly/:id', component: ArticleDetailsComponent, canActivate: [AuthGuard]},
   { path: 'edytuj-artykul/:id', component: ArticleUpdateComponent, canActivate: [AuthGuard]},
@@ -57,8 +59,8 @@ const routes: Routes = [
   { path: 'receptury-publiczne', component: PublicRecipesListComponent, canActivate: [AuthGuard]},
   { path: 'moje-receptury', component: MyRecipesListComponent, canActivate: [AuthGuard]},
   { path: 'moje-warki', component: MyBatchesListComponent, canActivate: [AuthGuard]},
-  { path: 'stworz-warke', component: BatchCreatorComponent, canActivate: [AuthGuard]},
   { path: 'receptury/:id', component: RecipeDetailsComponent, canActivate: [AuthGuard]},
+  { path: 'receptury/:id/stworz-warke', component: BatchCreatorComponent, canActivate: [AuthGuard]},
   { path: 'warki/:id', component: BatchDetailsComponent, canActivate: [AuthGuard]},
   { path: '**', redirectTo: '/' },
 ];

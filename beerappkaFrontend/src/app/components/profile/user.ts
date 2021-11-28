@@ -13,4 +13,5 @@ export interface User {
   number_of_recipes: number;
   number_of_batches: number;
   last_recipe_name: string;
+  last_batch_name: string;
 }

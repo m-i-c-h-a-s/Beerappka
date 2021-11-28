@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { LoaderService } from 'src/app/loader/loader.service';
 import { RecipesService } from 'src/app/services/recipes.service';
 import { UserService } from 'src/app/services/user.service';
 import { User } from '../profile/user';
@@ -18,29 +17,24 @@ export class MyRecipesListComponent implements OnInit {
   totalLength: any;
   page: number = 1;
 
-
   constructor(private userService: UserService,
               private router: Router,
               private recipesService: RecipesService,
-              public loaderService: LoaderService
   ) { }
 
   ngOnInit(): void {
-    this.userService.getCurrentUserData().subscribe(data => {
-      this.currentUser = data as any;
+    let current_user = localStorage.getItem('current_user');
+    if (current_user)
+      this.currentUser = JSON.parse(current_user);
 
-      if (this.currentUser)
-        this.recipesService.getUserRecipes(this.currentUser.id).subscribe(data => {
-          this.recipes = (data as any).results;
-          this.totalLength = (data as any).results.length;
-          this.displayFullRecipeTypeName(this.recipes);
-        }, err => {
-          console.log(err);
-        });
-
-    }, err => {
-      console.log(err);
-    });
+    if (this.currentUser)
+      this.recipesService.getUserRecipes(this.currentUser.id).subscribe(data => {
+        this.recipes = (data as any).results;
+        this.totalLength = (data as any).results.length;
+        this.displayFullRecipeTypeName(this.recipes);
+      }, err => {
+        console.log(err);
+      });
   }
 
   public displayFullRecipeTypeName(recipes: Array<Recipe>) {

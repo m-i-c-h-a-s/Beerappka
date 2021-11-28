@@ -21,7 +21,7 @@ export interface Recipe {
     water_to_grain_ratio: number;
     notes: string;
     blg: number;
-    abv: number;
+    ibu: number;
     ebc: number;
     user: User;
     style: BeerStyle;

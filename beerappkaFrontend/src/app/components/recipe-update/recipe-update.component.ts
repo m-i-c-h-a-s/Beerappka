@@ -17,6 +17,7 @@ import { HopToAdd } from '../recipe-creator/hopToAdd';
 import { YeastToAdd } from '../recipe-creator/yeastToAdd';
 import { Permissions } from '../../permissions/permissions';
 import { initEditor } from '../tinymce-editor/editor';
+import { RecipeCreateUpdateErrors } from '../recipe-creator/recipe-create-update-errors';
 
 @Component({
   selector: 'app-recipe-update',
@@ -25,17 +26,13 @@ import { initEditor } from '../tinymce-editor/editor';
 })
 
 export class RecipeUpdateComponent implements OnInit {
+  public beerStyles: Array<BeerStyle> = [];
+  public style: BeerStyle | undefined;
+  public manufacturer: Manufacturer;
   public recipe: Recipe | undefined;
   public recipeForUpdate: RecipeForCreateUpdate | undefined;
   public initEditor = initEditor;
-
-  public beerStyles: Array<BeerStyle> = [];
-  public malts: Array<Malt> = [];
-  public hops: Array<Hop> = [];
-  public yeasts: Array<Yeast> = [];
-
-  public style: BeerStyle | undefined;
-  public manufacturer: Manufacturer;
+  public err: RecipeCreateUpdateErrors | undefined;
 
   public malt: MaltToAdd;
   public hop: HopToAdd;
@@ -44,6 +41,10 @@ export class RecipeUpdateComponent implements OnInit {
   public recipeMalt: RecipeMalt;
   public recipeHop: RecipeHop;
   public recipeYeast: RecipeYeast;
+
+  public malts: Array<Malt> = [];
+  public hops: Array<Hop> = [];
+  public yeasts: Array<Yeast> = [];
 
   public recipeMalts: Array<RecipeMalt> = [];
   public recipeHops: Array<RecipeHop> = [];
@@ -82,7 +83,7 @@ export class RecipeUpdateComponent implements OnInit {
 
     this.manufacturer = {
       id: 0,
-      name: '',
+      name: ''
     }
 
     this.malt = {
@@ -145,7 +146,6 @@ export class RecipeUpdateComponent implements OnInit {
       });
     });
 
-
     this.beerStylesService.getAllBeerStyles().subscribe(data => {
       this.beerStyles = (data as any).results;
     }, err => {
@@ -189,7 +189,7 @@ export class RecipeUpdateComponent implements OnInit {
         water_to_grain_ratio: this.recipe.water_to_grain_ratio,
         notes: this.recipe.notes,
         blg: this.recipe.blg,
-        abv: this.recipe.abv,
+        ibu: this.recipe.ibu,
         ebc: this.recipe.ebc,
         style: this.recipe.style.id,
         malts: this.recipe.malts,
@@ -206,32 +206,37 @@ export class RecipeUpdateComponent implements OnInit {
   }
 
 
-  addMalt() {
-    const recipeMalt: RecipeMalt = {
-      malt: {
-        name: this.malt.name,
-        extractivity: this.malt.extractivity,
-        type: this.malt.type,
-        color: this.malt.color,
-        manufacturer: this.malt.manufacturer,
-        is_default: false,
-      },
-      quantity: this.recipeMalt.quantity,
-    };
-    this.recipeMalts.push(recipeMalt);
 
-    this.malt = {
-      name: '',
-      extractivity: 0,
-      type: '',
-      color: 0,
-      manufacturer: 0,
-      is_default: false,
-    }
-    this.recipeMalt = {
-      malt: this.malt,
-      quantity: 0
-    }
+  addMalt() {
+    if (this.recipe)
+      if (this.malt.name != '' && this.recipeMalt.quantity !== 0 && this.malt.color !== 0 && this.malt.extractivity !== 0) {
+        const recipeMalt: RecipeMalt = {
+          malt: {
+            name: this.malt.name,
+            extractivity: this.malt.extractivity,
+            type: this.malt.type,
+            color: this.malt.color,
+            manufacturer: this.malt.manufacturer,
+            is_default: false,
+          },
+          quantity: this.recipeMalt.quantity,
+        };
+        this.recipe.malts.push(recipeMalt);
+
+        this.malt = {
+          name: '',
+          extractivity: 0,
+          type: '',
+          color: 0,
+          manufacturer: 0,
+          is_default: false,
+        }
+        this.recipeMalt = {
+          malt: this.malt,
+          quantity: 0
+        }
+        this.calcBlg(this.recipe.malts, this.recipe.mashing_efficiency, this.recipe.expected_beer_amount);
+      }
   }
 
   deleteMalt(recipeMalt: RecipeMalt) {
@@ -241,40 +246,43 @@ export class RecipeUpdateComponent implements OnInit {
 
   deleteAllMalts() {
     if (this.recipe)
-      this.recipe.malts = [];
+      this.recipe.malts.length = 0;
   }
 
 
   addHop() {
-    const recipeHop: RecipeHop = {
-      hops: {
-        name: this.hop.name,
-        type: this.hop.type,
-        origin: this.hop.origin,
-        alpha_acids: this.hop.alpha_acids,
-        manufacturer: this.hop.manufacturer,
-        is_default: false,
-      },
-      quantity: this.recipeHop.quantity,
-      used_for: this.recipeHop.used_for,
-      boiling_time: this.recipeHop.boiling_time
-    };
-    this.recipeHops.push(recipeHop);
+    if (this.recipe)
+      if (this.hop.name != '' && this.recipeHop.used_for != '' && this.recipeHop.quantity != 0 && this.recipeHop.boiling_time != 0 && this.hop.alpha_acids != 0) {
+        const recipeHop: RecipeHop = {
+          hops: {
+            name: this.hop.name,
+            type: this.hop.type,
+            origin: this.hop.origin,
+            alpha_acids: this.hop.alpha_acids,
+            manufacturer: this.hop.manufacturer,
+            is_default: false,
+          },
+          quantity: this.recipeHop.quantity,
+          used_for: this.recipeHop.used_for,
+          boiling_time: this.recipeHop.boiling_time
+        };
+        this.recipe.hops.push(recipeHop);
 
-    this.hop = {
-      name: '',
-      type: '',
-      origin: '',
-      alpha_acids: 0,
-      manufacturer: 0,
-      is_default: false,
-    }
-    this.recipeHop = {
-      hops: this.hop,
-      quantity: 0,
-      used_for: '',
-      boiling_time: 0
-    }
+        this.hop = {
+          name: '',
+          type: '',
+          origin: '',
+          alpha_acids: 0,
+          manufacturer: 0,
+          is_default: false,
+        }
+        this.recipeHop = {
+          hops: this.hop,
+          quantity: 0,
+          used_for: '',
+          boiling_time: 0
+        }
+      }
   }
 
   deleteHop(recipeHop: RecipeHop) {
@@ -284,34 +292,41 @@ export class RecipeUpdateComponent implements OnInit {
 
   deleteAllHops() {
     if (this.recipe)
-      this.recipe.hops = [];
+      this.recipe.hops.length = 0;
   }
 
 
   addYeast() {
-    const recipeYeast: RecipeYeast = {
-      yeast: {
-        name: this.yeast.name,
-        type: this.yeast.type,
-        manufacturer: this.yeast.manufacturer,
-        is_default: false,
-      },
-      quantity: this.recipeYeast.quantity,
-      form: this.recipeYeast.form
-    };
-    this.recipeYeasts.push(recipeYeast);
+    if (this.recipe)
+      if (this.yeast.name != '' && this.yeast.type != '' && this.recipeYeast.form != '' && this.recipeYeast.quantity !== 0) {
+        const recipeYeast: RecipeYeast = {
+          yeast: {
+            name: this.yeast.name,
+            type: this.yeast.type,
+            manufacturer: this.yeast.manufacturer,
+            is_default: false,
+          },
+          quantity: this.recipeYeast.quantity,
+          form: this.recipeYeast.form
+        };
+        this.recipe.yeast.push(recipeYeast);
 
-    this.yeast = {
-      name: '',
-      type: '',
-      manufacturer: this.manufacturer,
-      is_default: false,
-    }
-    this.recipeYeast = {
-      yeast: this.yeast,
-      quantity: 0,
-      form: ''
-    }
+        this.manufacturer = {
+          id: 0,
+          name: '',
+        }
+        this.yeast = {
+          name: '',
+          type: '',
+          manufacturer: this.manufacturer,
+          is_default: false,
+        }
+        this.recipeYeast = {
+          yeast: this.yeast,
+          quantity: 0,
+          form: ''
+        }
+      }
   }
 
   deleteYeast(recipeYeast: RecipeYeast) {
@@ -321,50 +336,55 @@ export class RecipeUpdateComponent implements OnInit {
 
   deleteAllYeasts() {
     if (this.recipe)
-      this.recipe.yeast = [];
+      this.recipe.yeast.length = 0;
   }
 
   confirmCancellation() {
-    if (confirm("Czy na pewno chcesz anulować edytowanie receptury?")) {
+    if (confirm("Czy na pewno chcesz anulować tworzenie receptury?")) {
       this.router.navigate(['/moje-receptury']);
     }
   }
 
   calculateParameters() {
-    //this.calculateAmountOfBoilingWort();
-    //this.calculateAmountOfSweetWort();
-    //this.calculateAmountOfBeerBeforeDryHopping();
+    this.calculateAmountOfBoilingWort();
+    this.calculateAmountOfSweetWort();
+    this.calculateAmountOfBeerBeforeDryHopping();
   }
 
- /*
   calculateAmountOfBoilingWort() {
-    if (this.recipeForUpdate.expected_beer_amount != null)
-      this.recipeForUpdate.boiled_wort_amount = +this.recipeForUpdate.expected_beer_amount;
-    if (this.recipeForUpdate.boiled_wort_amount != null && this.recipeForUpdate.boiling_time != null && this.recipeForUpdate.evaporation_rate != null)
-      this.recipeForUpdate.boiled_wort_amount += +this.recipe.boiled_wort_amount * (this.recipeForUpdate.boiling_time / 60) * (this.recipeForUpdate.evaporation_rate / 100);
-    if (this.recipeForUpdate.boiled_wort_amount != null && this.recipe.boiling_losses != null)
-      this.recipe.boiled_wort_amount += +this.recipe.boiled_wort_amount * (this.recipe.boiling_losses / 100);
-    if (this.recipe.expected_beer_amount != null && this.recipe.boiled_wort_amount != null && this.recipe.fermentation_losses != null)
-      this.recipe.boiled_wort_amount += +this.recipe.expected_beer_amount * (this.recipe.fermentation_losses / 100);
-    if (this.recipe.expected_beer_amount != null && this.recipe.boiled_wort_amount != null && this.recipe.cold_hop_losses != null)
-      this.recipe.boiled_wort_amount += +this.recipe.expected_beer_amount * (this.recipe.cold_hop_losses / 100);
+    if (this.recipe) {
+      if (this.recipe.expected_beer_amount != null)
+        this.recipe.boiled_wort_amount = +this.recipe.expected_beer_amount;
+      if (this.recipe.boiled_wort_amount != null && this.recipe.boiling_time != null && this.recipe.evaporation_rate != null)
+        this.recipe.boiled_wort_amount += +this.recipe.boiled_wort_amount * (this.recipe.boiling_time / 60) * (this.recipe.evaporation_rate / 100);
+      if (this.recipe.boiled_wort_amount != null && this.recipe.boiling_losses != null)
+        this.recipe.boiled_wort_amount += +this.recipe.boiled_wort_amount * (this.recipe.boiling_losses / 100);
+      if (this.recipe.expected_beer_amount != null && this.recipe.boiled_wort_amount != null && this.recipe.fermentation_losses != null)
+        this.recipe.boiled_wort_amount += +this.recipe.expected_beer_amount * (this.recipe.fermentation_losses / 100);
+      if (this.recipe.expected_beer_amount != null && this.recipe.boiled_wort_amount != null && this.recipe.cold_hop_losses != null)
+        this.recipe.boiled_wort_amount += +this.recipe.expected_beer_amount * (this.recipe.cold_hop_losses / 100);
+      }
   }
 
   calculateAmountOfSweetWort() {
-    if (this.recipe.expected_beer_amount != null)
-      this.amountOfSweetWortInLiters = +this.recipe.expected_beer_amount
-    if (this.recipe.expected_beer_amount != null && this.recipe.fermentation_losses != null)
-      this.amountOfSweetWortInLiters += +this.recipe.expected_beer_amount * (this.recipe.fermentation_losses / 100);
-    if (this.recipe.expected_beer_amount != null && this.recipe.cold_hop_losses != null)
-      this.amountOfSweetWortInLiters += +this.recipe.expected_beer_amount * (this.recipe.cold_hop_losses / 100);
+    if (this.recipe) {
+      if (this.recipe.expected_beer_amount != null)
+        this.amountOfSweetWortInLiters = +this.recipe.expected_beer_amount
+      if (this.recipe.expected_beer_amount != null && this.recipe.fermentation_losses != null)
+        this.amountOfSweetWortInLiters += +this.recipe.expected_beer_amount * (this.recipe.fermentation_losses / 100);
+      if (this.recipe.expected_beer_amount != null && this.recipe.cold_hop_losses != null)
+        this.amountOfSweetWortInLiters += +this.recipe.expected_beer_amount * (this.recipe.cold_hop_losses / 100);
+      }
   }
 
   calculateAmountOfBeerBeforeDryHopping() {
-    if (this.recipe.expected_beer_amount != null)
-      this.amountOfBeerBeforeDryHoppingInLiters = +this.recipe.expected_beer_amount;
-    if (this.recipe.expected_beer_amount != null && this.recipe.cold_hop_losses != null)
-      this.amountOfBeerBeforeDryHoppingInLiters += +this.recipe.expected_beer_amount * (this.recipe.cold_hop_losses / 100);
-  }
+    if (this.recipe) {
+      if (this.recipe.expected_beer_amount != null)
+        this.amountOfBeerBeforeDryHoppingInLiters = +this.recipe.expected_beer_amount;
+      if (this.recipe.expected_beer_amount != null && this.recipe.cold_hop_losses != null)
+        this.amountOfBeerBeforeDryHoppingInLiters += +this.recipe.expected_beer_amount * (this.recipe.cold_hop_losses / 100);
+      }
+}
 
   calcBlg(malts: Array<RecipeMalt>, mashingEfficiency: number, beerAmountInLiters: number) {
     let extract = 0;
@@ -377,15 +397,15 @@ export class RecipeUpdateComponent implements OnInit {
     extract_ml = extract / 1.587;
     water = beerAmountInLiters * 1000 - extract_ml;
     let worthWeight = water + extract;
-    blg = 100 * extract / worthWeight;
+    blg = (100 * extract / worthWeight);
+    if (this.recipe)
+      this.recipe.blg = Math.round(blg);
   }
-  */
 
   selectBeerStyle(item: BeerStyle) {
-    if (this.recipeForUpdate)
-      this.recipeForUpdate.style = item.id;
+    if (this.recipe)
+      this.recipe.style = item;
   }
-
 }
 
 

@@ -8,6 +8,7 @@ import localePl from '@angular/common/locales/pl';
 import {NgxPaginationModule} from 'ngx-pagination';
 import { AutocompleteLibModule } from 'angular-ng-autocomplete';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -49,6 +50,7 @@ import { EditorModule } from '@tinymce/tinymce-angular';
 import { RecipeUpdateComponent } from './components/recipe-update/recipe-update.component';
 import { InterceptorService } from './loader/interceptor.service';
 import { BatchDetailsComponent } from './components/batch-details/batch-details.component';
+import { MyArticlesListComponent } from './components/my-articles-list/my-articles-list.component';
 
 registerLocaleData(localePl);
 
@@ -87,6 +89,7 @@ registerLocaleData(localePl);
     BatchCreatorComponent,
     RecipeUpdateComponent,
     BatchDetailsComponent,
+    MyArticlesListComponent,
   ],
 
   imports: [
@@ -97,7 +100,8 @@ registerLocaleData(localePl);
     NgxPaginationModule,
     EditorModule,
     AutocompleteLibModule,
-    MatProgressBarModule
+    MatProgressBarModule,
+    ReactiveFormsModule
   ],
 
   providers: [

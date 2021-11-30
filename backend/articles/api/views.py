@@ -11,7 +11,6 @@ from articles.models import Article
 
 
 class ArticlesViewSet(viewsets.ModelViewSet):
-    queryset = Article.objects.get_public()
     serializer_class = ArticleSerializer
     permission_classes = [
         IsArticleAuthorOrReadOnly,
@@ -25,6 +24,9 @@ class ArticlesViewSet(viewsets.ModelViewSet):
         'update': ArticleCreateUpdateSerializer,
         'my': ArticleListSerializer
     }
+
+    def get_queryset(self):
+        return Article.objects.get_all(self.request)
 
     def get_serializer_class(self):
         return self.serializers.get(

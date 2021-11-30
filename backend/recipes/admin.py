@@ -45,7 +45,6 @@ class RecipeAdmin(admin.ModelAdmin):
         RecipeHopsInline,
         RecipeMaltInline,
         RecipeYeastInline,
-        RecipeWaterInline,
     ]
 
 

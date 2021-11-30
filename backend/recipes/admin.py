@@ -6,12 +6,10 @@ from recipes.models import (
     Malt,
     Hops,
     Yeast,
-    Water,
     Manufacturer,
     RecipeHops,
     RecipeMalt,
     RecipeYeast,
-    RecipeWater,
 )
 
 
@@ -30,11 +28,6 @@ class RecipeYeastInline(admin.TabularInline):
     extra = 1
 
 
-class RecipeWaterInline(admin.TabularInline):
-    model = RecipeWater
-    extra = 1
-
-
 class StyleAdmin(admin.ModelAdmin):
     pass
 
@@ -45,7 +38,6 @@ class RecipeAdmin(admin.ModelAdmin):
         RecipeHopsInline,
         RecipeMaltInline,
         RecipeYeastInline,
-        RecipeWaterInline,
     ]
 
 
@@ -54,5 +46,4 @@ admin.site.register(Recipe, RecipeAdmin)
 admin.site.register(Malt)
 admin.site.register(Hops)
 admin.site.register(Yeast)
-admin.site.register(Water)
 admin.site.register(Manufacturer)

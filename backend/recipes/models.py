@@ -286,32 +286,6 @@ class Yeast(models.Model):
         return f"{self.name}"
 
 
-"""
-    Model reprezentujący Wodę
-"""
-
-
-class Water(models.Model):
-    name = models.CharField(max_length=45, verbose_name="Nazwa")
-
-    # TODO dodac typ
-
-    manufacturer = models.ForeignKey(
-        Manufacturer,
-        on_delete=models.SET_NULL,
-        null=True,
-        verbose_name="Producent",
-        related_name="water",
-    )
-
-    class Meta:
-        verbose_name = "Woda"
-        verbose_name_plural = "Wody"
-        ordering = ["-id"]
-
-    def __str__(self):
-        return f"{self.name}"
-
 
 """
     Model reprezentujący powiązanie Słodu z Recepturą
@@ -426,24 +400,3 @@ class RecipeYeast(models.Model):
         return f"{self.recipe} | {self.yeast}"
 
 
-"""
-    Model reprezentujący powiązanie Wady z Recepturą
-"""
-
-
-class RecipeWater(models.Model):
-    recipe = models.ForeignKey(
-        Recipe, on_delete=models.CASCADE, verbose_name="Receptura", related_name="water"
-    )
-
-    water = models.ForeignKey(Water, on_delete=models.CASCADE, verbose_name="Woda")
-
-    quantity = models.FloatField(verbose_name="Ilość")
-
-    class Meta:
-        verbose_name = "Woda"
-        verbose_name_plural = "Woda"
-        ordering = ["-id"]
-
-    def __str__(self):
-        return f"{self.recipe} | {self.water}"

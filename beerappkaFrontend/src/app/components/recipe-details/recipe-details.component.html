@@ -11,7 +11,7 @@
 
             <app-topbar></app-topbar>
 
-            <div class="container-fluid" *ngIf="recipe && loaderService.isLoading">
+            <div class="container-fluid" *ngIf="recipe">
                 <div class="row">
                     <div class="col-lg-12 mb-4">
                         <div class="card shadow">
@@ -65,7 +65,8 @@
                                                     Utworzona: <span class="text-success">{{ recipe.creation_date | date: 'YYYY-MM-dd' }}</span>
                                                 </div>
                                                 <div class="text-xs font-weight-bold text-black-50 text-uppercase mb-1">
-                                                    Autor: <span class="text-success">{{ recipe.user.username }}</span>
+                                                    Autor: <span class="text-success mr-2">{{ recipe.user.username }}</span>
+                                                    <i *ngIf="!recipe.is_public" class="fas fa-user-lock" title="Receptura niepubliczna"></i>
                                                 </div>
                                             </div>
                                         </div>
@@ -104,7 +105,7 @@
                                                 <div class="progress progress-sm mr-2" style="height: 30px;">
                                                     <div class="progress-bar bg-warning"
                                                         role="progressbar"
-                                                        [style.width]="2*recipe.blg + '%'"
+                                                        [style.width]="recipe.blg + '%'"
                                                         aria-valuenow="recipe.blg"
                                                         aria-valuemin="0"
                                                         aria-valuemax="100"
@@ -154,7 +155,7 @@
                                                 <div class="progress progress-sm mr-2" style="height: 30px;">
                                                     <div class="progress-bar bg-success"
                                                         role="progressbar"
-                                                        [style.width]="3*recipe.ibu + '%'"
+                                                        [style.width]="recipe.ibu + '%'"
                                                     >
                                                         {{ recipe.ibu }} IBU
                                                     </div>

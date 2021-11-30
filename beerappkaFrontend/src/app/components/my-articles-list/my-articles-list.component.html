@@ -37,7 +37,8 @@
                                                 <div class="col mb-2">
                                                     <div class="text-xs font-weight-bold text-black-50 text-uppercase mb-1">
                                                       Dodany <span class="text-success">{{ article.creation_date }}</span>
-                                                      przez <span class="text-success">{{ article.author.username }}</span>
+                                                      przez <span class="text-success mr-2">{{ article.author.username }}</span>
+                                                      <i *ngIf="!article.is_published" class="fas fa-user-lock" title="Artykuł niepubliczny"></i>
                                                     </div>
 
                                                     <div class="h5 mb-0 font-weight-bold text-gray-800">

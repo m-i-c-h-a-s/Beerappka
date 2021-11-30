@@ -21,8 +21,7 @@ export class RecipeDetailsComponent implements OnInit {
               private route: ActivatedRoute,
               public router: Router,
               public permissions: Permissions,
-              public sanitizer: DomSanitizer,
-              public loaderService: LoaderService
+              public sanitizer: DomSanitizer
   ) { }
 
   ngOnInit(): void {

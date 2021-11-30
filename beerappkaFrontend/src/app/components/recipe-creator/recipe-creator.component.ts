@@ -52,7 +52,6 @@ export class RecipeCreatorComponent implements OnInit {
   // sweet wort - brzeczka nastawna
   amountOfSweetWortInLiters: number;
   amountOfBeerBeforeDryHoppingInLiters: number;
-  ibu = 0;
   weightOfAllMalts: number | undefined;
 
 
@@ -217,6 +216,7 @@ export class RecipeCreatorComponent implements OnInit {
 
       if (this.recipe.expected_beer_amount)
         this.recipe.blg = calculateBLG(this.recipe.malts, this.recipe.mashing_efficiency, this.recipe.expected_beer_amount);
+
       this.calculateWeightOfAllMalts();
       this.recipe.ebc = calculateEBC(this.recipe.malts, this.recipe.mashing_efficiency, this.recipe.boiled_wort_amount);
     }
@@ -227,6 +227,7 @@ export class RecipeCreatorComponent implements OnInit {
     if (this.recipe.expected_beer_amount)
         this.recipe.blg = calculateBLG(this.recipe.malts, this.recipe.mashing_efficiency, this.recipe.expected_beer_amount);
     this.calculateWeightOfAllMalts();
+    this.recipe.ebc = calculateEBC(this.recipe.malts, this.recipe.mashing_efficiency, this.recipe.boiled_wort_amount);
   }
 
   deleteAllMalts() {
@@ -234,6 +235,7 @@ export class RecipeCreatorComponent implements OnInit {
     if (this.recipe.expected_beer_amount)
         this.recipe.blg = calculateBLG(this.recipe.malts, this.recipe.mashing_efficiency, this.recipe.expected_beer_amount);
     this.calculateWeightOfAllMalts();
+    this.recipe.ebc = calculateEBC(this.recipe.malts, this.recipe.mashing_efficiency, this.recipe.boiled_wort_amount);
   }
 
 
@@ -269,18 +271,18 @@ export class RecipeCreatorComponent implements OnInit {
         boiling_time: 0
       }
 
-      this.ibu = calculateIBU(this.recipe.boiled_wort_amount, this.recipe.blg, this.recipe.hops);
+      this.recipe.ibu = calculateIBU(this.recipe.boiled_wort_amount, this.recipe.blg, this.recipe.hops);
     }
   }
 
   deleteHop(recipeHop: RecipeHop) {
     this.recipe.hops = this.recipe.hops.filter(e => e !== recipeHop);
-    this.ibu = calculateIBU(this.recipe.boiled_wort_amount, this.recipe.blg, this.recipe.hops);
+    this.recipe.ibu = calculateIBU(this.recipe.boiled_wort_amount, this.recipe.blg, this.recipe.hops);
   }
 
   deleteAllHops() {
     this.recipe.hops.length = 0;
-    this.ibu = calculateIBU(this.recipe.boiled_wort_amount, this.recipe.blg, this.recipe.hops);
+    this.recipe.ibu = calculateIBU(this.recipe.boiled_wort_amount, this.recipe.blg, this.recipe.hops);
   }
 
 
@@ -334,7 +336,7 @@ export class RecipeCreatorComponent implements OnInit {
     this.calculateAmountOfBoilingWort();
     this.calculateAmountOfSweetWort();
     this.calculateAmountOfBeerBeforeDryHopping();
-    this.ibu = calculateIBU(this.recipe.boiled_wort_amount, this.recipe.blg, this.recipe.hops);
+    this.recipe.ibu = calculateIBU(this.recipe.boiled_wort_amount, this.recipe.blg, this.recipe.hops);
     this.calculateWeightOfAllMalts();
     if (this.recipe.expected_beer_amount)
         this.recipe.blg = calculateBLG(this.recipe.malts, this.recipe.mashing_efficiency, this.recipe.expected_beer_amount);

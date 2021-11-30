@@ -16,7 +16,7 @@ export class ArticleDetailsComponent implements OnInit {
   constructor(private articleService: ArticlesService,
               private route: ActivatedRoute,
               private router: Router,
-              public  permissions: Permissions,
+              public permissions: Permissions,
               public sanitizer: DomSanitizer) { }
 
   ngOnInit(): void {

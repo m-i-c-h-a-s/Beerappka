@@ -14,9 +14,7 @@ export class PublicRecipesListComponent implements OnInit {
   totalLength: any;
   page: number = 1;
 
-  constructor(private recipesService: RecipesService,
-              public loaderService: LoaderService
-  ) {}
+  constructor(private recipesService: RecipesService) {}
 
   ngOnInit(): void {
     this.recipesService.getAllPublicRecipes().subscribe(data => {

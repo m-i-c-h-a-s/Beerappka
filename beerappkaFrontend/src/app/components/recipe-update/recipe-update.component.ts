@@ -19,6 +19,10 @@ import { Permissions } from '../../permissions/permissions';
 import { initEditor } from '../tinymce-editor/editor';
 import { RecipeCreateUpdateErrors } from '../recipe-creator/recipe-create-update-errors';
 
+import { calculateIBU } from '../recipe-creator/calculators/ibuCalculator';
+import { calculateBLG } from '../recipe-creator/calculators/blgCalculator';
+import { calculateEBC } from '../recipe-creator/calculators/ebcCalculator';
+
 @Component({
   selector: 'app-recipe-update',
   templateUrl: './recipe-update.component.html',
@@ -53,9 +57,9 @@ export class RecipeUpdateComponent implements OnInit {
 
   // wort - brzeczka
   // sweet wort - brzeczka nastawna
-  blgBeforeBoiling: number;
   amountOfSweetWortInLiters: number;
   amountOfBeerBeforeDryHoppingInLiters: number;
+  weightOfAllMalts: number | undefined;
 
   constructor(
     private beerStylesService: BeerStylesService,
@@ -65,7 +69,6 @@ export class RecipeUpdateComponent implements OnInit {
     private permissions: Permissions
   ) {
     this.initEditor.height = 200;
-    this.blgBeforeBoiling = 0;
     this.amountOfSweetWortInLiters = 0;
     this.amountOfBeerBeforeDryHoppingInLiters = 0;
 
@@ -235,18 +238,33 @@ export class RecipeUpdateComponent implements OnInit {
           malt: this.malt,
           quantity: 0
         }
-        this.calcBlg(this.recipe.malts, this.recipe.mashing_efficiency, this.recipe.expected_beer_amount);
+        if (this.recipe.expected_beer_amount)
+          this.recipe.blg = calculateBLG(this.recipe.malts, this.recipe.mashing_efficiency, this.recipe.expected_beer_amount);
+        this.calculateWeightOfAllMalts();
+        this.recipe.ebc = calculateEBC(this.recipe.malts, this.recipe.mashing_efficiency, this.recipe.boiled_wort_amount);
       }
   }
 
   deleteMalt(recipeMalt: RecipeMalt) {
-    if (this.recipe)
+    if (this.recipe) {
       this.recipe.malts = this.recipe.malts.filter(e => e !== recipeMalt);
+
+      if (this.recipe.expected_beer_amount)
+          this.recipe.blg = calculateBLG(this.recipe.malts, this.recipe.mashing_efficiency, this.recipe.expected_beer_amount);
+      this.calculateWeightOfAllMalts();
+      this.recipe.ebc = calculateEBC(this.recipe.malts, this.recipe.mashing_efficiency, this.recipe.boiled_wort_amount);
+    }
   }
 
   deleteAllMalts() {
-    if (this.recipe)
+    if (this.recipe) {
       this.recipe.malts.length = 0;
+
+      if (this.recipe.expected_beer_amount)
+          this.recipe.blg = calculateBLG(this.recipe.malts, this.recipe.mashing_efficiency, this.recipe.expected_beer_amount);
+      this.calculateWeightOfAllMalts();
+      this.recipe.ebc = calculateEBC(this.recipe.malts, this.recipe.mashing_efficiency, this.recipe.boiled_wort_amount);
+    }
   }
 
 
@@ -283,16 +301,22 @@ export class RecipeUpdateComponent implements OnInit {
           boiling_time: 0
         }
       }
+      if (this.recipe)
+        this.recipe.ibu = calculateIBU(this.recipe.boiled_wort_amount, this.recipe.blg, this.recipe.hops);
   }
 
   deleteHop(recipeHop: RecipeHop) {
-    if (this.recipe)
+    if (this.recipe) {
       this.recipe.hops = this.recipe.hops.filter(e => e !== recipeHop);
+      this.recipe.ibu = calculateIBU(this.recipe.boiled_wort_amount, this.recipe.blg, this.recipe.hops);
+    }
   }
 
   deleteAllHops() {
-    if (this.recipe)
+    if (this.recipe) {
       this.recipe.hops.length = 0;
+      this.recipe.ibu = calculateIBU(this.recipe.boiled_wort_amount, this.recipe.blg, this.recipe.hops);
+    }
   }
 
 
@@ -349,6 +373,11 @@ export class RecipeUpdateComponent implements OnInit {
     this.calculateAmountOfBoilingWort();
     this.calculateAmountOfSweetWort();
     this.calculateAmountOfBeerBeforeDryHopping();
+    if (this.recipe)
+      this.recipe.ibu = calculateIBU(this.recipe.boiled_wort_amount, this.recipe.blg, this.recipe.hops);
+    this.calculateWeightOfAllMalts();
+    if (this.recipe && this.recipe.expected_beer_amount)
+        this.recipe.blg = calculateBLG(this.recipe.malts, this.recipe.mashing_efficiency, this.recipe.expected_beer_amount);
   }
 
   calculateAmountOfBoilingWort() {
@@ -384,22 +413,15 @@ export class RecipeUpdateComponent implements OnInit {
       if (this.recipe.expected_beer_amount != null && this.recipe.cold_hop_losses != null)
         this.amountOfBeerBeforeDryHoppingInLiters += +this.recipe.expected_beer_amount * (this.recipe.cold_hop_losses / 100);
       }
-}
+  }
 
-  calcBlg(malts: Array<RecipeMalt>, mashingEfficiency: number, beerAmountInLiters: number) {
-    let extract = 0;
-    let extract_ml = 0;
-    let water = 0;
-    let blg = 0;
-    malts.forEach(malt => {
-      extract += (malt.quantity * malt.malt.extractivity * mashingEfficiency) / 10;
-    });
-    extract_ml = extract / 1.587;
-    water = beerAmountInLiters * 1000 - extract_ml;
-    let worthWeight = water + extract;
-    blg = (100 * extract / worthWeight);
+  calculateWeightOfAllMalts() {
+    let weight = 0;
     if (this.recipe)
-      this.recipe.blg = Math.round(blg);
+      this.recipe.malts.forEach(malt => {
+        weight += malt.quantity;
+      });
+    this.weightOfAllMalts = weight;
   }
 
   selectBeerStyle(item: BeerStyle) {

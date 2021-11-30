@@ -27,7 +27,7 @@
                 </div>
 
                 <div class="row" *ngIf="recipes && recipes.length > 0; else noRecipesAdded;">
-                    <div class="col-lg-4 col-xs-12 mb-4" *ngFor="let recipe of recipes | paginate: { itemsPerPage: 6, currentPage: page, totalItems: totalLength }">
+                    <div class="col-lg-4 col-xs-12 mb-4" *ngFor="let recipe of recipes | paginate: { itemsPerPage: itemsPerPage, currentPage: currentPage, totalItems: totalItems }">
                         <div class="mb-3">
                             <div class="card border-left-success shadow h-100 py-2">
                                 <div class="card-body">
@@ -68,7 +68,8 @@
                                                         Utworzona: <span class="text-success">{{ recipe.creation_date | date: 'YYYY-MM-dd' }}</span>
                                                     </div>
                                                     <div class="text-xs font-weight-bold text-black-50 text-uppercase mb-1">
-                                                        Autor: <span class="text-success">{{ recipe.user.username }}</span>
+                                                        Autor: <span class="text-success mr-2">{{ recipe.user.username }}</span>
+                                                        <i *ngIf="!recipe.is_public" class="fas fa-user-lock" title="Receptura niepubliczna"></i>
                                                     </div>
                                                 </div>
                                             </div>
@@ -87,11 +88,11 @@
                 </ng-template>
 
                 <div class="row text-center mb-4"
-                     *ngIf="totalLength > 6"
+                     *ngIf="totalItems > itemsPerPage"
                 >
                     <pagination-controls
                         class="text-center"
-                        (pageChange)="page = $event"
+                        (pageChange)="onTableDataChange($event)"
                         previousLabel="Poprzednia"
                         nextLabel="Następna"
                         maxSize:1

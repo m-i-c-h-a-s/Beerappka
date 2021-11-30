@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import {Observable} from 'rxjs';
-import {HttpClient} from '@angular/common/http';
-import {BaseService} from './base.service';
+import { Observable } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import { BaseService } from './base.service';
 import { RecipeForCreateUpdate } from '../components/recipe-creator/recipe-for-create-update';
 
 @Injectable({
@@ -17,8 +17,8 @@ export class RecipesService extends BaseService {
     return this.http.get(this.getAPIUrl(`/recipes/only_public/`), this.httpOptions);
   }
 
-  public getUserRecipes(userId: number): Observable<ArrayBuffer> {
-    return this.http.get(this.getAPIUrl(`/recipes/?user__id=${userId}`), this.httpOptions);
+  public getUserRecipes(userId: number, page: number): Observable<ArrayBuffer> {
+    return this.http.get(this.getAPIUrl(`/recipes/?user__id=${userId}&?page=${page}`), this.httpOptions);
   }
 
   public getRecipe(id: number): Observable<ArrayBuffer> {

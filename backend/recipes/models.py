@@ -143,8 +143,6 @@ class Recipe(models.Model):
 class Manufacturer(models.Model):
     name = models.CharField(max_length=45, verbose_name="Nazwa")
 
-    # TODO dodac kategorie produktu
-
     class Meta:
         verbose_name = "Producent"
         verbose_name_plural = "Producenci"

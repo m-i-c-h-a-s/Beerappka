@@ -51,6 +51,7 @@ import { RecipeUpdateComponent } from './components/recipe-update/recipe-update.
 import { InterceptorService } from './loader/interceptor.service';
 import { BatchDetailsComponent } from './components/batch-details/batch-details.component';
 import { MyArticlesListComponent } from './components/my-articles-list/my-articles-list.component';
+import { BatchUpdateComponent } from './components/batch-update/batch-update.component';
 
 registerLocaleData(localePl);
 
@@ -90,6 +91,7 @@ registerLocaleData(localePl);
     RecipeUpdateComponent,
     BatchDetailsComponent,
     MyArticlesListComponent,
+    BatchUpdateComponent,
   ],
 
   imports: [

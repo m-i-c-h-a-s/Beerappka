@@ -29,6 +29,7 @@ import { MyRecipesListComponent } from './components/my-recipes-list/my-recipes-
 import { MyBatchesListComponent } from './components/my-batches-list/my-batches-list.component';
 import { RecipeUpdateComponent } from './components/recipe-update/recipe-update.component';
 import { BatchCreatorComponent } from './components/batch-creator/batch-creator.component';
+import { BatchUpdateComponent } from './components/batch-update/batch-update.component';
 import { BatchDetailsComponent } from './components/batch-details/batch-details.component';
 import { MyArticlesListComponent } from './components/my-articles-list/my-articles-list.component';
 
@@ -62,6 +63,7 @@ const routes: Routes = [
   { path: 'receptury/:id', component: RecipeDetailsComponent, canActivate: [AuthGuard]},
   { path: 'receptury/:id/stworz-warke', component: BatchCreatorComponent, canActivate: [AuthGuard]},
   { path: 'warki/:id', component: BatchDetailsComponent, canActivate: [AuthGuard]},
+  { path: 'edytuj-warke/:id', component: BatchUpdateComponent, canActivate: [AuthGuard]},
   { path: '**', redirectTo: '/' },
 ];
 

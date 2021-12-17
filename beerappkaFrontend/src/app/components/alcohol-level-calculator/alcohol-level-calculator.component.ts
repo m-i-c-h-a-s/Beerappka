@@ -48,6 +48,20 @@ export class AlcoholLevelCalculatorComponent implements OnInit {
     }
   }
 
+  // metoda obliczająca poziom alkoholu w gotowym piwie dla jednostek BLG
+  // została zaimplementowana na podstawie wzoru ze strony https://wiki.piwo.org/Obliczanie_zawarto%C5%9Bci_alkoholu_w_gotowym_piwie
+  calculateABVforBLG() {
+    if ( this.originalGravity != undefined && this.finalGravity != undefined
+      && this.originalGravity != null && this.finalGravity != null
+      && this.originalGravity != 0 && this.finalGravity != 0 )
+    {
+        this.abvValue = (this.originalGravity - this.finalGravity) / 1.938;
+        this.alcoholByVolume = this.abvValue.toFixed(2) + " %";
+    } else this.alcoholByVolume = '---';
+  }
+
+  // metoda obliczająca poziom alkoholu w gotowym piwie dla jednostek Specific Gravity
+  // została zaimplementowana na podstawie wzoru ze strony http://www.brewunited.com/abv_calculator.php
   calculateABVforSG() {
     if ( this.originalGravity != undefined && this.finalGravity != undefined
       && this.originalGravity != null && this.finalGravity != null
@@ -57,16 +71,7 @@ export class AlcoholLevelCalculatorComponent implements OnInit {
     } else this.alcoholByVolume = '---';
   }
 
-  calculateABVforBLG() {
-    if ( this.originalGravity != undefined && this.finalGravity != undefined
-      && this.originalGravity != null && this.finalGravity != null
-      && this.originalGravity != 0 && this.finalGravity != 0 ) {
-        this.abvValue = (this.originalGravity - this.finalGravity) / 1.938;
-        this.alcoholByVolume = this.abvValue.toFixed(2) + " %";
-    } else this.alcoholByVolume = '---';
-
-  }
-
+  // obliczenie stopnia odfermentowania dla parametrów w jednostkach BLG
   calculateAttenuationForBLG() {
     if ( this.originalGravity != undefined && this.finalGravity != undefined
       && this.originalGravity != null && this.finalGravity != null
@@ -76,6 +81,7 @@ export class AlcoholLevelCalculatorComponent implements OnInit {
     } else this.apparentAttenuation = '---';
   }
 
+  // obliczenie stopnia odfermentowania dla parametrów w jednostkach Specific Gravity
   calculateAttenuationForSG() {
     if ( this.originalGravity != undefined && this.finalGravity != undefined
       && this.originalGravity != null && this.finalGravity != null
@@ -85,10 +91,13 @@ export class AlcoholLevelCalculatorComponent implements OnInit {
     } else this.apparentAttenuation = '---';
   }
 
+  // przeliczenie poziomu gęstości ze skali Specific Gravity na BLG
   convertSgToBlg(gravityInSg: number) {
     return 260 * (gravityInSg - 1) / gravityInSg;
   }
 
+  // przeliczenie poziomu gęstości ze skali BLG na Specific Gravity
+  // została zaimplementowana na podstawie wzoru ze strony http://betatestbrewing.com/pages/plato_to_sg.html
   convertBlgToSg(gravityInBlg: number) {
     return (-260 / (gravityInBlg - 260));
   }

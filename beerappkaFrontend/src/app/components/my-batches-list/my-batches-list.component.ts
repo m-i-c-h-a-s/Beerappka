@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { LoaderService } from 'src/app/loader/loader.service';
 import { BatchesService } from 'src/app/services/batches.service';
 import { UserService } from 'src/app/services/user.service';
 import { Batch } from '../batch-creator/batch';
@@ -17,9 +18,12 @@ export class MyBatchesListComponent implements OnInit {
   totalLength: any;
   page: number = 1;
 
-  constructor(private userService: UserService,
-              private router: Router,
-              private batchesService: BatchesService) { }
+  constructor(
+    private userService: UserService,
+    private router: Router,
+    private batchesService: BatchesService,
+    public loaderService: LoaderService
+  ) { }
 
   ngOnInit(): void {
     this.userService.getCurrentUserData().subscribe(data => {

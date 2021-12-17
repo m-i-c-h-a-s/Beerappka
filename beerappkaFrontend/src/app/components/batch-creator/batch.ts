@@ -1,7 +1,9 @@
 import { User } from "../profile/user";
 import { Recipe } from "../recipe-creator/recipe";
 import { Mashing } from "./mashing";
+import { MashingForCreateUpdate } from "./mashing-for-create-update";
 import { MeasurementBLG } from "./measurementBLG";
+import { MeasurementBLGForCreateUpdate } from "./measurementBLG-for-create-update";
 
 export interface Batch {
     id: number;
@@ -11,6 +13,6 @@ export interface Batch {
     number: number | undefined;
     brewing_date: string;
     bottling_date: string | undefined;
-    mashings: Array<Mashing>;
-    measurements_blg: Array<MeasurementBLG>;
+    mashings: Array<MashingForCreateUpdate>;
+    measurements_blg: Array<MeasurementBLGForCreateUpdate>;
 }

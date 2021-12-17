@@ -204,6 +204,7 @@ export class RecipeUpdateComponent implements OnInit {
         this.router.navigate([`/receptury/${recipeId}`]);
       }, err => {
         console.log(err);
+        this.err = err.error;
       });
     }
   }
@@ -428,6 +429,7 @@ export class RecipeUpdateComponent implements OnInit {
     if (this.recipe)
       this.recipe.style = item;
   }
+
 }
 
 

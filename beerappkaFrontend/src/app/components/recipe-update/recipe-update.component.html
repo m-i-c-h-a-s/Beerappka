@@ -9,6 +9,7 @@
         <div id="content" *ngIf="recipe">
             <div class="container-fluid">
                 <form (ngSubmit)="updateRecipe()">
+                <form>
                 <div id="recipeHeader" class="row">
                     <div class="col-lg-12 mb-4">
                         <div class="card shadow mb-4 border-bottom-info">
@@ -60,7 +61,7 @@
                                     <ng-autocomplete
                                         id="recipe_style"
                                         name="recipe_style"
-                                        [(ngModel)]="style"
+                                        [(ngModel)]="recipe.style"
                                         [ngModelOptions]="{standalone: true}"
                                         placeholder="Styl"
                                         [data]="beerStyles"
@@ -288,7 +289,7 @@
                                     <i style="font-weight: bold;">Ilość brzeczki nastawnej: </i>
                                     <i> {{ (amountOfSweetWortInLiters | number: '1.0-2') + " L" }} </i>
                                 </div>
-                                <div class="col mb-1">
+                                <div class="col mb-1" *ngIf="recipe.cold_hop_losses > 0">
                                     <i style="font-weight: bold;">Ilość piwa przed chmieleniem na zimno: </i>
                                     <i> {{ (amountOfBeerBeforeDryHoppingInLiters | number: '1.0-2') + " L" }} </i>
                                 </div>
@@ -296,6 +297,7 @@
                         </div>
                     </div>
                 </div>
+                </form>
                 <div id="recipeFermentables" class="row">
                     <div class="col-lg-12 mb-4">
                         <div class="card shadow mb-4 border-bottom-info">
@@ -309,7 +311,7 @@
                                             <div class="progress progress-sm mr-2" style="height: 30px;">
                                                 <div class="progress-bar bg-warning"
                                                     role="progressbar"
-                                                    [style.width]="recipe.blg + '%'"
+                                                    [style.width]="2*recipe.blg + '%'"
                                                     aria-valuenow="recipe.blg"
                                                     aria-valuemin="0"
                                                     aria-valuemax="100"
@@ -324,7 +326,7 @@
                                             <div class="progress progress-sm mr-2" style="height: 30px;">
                                                 <div class="progress-bar bg-info"
                                                     role="progressbar"
-                                                    [style.width]="recipe.ebc + '%'"
+                                                    [style.width]="2*recipe.ebc + '%'"
                                                     aria-valuenow="recipe.ebc"
                                                     aria-valuemin="0"
                                                     aria-valuemax="100"

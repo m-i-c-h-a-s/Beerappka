@@ -9,6 +9,7 @@
         <div id="content">
             <div class="container-fluid">
                 <form (ngSubmit)="createRecipe()">
+                <form>
                 <div id="recipeHeader" class="row">
                     <div class="col-lg-12 mb-4">
                         <div class="card shadow mb-4 border-bottom-info">
@@ -68,7 +69,8 @@
                                         [searchKeyword]="'name'"
                                         [itemTemplate]="beerStyleTemplate"
                                         [notFoundTemplate]="notFoundTemplate"
-                                        (selected)='selectBeerStyle($event)'>
+                                        (selected)='selectBeerStyle($event)'
+                                        (inputCleared)='recipe.style=0'>
                                     </ng-autocomplete>
                                     <ng-template #beerStyleTemplate let-item>
                                         <a [innerHTML]="item.name"></a>
@@ -289,7 +291,7 @@
                                     <i style="font-weight: bold;">Ilość brzeczki nastawnej: </i>
                                     <i> {{ (amountOfSweetWortInLiters | number: '1.0-2') + " L" }} </i>
                                 </div>
-                                <div class="col mb-1">
+                                <div class="col mb-1" *ngIf="recipe.cold_hop_losses > 0">
                                     <i style="font-weight: bold;">Ilość piwa przed chmieleniem na zimno: </i>
                                     <i> {{ (amountOfBeerBeforeDryHoppingInLiters | number: '1.0-2') + " L" }} </i>
                                 </div>
@@ -298,6 +300,7 @@
                         </div>
                     </div>
                 </div>
+                </form>
                 <div id="recipeFermentables" class="row">
                     <div class="col-lg-12 mb-4">
                         <div class="card shadow mb-4 border-bottom-info">
@@ -311,7 +314,7 @@
                                             <div class="progress progress-sm mr-2" style="height: 30px;">
                                                 <div class="progress-bar bg-warning"
                                                     role="progressbar"
-                                                    [style.width]="recipe.blg + '%'"
+                                                    [style.width]="2*recipe.blg + '%'"
                                                     aria-valuenow="recipe.blg"
                                                     aria-valuemin="0"
                                                     aria-valuemax="100"
@@ -326,7 +329,7 @@
                                             <div class="progress progress-sm mr-2" style="height: 30px;">
                                                 <div class="progress-bar bg-info"
                                                     role="progressbar"
-                                                    [style.width]="recipe.ebc + '%'"
+                                                    [style.width]="2*recipe.ebc + '%'"
                                                     aria-valuenow="recipe.ebc"
                                                     aria-valuemin="0"
                                                     aria-valuemax="100"
@@ -515,7 +518,7 @@
                             </div>
                             <form (ngSubmit)="addHop()" class="card-body row">
                                 <div *ngIf="recipe.hops.length > 0 && recipe.boiled_wort_amount" class="animated--grow-in">
-                                    <div class="row no-gutters align-items-center mb-3">
+                                    <div class="row no-gutters align-items-center mb-4">
                                         <div class="col">
                                             <div class="progress progress-sm mr-2" style="height: 30px;">
                                                 <div class="progress-bar bg-success"

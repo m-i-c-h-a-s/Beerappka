@@ -1,17 +1,13 @@
-<!-- Page Wrapper -->
 <div id="wrapper">
 
     <app-sidebar></app-sidebar>
 
-    <!-- Content Wrapper -->
     <div id="content-wrapper" class="d-flex flex-column">
 
-        <!-- Main Content -->
         <div id="content">
 
             <app-topbar></app-topbar>
 
-            <!-- Begin Page Content -->
             <div class="container-fluid">
                 <div class="row mb-4">
                     <div class="col-lg-12">
@@ -82,7 +78,7 @@
                 </div>
 
                 <ng-template #noRecipesAdded>
-                    <div class="text-center text-black-50">
+                    <div class="text-center text-black-50" *ngIf="!(loaderService.isLoading | async)">
                         Nie stworzono żadnych receptur.
                     </div>
                 </ng-template>
@@ -100,15 +96,11 @@
                 </div>
 
             </div>
-            <!-- /.container-fluid -->
 
         </div>
-        <!-- End of Main Content -->
 
         <app-footer></app-footer>
 
     </div>
-    <!-- End of Content Wrapper -->
 
 </div>
-<!-- End of Page Wrapper -->

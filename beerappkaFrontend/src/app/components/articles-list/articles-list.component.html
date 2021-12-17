@@ -54,7 +54,7 @@
                 </div>
 
                 <ng-template #noArticles>
-                    <div class="text-center text-black-50">
+                    <div class="text-center text-black-50" *ngIf="!(loaderService.isLoading | async)">
                         Brak artykułów.
                     </div>
                 </ng-template>

@@ -41,18 +41,22 @@ export class CarbonationCalculatorComponent implements OnInit {
     });*/
   }
 
+  // metoda obliczająca poziom CO2 rozpuszczonego w piwie po zakończeniu fermentacji
+  // zaimplementowana na podstawie wzoru ze strony https://www.brewersfriend.com/beer-priming-calculator/
   calculateResidualCarbonationLevel() {
-    //CO2 In Beer = 3.0378 - (0.050062 * temp) + (0.00026555 * temp^2)
-    //conversion from Celsius to Farenheit: F = 1.8 * C + 32
+    // Poziom CO2 rozpuszczonego w piwie po fementacji = 3.0378 - (0.050062 * temp) + (0.00026555 * temp^2)
+    // konwersja ze stopni Celsjusza na Farenheita: F = 1.8 * C + 32
     if (this.beerTemperature != null)
       this.residualCarbonationLevel = 3.0378 - (0.050062 * (this.beerTemperature * 1.8 + 32)) + (0.00026555 * Math.pow((this.beerTemperature * 1.8 + 32), 2));
   }
 
+  // metoda obliczająca o jaką wartość należy zwiększyć poziom CO2, aby uzyskać poziom podany przez użytkownika
   calculatePrimingCarbonationLevel() {
     if (this.targetCarbonationLevel != null && this.residualCarbonationLevel != null)
       this.primingCarbonationLevel = this.targetCarbonationLevel - this.residualCarbonationLevel;
   }
 
+  // metoda obliczająca ilość cukru dla poszczególnych rodzajów cukru
   calculateAmoutOfSugarToRefermenation() {
     this.calculateResidualCarbonationLevel();
     this.calculatePrimingCarbonationLevel();

@@ -46,7 +46,7 @@ api_urls = (
             ConfirmEmailView.as_view(),
             name='account_confirm_email'
         ),
-        url(r"^auth/registration/", include("rest_auth.registration.urls")) 
+        url(r"^auth/registration/", include("rest_auth.registration.urls"))
     ]
     + users_urlpatterns
     + articles_urlpatterns

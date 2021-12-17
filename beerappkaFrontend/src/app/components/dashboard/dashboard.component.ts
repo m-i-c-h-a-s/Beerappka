@@ -3,6 +3,7 @@ import { UserService } from '../../services/user.service';
 import { User } from '../profile/user';
 import { Batch } from '../batch-creator/batch';
 import { BatchesService } from 'src/app/services/batches.service';
+import { LoaderService } from 'src/app/loader/loader.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -16,8 +17,10 @@ export class DashboardComponent implements OnInit {
 
   date = new Date();
 
-  constructor(private userService: UserService,
-              private batchesService: BatchesService
+  constructor(
+    private userService: UserService,
+    private batchesService: BatchesService,
+    public loaderService: LoaderService
   ) {}
 
   ngOnInit(): void {

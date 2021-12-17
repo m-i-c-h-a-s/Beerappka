@@ -61,38 +61,76 @@
                                                     <div class="h4 mb-3 font-weight-bold text-gray-800">
                                                         <i class="fas fa-poll-h"></i>
                                                         {{ batch.recipe.name }}
-                                                        <hr class="mt-1 mb-4">
+                                                        <hr class="mt-1">
                                                     </div>
                                                 </a>
-                                                <div class="h6 mb-1 font-weight-bold text-gray-800">
-                                                    Styl:
-                                                    <span class="text-info">{{ batch.recipe.style.name }}</span>
-                                                </div>
-                                                <div class="h6 mb-1 font-weight-bold text-gray-800">
-                                                    Typ:
-                                                    <span class="text-info">{{ batch.recipe.type }}</span>
-                                                </div>
-                                                <div class="h6 mb-1 font-weight-bold text-gray-800">
-                                                    Rozmiar:
-                                                    <span class="text-info">{{ batch.recipe.expected_beer_amount }}L</span>
-                                                </div>
-                                                <div class="h6 mb-1 font-weight-bold text-gray-800">
-                                                    Ekstrakt:
-                                                    <span class="text-info">{{ batch.recipe.blg }} BLG</span>
-                                                </div>
-                                                <div class="h6 mb-1 font-weight-bold text-gray-800">
-                                                    Goryczka:
-                                                    <span class="text-info">{{ batch.recipe.ibu }} IBU</span>
-                                                </div>
-                                                <div class="h6 mb-1 font-weight-bold text-gray-800">
-                                                    Kolor:
-                                                    <span class="text-info">{{ batch.recipe.ebc }} EBC</span>
-                                                </div>
-                                                <div class="text-xs font-weight-bold text-black-50 text-uppercase mt-3">
-                                                    Utworzona: <span class="text-success">{{ batch.recipe.creation_date | date: 'YYYY-MM-dd' }}</span>
-                                                </div>
-                                                <div class="text-xs font-weight-bold text-black-50 text-uppercase mb-1">
-                                                    Autor: <span class="text-success">{{ batch.recipe.user.username }}</span>
+                                                <div class="row">
+                                                    <div class="text-xs font-weight-bold text-black-50 text-uppercase mb-3">
+                                                        Utworzona: <span class="text-success mr-1">{{ batch.recipe.creation_date | date: 'YYYY-MM-dd' }}</span>
+                                                        Autor: <span class="text-success mr-2">{{ batch.recipe.user.username }}</span>
+                                                        <i *ngIf="!batch.recipe.is_public" class="fas fa-user-lock" title="Receptura niepubliczna"></i>
+                                                    </div>
+
+                                                    <div class="col-xl-auto">
+                                                        <div class="h6 mb-1 font-weight-bold text-gray-800">
+                                                            Styl:
+                                                            <span class="text-info">{{ batch.recipe.style.name }}</span>
+                                                        </div>
+                                                        <div class="h6 mb-1 font-weight-bold text-gray-800">
+                                                            Typ:
+                                                            <span class="text-info">{{ batch.recipe.type }}</span>
+                                                        </div>
+                                                        <div class="h6 mb-1 font-weight-bold text-gray-800">
+                                                            Rozmiar:
+                                                            <span class="text-info">{{ batch.recipe.expected_beer_amount }}L</span>
+                                                        </div>
+                                                        <div class="h6 mb-1 font-weight-bold text-gray-800">
+                                                            Ekstrakt:
+                                                            <span class="text-info">{{ batch.recipe.blg }} BLG</span>
+                                                        </div>
+                                                        <div class="h6 mb-1 font-weight-bold text-gray-800">
+                                                            Goryczka:
+                                                            <span class="text-info">{{ batch.recipe.ibu }} IBU</span>
+                                                        </div>
+                                                        <div class="h6 mb-2 font-weight-bold text-gray-800">
+                                                            Kolor:
+                                                            <span class="text-info">{{ batch.recipe.ebc }} EBC</span>
+                                                        </div>
+                                                        <div class="h6 mb-1 font-weight-bold text-gray-800">
+                                                            Czas gotowania:
+                                                            <span class="text-info">{{ batch.recipe.boiling_time }} min</span>
+                                                        </div>
+                                                        <div class="h6 mb-1 font-weight-bold text-gray-800">
+                                                            Szybkość odparowywania:
+                                                            <span class="text-info">{{ batch.recipe.evaporation_rate }}%/h</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-xl-auto">
+                                                        <div class="h6 mb-1 font-weight-bold text-gray-800">
+                                                            Stosunek wody do ziarna:
+                                                            <span class="text-info">{{ batch.recipe.water_to_grain_ratio }} L/kg</span>
+                                                        </div>
+                                                        <div class="h6 mb-1 font-weight-bold text-gray-800">
+                                                            Wydajność zacierania:
+                                                            <span class="text-info">{{ batch.recipe.mashing_efficiency }}%</span>
+                                                        </div>
+                                                        <div class="h6 mb-1 font-weight-bold text-gray-800">
+                                                            Ilość gotowanej brzeczki:
+                                                            <span class="text-info">{{ batch.recipe.boiled_wort_amount }} L</span>
+                                                        </div>
+                                                        <div class="h6 mb-1 font-weight-bold text-gray-800">
+                                                            Straty z gotowania:
+                                                            <span class="text-info">{{ batch.recipe.boiling_losses }}%</span>
+                                                        </div>
+                                                        <div class="h6 mb-1 font-weight-bold text-gray-800">
+                                                            Straty z fermentacji:
+                                                            <span class="text-info">{{ batch.recipe.fermentation_losses }}%</span>
+                                                        </div>
+                                                        <div class="h6 mb-1 font-weight-bold text-gray-800" *ngIf="batch.recipe.cold_hop_losses > 0">
+                                                            Straty z chmielenia na zimno:
+                                                            <span class="text-info">{{ batch.recipe.cold_hop_losses }}%</span>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -117,7 +155,7 @@
                                                 <th>Temperatura</th>
                                             </tr>
                                         </thead>
-                                        <tbody *ngFor="let mashing of batch.mashings;">
+                                        <tbody *ngFor="let mashing of batch.mashings">
                                             <tr>
                                                 <td> {{ mashing.time }} min </td>
                                                 <td> {{ mashing.temperature }} °C </td>

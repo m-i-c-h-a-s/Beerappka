@@ -12,7 +12,7 @@
                     <div class="col-lg-6 mb-4">
                         <div class="card shadow mb-4 border-bottom-info">
                             <div class="card-header py-3">
-                                <h6 class="m-0 font-weight-bold text-primary">Profil</h6>
+                                <h6 class="m-0 font-weight-bold text-primary">Podsumowanie</h6>
                             </div>
                             <div class="card-body">
                                 <div class="text-center mb-3">
@@ -27,7 +27,16 @@
                                         >
                                     </ng-template>
 
-                                    <h5>Witaj {{ currentUser.first_name }}!</h5>
+                                    <h5>Witaj
+                                        <a *ngIf="currentUser.first_name; else helloLogin;">
+                                            {{ currentUser.first_name }}
+                                        </a>!
+                                        <ng-template #helloLogin>
+                                            <a>
+                                                {{ currentUser.username }}
+                                            </a>
+                                        </ng-template>
+                                    </h5>
 
                                     <h5 class="pt-3 font-weight-bold">Dziś jest {{ date | date: 'd MMMM YYYY' }}</h5>
                                 </div>
@@ -79,7 +88,9 @@
                                     </div>
                                 </div>
                                 <ng-template #noCurrentBatches>
-                                    <h5>Obecnie Twoja kadzie są puste. Uwarz coś!</h5>
+                                    <h5 *ngIf="!(loaderService.isLoading | async)">
+                                        Obecnie Twoja kadzie są puste. Uwarz coś!
+                                    </h5>
                                 </ng-template>
                             </div>
                         </div>
@@ -90,7 +101,7 @@
                     <div class="col-lg-3 mb-4">
                         <div class="card shadow mb-4 border-bottom-info">
                             <div class="card-header py-3">
-                                <h6 class="m-0 font-weight-bold text-primary">Dodaj recepturę</h6>
+                                <h6 class="m-0 font-weight-bold text-primary">Tworzenie receptur</h6>
                             </div>
                             <div class="card-body">
                                 <button class="btn btn-info"
@@ -98,7 +109,10 @@
                                      routerLink="/dodaj-recepture"
                                      routerLinkActive="active"
                                 >
-                                    <span class="text">Stwórz recepturę</span>
+                                    <span class="text">
+                                        <i class="fas fa-plus mr-1"></i>
+                                        Stwórz recepturę
+                                    </span>
                                 </button>
                             </div>
                         </div>
@@ -106,7 +120,7 @@
                     <div class="col-lg-3 mb-4">
                         <div class="card shadow mb-4 border-bottom-info">
                             <div class="card-header py-3">
-                                <h6 class="m-0 font-weight-bold text-primary">Stwórz warkę</h6>
+                                <h6 class="m-0 font-weight-bold text-primary">Tworzenie warek</h6>
                             </div>
                             <div class="card-body">
                                 <button class="btn btn-danger"
@@ -114,7 +128,10 @@
                                      routerLink="/moje-receptury"
                                      routerLinkActive="active"
                                 >
-                                    <span class="text">Stwórz warkę</span>
+                                    <span class="text">
+                                        <i class="fas fa-beer"></i>
+                                        Stwórz warkę
+                                    </span>
                                 </button>
                             </div>
                         </div>

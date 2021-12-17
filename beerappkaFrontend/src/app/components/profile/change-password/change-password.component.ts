@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {UserService} from '../../../services/user.service';
 import {Router} from '@angular/router';
 import {ChangePassword} from './change-password';
+import { ChangePasswordErrors } from './change-password-errors';
 
 @Component({
   selector: 'app-change-password',
@@ -10,7 +11,9 @@ import {ChangePassword} from './change-password';
 })
 export class ChangePasswordComponent implements OnInit {
   public changePasswordFields: ChangePassword;
-  constructor(
+  err: ChangePasswordErrors | undefined;
+
+  constructor (
     private userService: UserService,
     private router: Router
   ) {
@@ -30,6 +33,7 @@ export class ChangePasswordComponent implements OnInit {
       return this.router.navigate(['/profil']);
     }, err => {
       console.log(err);
+      this.err = err.error;
     });
   }
 

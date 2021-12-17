@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { LoaderService } from 'src/app/loader/loader.service';
 import { ArticlesService } from 'src/app/services/articles.service';
 import { Article } from '../articles-list/article';
 
@@ -13,7 +14,10 @@ export class MyArticlesListComponent implements OnInit {
   totalLength: any;
   page: number = 1;
 
-  constructor(private articlesService: ArticlesService) { }
+  constructor(
+    private articlesService: ArticlesService,
+    public loaderService: LoaderService
+  ) { }
 
   ngOnInit(): void {
     this.articlesService.getUserArticles().subscribe(data => {

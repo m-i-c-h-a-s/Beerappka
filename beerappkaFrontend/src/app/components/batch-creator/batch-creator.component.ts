@@ -8,7 +8,6 @@ import { BatchForCreateUpdate } from './batch-for-create-update';
 import { MashingForCreateUpdate } from './mashing-for-create-update';
 import { MeasurementBLGForCreateUpdate } from './measurementBLG-for-create-update';
 
-import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-batch-creator',
@@ -89,8 +88,6 @@ export class BatchCreatorComponent implements OnInit {
         time: 0,
         temperature: 0,
       }
-    } else {
-      //(<HTMLInputElement>document.getElementById("mashingTime")).setAttribute("class", "input-group border-bottom-danger rounded");
     }
   }
 

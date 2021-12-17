@@ -17,6 +17,10 @@ export class RecipesService extends BaseService {
     return this.http.get(this.getAPIUrl(`/recipes/only_public/`), this.httpOptions);
   }
 
+  public getAllPublicRecipes2(APIUrl: string): Observable<ArrayBuffer> {
+    return this.http.get(APIUrl, this.httpOptions);
+  }
+
   public getUserRecipes(userId: number, page: number): Observable<ArrayBuffer> {
     return this.http.get(this.getAPIUrl(`/recipes/?user__id=${userId}&?page=${page}`), this.httpOptions);
   }

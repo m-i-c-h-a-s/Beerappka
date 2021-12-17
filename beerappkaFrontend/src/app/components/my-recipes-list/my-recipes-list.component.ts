@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { LoaderService } from 'src/app/loader/loader.service';
 import { RecipesService } from 'src/app/services/recipes.service';
 import { User } from '../profile/user';
 import { Recipe } from '../recipe-creator/recipe';
@@ -16,14 +17,23 @@ export class MyRecipesListComponent implements OnInit {
   totalItems: number = 0;
   itemsPerPage: number = 6;
 
-  constructor(private recipesService: RecipesService) { }
+  constructor(
+    private recipesService: RecipesService,
+    public loaderService: LoaderService
+  ) { }
 
   ngOnInit(): void {
     let current_user = localStorage.getItem('current_user');
     if (current_user)
       this.currentUser = JSON.parse(current_user);
 
-    this.getRecipes();
+    this.recipesService.getAllPublicRecipes().subscribe(data => {
+      this.recipes = (data as any).results;
+      this.totalItems = (data as any).results.length;
+      this.displayFullRecipeTypeName(this.recipes);
+    }, err => {
+      console.log(err);
+    });
   }
 
   getRecipes() {

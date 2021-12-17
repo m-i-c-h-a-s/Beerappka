@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { LoaderService } from 'src/app/loader/loader.service';
 import {UserService} from '../../services/user.service';
 
 @Component({
@@ -8,8 +9,11 @@ import {UserService} from '../../services/user.service';
 })
 export class PageTopBarComponent implements OnInit {
   public isLoggedIn = false;
-  
-  constructor(public userService: UserService) { }
+
+  constructor(
+    public userService: UserService,
+    public loaderService: LoaderService
+  ) { }
 
   ngOnInit(): void {
     this.isLoggedIn = this.userService.isLoggedIn();

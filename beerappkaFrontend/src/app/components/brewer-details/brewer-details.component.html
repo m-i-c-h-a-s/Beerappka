@@ -1,17 +1,13 @@
-<!-- Page Wrapper -->
 <div id="wrapper">
 
     <app-sidebar></app-sidebar>
 
-    <!-- Content Wrapper -->
     <div id="content-wrapper" class="d-flex flex-column">
 
-        <!-- Main Content -->
         <div id="content">
 
             <app-topbar></app-topbar>
 
-            <!-- Begin Page Content -->
             <div class="container-fluid">
 
                 <div class="row" *ngIf="userData && userData.profile">
@@ -200,7 +196,7 @@
                                                             Piwowar od
                                                         </div>
                                                         <div class="h5 mb-0 font-weight-bold text-gray-800">
-                                                          {{ userData.profile.brewer_since }}
+                                                          {{ userData.profile.brewer_since | date: 'd MMMM YYYY' }}
                                                         </div>
                                                     </div>
                                                 </div>
@@ -216,7 +212,7 @@
                                                             Data urodzenia
                                                         </div>
                                                         <div class="h5 mb-0 font-weight-bold text-gray-800">
-                                                          {{ userData.profile.birth_date }}
+                                                          {{ userData.profile.birth_date | date: 'd MMMM YYYY' }}
                                                         </div>
                                                     </div>
                                                 </div>
@@ -282,15 +278,11 @@
                 </div>
 
               </div>
-            <!-- /.container-fluid -->
 
         </div>
-        <!-- End of Main Content -->
 
         <app-footer></app-footer>
 
     </div>
-    <!-- End of Content Wrapper -->
 
 </div>
-<!-- End of Page Wrapper -->

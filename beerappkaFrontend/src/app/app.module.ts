@@ -52,6 +52,7 @@ import { InterceptorService } from './loader/interceptor.service';
 import { BatchDetailsComponent } from './components/batch-details/batch-details.component';
 import { MyArticlesListComponent } from './components/my-articles-list/my-articles-list.component';
 import { BatchUpdateComponent } from './components/batch-update/batch-update.component';
+import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 
 registerLocaleData(localePl);
 
@@ -92,6 +93,7 @@ registerLocaleData(localePl);
     BatchDetailsComponent,
     MyArticlesListComponent,
     BatchUpdateComponent,
+    PageNotFoundComponent,
   ],
 
   imports: [

@@ -22,7 +22,6 @@ export class GravityCorrectionCalculatorComponent implements OnInit {
   ngOnInit(): void {
   }
 
-
   calculateCorrection() {
     var waterAdditionValue: number | undefined;
     let sugarAdditionValue: number | undefined;

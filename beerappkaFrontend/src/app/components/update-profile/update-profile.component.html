@@ -1,17 +1,14 @@
-<!-- Page Wrapper -->
 <div id="wrapper">
 
     <app-sidebar></app-sidebar>
 
-    <!-- Content Wrapper -->
     <div id="content-wrapper" class="d-flex flex-column">
 
-        <!-- Main Content -->
+
         <div id="content">
 
             <app-topbar></app-topbar>
 
-            <!-- Begin Page Content -->
             <div class="container-fluid">
 
                 <div class="row" *ngIf="currentUser && currentUser.profile">
@@ -58,7 +55,7 @@
                         <div class="col-lg-6 mb-4">
                             <div class="card shadow mb-4">
                                 <div class="card-header py-3">
-                                    <h6 class="m-0 font-weight-bold text-primary">Profil</h6>
+                                    <h6 class="m-0 font-weight-bold text-primary">Edycja profilu</h6>
                                 </div>
                                 <div class="card-body">
                                     <div class="d-flex flex-column">
@@ -143,7 +140,7 @@
                         <div class="col-lg-6 mb-4">
                             <div class="card shadow mb-4">
                                 <div class="card-header py-3">
-                                    <h6 class="m-0 font-weight-bold text-primary">Profil</h6>
+                                    <h6 class="m-0 font-weight-bold text-primary">Edycja profilu</h6>
                                 </div>
                                 <div class="card-body">
                                     <div class="d-flex flex-column">
@@ -259,7 +256,7 @@
                                                                 <textarea [(ngModel)]="currentUser.profile.about_me"
                                                                           name="about_me"
                                                                           id="about_me"
-                                                                          cols="30" rows="10"
+                                                                          cols="30" rows="5"
                                                                   class="form-control bg-light border-0 small"></textarea>
                                                             </div>
                                                         </div>
@@ -278,7 +275,7 @@
                                                                 </label>
                                                             </div>
                                                             <div class="h5 mb-0 font-weight-bold text-gray-800">
-                                                                <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                                <div class="h5 mb-2 font-weight-bold text-gray-800">
                                                                     <span *ngFor="let favBeerStyle of currentUser.profile.favourite_beer_style"
                                                                       class="badge bg-primary ml-1 p-2">
                                                                       {{ favBeerStyle.name }}
@@ -320,15 +317,11 @@
                 </div>
 
               </div>
-            <!-- /.container-fluid -->
 
         </div>
-        <!-- End of Main Content -->
 
         <app-footer></app-footer>
 
     </div>
-    <!-- End of Content Wrapper -->
 
 </div>
-<!-- End of Page Wrapper -->

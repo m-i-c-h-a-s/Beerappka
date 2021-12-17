@@ -13,8 +13,8 @@ export class ArticlesService extends BaseService {
     super();
   }
 
-  public getAllArticles(): Observable<ArrayBuffer> {
-    return this.http.get(this.getAPIUrl(`/articles/`), this.httpOptions);
+  public getAllPublicArticles(): Observable<ArrayBuffer> {
+    return this.http.get(this.getAPIUrl(`/articles/only_public`), this.httpOptions);
   }
 
   public getUserArticles(): Observable<ArrayBuffer> {

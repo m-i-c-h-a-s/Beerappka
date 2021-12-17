@@ -240,7 +240,7 @@ export class RecipeCreatorComponent implements OnInit {
 
 
   addHop() {
-    if (this.hop.name != '' && this.recipeHop.used_for != '' && this.recipeHop.quantity != 0 && this.recipeHop.boiling_time != 0 && this.hop.alpha_acids != 0) {
+    if (this.hop.name != '' && this.recipeHop.used_for != '' && this.recipeHop.quantity != 0 && this.recipeHop.boiling_time !== null && this.hop.alpha_acids != 0) {
       const recipeHop: RecipeHop = {
         hops: {
           name: this.hop.name,

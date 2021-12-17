@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand navbar-dark topbar mb-4 static-top shadow">
+<nav class="navbar navbar-expand navbar-dark topbar static-top shadow">
     <a
       routerLink="/"
       routerLinkActive="active"
@@ -27,13 +27,14 @@
                 <span class="mr-2 d-none d-inline small">Logowanie</span>
             </a>
         </li>
-        <li class="nav-item dropdown no-arrow"
-            *ngIf="!isLoggedIn">
-            <a routerLink="/rejestracja" routerLinkActive="active"
-              class="nav-link" role="button">
-                <span class="mr-2 d-none d-inline small">Rejestracja</span>
-            </a>
-        </li>
-
     </ul>
 </nav>
+
+<div *ngIf="loaderService.isLoading | async">
+  <mat-progress-bar
+      mode="indeterminate"
+  >
+  </mat-progress-bar>
+</div>
+
+<div class="mb-4"></div>

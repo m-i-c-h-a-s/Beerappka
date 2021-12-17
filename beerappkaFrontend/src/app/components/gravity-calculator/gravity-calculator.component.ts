@@ -24,24 +24,19 @@ export class GravityCalculatorComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  // metoda przeliczająca gęstość z miary SG (Specific Gravity) na Skalę Ballinga (BLG)
+  // została zaimplementowana na podstawie wzoru ze strony http://betatestbrewing.com/pages/plato_to_sg.html
   convertSgToBlg() {
     if (this.gravityInSg != null && this.gravityInSg > 0)
-      this.gravityCalculatedToBlg = 260 * (this.gravityInSg - 1) / this.gravityInSg;
+      this.gravityCalculatedToBlg = 135.997 * Math.pow(this.gravityInSg, 3) - 630.272 * Math.pow(this.gravityInSg, 2) + 1111.14 * this.gravityInSg - 616.868;
     else this.gravityCalculatedToBlg = null;
   }
 
-  // funkcja przeliczająca gęstość ze skali BLG (Skala Ballinga - zwana także skalą Plato) na skalę SG (Specific Gravity)
+  // metoda przeliczająca gęstość ze skali Skali Ballinga (BLG) na miarę SG (Specific Gravity)
   // została zaimplementowana na podstawie wzoru ze strony http://betatestbrewing.com/pages/plato_to_sg.html
   convertBlgToSg() {
     if (this.gravityInBlg != null && this.gravityInBlg > 0)
       this.gravityCalculatedToSg = 1 + (this.gravityInBlg / (258.6 - 227.1 * (this.gravityInBlg / 258.2)));
-      //this.gravityCalculatedToSg = (-260 / (this.gravityInBlg - 260));
     else this.gravityCalculatedToSg = null;
-  }
-
-  convertSgToBlg2() {
-    if (this.gravityInSg != null && this.gravityInSg > 1)
-      this.gravityCalculatedToBlg = -463.37 + (668.72 * this.gravityInSg) - (205.35 * this.gravityInSg * this.gravityInSg);
-    else this.gravityCalculatedToBlg = null;
   }
 }

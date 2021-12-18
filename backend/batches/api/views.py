@@ -7,6 +7,10 @@ from batches.api.serializers import BatchSerializer, BatchCreateUpdateSerializer
 from batches.models import Batch
 from batches.api.permissions import IsBatchOwnerOrReadOnlyPermission
 
+from rest_framework import pagination
+
+class BatchesPagination(pagination.PageNumberPagination):
+       page_size = 6
 
 class BatchesViewSet(ModelViewSet):
     queryset = Batch.objects.all().select_related(
@@ -24,6 +28,7 @@ class BatchesViewSet(ModelViewSet):
         'not_bottled': BatchSerializer
     }
     filterset_class = BatchFilter
+    pagination_class = BatchesPagination
 
     def get_serializer_class(self):
         return self.serializers.get(
@@ -50,4 +55,4 @@ class BatchesViewSet(ModelViewSet):
         serializer = self.get_serializer(queryset, many=True, context={
             'request': request
         })
-        return Response(serializer.data) 
+        return Response(serializer.data)

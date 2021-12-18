@@ -2,6 +2,7 @@ from rest_framework.decorators import action
 from rest_framework.response import Response
 
 from rest_framework import viewsets
+from rest_framework import pagination
 
 from recipes.api.filters import RecipeFilter
 from recipes.api.permissions import IsRecipeOwnerOrReadOnlyPermission
@@ -9,6 +10,11 @@ from recipes.api.serializers import RecipeSerializer, RecipeCreateUpdateSerializ
     HopsSerializer, YeastSerializer, ManufacturerSerializer
 from recipes.api.serializers_common import StyleSerializer
 from recipes.models import Recipe, Style, Malt, Hops, Yeast, Manufacturer
+
+class RecipesPagination(pagination.PageNumberPagination):
+       page_size = 6
+class StylesProductsPagination(pagination.PageNumberPagination):
+       page_size = 100
 
 
 class RecipesViewSet(viewsets.ModelViewSet):
@@ -23,6 +29,7 @@ class RecipesViewSet(viewsets.ModelViewSet):
         IsRecipeOwnerOrReadOnlyPermission,
     ]
     filterset_class = RecipeFilter
+    pagination_class = RecipesPagination
 
     def get_serializer_class(self):
         return self.serializers.get(
@@ -56,7 +63,7 @@ class RecipesViewSet(viewsets.ModelViewSet):
 class StylesViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = Style.objects.all()
     serializer_class = StyleSerializer
-
+    pagination_class = StylesProductsPagination
 
 class MaltsViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = Malt.objects.all()
@@ -77,6 +84,7 @@ class MaltsViewSet(viewsets.ReadOnlyModelViewSet):
 class HopsViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = Hops.objects.all()
     serializer_class = HopsSerializer
+    pagination_class = StylesProductsPagination
 
     @action(detail=False)
     def only_default(self, request):
@@ -93,6 +101,7 @@ class HopsViewSet(viewsets.ReadOnlyModelViewSet):
 class YeastViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = Yeast.objects.all()
     serializer_class = YeastSerializer
+    pagination_class = StylesProductsPagination
 
     @action(detail=False)
     def only_default(self, request):

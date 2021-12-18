@@ -27,30 +27,23 @@ export class MyRecipesListComponent implements OnInit {
     if (current_user)
       this.currentUser = JSON.parse(current_user);
 
-    this.recipesService.getAllPublicRecipes().subscribe(data => {
-      this.recipes = (data as any).results;
-      this.totalItems = (data as any).results.length;
-      this.displayFullRecipeTypeName(this.recipes);
-    }, err => {
-      console.log(err);
-    });
+    this.getRecipes(1);
   }
 
-  getRecipes() {
+  getRecipes(pageNumber: number) {
     if (this.currentUser)
-      this.recipesService.getUserRecipes(this.currentUser.id, this.currentPage).subscribe(data => {
+      this.recipesService.getUserRecipes(this.currentUser.id, pageNumber).subscribe(data => {
         this.recipes = (data as any).results;
-        this.totalItems = (data as any).count;
-
         this.displayFullRecipeTypeName(this.recipes);
+        this.totalItems = (data as any).count;
       }, err => {
         console.log(err);
       });
   }
 
-  onTableDataChange(event: any) {
+  onPageChange(event: number): void {
     this.currentPage = event;
-    this.getRecipes();
+    this.getRecipes(this.currentPage);
   }
 
   public displayFullRecipeTypeName(recipes: Array<Recipe>) {

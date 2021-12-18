@@ -21,12 +21,20 @@ export class BrewersListComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.userService.getAllUsers().subscribe(data => {
+    this.getBrewers(1);
+  }
+
+  getBrewers(pageNumber: number) {
+    this.userService.getAllUsers(pageNumber).subscribe(data => {
       this.allUsers = (data as any).results;
-      this.totalLength = (data as any).results.length;
+      this.totalLength = (data as any).count;
     }, err => {
       console.log(err);
     });
   }
 
+  onPageChange(event: number): void {
+    this.page = event;
+    this.getBrewers(this.page);
+  }
 }

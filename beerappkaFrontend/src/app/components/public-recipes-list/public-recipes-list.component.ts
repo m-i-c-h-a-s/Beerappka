@@ -1,3 +1,4 @@
+import { query } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
 import { LoaderService } from 'src/app/loader/loader.service';
 import { RecipesService } from '../../services/recipes.service';
@@ -11,12 +12,9 @@ import { Recipe } from '../recipe-creator/recipe';
 export class PublicRecipesListComponent implements OnInit {
   public recipes: Array<Recipe> = [];
 
-  totalLength: any;
   page: number = 1;
-
-  recipesUrl = "http://localhost:8000/api/v1/recipes/only_public/";
-  next: string = '';
-  previous: string = '';
+  count: number = 0;
+  pageSize: number = 6;
 
   constructor(
     private recipesService: RecipesService,
@@ -24,37 +22,22 @@ export class PublicRecipesListComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.setRecipes(this.recipesUrl);
-
-    // this.recipesService.getAllPublicRecipes().subscribe(data => {
-    //   this.recipes = (data as any).results;
-    //   this.totalLength = (data as any).results.length;
-    //   this.displayFullRecipeTypeName(this.recipes);
-    // }, err => {
-    //   console.log(err);
-    // });
+    this.getRecipes(1);
   }
 
-  setRecipes(url: string) {
-    this.recipesService.getAllPublicRecipes2(url).subscribe(data => {
+  getRecipes(pageNumber: number) {
+    this.recipesService.getAllPublicRecipes(pageNumber).subscribe(data => {
       this.recipes = (data as any).results;
-      this.totalLength = (data as any)
       this.displayFullRecipeTypeName(this.recipes);
-
-      if ((data as any).next)
-        this.next = (data as any).next;
-
-      if ((data as any).previous)
-        this.previous = (data as any).previous;
+      this.count = (data as any).count;
+    }, err => {
+      console.log(err);
     });
   }
 
-  fetchNext() {
-    this.setRecipes(this.next);
-  }
-
-  fetchPrevious() {
-    this.setRecipes(this.previous);
+  onPageChange(event: number): void {
+    this.page = event;
+    this.getRecipes(this.page);
   }
 
   public displayFullRecipeTypeName(recipes: Array<Recipe>) {

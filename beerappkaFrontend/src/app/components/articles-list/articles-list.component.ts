@@ -20,12 +20,21 @@ export class ArticlesListComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.articlesService.getAllPublicArticles().subscribe(data => {
+    this.getArticles(1);
+  }
+
+  getArticles(pageNumber: number) {
+    this.articlesService.getAllPublicArticles(this.page).subscribe(data => {
       this.articles = (data as any).results;
-      this.totalLength = (data as any).results.length;
+      this.totalLength = (data as any).count;
     }, err => {
       console.log(err);
     });
+  }
+
+  onPageChange(event: number): void {
+    this.page = event;
+    this.getArticles(this.page);
   }
 
 }

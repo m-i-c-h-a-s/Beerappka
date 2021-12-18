@@ -30,17 +30,26 @@ export class MyBatchesListComponent implements OnInit {
       this.currentUser = data as any;
 
       if (this.currentUser)
-        this.batchesService.getUserBatches(this.currentUser.id).subscribe(data => {
-          this.batches = (data as any).results;
-          this.totalLength = (data as any).results.length;
-          this.displayFullRecipeTypeName(this.batches);
-        }, err => {
-          console.log(err);
-        });
-
+        this.getBatches(1);
     }, err => {
       console.log(err);
     });
+  }
+
+  getBatches(pageNumber: number) {
+    if (this.currentUser)
+      this.batchesService.getUserBatches(this.currentUser.id, pageNumber).subscribe(data => {
+        this.batches = (data as any).results;
+        this.displayFullRecipeTypeName(this.batches);
+        this.totalLength = (data as any).count;
+      }, err => {
+        console.log(err);
+      });
+  }
+
+  onPageChange(event: number): void {
+    this.page = event;
+    this.getBatches(this.page);
   }
 
   public displayFullRecipeTypeName(recipes: Array<Batch>) {

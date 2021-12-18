@@ -36,8 +36,8 @@ export class UserService extends BaseService {
     const token = localStorage.getItem('auth_token');
     return !!token;
   }
-  public getAllUsers(): Observable<ArrayBuffer> {
-    return this.http.get(this.getAPIUrl(`/users/`), this.httpOptions);
+  public getAllUsers(pageNumber: number): Observable<ArrayBuffer> {
+    return this.http.get(this.getAPIUrl(`/users/?page=${pageNumber}`), this.httpOptions);
   }
   public getUserData(username: string): Observable<ArrayBuffer> {
     return this.http.get(this.getAPIUrl(`/users/${username}/`), this.httpOptions);

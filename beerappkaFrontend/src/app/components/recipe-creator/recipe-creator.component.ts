@@ -52,8 +52,6 @@ export class RecipeCreatorComponent implements OnInit {
   // sweet wort - brzeczka nastawna
   amountOfSweetWortInLiters: number;
   amountOfBeerBeforeDryHoppingInLiters: number;
-  weightOfAllMalts: number | undefined;
-
 
   constructor(
     private beerStylesService: BeerStylesService,
@@ -214,28 +212,30 @@ export class RecipeCreatorComponent implements OnInit {
         quantity: 0
       }
 
-      if (this.recipe.expected_beer_amount)
+      if (this.recipe.expected_beer_amount) {
         this.recipe.blg = calculateBLG(this.recipe.malts, this.recipe.mashing_efficiency, this.recipe.expected_beer_amount);
-
-      this.calculateWeightOfAllMalts();
-      this.recipe.ebc = calculateEBC(this.recipe.malts, this.recipe.mashing_efficiency, this.recipe.boiled_wort_amount);
+        this.recipe.ebc = calculateEBC(this.recipe.malts, this.recipe.mashing_efficiency, this.recipe.boiled_wort_amount);
+        this.recipe.ibu = calculateIBU(this.recipe.boiled_wort_amount, this.recipe.blg, this.recipe.hops);
+      }
     }
   }
 
   deleteMalt(recipeMalt: RecipeMalt) {
     this.recipe.malts = this.recipe.malts.filter(e => e !== recipeMalt);
-    if (this.recipe.expected_beer_amount)
-        this.recipe.blg = calculateBLG(this.recipe.malts, this.recipe.mashing_efficiency, this.recipe.expected_beer_amount);
-    this.calculateWeightOfAllMalts();
-    this.recipe.ebc = calculateEBC(this.recipe.malts, this.recipe.mashing_efficiency, this.recipe.boiled_wort_amount);
+    if (this.recipe.expected_beer_amount) {
+      this.recipe.blg = calculateBLG(this.recipe.malts, this.recipe.mashing_efficiency, this.recipe.expected_beer_amount);
+      this.recipe.ebc = calculateEBC(this.recipe.malts, this.recipe.mashing_efficiency, this.recipe.boiled_wort_amount);
+      this.recipe.ibu = calculateIBU(this.recipe.boiled_wort_amount, this.recipe.blg, this.recipe.hops);
+    }
   }
 
   deleteAllMalts() {
     this.recipe.malts.length = 0;
-    if (this.recipe.expected_beer_amount)
-        this.recipe.blg = calculateBLG(this.recipe.malts, this.recipe.mashing_efficiency, this.recipe.expected_beer_amount);
-    this.calculateWeightOfAllMalts();
-    this.recipe.ebc = calculateEBC(this.recipe.malts, this.recipe.mashing_efficiency, this.recipe.boiled_wort_amount);
+    if (this.recipe.expected_beer_amount) {
+      this.recipe.blg = calculateBLG(this.recipe.malts, this.recipe.mashing_efficiency, this.recipe.expected_beer_amount);
+      this.recipe.ebc = calculateEBC(this.recipe.malts, this.recipe.mashing_efficiency, this.recipe.boiled_wort_amount);
+      this.recipe.ibu = calculateIBU(this.recipe.boiled_wort_amount, this.recipe.blg, this.recipe.hops);
+    }
   }
 
 
@@ -337,9 +337,11 @@ export class RecipeCreatorComponent implements OnInit {
     this.calculateAmountOfSweetWort();
     this.calculateAmountOfBeerBeforeDryHopping();
     this.recipe.ibu = calculateIBU(this.recipe.boiled_wort_amount, this.recipe.blg, this.recipe.hops);
-    this.calculateWeightOfAllMalts();
-    if (this.recipe.expected_beer_amount)
-        this.recipe.blg = calculateBLG(this.recipe.malts, this.recipe.mashing_efficiency, this.recipe.expected_beer_amount);
+    if (this.recipe.expected_beer_amount) {
+      this.recipe.blg = calculateBLG(this.recipe.malts, this.recipe.mashing_efficiency, this.recipe.expected_beer_amount);
+      this.recipe.ebc = calculateEBC(this.recipe.malts, this.recipe.mashing_efficiency, this.recipe.boiled_wort_amount);
+  }
+
   }
 
   calculateAmountOfBoilingWort() {
@@ -369,14 +371,6 @@ export class RecipeCreatorComponent implements OnInit {
       this.amountOfBeerBeforeDryHoppingInLiters = +this.recipe.expected_beer_amount;
     if (this.recipe.expected_beer_amount != null && this.recipe.cold_hop_losses != null)
       this.amountOfBeerBeforeDryHoppingInLiters += +this.recipe.expected_beer_amount * (this.recipe.cold_hop_losses / 100);
-  }
-
-  calculateWeightOfAllMalts() {
-    let weight = 0;
-    this.recipe.malts.forEach(malt => {
-      weight += malt.quantity;
-    });
-    this.weightOfAllMalts = weight;
   }
 
   selectBeerStyle(item: BeerStyle) {

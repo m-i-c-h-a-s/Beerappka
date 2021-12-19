@@ -147,3 +147,8 @@ Aby uzyskać dostęp do panelu administracyjnego, należy stworzyć konto user a
 Po stworzeniu konta administratora, zalogowanie jest możliwe pod adresem
 
 ``localhost:8000/admin``
+
+Przykładowe dane należy wczytać z pliku data.json. Zawiera on przykładowe surowce, ich producentów oraz style piwne.
+W celu wczytania plików należy uruchomić komendę:
+
+``docker-compose exec beerappka_backend python manage.py loaddata data.json``

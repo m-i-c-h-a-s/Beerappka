@@ -84,6 +84,7 @@ z uprawnieniami administratora, a następnie wydać komendę:
 
 ``wsl install``
 
+
 1. Uruchomić dystrybucję Ubuntu na WSL
 2. Pobrać projekt z repozytorium git (jeśli go nie mamy)
 3. W folderze projektu odpalić ``code .``

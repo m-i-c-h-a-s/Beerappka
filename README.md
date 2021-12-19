@@ -122,7 +122,7 @@ lub
 
 __Zatrzymywanie aplikacji__
 
-``docker-compose down`` // zattrzymuje aplikacje
+``docker-compose down`` // zatrzymuje aplikacje
 
 __Wyswietlanie logow__
 

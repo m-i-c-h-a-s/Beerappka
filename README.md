@@ -76,16 +76,22 @@ __Włączenie aplikacji w przeglądarce__
 
 __INFO__
 
-Na Windowsie najlepiej korzystać Windows Subsystem for Linux (WSL).
+Na Windowsie najlepiej korzystać z Windows Subsystem for Linux (WSL).
 (Na czystym Windowsie bardzo wolno działa wykrywanie zmian - livereload)
+
+Aby zainstalowaś WSL na Windowsie, należy uruchomić wiersz poleceń 
+z uprawnieniami administratora, a następnie wydać komendę:
+
+``wsl install``
 
 1. Uruchomić dystrybucję Ubuntu na WSL
 2. Pobrać projekt z repozytorium git (jeśli go nie mamy)
 3. W folderze projektu odpalić ``code .``
 
+
 __Srodowisko DEV__
 
-W folderze backend stworzyc plik .env i ustawic odpowiednie zmienne
+W folderze backend stworzyć plik .env i ustawić odpowiednie zmienne:
 
 ```
 DB_NAME=beerappka

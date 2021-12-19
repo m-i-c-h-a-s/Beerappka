@@ -138,7 +138,7 @@ __Stworzenie usera admina w aplikacji skonteneryzowanej__
 
 Po uruchomieniu kontenerów z usługami, do aplikacji można zarejestrować się jako zwykły użytkownik.
 
-``localhost:4200/
+``localhost:4200/``
 
 Aby uzyskać dostęp do panelu administracyjnego, należy stworzyć konto user admina.
 

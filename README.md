@@ -100,6 +100,11 @@ DB_USER=beerappka_user
 DB_PASSWORD=zaq1@WSX
 DB_HOST=beerappka_db
 DB_PORT=5432
+
+FRONTEND_URL=http://localhost:4200
+FRONTEND_RESET_PASSWORD_CONFIRM_URL=/resetuj-haslo-potwierdz/
+REDIRECT_CONFIRM_EMAIL=/logowanie
+DEBUG=1
 ```
 
 
@@ -128,3 +133,17 @@ __Wyswietlanie logow__
 __Wykonywanie komend w kontenerze__
 
 ``docker-compose exec NAZWA_USLUGI KOMENDA``
+
+__Stworzenie usera admina w aplikacji skonteneryzowanej__
+
+Po uruchomieniu kontenerów z usługami, do aplikacji można zarejestrować się jako zwykły użytkownik.
+
+``localhost:4200/
+
+Aby uzyskać dostęp do panelu administracyjnego, należy stworzyć konto user admina.
+
+``docker-compose exec beerappka_backend python manage.py createsuperuser``
+
+Po stworzeniu konta administratora, zalogowanie jest możliwe pod adresem
+
+``localhost:8000/admin``

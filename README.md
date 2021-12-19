@@ -83,6 +83,19 @@ Na Windowsie najlepiej korzystać Windows Subsystem for Linux (WSL).
 2. Pobrać projekt z repozytorium git (jeśli go nie mamy)
 3. W folderze projektu odpalić ``code .``
 
+__Srodowisko DEV__
+
+W folderze backend stworzyc plik .env i ustawic odpowiednie zmienne
+
+```
+DB_NAME=beerappka
+DB_USER=beerappka_user
+DB_PASSWORD=zaq1@WSX
+DB_HOST=beerappka_db
+DB_PORT=5432
+```
+
+
 __Uruchamianie aplikacji__
 
 Z glownego folderu projektu:
@@ -108,15 +121,3 @@ __Wyswietlanie logow__
 __Wykonywanie komend w kontenerze__
 
 ``docker-compose exec NAZWA_USLUGI KOMENDA``
-
-__Srodowisko DEV__
-
-W pliku .env ustawic odpowiednie zmienne
-
-```
-DB_NAME=beerappka
-DB_USER=beerappka_user
-DB_PASSWORD=zaq1@WSX
-DB_HOST=beerappka_db
-DB_PORT=5432
-```

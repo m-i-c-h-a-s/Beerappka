@@ -1,0 +1,427 @@
+[
+{
+    "model": "recipes.manufacturer",
+    "pk": 1,
+    "fields": {
+		"name": "Weyermann"
+    }
+},
+{
+    "model": "recipes.manufacturer",
+    "pk": 2,
+    "fields": {
+		"name": "Browamator"
+    }
+},
+{
+    "model": "recipes.manufacturer",
+    "pk": 3,
+    "fields": {
+		"name": "Fermentis"
+    }
+},
+{
+    "model": "recipes.style",
+    "pk": 1,
+    "fields": {
+		"name": "American IPA",
+		"fermentation_type": "uf",
+		"min_blg": 14.0,
+		"max_blg": 17.5,
+		"min_ibu": 40.0,
+		"max_ibu": 70.0,
+		"min_carbonation": 2.2,
+		"max_carbonation": 2.7
+    }
+},
+{
+    "model": "recipes.style",
+    "pk": 2,
+    "fields": {
+		"name": "Belgian blond ale",
+		"fermentation_type": "uf",
+		"min_blg": 15.0,
+		"max_blg": 18.0,
+		"min_ibu": 14.0,
+		"max_ibu": 30.0,
+		"min_carbonation": 2.2,
+		"max_carbonation": 2.8
+    }
+},
+{
+    "model": "recipes.style",
+    "pk": 3,
+    "fields": {
+		"name": "Berliner Weisse",
+		"fermentation_type": "uf",
+		"min_blg": 7.0,
+		"max_blg": 12.0,
+		"min_ibu": 3.0,
+		"max_ibu": 6.0,
+		"min_carbonation": 2.4,
+		"max_carbonation": 2.9
+    }
+},
+{
+    "model": "recipes.style",
+    "pk": 4,
+    "fields": {
+		"name": "Marcowe",
+		"fermentation_type": "lf",
+		"min_blg": 13.0,
+		"max_blg": 15.0,
+		"min_ibu": 20.0,
+		"max_ibu": 35.0,
+		"min_carbonation": 2.0,
+		"max_carbonation": 2.5
+    }
+},
+{
+    "model": "recipes.style",
+    "pk": 5,
+    "fields": {
+		"name": "Porter Bałtycki",
+		"fermentation_type": "lf",
+		"min_blg": 18.0,
+		"max_blg": 22.0,
+		"min_ibu": 25.0,
+		"max_ibu": 45.0,
+		"min_carbonation": 2.0,
+		"max_carbonation": 2.5
+    }
+},
+{
+    "model": "recipes.style",
+    "pk": 6,
+    "fields": {
+		"name": "Koźlak",
+		"fermentation_type": "lf",
+		"min_blg": 16.0,
+		"max_blg": 18.0,
+		"min_ibu": 20.0,
+		"max_ibu": 30.0,
+		"min_carbonation": 2.3,
+		"max_carbonation": 2.6
+    }
+},
+{
+    "model": "recipes.style",
+    "pk": 7,
+    "fields": {
+		"name": "Kolońskie",
+		"fermentation_type": "uf",
+		"min_blg": 11.0,
+		"max_blg": 12.0,
+		"min_ibu": 25.0,
+		"max_ibu": 35.0,
+		"min_carbonation": 2.4,
+		"max_carbonation": 2.6
+    }
+},
+{
+    "model": "recipes.style",
+    "pk": 8,
+    "fields": {
+		"name": "American Wheat",
+		"fermentation_type": "uf",
+		"min_blg": 10.0,
+		"max_blg": 13.5,
+		"min_ibu": 15.0,
+		"max_ibu": 30.0,
+		"min_carbonation": 2.4,
+		"max_carbonation": 2.6
+    }
+},
+{
+    "model": "recipes.style",
+    "pk": 9,
+    "fields": {
+		"name": "Milk Stout",
+		"fermentation_type": "uf",
+		"min_blg": 12.0,
+		"max_blg": 16.0,
+		"min_ibu": 20.0,
+		"max_ibu": 35.0,
+		"min_carbonation": 1.5,
+		"max_carbonation": 2.0
+    }
+},
+{
+    "model": "recipes.style",
+    "pk": 10,
+    "fields": {
+		"name": "Pilzner niemiecki",
+		"fermentation_type": "lf",
+		"min_blg": 11.0,
+		"max_blg": 12.5,
+		"min_ibu": 25.0,
+		"max_ibu": 40.0,
+		"min_carbonation": 2.0,
+		"max_carbonation": 2.5
+    }
+},
+{
+    "model": "recipes.style",
+    "pk": 11,
+    "fields": {
+		"name": "India Pale Ale",
+		"fermentation_type": "uf",
+		"min_blg": 13.5,
+		"max_blg": 17.0,
+		"min_ibu": 40.0,
+		"max_ibu": 60.0,
+		"min_carbonation": 2.0,
+		"max_carbonation": 2.5
+    }
+},
+{
+    "model": "recipes.style",
+    "pk": 12,
+    "fields": {
+		"name": "Witbier",
+		"fermentation_type": "uf",
+		"min_blg": 11.0,
+		"max_blg": 13.0,
+		"min_ibu": 8.0,
+		"max_ibu": 20.0,
+		"min_carbonation": 2.0,
+		"max_carbonation": 2.5
+    }
+},
+{
+    "model": "recipes.style",
+    "pk": 13,
+    "fields": {
+		"name": "Saison",
+		"fermentation_type": "uf",
+		"min_blg": 12.0,
+		"max_blg": 16.0,
+		"min_ibu": 20.0,
+		"max_ibu": 35.0,
+		"min_carbonation": 3.0,
+		"max_carbonation": 3.5
+    }
+},
+{
+    "model": "recipes.style",
+    "pk": 14,
+    "fields": {
+		"name": "Dunkles weissbier",
+		"fermentation_type": "uf",
+		"min_blg": 11.0,
+		"max_blg": 14.0,
+		"min_ibu": 10.0,
+		"max_ibu": 18.0,
+		"min_carbonation": 2.5,
+		"max_carbonation": 3.0
+    }
+},
+{
+    "model": "recipes.style",
+    "pk": 15,
+    "fields": {
+		"name": "Stout owsiany",
+		"fermentation_type": "uf",
+		"min_blg": 10.0,
+		"max_blg": 16.0,
+		"min_ibu": 25.0,
+		"max_ibu": 40.0,
+		"min_carbonation": 2.0,
+		"max_carbonation": 2.5
+    }
+},
+{
+    "model": "recipes.malt",
+    "pk": 1,
+    "fields": {
+		"color": 4.0,
+		"extractivity": 80.0,
+		"is_default": true,
+		"manufacturer": 1,
+		"name": "Pale Ale",
+		"type": "gr"
+    }
+},
+{
+    "model": "recipes.malt",
+    "pk": 2,
+    "fields": {
+		"color": 800.0,
+		"extractivity": 95.0,
+		"is_default": true,
+		"manufacturer": 1,
+		"name": "Carafa Special I",
+		"type": "gr"
+    }
+},
+{
+    "model": "recipes.malt",
+    "pk": 3,
+    "fields": {
+		"color": 1100.0,
+		"extractivity": 95.0,
+		"is_default": true,
+		"manufacturer": 1,
+		"name": "Carafa Special II",
+		"type": "gr"
+    }
+},
+{
+    "model": "recipes.malt",
+    "pk": 4,
+    "fields": {
+		"color": 4.5,
+		"extractivity": 85.0,
+		"is_default": true,
+		"manufacturer": 1,
+		"name": "Pilzneński",
+		"type": "gr"
+	}
+},
+{
+    "model": "recipes.malt",
+    "pk": 5,
+    "fields": {
+		"color": 5.0,
+		"extractivity": 78.0,
+		"is_default": true,
+		"manufacturer": 1,
+		"name": "Orkiszowy",
+		"type": "gr"
+    }
+},
+{
+    "model": "recipes.malt",
+    "pk": 6,
+    "fields": {
+		"color": 7.5,
+		"extractivity": 80.0,
+		"is_default": true,
+		"manufacturer": 1,
+		"name": "Wiedeński",
+		"type": "gr"
+    }
+},
+{
+    "model": "recipes.hops",
+    "pk": 1,
+    "fields": {
+		"name": "Marynka",
+		"type": "bi",
+		"origin": "Polska",
+		"alpha_acids": 8.0,
+		"is_default": true,
+		"manufacturer": 2
+    }
+},
+{
+    "model": "recipes.hops",
+    "pk": 2,
+    "fields": {
+		"name": "Zula",
+		"type": "bi",
+		"origin": "Polska",
+		"alpha_acids": 11.0,
+		"is_default": true,
+		"manufacturer": 2
+    }
+},
+{
+    "model": "recipes.hops",
+    "pk": 3,
+    "fields": {
+		"name": "Saaz",
+		"type": "ar",
+		"origin": "Czechy",
+		"alpha_acids": 4.5,
+		"is_default": true,
+		"manufacturer": 2
+    }
+},
+{
+    "model": "recipes.hops",
+    "pk": 4,
+    "fields": {
+		"name": "Lubelski",
+		"type": "ar",
+		"origin": "Polska",
+		"alpha_acids": 3.0,
+		"is_default": true,
+		"manufacturer": 2
+    }
+},
+{
+    "model": "recipes.hops",
+    "pk": 5,
+    "fields": {
+		"name": "Citra",
+		"type": "ar",
+		"origin": "USA",
+		"alpha_acids": 11.0,
+		"is_default": true,
+		"manufacturer": 2
+    }
+},
+{
+    "model": "recipes.hops",
+    "pk": 6,
+    "fields": {
+		"name": "Cascade",
+		"type": "ar",
+		"origin": "USA",
+		"alpha_acids": 6.0,
+		"is_default": true,
+		"manufacturer": 2
+    }
+},
+{
+    "model": "recipes.yeast",
+    "pk": 1,
+    "fields": {
+        "manufacturer": 3,
+		"name": "Safale US-05",
+		"type": "uf",
+		"is_default": true
+    }
+},
+{
+    "model": "recipes.yeast",
+    "pk": 2,
+    "fields": {
+        "manufacturer": 3,
+		"name": "Safale S-04",
+		"type": "uf",
+		"is_default": true
+    }
+},
+{
+    "model": "recipes.yeast",
+    "pk": 3,
+    "fields": {
+        "manufacturer": 3,
+		"name": "Safale K-97",
+		"type": "uf",
+		"is_default": true
+    }
+},
+{
+    "model": "recipes.yeast",
+    "pk": 4,
+    "fields": {
+        "manufacturer": 3,
+		"name": "SafLager S-23",
+		"type": "lf",
+		"is_default": true
+    }
+},
+{
+    "model": "recipes.yeast",
+    "pk": 5,
+    "fields": {
+        "manufacturer": 3,
+		"name": "Safale S-189",
+		"type": "lf",
+		"is_default": true
+    }
+}
+]

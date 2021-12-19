@@ -76,12 +76,37 @@ __Włączenie aplikacji w przeglądarce__
 
 __INFO__
 
-Na Windowsie najlepiej korzystać Windows Subsystem for Linux (WSL).
+Na Windowsie najlepiej korzystać z Windows Subsystem for Linux (WSL).
 (Na czystym Windowsie bardzo wolno działa wykrywanie zmian - livereload)
+
+Aby zainstalowaś WSL na Windowsie, należy uruchomić wiersz poleceń 
+z uprawnieniami administratora, a następnie wydać komendę:
+
+``wsl install``
+
 
 1. Uruchomić dystrybucję Ubuntu na WSL
 2. Pobrać projekt z repozytorium git (jeśli go nie mamy)
 3. W folderze projektu odpalić ``code .``
+
+
+__Srodowisko DEV__
+
+W folderze backend stworzyć plik .env i ustawić odpowiednie zmienne:
+
+```
+DB_NAME=beerappka
+DB_USER=beerappka_user
+DB_PASSWORD=zaq1@WSX
+DB_HOST=beerappka_db
+DB_PORT=5432
+
+FRONTEND_URL=http://localhost:4200
+FRONTEND_RESET_PASSWORD_CONFIRM_URL=/resetuj-haslo-potwierdz/
+REDIRECT_CONFIRM_EMAIL=/logowanie
+DEBUG=1
+```
+
 
 __Uruchamianie aplikacji__
 
@@ -97,7 +122,7 @@ lub
 
 __Zatrzymywanie aplikacji__
 
-``docker-compose down`` // zattrzymuje aplikacje
+``docker-compose down`` // zatrzymuje aplikacje
 
 __Wyswietlanie logow__
 
@@ -109,19 +134,21 @@ __Wykonywanie komend w kontenerze__
 
 ``docker-compose exec NAZWA_USLUGI KOMENDA``
 
-__Srodowisko DEV__
+__Stworzenie usera admina w aplikacji skonteneryzowanej__
 
-W pliku .env ustawic odpowiednie zmienne
+Po uruchomieniu kontenerów z usługami, do aplikacji można zarejestrować się jako zwykły użytkownik.
 
-```
-DB_NAME=beerappka
-DB_USER=beerappka_user
-DB_PASSWORD=zaq1@WSX
-DB_HOST=beerappka_db
-DB_PORT=5432
-```
+``localhost:4200/``
 
-__TODO__
-- dodanie nginx
-- rozdzielic konfiguracje dockera dla srodowiska dev i testing
-- wrzucić apkę dla testów na Heroku
+Aby uzyskać dostęp do panelu administracyjnego, należy stworzyć konto user admina.
+
+``docker-compose exec beerappka_backend python manage.py createsuperuser``
+
+Po stworzeniu konta administratora, zalogowanie jest możliwe pod adresem
+
+``localhost:8000/admin``
+
+Przykładowe dane należy wczytać z pliku data.json. Zawiera on przykładowe surowce, ich producentów oraz style piwne.
+W celu wczytania plików należy uruchomić komendę:
+
+``docker-compose exec beerappka_backend python manage.py loaddata data.json``

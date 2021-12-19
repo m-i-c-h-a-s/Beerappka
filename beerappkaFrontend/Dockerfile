@@ -4,7 +4,7 @@ RUN adduser -D  frontend
 
 WORKDIR /home/frontend/
 
-COPY package*.json .
+COPY package*.json ./
 
 RUN npm install
 

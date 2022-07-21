@@ -37,13 +37,6 @@ Aplikacja posiada też kilka przydatnych kalkulatorów, które pozwalają oblicz
 </p>
 
 <h3>
-  <p align="center">Dashboard użytkownika</p>
-</h3>
-<p align="center">
-  <img src="https://user-images.githubusercontent.com/81260270/180214747-339ff1e2-0be5-42b4-b35d-c6912befb6b0.png" align="middle" height="67%" width="67%">
-</p>
-
-<h3>
   <p align="center">Lista receptur</p>
 </h3>
 <p align="center">
